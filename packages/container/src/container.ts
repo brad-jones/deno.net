@@ -1,5 +1,4 @@
 // deno-lint-ignore-file no-explicit-any
-
 import { Scope, Type } from "./types.ts";
 import { injectionContext } from "./injection.ts";
 import type { Constructor, IContainer, ServiceRegistration, Token, ValueProvider } from "./types.ts";
