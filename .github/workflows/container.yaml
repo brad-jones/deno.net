@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - master
-    #paths:
-    #  - ./packages/container/**/*
+    paths:
+      - ./packages/container/**
 
 env:
   CI: true
