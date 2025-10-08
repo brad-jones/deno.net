@@ -24,6 +24,7 @@ tasks:
         - COG_VERSION_TAG
         - COG_PACKAGE_NAME
     cmds:
+      - echo "TEST2"
       - >-
           echo '
             const config = JSON.parse(Deno.readTextFileSync("deno.json"));

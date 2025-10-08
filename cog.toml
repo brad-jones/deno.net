@@ -12,6 +12,7 @@ branch_whitelist = ["master"]
 from_latest_tag = true
 
 pre_bump_hooks = [
+  "echo 'TEST1'",
   # Run the package task to generate all the final artifacts
   "task package COG_VERSION_TAG={{package}}-v{{version}} COG_VERSION={{version}} COG_PACKAGE_NAME={{package}}",
 ]
