@@ -1,0 +1,22 @@
+[workspace]
+name = "deno.net"
+platforms = ["linux-64"]
+authors = ["Brad Jones <brad@bjc.id.au>"]
+channels = ["https://repo.prefix.dev/brads-forge", "conda-forge"]
+
+[tasks]
+init = "task init"
+
+[tasks.code]
+depends-on = ["init"]
+cmd = "code ."
+
+[activation.env]
+PATH = "$PWD/scripts:$PATH"
+
+[dependencies]
+deno = ">=2.5.3,<2.6"
+lefthook = ">=1.13.6,<2"
+dprint = ">=0.50.2,<0.51"
+cocogitto = ">=6.3.0,<7"
+task = ">=3.45.4,<4"

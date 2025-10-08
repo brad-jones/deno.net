@@ -1,0 +1,39 @@
+# The Conventional Commits toolbox
+# see: https://github.com/cocogitto/cocogitto
+
+# All version numbers should be prefixed with v to denote
+# a version number over any other type of tag
+tag_prefix = "v"
+
+# Only releases from master are allowed
+branch_whitelist = ["master"]
+
+# Check commit history, starting from the latest tag to HEAD
+from_latest_tag = true
+
+pre_bump_hooks = [
+  # Run the package task to generate all the final artifacts
+  "task package COG_VERSION_TAG={{package}}-v{{version}} COG_VERSION={{version}} COG_PACKAGE_NAME={{package}}",
+]
+
+post_bump_hooks = [
+  # Publish artifacts, push up the changelogs & tags
+  "task publish COG_VERSION_TAG={{package}}-v{{version}} COG_VERSION={{version}} COG_PACKAGE_NAME={{package}}",
+]
+
+# Create a CHANGELOG that includes helpful links to github diffs / commits / PRs, etc.
+[changelog]
+path = "CHANGELOG.md"
+template = "remote"
+remote = "github.com"
+owner = "brad-jones"
+repository = "deno.net"
+authors = [
+  { signature = "Brad Jones", username = "brad-jones" },
+]
+
+[packages]
+
+[packages.container]
+path = "packages/container"
+include = ["packages/container/**"]

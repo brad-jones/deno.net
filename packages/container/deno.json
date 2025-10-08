@@ -1,0 +1,16 @@
+{
+  "name": "@brad-jones/deno-net-container",
+  "exports": "./src/mod.ts",
+  "version": "0.0.0",
+  "license": "MIT",
+  "publish": {
+    "include": [
+      "src/**/*.ts",
+      "README.md",
+      "CHANGELOG.md"
+    ]
+  },
+  "imports": {
+    "@std/expect": "jsr:@std/expect@^1.0.17"
+  }
+}
