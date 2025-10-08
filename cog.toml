@@ -1,26 +1,27 @@
 # The Conventional Commits toolbox
 # see: https://github.com/cocogitto/cocogitto
 
-# All version numbers should be prefixed with v to denote
-# a version number over any other type of tag
 tag_prefix = "v"
-
-# Only releases from master are allowed
 branch_whitelist = ["master"]
-
-# Check commit history, starting from the latest tag to HEAD
 from_latest_tag = true
 
-pre_bump_hooks = [
-  "echo 'TEST1'",
-  # Run the package task to generate all the final artifacts
+pre_package_bump_hooks = [
   "task package COG_VERSION_TAG={{package}}-v{{version}} COG_VERSION={{version}} COG_PACKAGE_NAME={{package}}",
 ]
 
-post_bump_hooks = [
-  # Publish artifacts, push up the changelogs & tags
+post_package_bump_hooks = [
   "task publish COG_VERSION_TAG={{package}}-v{{version}} COG_VERSION={{version}} COG_PACKAGE_NAME={{package}}",
 ]
+
+[commit_types]
+build = { bump_patch = true }
+ci = { bump_patch = true }
+revert = { bump_patch = true }
+docs = { bump_patch = true }
+test = { bump_patch = true }
+style = { bump_patch = true }
+chore = { bump_patch = true }
+perf = { bump_patch = true }
 
 # Create a CHANGELOG that includes helpful links to github diffs / commits / PRs, etc.
 [changelog]
