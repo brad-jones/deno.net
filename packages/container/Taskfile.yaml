@@ -6,6 +6,8 @@ dotenv: [".env"]
 set: [pipefail]
 shopt: [globstar]
 
+# debug build
+
 tasks:
   test:
     desc: Runs the package test suite
