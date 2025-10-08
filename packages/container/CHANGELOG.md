@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## container-v0.1.1 - 2025-10-08
+#### Build system
+- **(container)** remove debugging statements - (0cbf162) - *brad-jones*
+
+- - -
+
 ## container-v0.1.0 - 2025-10-08
 #### Bug Fixes
 - **(container)** cog is doing something odd - (c55fa82) - *brad-jones*
