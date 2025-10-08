@@ -4,6 +4,9 @@ import { Scope, Type } from "./types.ts";
 import { injectionContext } from "./injection.ts";
 import type { Constructor, IContainer, ServiceRegistration, Token, ValueProvider } from "./types.ts";
 
+/**
+ * @inheritdoc
+ */
 export class Container implements IContainer {
   #parent: Container | undefined = undefined;
   #scopedValues = new Map<Token<unknown>, unknown>();
@@ -28,6 +31,9 @@ export class Container implements IContainer {
     }
   }
 
+  /**
+   * @inheritdoc
+   */
   add<T>(scope: Scope, token: Token<T>, provider: ValueProvider<T>): this {
     const services = this.#registry.get(token) ?? [];
 
@@ -81,30 +87,90 @@ export class Container implements IContainer {
     throw new Error("unknown args");
   }
 
+  /**
+   * @inheritdoc
+   */
   addTransient<T>(klass: new (...args: any[]) => T): this;
+
+  /**
+   * @inheritdoc
+   */
   addTransient<T>(token: Token<T>, provider: ValueProvider<T>): this;
+
+  /**
+   * @inheritdoc
+   */
   addTransient<T>(token: Token<T>, klass: Constructor<T>): this;
+
+  /**
+   * @inheritdoc
+   */
   addTransient<T>(token: Token<T>, factory: (c: Container) => T): this;
+
+  /**
+   * @inheritdoc
+   */
   addTransient<T>(...args: unknown[]): this {
     return this.#addWithScope<T>(Scope.Transient, ...args);
   }
 
+  /**
+   * @inheritdoc
+   */
   addScoped<T>(klass: new (...args: any[]) => T): this;
+
+  /**
+   * @inheritdoc
+   */
   addScoped<T>(token: Token<T>, provider: ValueProvider<T>): this;
+
+  /**
+   * @inheritdoc
+   */
   addScoped<T>(token: Token<T>, klass: Constructor<T>): this;
+
+  /**
+   * @inheritdoc
+   */
   addScoped<T>(token: Token<T>, factory: (c: Container) => T): this;
+
+  /**
+   * @inheritdoc
+   */
   addScoped<T>(...args: unknown[]): this {
     return this.#addWithScope<T>(Scope.Scoped, ...args);
   }
 
+  /**
+   * @inheritdoc
+   */
   addSingleton<T>(klass: new (...args: any[]) => T): this;
+
+  /**
+   * @inheritdoc
+   */
   addSingleton<T>(token: Token<T>, provider: ValueProvider<T>): this;
+
+  /**
+   * @inheritdoc
+   */
   addSingleton<T>(token: Token<T>, klass: Constructor<T>): this;
+
+  /**
+   * @inheritdoc
+   */
   addSingleton<T>(token: Token<T>, factory: (c: Container) => T): this;
+
+  /**
+   * @inheritdoc
+   */
   addSingleton<T>(...args: unknown[]): this {
     return this.#addWithScope<T>(Scope.Singleton, ...args);
   }
 
+  /**
+   * @inheritdoc
+   */
   getService<T>(token: Token<T>): T {
     return injectionContext(this).run(() => {
       const services = this.#getRegisteredServices(token);
@@ -114,6 +180,9 @@ export class Container implements IContainer {
     });
   }
 
+  /**
+   * @inheritdoc
+   */
   getServices<T>(token: Token<T>): T[] {
     return injectionContext(this).run(() => {
       const services = this.#getRegisteredServices(token);
@@ -170,10 +239,16 @@ export class Container implements IContainer {
     return value as T;
   }
 
+  /**
+   * @inheritdoc
+   */
   callFunc<T, Args extends readonly unknown[]>(f: (...args: Args) => T, ...fArgs: Args): T {
     return injectionContext(this).run(() => f(...fArgs));
   }
 
+  /**
+   * @inheritdoc
+   */
   createChild(_scope?: string): IContainer {
     return new Container(this);
   }
