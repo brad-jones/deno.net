@@ -19,7 +19,7 @@ export class ApiAppBuilder extends AppBuilder<Deno.ServeDefaultExport> {
    * TODO, write our own documentation but for now, refer to the Hono docs.
    * @see https://hono.dev/docs/guides/middleware
    */
-  readonly middleware = new MiddlewareBuilder();
+  readonly middleware: MiddlewareBuilder = new MiddlewareBuilder();
 
   /**
    * Add routes (aka: endpoints) to your HTTP Api.
@@ -27,7 +27,7 @@ export class ApiAppBuilder extends AppBuilder<Deno.ServeDefaultExport> {
    * TODO, write our own documentation but for now, refer to the Hono docs.
    * @see https://hono.dev/docs/api/routing
    */
-  readonly routes = new RouteBuilder();
+  readonly routes: RouteBuilder = new RouteBuilder();
 
   /**
    * Using all the options configured against the builder,
