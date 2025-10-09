@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## container-v0.1.6 - 2025-10-09
+#### Build system
+- move the dry run to a explicit lint task - (61986c1) - brad-jones
+
+- - -
+
 ## container-v0.1.5 - 2025-10-09
 #### Build system
 - dry run needs to allow for a dirty git repo - (b3bf4f9) - brad-jones
