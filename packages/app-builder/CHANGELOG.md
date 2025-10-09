@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.1.1 - 2025-10-09
+#### Bug Fixes
+- **(app-builder)** add types to resolve slow types warning - (889fcf1) - *brad-jones*
+#### Build system
+- move the dry run to a explicit lint task - (61986c1) - brad-jones
+- dry run needs to allow for a dirty git repo - (b3bf4f9) - brad-jones
+- run a dry run publish at the packaging stage - (64fa349) - brad-jones
+
+- - -
+
 ## app-builder-v0.1.0 - 2025-10-09
 #### Build system
 - use the correct tag when publishing github releases - (1259037) - brad-jones
