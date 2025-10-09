@@ -1,5 +1,6 @@
 import { Hono } from "@hono/hono";
 import ky, { type KyInstance } from "ky";
+import { getPort } from "@openjs/port-free";
 import { AppBuilder } from "../app_builder.ts";
 import { RouteBuilder } from "./route_builder.ts";
 import { MiddlewareBuilder } from "./middleware_builder.ts";
@@ -85,7 +86,7 @@ export class ApiAppBuilder extends AppBuilder<Deno.ServeDefaultExport> {
    * ```typescript
    * const builder = new ApiAppBuilder();
    * builder.routes.mapGet("/ping", (ctx) => ctx.json({ ping: "pong" }));
-   * builder.run();
+   * await builder.run({ port: 80 });
    * ```
    *
    * Then execute with `deno run`.
@@ -110,7 +111,7 @@ export class ApiAppBuilder extends AppBuilder<Deno.ServeDefaultExport> {
    *
    * Deno.test("MyTest", async () => {
    *   builder.services.addTransient(iFoo, MockedFoo);
-   *   const { server, client } = builder.run();
+   *   const { server, client } = await builder.run();
    *   const result = await client.get("ping", { throwHttpErrors: false });
    *   expect(result.status).toBe(200);
    *   expect(await result.json()).toMatchObject({ ping: "pong" });
@@ -118,12 +119,12 @@ export class ApiAppBuilder extends AppBuilder<Deno.ServeDefaultExport> {
    * });
    * ```
    */
-  run(
+  async run(
     options?:
       | Deno.ServeTcpOptions
       | (Deno.ServeTcpOptions & Deno.TlsCertifiedKeyPem),
-  ): { server: Deno.HttpServer<Deno.NetAddr>; client: KyInstance } {
-    options ??= { port: 80 };
+  ): Promise<{ server: Deno.HttpServer<Deno.NetAddr>; client: KyInstance }> {
+    options ??= { port: await getPort({ random: true, min: 3001 }) };
     const server = Deno.serve(options, this.build().fetch);
     const client = ky.create({
       prefixUrl: `${"cert" in options ? "https" : "http"}://${server.addr.hostname}:${server.addr.port}`,

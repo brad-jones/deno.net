@@ -10,6 +10,7 @@
     "jsr:@david/path@0.2": "0.2.0",
     "jsr:@david/which@~0.4.1": "0.4.1",
     "jsr:@hono/hono@^4.9.10": "4.9.10",
+    "jsr:@openjs/port-free@1": "1.0.0",
     "jsr:@std/assert@^1.0.14": "1.0.15",
     "jsr:@std/bytes@^1.0.5": "1.0.6",
     "jsr:@std/bytes@^1.0.6": "1.0.6",
@@ -81,6 +82,9 @@
     },
     "@hono/hono@4.9.10": {
       "integrity": "b416cf3bf42e33353e37ea13df409b08bd9a67fabc5fca630f76924fbadb01e5"
+    },
+    "@openjs/port-free@1.0.0": {
+      "integrity": "0b70adc419a37d6c15d049a369cbc2020795bf50118409dde077efcae9e8e2e4"
     },
     "@std/assert@1.0.15": {
       "integrity": "d64018e951dbdfab9777335ecdb000c0b4e3df036984083be219ce5941e4703b",
@@ -157,6 +161,7 @@
       "packages/app-builder": {
         "dependencies": [
           "jsr:@hono/hono@^4.9.10",
+          "jsr:@openjs/port-free@1",
           "jsr:@std/expect@^1.0.17",
           "npm:ky@^1.11.0"
         ]
