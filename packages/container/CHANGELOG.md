@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## container-v0.1.4 - 2025-10-09
+#### Build system
+- use the correct tag when publishing github releases - (1259037) - brad-jones
+
+- - -
+
 ## container-v0.1.3 - 2025-10-08
 #### Documentation
 - **(container)** no jsr does not recognize @inheritdoc - (6e65692) - *brad-jones*
