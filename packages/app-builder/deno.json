@@ -1,0 +1,18 @@
+{
+  "name": "@brad-jones/deno-net-app-builder",
+  "exports": "./src/mod.ts",
+  "version": "0.0.0",
+  "license": "MIT",
+  "publish": {
+    "include": [
+      "src/**/*.ts",
+      "README.md",
+      "CHANGELOG.md"
+    ]
+  },
+  "imports": {
+    "@hono/hono": "jsr:@hono/hono@^4.9.10",
+    "@std/expect": "jsr:@std/expect@^1.0.17",
+    "ky": "npm:ky@^1.11.0"
+  }
+}

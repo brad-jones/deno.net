@@ -17,3 +17,7 @@ tasks:
       - deno install {{if .CI}}--frozen{{end}}
       - "{{if .CI}}git config --global user.name github-actions[bot]{{end}}"
       - "{{if .CI}}git config --global user.email github-actions[bot]@users.noreply.github.com{{end}}"
+
+  test:
+    cmds:
+      - deno test -A

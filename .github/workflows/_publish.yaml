@@ -1,10 +1,10 @@
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - master
-    paths:
-      - packages/container/**
+  workflow_call:
+    inputs:
+      project:
+        description: The name of the cog project to publish
+        type: string
+        required: true
 
 env:
   CI: true
@@ -29,9 +29,10 @@ jobs:
           pixi-version: v0.56.0
           activate-environment: true
 
-      - run: task init
+      - name: Additional Environment Initialization
+        run: task init
 
-      - name: 🚀 Publish Release
-        run: cog bump --auto --package container
+      - name: 🚀 Publish
+        run: try-cog-bump.ts -p ${{ inputs.project }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -9,6 +9,7 @@ environments:
       - conda: https://repo.prefix.dev/brads-forge/linux-64/cocogitto-6.3.0-h81b34b9_2.conda
       - conda: https://repo.prefix.dev/brads-forge/linux-64/deno-2.5.3-h81b34b9_2.conda
       - conda: https://repo.prefix.dev/brads-forge/linux-64/dprint-0.50.2-h81b34b9_2.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/gh-2.81.0-h76a2195_0.conda
       - conda: https://repo.prefix.dev/brads-forge/linux-64/lefthook-1.13.6-h81b34b9_2.conda
       - conda: https://repo.prefix.dev/brads-forge/linux-64/task-3.45.4-h81b34b9_2.conda
 packages:
@@ -27,6 +28,15 @@ packages:
   license: MIT
   size: 7400987
   timestamp: 1757821626110
+- conda: https://conda.anaconda.org/conda-forge/linux-64/gh-2.81.0-h76a2195_0.conda
+  sha256: 3dc326b3aa4f6a02c22338d72f326f957aa4fa3cf39c3e32501174b7e7599cb5
+  md5: 0993bdbfedf4a387c28d0538904ea33d
+  depends:
+  - __glibc >=2.17,<3.0.a0
+  license: Apache-2.0
+  license_family: APACHE
+  size: 30022301
+  timestamp: 1759413938659
 - conda: https://repo.prefix.dev/brads-forge/linux-64/lefthook-1.13.6-h81b34b9_2.conda
   sha256: 9bbab0e7db0599c06bbeb6680a38d37d58875b1a6b5818509574345ab20e2794
   license: MIT

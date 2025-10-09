@@ -1,0 +1,20 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  container:
+    uses: ./.github/workflows/_publish.yaml
+    secrets: inherit
+    with:
+      project: container
+
+  app-builder:
+    uses: ./.github/workflows/_publish.yaml
+    secrets: inherit
+    needs:
+      - container
+    with:
+      project: app-builder

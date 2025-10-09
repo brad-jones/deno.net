@@ -39,3 +39,7 @@ authors = [
 [packages.container]
 path = "packages/container"
 include = ["packages/container/**"]
+
+[packages.app-builder]
+path = "packages/app-builder"
+include = ["packages/app-builder/**"]
