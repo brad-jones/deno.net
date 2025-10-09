@@ -8,12 +8,22 @@ jobs:
   container:
     uses: ./.github/workflows/_publish.yaml
     secrets: inherit
+    permissions:
+      id-token: write
+      contents: write
+      packages: write
+      attestations: write
     with:
       project: container
 
   app-builder:
     uses: ./.github/workflows/_publish.yaml
     secrets: inherit
+    permissions:
+      id-token: write
+      contents: write
+      packages: write
+      attestations: write
     needs:
       - container
     with:
