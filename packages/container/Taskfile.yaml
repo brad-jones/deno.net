@@ -7,14 +7,20 @@ set: [pipefail]
 shopt: [globstar]
 
 tasks:
+  lint:
+    desc: Lints the package to ensure it is of a high enough quality to be published.
+    cmds:
+      - deno publish --dry-run --allow-dirty
+
   test:
     desc: Runs the package test suite
     cmds:
-      - deno test
+      - deno test -A
 
   package:
     desc: This is triggered by cog as a pre_bump_hook to generate all the final publishable artifacts
     deps:
+      - lint
       - test
     requires:
       vars:
@@ -28,7 +34,6 @@ tasks:
             config.version = "{{.COG_VERSION}}";
             Deno.writeTextFileSync("deno.json", JSON.stringify(config, null, 2));
           ' | deno run -A -
-      - deno publish --dry-run --allow-dirty
 
   publish:
     desc: This is triggered by cog as a post_bump_hook to publish all the final publishable artifacts
