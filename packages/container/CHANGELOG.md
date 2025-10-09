@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## container-v0.1.5 - 2025-10-09
+#### Build system
+- dry run needs to allow for a dirty git repo - (b3bf4f9) - brad-jones
+- run a dry run publish at the packaging stage - (64fa349) - brad-jones
+
+- - -
+
 ## container-v0.1.4 - 2025-10-09
 #### Build system
 - use the correct tag when publishing github releases - (1259037) - brad-jones
