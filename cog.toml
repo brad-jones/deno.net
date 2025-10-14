@@ -43,3 +43,7 @@ include = ["packages/container/**"]
 [packages.app-builder]
 path = "packages/app-builder"
 include = ["packages/app-builder/**"]
+
+[packages.problem-details]
+path = "packages/problem-details"
+include = ["packages/problem-details/**"]
