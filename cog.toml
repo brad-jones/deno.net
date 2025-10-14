@@ -47,3 +47,7 @@ include = ["packages/app-builder/**"]
 [packages.problem-details]
 path = "packages/problem-details"
 include = ["packages/problem-details/**"]
+
+[packages.logging]
+path = "packages/logging"
+include = ["packages/logging/**"]

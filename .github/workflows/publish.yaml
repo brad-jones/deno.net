@@ -27,6 +27,19 @@ jobs:
     with:
       project: problem-details
 
+  logging:
+    uses: ./.github/workflows/_publish.yaml
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: write
+      packages: write
+      attestations: write
+    needs:
+      - container
+    with:
+      project: logging
+
   app-builder:
     uses: ./.github/workflows/_publish.yaml
     secrets: inherit
@@ -38,5 +51,6 @@ jobs:
     needs:
       - container
       - problem-details
+      - logging
     with:
       project: app-builder

@@ -1,0 +1,21 @@
+{
+  "name": "@brad-jones/deno-net-logging",
+  "exports": "./src/mod.ts",
+  "version": "0.0.0",
+  "license": "MIT",
+  "publish": {
+    "include": [
+      "src/**/*.ts",
+      "README.md",
+      "CHANGELOG.md"
+    ]
+  },
+  "imports": {
+    "@logtape/file": "jsr:@logtape/file@^1.1.1",
+    "@logtape/logtape": "jsr:@logtape/logtape@^1.1.1",
+    "@logtape/pretty": "jsr:@logtape/pretty@^1.1.1",
+    "@std/expect": "jsr:@std/expect@^1.0.17",
+    "@std/fs": "jsr:@std/fs@^1.0.19",
+    "@std/testing": "jsr:@std/testing@^1.0.16"
+  }
+}
