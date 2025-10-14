@@ -119,12 +119,15 @@ export class Container implements IContainer {
     });
   }
 
-  getServices<T>(token: Token<T>): T[] {
+  getServices<T>(tokens: Token<T> | Token<T>[]): T[] {
     return injectionContext(this).run(() => {
-      const services = this.#getRegisteredServices(token);
       const values: T[] = [];
-      for (const service of services) {
-        values.push(this.#resolveService(token, service));
+      if (!Array.isArray(tokens)) tokens = [tokens];
+      for (const token of tokens) {
+        const services = this.#getRegisteredServices(token);
+        for (const service of services) {
+          values.push(this.#resolveService(service));
+        }
       }
       return values;
     });

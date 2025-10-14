@@ -430,6 +430,52 @@ export interface IContainer {
   getServices<T>(token: Token<T>): T[];
 
   /**
+   * Resolve all service instances for multiple tokens at once.
+   * This overload allows you to efficiently resolve services from multiple tokens
+   * in a single call, returning a flattened array of all resolved instances.
+   *
+   * @param tokens - An array of tokens identifying the services to resolve
+   * @returns An array containing all resolved service instances from all provided tokens
+   *
+   * @example
+   * ```ts
+   * interface ITransformer {
+   *   transform(data: unknown): unknown;
+   * }
+   *
+   * const transformer1 = new Type<ITransformer>();
+   * const transformer2 = new Type<ITransformer>();
+   *
+   * container.addTransient(transformer1, { useFactory: () = new Transformer({format: "json"}) });
+   * container.addTransient(transformer2, { useFactory: () = new Transformer({format: "csv"}) });
+   *
+   * // Resolve all unique transformers in one call
+   * const transformers = container.getServices([transformer1, transformer2]);
+   * ```
+   *
+   * @example
+   * Technically it is also possible to resolve many different types at once.
+   * ```ts
+   * const transformer = new Type<ITransformer>();
+   * const validator = new Type<IValidator>();
+   *
+   * container.addTransient(transformer, JsonTransformer);
+   * container.addTransient(validator, JsonValidator);
+   *
+   * for (const service of container.getServices<unknown>([transformer, validator])) {
+   *   if (service instanceof JsonTransformer) {
+   *     // transform the json
+   *   }
+   *
+   *   if (service instanceof JsonValidator) {
+   *     // validate the json
+   *   }
+   * }
+   * ```
+   */
+  getServices<T>(tokens: Token<T>[]): T[];
+
+  /**
    * Call a function with dependency injection for its parameters.
    *
    * The function must use the `inject()/injectAll()` methods as default values.
