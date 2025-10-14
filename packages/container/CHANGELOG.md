@@ -2,6 +2,17 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## container-v0.2.0 - 2025-10-14
+#### Bug Fixes
+- **(container)** store cached values against the ServiceRegistration not the token - (3b0be93) - *brad-jones*
+- various linting issues from deno publish - (f391209) - brad-jones
+#### Features
+- **(container)** added new getServices overload that resolves multiple discrete tokens at once - (7653f24) - *brad-jones*
+- **(container)** added new getService overload that allows additional none injected parameters to be given. - (7498b89) - *brad-jones*
+- **(container)** added the addModule method - (0a86544) - *brad-jones*
+
+- - -
+
 ## container-v0.1.6 - 2025-10-09
 #### Build system
 - move the dry run to a explicit lint task - (61986c1) - brad-jones
