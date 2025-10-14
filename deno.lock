@@ -244,11 +244,6 @@
       "jsr:@zod/zod@^4.1.12"
     ],
     "members": {
-      "examples/web_app": {
-        "dependencies": [
-          "jsr:@hono/hono@^4.9.10"
-        ]
-      },
       "packages/app-builder": {
         "dependencies": [
           "jsr:@hono/hono@^4.9.10",
