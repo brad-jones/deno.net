@@ -25,7 +25,7 @@ export type Logger = TapeLogger;
  * }
  * ```
  */
-export const ILogger = new Type<ILogger>("ILogger");
+export const ILogger: Type<ILogger> = new Type<ILogger>("ILogger");
 export type ILogger = (category: string | string[]) => Logger;
 
 /**
@@ -66,7 +66,7 @@ export type LoggingModule = (l: LoggingBuilder, c: IContainer) => void;
  * dotnet developers should find this similar to how log levels & categories work.
  * @also https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/#configure-logging
  */
-export const ILoggerConfig = new Type<ILoggerConfig>("ILoggerConfig");
+export const ILoggerConfig: Type<ILoggerConfig> = new Type<ILoggerConfig>("ILoggerConfig");
 export interface ILoggerConfig {
   category: string | string[];
   sinks: string[];

@@ -65,7 +65,11 @@ export function inject<T>(
   const resolver = (ctx: Context) => {
     try {
       return ctx.run((container) => {
-        if (options?.multi) return container.getServices(token);
+        if (options?.multi) {
+          const result = container.getServices(token);
+          if (options?.optional === true && result.length === 0) return undefined;
+          return result;
+        }
         return container.getService(token);
       });
     } catch (error) {

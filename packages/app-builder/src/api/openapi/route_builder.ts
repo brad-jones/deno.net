@@ -623,7 +623,7 @@ export class OpenApiRouteBuilder {
   /**
    * The stored document options, or undefined if none have been set.
    */
-  get docOptions() {
+  get docOptions(): OpenAPIDocsOptions | undefined {
     return this.#docOptions;
   }
 
@@ -661,7 +661,7 @@ export class OpenApiRouteBuilder {
   /**
    * The stored document path configuration, or undefined if none has been set.
    */
-  get docPath() {
+  get docPath(): { path: string; options?: OpenAPIDocsOptions } | undefined {
     return this.#docPath;
   }
 

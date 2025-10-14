@@ -3,7 +3,7 @@ import type { IMiddleware, MiddlewareModule } from "../types.ts";
 import type { HttpContext, Next } from "@brad-jones/deno-net-http-context";
 import { ILogger } from "@brad-jones/deno-net-logging";
 
-const HttpLoggingOptions = new Type<HttpLoggingOptions>("HttpLoggingOptions");
+const HttpLoggingOptions: Type<HttpLoggingOptions> = new Type<HttpLoggingOptions>("HttpLoggingOptions");
 
 export interface HttpLoggingOptions {
   foo?: string;

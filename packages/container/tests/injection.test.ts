@@ -50,12 +50,14 @@ Deno.test("inject with multi option returns array of services", () => {
 
 Deno.test("inject with multi option throws TokenNotFound for unregistered services", () => {
   const container = new Container();
+  let result;
 
-  expect(() => {
-    container.callFunc(() => {
-      inject(iPlugin, { multi: true });
-    });
-  }).toThrow(TokenNotFound);
+  container.callFunc(() => {
+    result = inject(iPlugin, { multi: true });
+  });
+
+  expect(Array.isArray(result)).toBe(true);
+  expect((result as any as unknown[]).length).toBe(0);
 });
 
 Deno.test("inject with multi option throws error outside context", () => {

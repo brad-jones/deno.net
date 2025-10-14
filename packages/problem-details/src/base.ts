@@ -66,7 +66,7 @@ export class ProblemDetails {
    *
    * @returns The problem details as a plain object suitable for JSON serialization
    */
-  toJSON() {
+  toJSON(): z.output<typeof ProblemDetailsSchema> {
     return this.problem;
   }
 

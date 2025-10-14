@@ -4,7 +4,7 @@ import type { LogRecord } from "@logtape/logtape";
 /**
  * Injection token for the Sink Interface.
  */
-export const ISink = new Type<[string, ISink]>("ISink");
+export const ISink: Type<[string, ISink]> = new Type<[string, ISink]>("ISink");
 
 /**
  * Classical Sink Interface, wraps the @logtape/logtape Sink functional interface.

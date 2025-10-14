@@ -4,7 +4,7 @@ import { Type } from "@brad-jones/deno-net-container";
 /**
  * Injection token for the IFormatter Interface.
  */
-export const IFormatter = new Type<IFormatter>("IFormatter");
+export const IFormatter: Type<IFormatter> = new Type<IFormatter>("IFormatter");
 
 /**
  * Classical Formatter Interface, wraps the @logtape/logtape TextFormatter functional interface.

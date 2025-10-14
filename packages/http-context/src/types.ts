@@ -11,7 +11,7 @@ import type { ContentfulStatusCode, RedirectStatusCode, StatusCode } from "@hono
 /**
  * Injection token for use with `@brad-jones/deno-net-container`.
  */
-export const HttpContext = new Type<HttpContext>("HttpContext");
+export const HttpContext: Type<HttpContext> = new Type<HttpContext>("HttpContext");
 
 /**
  * HTTP context interface providing request and response handling capabilities.

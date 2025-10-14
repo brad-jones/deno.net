@@ -18,6 +18,15 @@ tasks:
       - "{{if .CI}}git config --global user.name github-actions[bot]{{end}}"
       - "{{if .CI}}git config --global user.email github-actions[bot]@users.noreply.github.com{{end}}"
 
+  lint:
+    cmds:
+      - task -t ./packages/app-builder/Taskfile.yaml lint
+      - task -t ./packages/container/Taskfile.yaml lint
+      - task -t ./packages/http-context/Taskfile.yaml lint
+      - task -t ./packages/logging/Taskfile.yaml lint
+      - task -t ./packages/middleware/Taskfile.yaml lint
+      - task -t ./packages/problem-details/Taskfile.yaml lint
+
   test:
     cmds:
-      - deno test -A
+      - "deno test -A ./packages/**/*.test.ts"

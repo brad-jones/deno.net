@@ -4,7 +4,7 @@ import type { LogRecord } from "@logtape/logtape";
 /**
  * Injection token for the Filter Interface.
  */
-export const IFilter = new Type<[string, IFilter]>("IFilter");
+export const IFilter: Type<[string, IFilter]> = new Type<[string, IFilter]>("IFilter");
 
 /**
  * Classical Filter Interface, wraps the @logtape/logtape Filter functional interface.

@@ -23,7 +23,7 @@ import type { HttpContext } from "@brad-jones/deno-net-http-context";
  * }
  * ```
  */
-export const IRoute = new Type<IRoute>("IRoute");
+export const IRoute: Type<IRoute> = new Type<IRoute>("IRoute");
 
 /**
  * Represents a route configuration manifest that defines how HTTP requests are handled.
