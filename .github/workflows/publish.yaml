@@ -51,6 +51,21 @@ jobs:
     with:
       project: logging
 
+  middleware:
+    uses: ./.github/workflows/_publish.yaml
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: write
+      packages: write
+      attestations: write
+    needs:
+      - container
+      - http-context
+      - logging
+    with:
+      project: middleware
+
   app-builder:
     uses: ./.github/workflows/_publish.yaml
     secrets: inherit
@@ -64,5 +79,6 @@ jobs:
       - problem-details
       - logging
       - http-context
+      - middleware
     with:
       project: app-builder

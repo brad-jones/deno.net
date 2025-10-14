@@ -55,3 +55,7 @@ include = ["packages/logging/**"]
 [packages.http-context]
 path = "packages/http-context"
 include = ["packages/http-context/**"]
+
+[packages.middleware]
+path = "packages/middleware"
+include = ["packages/middleware/**"]
