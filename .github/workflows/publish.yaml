@@ -17,6 +17,7 @@ jobs:
       project: container
 
   problem-details:
+    needs: [container]
     uses: ./.github/workflows/_publish.yaml
     secrets: inherit
     permissions:
@@ -28,6 +29,7 @@ jobs:
       project: problem-details
 
   http-context:
+    needs: [problem-details]
     uses: ./.github/workflows/_publish.yaml
     secrets: inherit
     permissions:
@@ -39,6 +41,7 @@ jobs:
       project: http-context
 
   logging:
+    needs: [http-context]
     uses: ./.github/workflows/_publish.yaml
     secrets: inherit
     permissions:
@@ -46,12 +49,11 @@ jobs:
       contents: write
       packages: write
       attestations: write
-    needs:
-      - container
     with:
       project: logging
 
   middleware:
+    needs: [logging]
     uses: ./.github/workflows/_publish.yaml
     secrets: inherit
     permissions:
@@ -59,14 +61,11 @@ jobs:
       contents: write
       packages: write
       attestations: write
-    needs:
-      - container
-      - http-context
-      - logging
     with:
       project: middleware
 
   app-builder:
+    needs: [middleware]
     uses: ./.github/workflows/_publish.yaml
     secrets: inherit
     permissions:
@@ -74,11 +73,5 @@ jobs:
       contents: write
       packages: write
       attestations: write
-    needs:
-      - container
-      - problem-details
-      - logging
-      - http-context
-      - middleware
     with:
       project: app-builder
