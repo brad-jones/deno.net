@@ -27,6 +27,17 @@ jobs:
     with:
       project: problem-details
 
+  http-context:
+    uses: ./.github/workflows/_publish.yaml
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: write
+      packages: write
+      attestations: write
+    with:
+      project: http-context
+
   logging:
     uses: ./.github/workflows/_publish.yaml
     secrets: inherit
@@ -52,5 +63,6 @@ jobs:
       - container
       - problem-details
       - logging
+      - http-context
     with:
       project: app-builder
