@@ -15,7 +15,7 @@ cmd = "code ."
 PATH = "$PWD/scripts:$PATH"
 
 [dependencies]
-deno = ">=2.5.3,<2.6"
+deno = ">=2.5.4,<2.6"
 lefthook = ">=1.13.6,<2"
 dprint = ">=0.50.2,<0.51"
 cocogitto = ">=6.3.0,<7"

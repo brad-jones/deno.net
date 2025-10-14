@@ -9,25 +9,43 @@
     "jsr:@david/dax@~0.43.2": "0.43.2",
     "jsr:@david/path@0.2": "0.2.0",
     "jsr:@david/which@~0.4.1": "0.4.1",
-    "jsr:@hono/hono@^4.9.10": "4.9.10",
+    "jsr:@hono/hono@^4.9.10": "4.9.12",
+    "jsr:@hono/hono@^4.9.12": "4.9.12",
+    "jsr:@logtape/file@^1.1.1": "1.1.1",
+    "jsr:@logtape/logtape@^1.1.1": "1.1.1",
+    "jsr:@logtape/pretty@^1.1.1": "1.1.1",
     "jsr:@openjs/port-free@1": "1.0.0",
+    "jsr:@paolostyle/hono-zod-openapi@^1.0.1": "1.0.1",
     "jsr:@std/assert@^1.0.14": "1.0.15",
+    "jsr:@std/assert@^1.0.15": "1.0.15",
+    "jsr:@std/async@^1.0.15": "1.0.15",
     "jsr:@std/bytes@^1.0.5": "1.0.6",
     "jsr:@std/bytes@^1.0.6": "1.0.6",
+    "jsr:@std/data-structures@^1.0.9": "1.0.9",
     "jsr:@std/expect@^1.0.17": "1.0.17",
     "jsr:@std/fmt@1": "1.0.8",
     "jsr:@std/fmt@~1.0.2": "1.0.8",
     "jsr:@std/fs@1": "1.0.19",
+    "jsr:@std/fs@^1.0.19": "1.0.19",
     "jsr:@std/internal@^1.0.10": "1.0.12",
     "jsr:@std/internal@^1.0.12": "1.0.12",
     "jsr:@std/internal@^1.0.9": "1.0.12",
     "jsr:@std/io@0.225": "0.225.2",
     "jsr:@std/path@1": "1.1.2",
     "jsr:@std/path@^1.1.1": "1.1.2",
+    "jsr:@std/path@^1.1.2": "1.1.2",
     "jsr:@std/streams@^1.0.13": "1.0.13",
+    "jsr:@std/testing@^1.0.16": "1.0.16",
     "jsr:@std/text@~1.0.7": "1.0.16",
-    "npm:@types/node@*": "24.2.0",
-    "npm:ky@^1.11.0": "1.11.0"
+    "jsr:@std/yaml@^1.0.10": "1.0.10",
+    "jsr:@zod/zod@^4.1.12": "4.1.12",
+    "npm:@hono/zod-validator@~0.7.3": "0.7.3_hono@4.9.10_zod@4.1.12",
+    "npm:@types/node@24.0.7": "24.0.7",
+    "npm:hono@^4.8.0": "4.9.10",
+    "npm:ky@^1.11.0": "1.11.0",
+    "npm:zod-openapi@^5.4.2": "5.4.3_zod@4.1.12",
+    "npm:zod-openapi@^5.4.3": "5.4.3_zod@4.1.12",
+    "npm:zod@4": "4.1.12"
   },
   "jsr": {
     "@cliffy/command@1.0.0-rc.8": {
@@ -65,7 +83,7 @@
         "jsr:@david/path",
         "jsr:@david/which",
         "jsr:@std/fmt@1",
-        "jsr:@std/fs",
+        "jsr:@std/fs@1",
         "jsr:@std/io",
         "jsr:@std/path@1"
       ]
@@ -73,18 +91,43 @@
     "@david/path@0.2.0": {
       "integrity": "f2d7aa7f02ce5a55e27c09f9f1381794acb09d328f8d3c8a2e3ab3ffc294dccd",
       "dependencies": [
-        "jsr:@std/fs",
+        "jsr:@std/fs@1",
         "jsr:@std/path@1"
       ]
     },
     "@david/which@0.4.1": {
       "integrity": "896a682b111f92ab866cc70c5b4afab2f5899d2f9bde31ed00203b9c250f225e"
     },
-    "@hono/hono@4.9.10": {
-      "integrity": "b416cf3bf42e33353e37ea13df409b08bd9a67fabc5fca630f76924fbadb01e5"
+    "@hono/hono@4.9.12": {
+      "integrity": "d4a0fe012c2f890bb514e539b37393ed352c173957038e44e2e45457b0a8256f"
+    },
+    "@logtape/file@1.1.1": {
+      "integrity": "3653e800bd1eb5a728a8409191b42644541bca2aec4101911e9fb8439f1f2536",
+      "dependencies": [
+        "jsr:@logtape/logtape"
+      ]
+    },
+    "@logtape/logtape@1.1.1": {
+      "integrity": "65ebc4ae58238f7404d96b52112293279b1d256c578621a750e793c36e34c3d2"
+    },
+    "@logtape/pretty@1.1.1": {
+      "integrity": "250029d3d86e7d4a1824b40c21f3f8712823596ca23bf82b6c800db25c7b2e88",
+      "dependencies": [
+        "jsr:@logtape/logtape",
+        "npm:@types/node"
+      ]
     },
     "@openjs/port-free@1.0.0": {
       "integrity": "0b70adc419a37d6c15d049a369cbc2020795bf50118409dde077efcae9e8e2e4"
+    },
+    "@paolostyle/hono-zod-openapi@1.0.1": {
+      "integrity": "685eaa0da4bf8efe5a3af1d979a77f409e5a8bc6a84706a654c728c2514bc3ef",
+      "dependencies": [
+        "npm:@hono/zod-validator",
+        "npm:hono",
+        "npm:zod",
+        "npm:zod-openapi@^5.4.2"
+      ]
     },
     "@std/assert@1.0.15": {
       "integrity": "d64018e951dbdfab9777335ecdb000c0b4e3df036984083be219ce5941e4703b",
@@ -92,13 +135,19 @@
         "jsr:@std/internal@^1.0.12"
       ]
     },
+    "@std/async@1.0.15": {
+      "integrity": "55d1d9d04f99403fe5730ab16bdcc3c47f658a6bf054cafb38a50f046238116e"
+    },
     "@std/bytes@1.0.6": {
       "integrity": "f6ac6adbd8ccd99314045f5703e23af0a68d7f7e58364b47d2c7f408aeb5820a"
+    },
+    "@std/data-structures@1.0.9": {
+      "integrity": "033d6e17e64bf1f84a614e647c1b015fa2576ae3312305821e1a4cb20674bb4d"
     },
     "@std/expect@1.0.17": {
       "integrity": "316b47dd65c33e3151344eb3267bf42efba17d1415425f07ed96185d67fc04d9",
       "dependencies": [
-        "jsr:@std/assert",
+        "jsr:@std/assert@^1.0.14",
         "jsr:@std/internal@^1.0.10"
       ]
     },
@@ -133,42 +182,116 @@
         "jsr:@std/bytes@^1.0.6"
       ]
     },
+    "@std/testing@1.0.16": {
+      "integrity": "a917ffdeb5924c9be436dc78bc32e511760e14d3a96e49c607fc5ecca86d0092",
+      "dependencies": [
+        "jsr:@std/assert@^1.0.15",
+        "jsr:@std/async",
+        "jsr:@std/data-structures",
+        "jsr:@std/fs@^1.0.19",
+        "jsr:@std/internal@^1.0.12",
+        "jsr:@std/path@^1.1.2"
+      ]
+    },
     "@std/text@1.0.16": {
       "integrity": "ddb9853b75119a2473857d691cf1ec02ad90793a2e8b4a4ac49d7354281a0cf8"
+    },
+    "@std/yaml@1.0.10": {
+      "integrity": "245706ea3511cc50c8c6d00339c23ea2ffa27bd2c7ea5445338f8feff31fa58e"
+    },
+    "@zod/zod@4.1.12": {
+      "integrity": "5876ed4c6d44673faf5120f0a461a2ada2eb6c735329d3ebaf5ba1fc08387695"
     }
   },
   "npm": {
-    "@types/node@24.2.0": {
-      "integrity": "sha512-3xyG3pMCq3oYCNg7/ZP+E1ooTaGB4cG8JWRsqqOYQdbWNY4zbaV0Ennrd7stjiJEFZCaybcIgpTjJWHRfBSIDw==",
+    "@hono/zod-validator@0.7.3_hono@4.9.10_zod@4.1.12": {
+      "integrity": "sha512-uYGdgVib3RlGD698WR5dVM0zB3UuPY5vHKXffGUbUh7r4xY+mFIhF3/v4AcQVLrU5CQdBso8BJr4wuVoCrjTuQ==",
+      "dependencies": [
+        "hono",
+        "zod"
+      ]
+    },
+    "@types/node@24.0.7": {
+      "integrity": "sha512-YIEUUr4yf8q8oQoXPpSlnvKNVKDQlPMWrmOcgzoduo7kvA2UF0/BwJ/eMKFTiTtkNL17I0M6Xe2tvwFU7be6iw==",
       "dependencies": [
         "undici-types"
       ]
     },
+    "hono@4.9.10": {
+      "integrity": "sha512-AlI15ijFyKTXR7eHo7QK7OR4RoKIedZvBuRjO8iy4zrxvlY5oFCdiRG/V/lFJHCNXJ0k72ATgnyzx8Yqa5arug=="
+    },
     "ky@1.11.0": {
       "integrity": "sha512-NEyo0ICpS0cqSuyoJFMCnHOZJILqXsKhIZlHJGDYaH8OB5IFrGzuBpEwyoMZG6gUKMPrazH30Ax5XKaujvD8ag=="
     },
-    "undici-types@7.10.0": {
-      "integrity": "sha512-t5Fy/nfn+14LuOc2KNYg75vZqClpAiqscVvMygNnlsHBFpSXdJaYtXMcdNLpl/Qvc3P2cB3s6lOV51nqsFq4ag=="
+    "undici-types@7.8.0": {
+      "integrity": "sha512-9UJ2xGDvQ43tYyVMpuHlsgApydB8ZKfVYTsLDhXkFL/6gfkp+U8xTGdh8pMJv1SpZna0zxG1DwsKZsreLbXBxw=="
+    },
+    "zod-openapi@5.4.3_zod@4.1.12": {
+      "integrity": "sha512-6kJ/gJdvHZtuxjYHoMtkl2PixCwRuZ/s79dVkEr7arHvZGXfx7Cvh53X3HfJ5h9FzGelXOXlnyjwfX0sKEPByw==",
+      "dependencies": [
+        "zod"
+      ]
+    },
+    "zod@4.1.12": {
+      "integrity": "sha512-JInaHOamG8pt5+Ey8kGmdcAcg3OL9reK8ltczgHTAwNhMys/6ThXHityHxVV2p3fkw/c+MAvBHFVYHFZDmjMCQ=="
     }
   },
   "workspace": {
     "dependencies": [
       "jsr:@cliffy/command@^1.0.0-rc.8",
       "jsr:@david/dax@~0.43.2",
-      "jsr:@std/streams@^1.0.13"
+      "jsr:@std/streams@^1.0.13",
+      "jsr:@zod/zod@^4.1.12"
     ],
     "members": {
+      "examples/web_app": {
+        "dependencies": [
+          "jsr:@hono/hono@^4.9.10"
+        ]
+      },
       "packages/app-builder": {
         "dependencies": [
           "jsr:@hono/hono@^4.9.10",
           "jsr:@openjs/port-free@1",
+          "jsr:@paolostyle/hono-zod-openapi@^1.0.1",
           "jsr:@std/expect@^1.0.17",
-          "npm:ky@^1.11.0"
+          "jsr:@std/fs@^1.0.19",
+          "jsr:@std/yaml@^1.0.10",
+          "jsr:@zod/zod@^4.1.12",
+          "npm:ky@^1.11.0",
+          "npm:zod-openapi@^5.4.3"
         ]
       },
       "packages/container": {
         "dependencies": [
           "jsr:@std/expect@^1.0.17"
+        ]
+      },
+      "packages/http-context": {
+        "dependencies": [
+          "jsr:@hono/hono@^4.9.12"
+        ]
+      },
+      "packages/logging": {
+        "dependencies": [
+          "jsr:@logtape/file@^1.1.1",
+          "jsr:@logtape/logtape@^1.1.1",
+          "jsr:@logtape/pretty@^1.1.1",
+          "jsr:@std/expect@^1.0.17",
+          "jsr:@std/fs@^1.0.19",
+          "jsr:@std/testing@^1.0.16"
+        ]
+      },
+      "packages/middleware": {
+        "dependencies": [
+          "jsr:@std/expect@^1.0.17",
+          "jsr:@std/fs@^1.0.19"
+        ]
+      },
+      "packages/problem-details": {
+        "dependencies": [
+          "jsr:@std/expect@^1.0.17",
+          "jsr:@zod/zod@^4.1.12"
         ]
       }
     }

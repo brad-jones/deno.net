@@ -1,10 +1,12 @@
 {
   "workspace": [
+    "./examples/*",
     "./packages/*"
   ],
   "imports": {
     "@cliffy/command": "jsr:@cliffy/command@^1.0.0-rc.8",
     "@david/dax": "jsr:@david/dax@^0.43.2",
-    "@std/streams": "jsr:@std/streams@^1.0.13"
+    "@std/streams": "jsr:@std/streams@^1.0.13",
+    "@zod/zod": "jsr:@zod/zod@^4.1.12"
   }
 }
