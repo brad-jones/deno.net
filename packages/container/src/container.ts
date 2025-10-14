@@ -5,8 +5,8 @@ import type { Constructor, ContainerModule, IContainer, ServiceRegistration, Tok
 
 export class Container implements IContainer {
   #parent: Container | undefined = undefined;
-  #scopedValues = new Map<Token<unknown>, unknown>();
-  #singletonValues = new Map<Token<unknown>, unknown>();
+  #scopedValues = new Map<ServiceRegistration<unknown>, unknown>();
+  #singletonValues = new Map<ServiceRegistration<unknown>, unknown>();
   #registry = new Map<Token<unknown>, ServiceRegistration<unknown>[]>();
 
   private get rootContainer(): Container {
