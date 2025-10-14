@@ -1,7 +1,7 @@
 // deno-lint-ignore-file no-explicit-any
 import { Scope, Type } from "./types.ts";
 import { injectionContext } from "./injection.ts";
-import type { Constructor, IContainer, ServiceRegistration, Token, ValueProvider } from "./types.ts";
+import type { Constructor, ContainerModule, IContainer, ServiceRegistration, Token, ValueProvider } from "./types.ts";
 
 export class Container implements IContainer {
   #parent: Container | undefined = undefined;
@@ -43,6 +43,11 @@ export class Container implements IContainer {
     }
 
     this.#registry.set(token, services);
+    return this;
+  }
+
+  addModule(module: ContainerModule): this {
+    module(this);
     return this;
   }
 

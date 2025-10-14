@@ -1,6 +1,11 @@
 // deno-lint-ignore-file no-explicit-any
 
 /**
+ * Refer to the `addModule` method on `IContainer` for more info.
+ */
+export type ContainerModule = (c: IContainer) => void;
+
+/**
  * The container requires a key to map constructed values to.
  */
 export type Token<T> = Type<T> | Constructor<T> | AbstractConstructor<T>;
@@ -110,6 +115,31 @@ export interface ValueProvider<T> {
  * ```
  */
 export interface IContainer {
+  /**
+   * Register services using a module function that configures the container.
+   * This method allows for organized service registration by grouping related
+   * services together in reusable modules.
+   *
+   * @param module - A function that receives the container instance and registers services on it
+   * @returns The container instance for method chaining
+   *
+   * @example
+   * ```ts
+   * // Define a module for database-related services
+   * function databaseModule(connectionString: string) {
+   *   return (container: IContainer) => {
+   *     container.addSingleton(DatabaseConnection, () => new DatabaseConnection(connectionString));
+   *     container.addScoped(IUserRepository, UserRepository);
+   *     container.addScoped(IOrderRepository, OrderRepository);
+   *   };
+   * }
+   *
+   * // Register the module with the container
+   * container.addModule(databaseModule("postgres://localhost:5432"));
+   * ```
+   */
+  addModule(module: ContainerModule): this;
+
   /**
    * This is the core registration method that all other registration methods delegate to.
    *
