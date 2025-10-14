@@ -43,8 +43,8 @@ tasks:
         - COG_VERSION_TAG
         - COG_PACKAGE_NAME
     cmds:
+      - deno publish
       - git push && git push --tags
       - cog-extract-changelog.ts < CHANGELOG.md > GITHUB_CHANGELOG.md
       - gh release create {{.COG_VERSION_TAG}} -F GITHUB_CHANGELOG.md
       - rm GITHUB_CHANGELOG.md
-      - deno publish
