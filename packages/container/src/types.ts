@@ -49,7 +49,7 @@ export class Type<T> {
  */
 export interface ServiceRegistration<T> {
   scope: Scope;
-  factory: (c: IContainer) => T;
+  factory: (c: IContainer, additionalConstructorParameters: unknown[]) => T;
 }
 
 /**
@@ -378,6 +378,37 @@ export interface IContainer {
    * ```
    */
   getService<T>(token: Token<T>): T;
+
+  /**
+   * Resolve a single service instance using a constructor with optional constructor parameters.
+   * This overload allows you to pass specific constructor arguments when resolving services,
+   * which is useful for services that require runtime parameters or when you want to override
+   * the default dependency injection behavior for specific constructor parameters.
+   *
+   * @template T - The constructor type that extends Constructor<T>
+   * @param token - The constructor function to use for creating the service instance
+   * @param options - Optional constructor parameters to pass to the constructor.
+   *                  If provided, these will be used instead of dependency injection for those parameters.
+   * @returns The resolved service instance of type InstanceType<T>
+   *
+   * @example
+   * ```ts
+   * class DatabaseService {
+   *   #connection: PostgresConnection;
+   *
+   *   constructor(connectionString: string, timeout: number, connector = inject(PostgresConnector)) {
+   *     this.#connection = connector.connect(connectionString, timeout);
+   *   }
+   * }
+   *
+   * // Resolve with specific constructor arguments, leaving remaining arguments to be injected
+   * const dbService = container.getService(DatabaseService, "postgresql://localhost:5432/mydb", 5000);
+   * ```
+   */
+  getService<T extends abstract new (...args: any) => any>(
+    token: T,
+    ...options: ConstructorParameters<T>
+  ): InstanceType<T>;
 
   /**
    * Resolve all service instances registered for a given token.

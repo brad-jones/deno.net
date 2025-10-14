@@ -28,21 +28,21 @@ export class Container implements IContainer {
   }
 
   add<T>(scope: Scope, token: Token<T>, provider: ValueProvider<T>): this {
-    const services = this.#registry.get(token) ?? [];
+    const services = this.#registry.get(token!) ?? [];
 
-    if (provider.useValue) {
-      services.push({ scope, factory: () => provider.useValue });
+    if (provider!.useValue) {
+      services.push({ scope, factory: () => provider!.useValue });
     }
 
-    if (provider.useClass) {
-      services.push({ scope, factory: () => new provider.useClass!() });
+    if (provider!.useClass) {
+      services.push({ scope, factory: (_, additionalParameters) => new provider!.useClass!(...additionalParameters) });
     }
 
-    if (provider.useFactory) {
-      services.push({ scope, factory: provider.useFactory });
+    if (provider!.useFactory) {
+      services.push({ scope, factory: provider!.useFactory });
     }
 
-    this.#registry.set(token, services);
+    this.#registry.set(token!, services);
     return this;
   }
 
@@ -109,12 +109,13 @@ export class Container implements IContainer {
     return this.#addWithScope<T>(Scope.Singleton, ...args);
   }
 
-  getService<T>(token: Token<T>): T {
+  getService<T>(token: Token<T>, ...options: unknown[]): T {
     return injectionContext(this).run(() => {
       const services = this.#getRegisteredServices(token);
+      if (services.length === 0) throw new TokenNotFound(token);
       const lastRegisteredService = services[services.length - 1];
       if (!lastRegisteredService) return lastRegisteredService;
-      return this.#resolveService(token, lastRegisteredService);
+      return this.#resolveService(lastRegisteredService, options);
     });
   }
 
@@ -136,36 +137,36 @@ export class Container implements IContainer {
         // For constructor tokens, create a default registration
         return [{
           scope: Scope.Transient,
-          factory: () => new (token as Constructor<T>)(),
+          factory: (_, additionalParameters) => new (token as Constructor<T>)(...additionalParameters),
         }];
       }
-      throw new TokenNotFound(token);
+      return [];
     }
     return services;
   }
 
-  #resolveService<T>(token: Token<T>, registration: ServiceRegistration<T>): T {
+  #resolveService<T>(registration: ServiceRegistration<T>, additionalConstructorParameters?: unknown[]): T {
     let value: unknown | undefined = undefined;
 
     switch (registration.scope) {
       case Scope.Transient:
-        value = registration.factory(this);
+        value = registration.factory(this, additionalConstructorParameters ?? []);
         break;
 
       case Scope.Scoped: {
-        value = this.#scopedValues.get(token);
+        value = this.#scopedValues.get(registration);
         if (!value) {
-          value = registration.factory(this);
-          this.#scopedValues.set(token, value);
+          value = registration.factory(this, additionalConstructorParameters ?? []);
+          this.#scopedValues.set(registration, value);
         }
         break;
       }
 
       case Scope.Singleton: {
-        value = this.rootContainer.#singletonValues.get(token);
+        value = this.rootContainer.#singletonValues.get(registration);
         if (!value) {
-          value = registration.factory(this);
-          this.rootContainer.#singletonValues.set(token, value);
+          value = registration.factory(this, additionalConstructorParameters ?? []);
+          this.rootContainer.#singletonValues.set(registration, value);
         }
         break;
       }
