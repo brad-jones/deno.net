@@ -7,7 +7,7 @@ import { AppBuilder } from "../app_builder.ts";
  * @see https://cliffy.io/
  */
 export class CliAppBuilder extends AppBuilder<unknown> {
-  override build(): unknown {
+  override build(): Promise<void> {
     throw new Error("Method not implemented.");
   }
 }

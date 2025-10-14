@@ -1,52 +1,286 @@
-import type { HttpContext } from "./types.ts";
+// deno-lint-ignore-file no-explicit-any
 
-export interface Route {
-  method?: "get" | "post" | "put" | "patch" | "delete";
-  allMethods?: boolean;
-  customMethod?: string | string[];
-  path: string;
-  handler: (ctx: HttpContext, ...args: unknown[]) => Promise<Response> | Response;
-}
+import { expandGlob } from "@std/fs";
+import { IRoute } from "./types.ts";
+import type { IContainer } from "@brad-jones/deno-net-container";
+import { OpenApiRouteBuilder } from "./openapi/route_builder.ts";
+import type { HttpContext } from "@brad-jones/deno-net-http-context";
 
+/**
+ * A function that configures routes using a RouteBuilder instance.
+ *
+ * @param r - The RouteBuilder instance to configure routes with
+ *
+ * @example
+ * ```typescript
+ * // routes/hello.ts
+ * export default ((r: RouteBuilder) => {
+ *   r.mapGet("/hello/:name", (ctx) => ctx.json({ message: `Hello ${ctx.params.name}` }));
+ *   r.mapPost("/users", (ctx) => ctx.json({ id: 1, created: true }));
+ * }) satisfies RouteModule;
+ * ```
+ */
+export type RouteModule = (r: RouteBuilder) => void;
+
+/**
+ * A builder class for configuring HTTP routes with support for standard and OpenAPI handlers.
+ * Provides fluent API methods for mapping different HTTP methods to route handlers.
+ */
 export class RouteBuilder {
-  readonly routes: Route[] = [];
+  /** OpenAPI-specific route builder instance */
+  readonly openapi: OpenApiRouteBuilder;
 
-  mapGet(path: string, handler: (ctx: HttpContext) => Promise<Response> | Response): this {
-    this.routes.push({ method: "get", path, handler });
+  constructor(private services: IContainer) {
+    this.openapi = new OpenApiRouteBuilder(this.services, this);
+  }
+
+  /**
+   * Maps a GET request to the specified path with the provided handler.
+   *
+   * @template Path - The URL path pattern type
+   * @param path - The URL path pattern for the route
+   * @param httpHandler - The handler function to execute for GET requests
+   * @returns This RouteBuilder instance for method chaining
+   *
+   * @example
+   * ```typescript
+   * // Simple GET route
+   * r.mapGet("/hello", (ctx) => ctx.json({ message: "Hello World" }));
+   *
+   * // GET route with path parameters
+   * r.mapGet("/hello/:name", (ctx) => ctx.json({ message: `Hello ${ctx.params.name}` }));
+   *
+   * // GET route with dependency injection
+   * r.mapGet("/ping", (ctx, pingService = inject(IPingPong)) => ctx.json(pingService.ping()));
+   * ```
+   */
+  mapGet<Path extends string = any>(
+    path: Path,
+    httpHandler: (ctx: HttpContext<Path>) => Promise<Response> | Response,
+  ): this {
+    this.services.addSingleton(IRoute, { useValue: { method: "get", path, httpHandler } });
     return this;
   }
 
-  mapPost(path: string, handler: (ctx: HttpContext) => Promise<Response> | Response): this {
-    this.routes.push({ method: "post", path, handler });
+  /**
+   * Maps a POST request to the specified path with the provided handler.
+   *
+   * @template Path - The URL path pattern type
+   * @param path - The URL path pattern for the route
+   * @param httpHandler - The handler function to execute for POST requests
+   * @returns This RouteBuilder instance for method chaining
+   *
+   * @example
+   * ```typescript
+   * // Simple POST route
+   * r.mapPost("/users", (ctx) => ctx.json({ id: 1, created: true }));
+   *
+   * // POST route with JSON body parsing
+   * r.mapPost("/users", (ctx, userData = fromJson({ schema: z.object({ name: z.string() }) })) =>
+   *   ctx.json({ id: 1, name: userData.name })
+   * );
+   * ```
+   */
+  mapPost<Path extends string = any>(
+    path: string,
+    httpHandler: (ctx: HttpContext<Path>) => Promise<Response> | Response,
+  ): this {
+    this.services.addSingleton(IRoute, { useValue: { method: "post", path, httpHandler } });
     return this;
   }
 
-  mapPut(path: string, handler: (ctx: HttpContext) => Promise<Response> | Response): this {
-    this.routes.push({ method: "put", path, handler });
+  /**
+   * Maps a PUT request to the specified path with the provided handler.
+   *
+   * @template Path - The URL path pattern type
+   * @param path - The URL path pattern for the route
+   * @param httpHandler - The handler function to execute for PUT requests
+   * @returns This RouteBuilder instance for method chaining
+   *
+   * @example
+   * ```typescript
+   * // Update a user resource
+   * r.mapPut("/users/:id", (ctx, userData = fromJson({ schema: z.object({ name: z.string(), email: z.string() }) })) => {
+   *   return ctx.json({ id: ctx.params.id, ...userData, updated: true });
+   * });
+   *
+   * // Replace entire resource
+   * r.mapPut("/config", (ctx, config = fromJson({ schema: configSchema })) => {
+   *   return ctx.json({ message: "Configuration updated", config });
+   * });
+   * ```
+   */
+  mapPut<Path extends string = any>(
+    path: string,
+    httpHandler: (ctx: HttpContext<Path>) => Promise<Response> | Response,
+  ): this {
+    this.services.addSingleton(IRoute, { useValue: { method: "put", path, httpHandler } });
     return this;
   }
 
-  mapPatch(path: string, handler: (ctx: HttpContext) => Promise<Response> | Response): this {
-    this.routes.push({ method: "patch", path, handler });
+  /**
+   * Maps a PATCH request to the specified path with the provided handler.
+   *
+   * @template Path - The URL path pattern type
+   * @param path - The URL path pattern for the route
+   * @param httpHandler - The handler function to execute for PATCH requests
+   * @returns This RouteBuilder instance for method chaining
+   *
+   * @example
+   * ```typescript
+   * // Partial update of a user
+   * r.mapPatch("/users/:id", (ctx, updates = fromJson({ schema: z.object({ name: z.string().optional(), email: z.string().optional() }) })) => {
+   *   return ctx.json({ id: ctx.params.id, ...updates, modified: new Date().toISOString() });
+   * });
+   *
+   * // Toggle user status
+   * r.mapPatch("/users/:id/status", (ctx) => {
+   *   return ctx.json({ id: ctx.params.id, active: !previousStatus });
+   * });
+   * ```
+   */
+  mapPatch<Path extends string = any>(
+    path: string,
+    httpHandler: (ctx: HttpContext<Path>) => Promise<Response> | Response,
+  ): this {
+    this.services.addSingleton(IRoute, { useValue: { method: "patch", path, httpHandler } });
     return this;
   }
 
-  mapDelete(path: string, handler: (ctx: HttpContext) => Promise<Response> | Response): this {
-    this.routes.push({ method: "delete", path, handler });
+  /**
+   * Maps a DELETE request to the specified path with the provided handler.
+   *
+   * @template Path - The URL path pattern type
+   * @param path - The URL path pattern for the route
+   * @param httpHandler - The handler function to execute for DELETE requests
+   * @returns This RouteBuilder instance for method chaining
+   *
+   * @example
+   * ```typescript
+   * // Delete a specific user
+   * r.mapDelete("/users/:id", (ctx) => {
+   *   return ctx.json({ id: ctx.params.id, deleted: true });
+   * });
+   *
+   * // Soft delete with confirmation
+   * r.mapDelete("/users/:id", (ctx, confirm = fromQuery("confirm", { schema: z.boolean() })) => {
+   *   if (!confirm) {
+   *     return ctx.json({ error: "Confirmation required" }, { status: 400 });
+   *   }
+   *   return ctx.json({ id: ctx.params.id, deleted: true });
+   * });
+   * ```
+   */
+  mapDelete<Path extends string = any>(
+    path: string,
+    httpHandler: (ctx: HttpContext<Path>) => Promise<Response> | Response,
+  ): this {
+    this.services.addSingleton(IRoute, { useValue: { method: "delete", path, httpHandler } });
     return this;
   }
 
-  mapAll(path: string, handler: (ctx: HttpContext) => Promise<Response> | Response): this {
-    this.routes.push({ allMethods: true, path, handler });
+  /**
+   * Maps all HTTP methods to the specified path with the provided handler.
+   *
+   * @template Path - The URL path pattern type
+   * @param path - The URL path pattern for the route
+   * @param httpHandler - The handler function to execute for all HTTP methods
+   * @returns This RouteBuilder instance for method chaining
+   *
+   * @example
+   * ```typescript
+   * // Handle all HTTP methods (GET, POST, PUT, DELETE, etc.) on the same route
+   * r.mapAll("/api/catch-all", (ctx) => {
+   *   return ctx.json({
+   *     method: ctx.request.method,
+   *     message: "Handled by catch-all route"
+   *   });
+   * });
+   * ```
+   */
+  mapAll<Path extends string = any>(
+    path: string,
+    httpHandler: (ctx: HttpContext<Path>) => Promise<Response> | Response,
+  ): this {
+    this.services.addSingleton(IRoute, { useValue: { allMethods: true, path, httpHandler } });
     return this;
   }
 
-  mapCustom(
+  /**
+   * Maps custom HTTP method(s) to the specified path with the provided handler.
+   *
+   * @template Path - The URL path pattern type
+   * @param method - The custom HTTP method or array of methods
+   * @param path - The URL path pattern for the route
+   * @param httpHandler - The handler function to execute for the custom method(s)
+   * @returns This RouteBuilder instance for method chaining
+   *
+   * @example
+   * ```typescript
+   * // Handle a custom HTTP method
+   * r.mapCustom("LOCK", "/resources/:id", (ctx) => {
+   *   return ctx.json({ locked: true, resourceId: ctx.params.id });
+   * });
+   *
+   * // Handle multiple custom methods
+   * r.mapCustom(["LOCK", "UNLOCK"], "/resources/:id", (ctx) => {
+   *   const isLocking = ctx.request.method === "LOCK";
+   *   return ctx.json({ locked: isLocking, resourceId: ctx.params.id });
+   * });
+   * ```
+   */
+  mapCustom<Path extends string = any>(
     method: string | string[],
     path: string,
-    handler: (ctx: HttpContext) => Promise<Response> | Response,
+    httpHandler: (ctx: HttpContext<Path>) => Promise<Response> | Response,
   ): this {
-    this.routes.push({ customMethod: method, path, handler });
+    this.services.addSingleton(IRoute, { useValue: { customMethod: method, path, httpHandler } });
     return this;
+  }
+
+  /**
+   * @example
+   * ```ts
+   * function fooModule(options: OptionsType) {
+   *   return (routes: RouteBuilder) => {
+   *     routes.mapGet("/foo", (ctx) => ctx.text("bar"));
+   *     routes.mapGet("/bar", (ctx) => ctx.text("123"));
+   *     routes.mapGet(`/baz/${options.bar}`, (ctx) => ctx.text("dfghdfsh"));
+   *   };
+   * }
+   *
+   * builder.routes.mapModule(fooModule({bar: "blah some config values"}));
+   * ```
+   */
+  mapModule(module: RouteModule): this {
+    module(this);
+    return this;
+  }
+
+  /**
+   * Dynamically imports and applies route modules matching the specified glob pattern.
+   * Each module should export a default RouteModule function that configures routes.
+   *
+   * @param glob - The glob pattern to match route module files
+   * @returns Promise that resolves when all modules have been processed
+   *
+   * @example
+   * ```typescript
+   * // In main.ts - load all route modules from routes directory
+   * await builder.routes.mapModules("./routes/**\/*.ts");
+   *
+   * // This will automatically import and apply all route modules like:
+   * // - routes/hello_world.ts
+   * // - routes/ping.ts
+   * // - routes/users/index.ts
+   * ```
+   */
+  async mapModules(glob: string): Promise<void> {
+    for await (const entry of expandGlob(glob)) {
+      if (entry.isFile) {
+        const module = await import(entry.path);
+        this.mapModule(module["default"] as RouteModule);
+      }
+    }
   }
 }
