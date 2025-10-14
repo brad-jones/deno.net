@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.2.0 - 2025-10-14
+#### Bug Fixes
+- various linting issues from deno publish - (f391209) - brad-jones
+#### Build system
+- **(publish)** publish deno first to avoid creating tags and releases when we fail to actually publish - (e74da64) - *brad-jones*
+#### Features
+- **(app-builder)** added logging, middleware & openapi support - (55a8d0d) - *brad-jones*
+
+- - -
+
 ## app-builder-v0.1.1 - 2025-10-09
 #### Bug Fixes
 - **(app-builder)** add types to resolve slow types warning - (889fcf1) - *brad-jones*
