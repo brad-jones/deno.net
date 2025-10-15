@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## container-v0.2.2 - 2025-10-15
+#### Bug Fixes
+- use jsr-dynamic-imports packageto workaround https://github.com/denoland/deno/discussions/26266 - (b651f5a) - brad-jones
+
+- - -
+
 ## container-v0.2.1 - 2025-10-14
 #### Build system
 - **(publish)** publish deno first to avoid creating tags and releases when we fail to actually publish - (e74da64) - *brad-jones*
