@@ -141,6 +141,32 @@ export interface IContainer {
   addModule(module: ContainerModule): this;
 
   /**
+   * Dynamically loads and adds multiple container modules from files matching a glob pattern.
+   *
+   * @param glob - A glob pattern to match module files
+   * @returns A Promise that resolves when all modules have been loaded and added
+   *
+   * @example
+   * ```typescript
+   * await container.addModules("./service-modules/**\/*.ts");
+   * ```
+   *
+   * @example
+   * Where a service module might look like this.
+   * ```typescript
+   * import { ContainerModule } from "@brad-jones/deno-net-container";
+   *
+   * export default ((c) => {
+   *
+   *   c.addTransient(IFoo, Foo);
+   *   c.addSingleton(IBar, Bar);
+   *
+   * }) satisfies ContainerModule;
+   * ```
+   */
+  addModules(glob: string): Promise<void>;
+
+  /**
    * This is the core registration method that all other registration methods delegate to.
    *
    * @param scope - The lifetime scope for the service

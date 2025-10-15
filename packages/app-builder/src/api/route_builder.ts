@@ -2,6 +2,7 @@
 
 import { expandGlob } from "@std/fs";
 import { IRoute } from "./types.ts";
+import { importModule } from "@brad-jones/jsr-dynamic-imports";
 import type { IContainer } from "@brad-jones/deno-net-container";
 import { OpenApiRouteBuilder } from "./openapi/route_builder.ts";
 import type { HttpContext } from "@brad-jones/deno-net-http-context";
@@ -20,7 +21,7 @@ import type { HttpContext } from "@brad-jones/deno-net-http-context";
  * }) satisfies RouteModule;
  * ```
  */
-export type RouteModule = (r: RouteBuilder) => void;
+export type RouteModule = (r: RouteBuilder, c: IContainer) => void;
 
 /**
  * A builder class for configuring HTTP routes with support for standard and OpenAPI handlers.
@@ -253,32 +254,42 @@ export class RouteBuilder {
    * ```
    */
   mapModule(module: RouteModule): this {
-    module(this);
+    module(this, this.services);
     return this;
   }
 
   /**
-   * Dynamically imports and applies route modules matching the specified glob pattern.
-   * Each module should export a default RouteModule function that configures routes.
+   * Dynamically loads and adds multiple route modules from files matching a glob pattern.
    *
-   * @param glob - The glob pattern to match route module files
-   * @returns Promise that resolves when all modules have been processed
+   * @param glob - A glob pattern to match module files
+   * @returns A Promise that resolves when all modules have been loaded and added
    *
    * @example
    * ```typescript
-   * // In main.ts - load all route modules from routes directory
-   * await builder.routes.mapModules("./routes/**\/*.ts");
+   * await builder.mapModules("./routes/**\/*.ts");
+   * ```
    *
-   * // This will automatically import and apply all route modules like:
-   * // - routes/hello_world.ts
-   * // - routes/ping.ts
-   * // - routes/users/index.ts
+   * @example
+   * Where a route module might look like this.
+   * ```typescript
+   * import { RouteModule } from "@brad-jones/deno-net-app-builder";
+   *
+   * export default ((r, c) => {
+   *
+   *   r.mapGet("/hello/:name", (ctx) => ctx.json({ message: `${ctx.path.param("name")}` }));
+   *
+   *   // You also have access to the IoC Container
+   *   // should you wish to register any other services.
+   *   c.addTransient(IFoo, Foo);
+   *   c.addSingleton(IBar, Bar);
+   *
+   * }) satisfies RouteModule;
    * ```
    */
   async mapModules(glob: string): Promise<void> {
     for await (const entry of expandGlob(glob)) {
       if (entry.isFile) {
-        const module = await import(entry.path);
+        const module = await importModule(entry.path);
         this.mapModule(module["default"] as RouteModule);
       }
     }

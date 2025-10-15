@@ -11,6 +11,7 @@
     ]
   },
   "imports": {
+    "@brad-jones/jsr-dynamic-imports": "jsr:@brad-jones/jsr-dynamic-imports@^0.1.1",
     "@logtape/file": "jsr:@logtape/file@^1.1.1",
     "@logtape/logtape": "jsr:@logtape/logtape@^1.1.1",
     "@logtape/pretty": "jsr:@logtape/pretty@^1.1.1",

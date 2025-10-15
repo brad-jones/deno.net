@@ -1,6 +1,7 @@
 {
   "version": "5",
   "specifiers": {
+    "jsr:@brad-jones/jsr-dynamic-imports@~0.1.1": "0.1.1",
     "jsr:@cliffy/command@^1.0.0-rc.8": "1.0.0-rc.8",
     "jsr:@cliffy/flags@1.0.0-rc.8": "1.0.0-rc.8",
     "jsr:@cliffy/internal@1.0.0-rc.8": "1.0.0-rc.8",
@@ -39,6 +40,7 @@
     "jsr:@std/text@~1.0.7": "1.0.16",
     "jsr:@std/yaml@^1.0.10": "1.0.10",
     "jsr:@zod/zod@^4.1.12": "4.1.12",
+    "npm:@brad-jones/jsr-dynamic-imports@0.1.1": "0.1.1",
     "npm:@hono/zod-validator@~0.7.3": "0.7.3_hono@4.9.10_zod@4.1.12",
     "npm:@types/node@24.0.7": "24.0.7",
     "npm:hono@^4.8.0": "4.9.10",
@@ -48,6 +50,12 @@
     "npm:zod@4": "4.1.12"
   },
   "jsr": {
+    "@brad-jones/jsr-dynamic-imports@0.1.1": {
+      "integrity": "c1ab1bfa4a9c7ada43cc9bbd412de2d858fc1ae1a6e313a1a2a9afac1d13f299",
+      "dependencies": [
+        "npm:@brad-jones/jsr-dynamic-imports@0.1.1"
+      ]
+    },
     "@cliffy/command@1.0.0-rc.8": {
       "integrity": "758147790797c74a707e5294cc7285df665422a13d2a483437092ffce40b5557",
       "dependencies": [
@@ -204,6 +212,9 @@
     }
   },
   "npm": {
+    "@brad-jones/jsr-dynamic-imports@0.1.1": {
+      "integrity": "sha512-uF/L4kQMmfzy5UpuyuhITdyyejGUJN9ILOOUDHHyunvldfXmW4kpVfsaKth1NNOqD8Zjs+NtrCslETEG9K1CDw=="
+    },
     "@hono/zod-validator@0.7.3_hono@4.9.10_zod@4.1.12": {
       "integrity": "sha512-uYGdgVib3RlGD698WR5dVM0zB3UuPY5vHKXffGUbUh7r4xY+mFIhF3/v4AcQVLrU5CQdBso8BJr4wuVoCrjTuQ==",
       "dependencies": [
@@ -246,6 +257,7 @@
     "members": {
       "packages/app-builder": {
         "dependencies": [
+          "jsr:@brad-jones/jsr-dynamic-imports@~0.1.1",
           "jsr:@hono/hono@^4.9.10",
           "jsr:@openjs/port-free@1",
           "jsr:@paolostyle/hono-zod-openapi@^1.0.1",
@@ -259,7 +271,9 @@
       },
       "packages/container": {
         "dependencies": [
-          "jsr:@std/expect@^1.0.17"
+          "jsr:@brad-jones/jsr-dynamic-imports@~0.1.1",
+          "jsr:@std/expect@^1.0.17",
+          "jsr:@std/fs@^1.0.19"
         ]
       },
       "packages/http-context": {
@@ -269,6 +283,7 @@
       },
       "packages/logging": {
         "dependencies": [
+          "jsr:@brad-jones/jsr-dynamic-imports@~0.1.1",
           "jsr:@logtape/file@^1.1.1",
           "jsr:@logtape/logtape@^1.1.1",
           "jsr:@logtape/pretty@^1.1.1",
@@ -279,6 +294,7 @@
       },
       "packages/middleware": {
         "dependencies": [
+          "jsr:@brad-jones/jsr-dynamic-imports@~0.1.1",
           "jsr:@std/expect@^1.0.17",
           "jsr:@std/fs@^1.0.19"
         ]

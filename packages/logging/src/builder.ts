@@ -1,5 +1,6 @@
 import { expandGlob } from "@std/fs";
 import { IFilter, LevelFilter } from "./filters/mod.ts";
+import { importModule } from "@brad-jones/jsr-dynamic-imports";
 import type { Filter, LogLevel, LogRecord, Sink } from "@logtape/logtape";
 import { configure, dispose, getLogger } from "@logtape/logtape";
 import { ConsoleSink, FileSink, FilteredSink, ISink } from "./sinks/mod.ts";
@@ -215,11 +216,31 @@ export class LoggingBuilder {
    * ```typescript
    * await builder.addModules("./logging-modules/**\/*.ts");
    * ```
+   *
+   * @example
+   * Where a logging module might look like this.
+   * ```typescript
+   * import { LoggingModule } from "@brad-jones/deno-net-logging";
+   *
+   * export default ((l, c) => {
+   *
+   *   l.addCategory(["my-module"], (category) => {
+   *     category.addSink(CustomSink);
+   *     category.addFilter(CustomFilter);
+   *   });
+   *
+   *   // You also have access to the IoC Container
+   *   // should you wish to register any other services.
+   *   c.addTransient(IFoo, Foo);
+   *   c.addSingleton(IBar, Bar);
+   *
+   * }) satisfies LoggingModule;
+   * ```
    */
   async addModules(glob: string): Promise<void> {
     for await (const entry of expandGlob(glob)) {
       if (entry.isFile) {
-        const module = await import(entry.path);
+        const module = await importModule(entry.path);
         this.addModule(module["default"] as LoggingModule);
       }
     }

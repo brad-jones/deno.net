@@ -1,6 +1,9 @@
 // deno-lint-ignore-file no-explicit-any
+
+import { expandGlob } from "@std/fs";
 import { Scope, Type } from "./types.ts";
 import { injectionContext } from "./injection.ts";
+import { importModule } from "@brad-jones/jsr-dynamic-imports";
 import type { Constructor, ContainerModule, IContainer, ServiceRegistration, Token, ValueProvider } from "./types.ts";
 
 export class Container implements IContainer {
@@ -49,6 +52,15 @@ export class Container implements IContainer {
   addModule(module: ContainerModule): this {
     module(this);
     return this;
+  }
+
+  async addModules(glob: string): Promise<void> {
+    for await (const entry of expandGlob(glob)) {
+      if (entry.isFile) {
+        const module = await importModule(entry.path);
+        this.addModule(module["default"] as ContainerModule);
+      }
+    }
   }
 
   #addWithScope<T>(scope: Scope, ...args: unknown[]): this {
