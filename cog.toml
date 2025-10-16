@@ -40,26 +40,48 @@ authors = [
 path = "packages/container"
 include = ["packages/container/**"]
 
-[packages.app-builder]
-path = "packages/app-builder"
-include = ["packages/app-builder/**"]
-
 [packages.problem-details]
 path = "packages/problem-details"
 include = ["packages/problem-details/**"]
 
-[packages.logging]
-path = "packages/logging"
-include = ["packages/logging/**"]
-
 [packages.http-context]
 path = "packages/http-context"
-include = ["packages/http-context/**"]
-
-[packages.middleware]
-path = "packages/middleware"
-include = ["packages/middleware/**"]
+include = [
+  "packages/http-context/**",
+  "packages/container/**",
+]
 
 [packages.configuration]
 path = "packages/configuration"
-include = ["packages/configuration/**"]
+include = [
+  "packages/configuration/**",
+  "packages/container/**",
+]
+
+[packages.logging]
+path = "packages/logging"
+include = [
+  "packages/logging/**",
+  "packages/container/**",
+]
+
+[packages.middleware]
+path = "packages/middleware"
+include = [
+  "packages/middleware/**",
+  "packages/container/**",
+  "packages/http-context/**",
+  "packages/logging/**",
+]
+
+[packages.app-builder]
+path = "packages/app-builder"
+include = [
+  "packages/app-builder/**",
+  "packages/configuration/**",
+  "packages/container/**",
+  "packages/http-context/**",
+  "packages/logging/**",
+  "packages/middleware/**",
+  "packages/problem-details/**",
+]

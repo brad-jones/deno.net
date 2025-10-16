@@ -41,6 +41,3 @@ tasks:
       - git push && git push --tags
       - cog-extract-changelog.ts < CHANGELOG.md > GITHUB_CHANGELOG.md
       - gh release create {{.COG_VERSION_TAG}} -F GITHUB_CHANGELOG.md
-      - rm GITHUB_CHANGELOG.md
-
-# dummy change
