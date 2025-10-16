@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.3.1 - 2025-10-16
+#### Continuous Integration
+- force a release of all packages - (1e75ef6) - brad-jones
+
+- - -
+
 ## app-builder-v0.3.0 - 2025-10-16
 #### Features
 - **(configuration)** initial commit - (ed158f9) - *brad-jones*
