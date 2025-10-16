@@ -2,6 +2,26 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## middleware-v0.1.3 - 2025-10-16
+#### Miscellaneous Chores
+- **(version)** logging-v0.1.4 - (6aa8a6c) - github-actions[bot]
+
+- - -
+
+## http-context-v0.1.3 - 2025-10-16
+#### Miscellaneous Chores
+- **(version)** http-context-v0.1.3 - (a1b37b8) - github-actions[bot]
+
+- - -
+
+## container-v0.3.2 - 2025-10-16
+#### Continuous Integration
+- **(cog)** should now release packages when dependencies change - (8488401) - *brad-jones*
+#### Miscellaneous Chores
+- **(version)** container-v0.3.2 - (a0fd9c7) - github-actions[bot]
+
+- - -
+
 ## middleware-v0.1.2 - 2025-10-16
 #### Continuous Integration
 - force a release of all packages - (1e75ef6) - brad-jones
