@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## container-v0.3.0 - 2025-10-16
+#### Features
+- **(container)** add injectable function overloads with parameter support - (143cdee) - *brad-jones*
+
+- - -
+
 ## container-v0.2.2 - 2025-10-15
 #### Bug Fixes
 - use jsr-dynamic-imports packageto workaround https://github.com/denoland/deno/discussions/26266 - (b651f5a) - brad-jones
