@@ -1,0 +1,16 @@
+{
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "ssl": true,
+    "timeout": 30
+  },
+  "logging": {
+    "level": "info",
+    "format": "json"
+  },
+  "api": {
+    "endpoint": "https://api.example.com",
+    "timeout": 5000
+  }
+}

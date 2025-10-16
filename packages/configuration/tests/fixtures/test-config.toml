@@ -1,0 +1,12 @@
+[database]
+host = "toml-host"
+port = 5433
+ssl = true
+
+[server]
+port = 8080
+workers = 4
+
+[features]
+enable_auth = true
+enable_metrics = false

@@ -56,7 +56,7 @@ class CallableClass extends Function {
  *
  * This class implements both the callable and method-based interfaces of IConfiguration.
  * It reads configuration values from all registered sources and merges them together,
- * with earlier registered sources taking precedence over later ones.
+ * with later registered sources taking precedence over earlier ones.
  *
  * The class uses a callable pattern where it can be invoked directly as a function
  * while also exposing methods. This provides a convenient API for accessing configuration.
@@ -80,7 +80,9 @@ export class ConfigurationRoot extends CallableClass implements IConfiguration {
    *
    * @param sources - Array of configuration sources injected by the DI container
    */
-  constructor(private sources: IConfigurationSource[] = inject(IConfigurationSource, { multi: true })) {
+  constructor(
+    private sources: () => IConfigurationSource[] = inject(IConfigurationSource, { multi: true, lazy: true }),
+  ) {
     super((section: string | string[]) => this.getSection(section));
   }
 
@@ -106,7 +108,7 @@ export class ConfigurationRoot extends CallableClass implements IConfiguration {
     const resolvedSection = this.#resolveDotNotation(section);
 
     let values: Record<string, string> = {};
-    for (const source of this.sources.toReversed()) {
+    for (const source of this.sources()) {
       values = { ...values, ...await source.read(resolvedSection) };
     }
 

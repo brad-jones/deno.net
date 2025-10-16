@@ -60,8 +60,8 @@ Deno.test("ConfigurationBuilder - real-world layered configuration scenario", as
   // 2. Then register environment source (overrides)
   // This means environment should win over file for conflicting keys
   builder
-    .fromSource(FileConfigurationSource) // Registered first = higher precedence
-    .fromSource(EnvironmentConfigurationSource); // Registered second = lower precedence
+    .fromSource(FileConfigurationSource) // Registered first = lower precedence
+    .fromSource(EnvironmentConfigurationSource); // Registered second = higher precedence
 
   const config = container.getService(IConfiguration);
 
@@ -70,8 +70,8 @@ Deno.test("ConfigurationBuilder - real-world layered configuration scenario", as
 
   console.log("Database config result:", dbConfig);
 
-  // File source should win for host (first registered = higher precedence)
-  expect(dbConfig.host).toBe("config-file-host");
+  // Environment source should win for host (last registered = higher precedence)
+  expect(dbConfig.host).toBe("env-override-host");
 
   // Values unique to each source should all be present
   expect(dbConfig.port).toBe("3306"); // from file only
@@ -84,8 +84,8 @@ Deno.test("ConfigurationBuilder - real-world layered configuration scenario", as
 
   console.log("Logging config result:", logConfig);
 
-  // File source should win for level (first registered = higher precedence)
-  expect(logConfig.level).toBe("info");
+  // Environment source should win for level (last registered = higher precedence)
+  expect(logConfig.level).toBe("debug");
   expect(logConfig.format).toBe("json"); // from file only
 });
 
@@ -93,7 +93,7 @@ Deno.test("ConfigurationBuilder - options function integration with layered conf
   const container = new Container();
   const builder = new ConfigurationBuilder(container);
 
-  // Setup sources: file first (higher precedence), then env
+  // Setup sources: file first (lower precedence), then env
   builder
     .fromSource(FileConfigurationSource)
     .fromSource(EnvironmentConfigurationSource);
@@ -118,7 +118,7 @@ Deno.test("ConfigurationBuilder - options function integration with layered conf
 
   // Verify the layered configuration is properly parsed
   expect(options).toEqual({
-    host: "config-file-host", // from file (higher precedence)
+    host: "env-override-host", // from env (higher precedence)
     port: 3306, // from file, parsed as number
     username: "config-user", // from file
     password: "env-secret-password", // from env (only source)
@@ -131,12 +131,12 @@ Deno.test("ConfigurationBuilder - demonstrate typical application setup", async 
   const builder = new ConfigurationBuilder(container);
 
   // Typical real-world scenario:
-  // 1. Load defaults from file/embedded config (highest precedence)
-  // 2. Load environment-specific overrides (lower precedence)
+  // 1. Load defaults from file/embedded config (lower precedence)
+  // 2. Load environment-specific overrides (higher precedence)
 
   builder
-    .fromSource(FileConfigurationSource) // Defaults - should win conflicts
-    .fromSource(EnvironmentConfigurationSource); // Overrides - lower precedence
+    .fromSource(FileConfigurationSource) // Defaults - lower precedence
+    .fromSource(EnvironmentConfigurationSource); // Overrides - should win conflicts
 
   // Define application options
   const AppOptions = async (config = inject(IConfiguration)("logging")) => {
@@ -152,8 +152,8 @@ Deno.test("ConfigurationBuilder - demonstrate typical application setup", async 
 
   const appOptions = await container.getService(AppOptions);
 
-  // File config should take precedence
-  expect(appOptions.logLevel).toBe("info"); // from file, not env's "debug"
+  // Environment config should take precedence
+  expect(appOptions.logLevel).toBe("debug"); // from env, overriding file's "info"
   expect(appOptions.logFormat).toBe("json"); // from file only
-  expect(appOptions.enableDebug).toBe(false); // derived from file's "info" level
+  expect(appOptions.enableDebug).toBe(true); // derived from env's "debug" level
 });

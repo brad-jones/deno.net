@@ -1,6 +1,7 @@
 // deno-lint-ignore-file no-explicit-any
 
 import { expandGlob } from "@std/fs";
+import { FileSource } from "./sources/file_source.ts";
 import { importModule } from "@brad-jones/jsr-dynamic-imports";
 import { EnvironmentSource } from "./sources/environment_source.ts";
 import { IConfigurationSource } from "./sources/configuration_source.ts";
@@ -55,8 +56,8 @@ export class ConfigurationBuilder {
   /**
    * Registers a configuration source with the builder.
    *
-   * Configuration sources are processed in reverse order of registration,
-   * so sources registered earlier will override values from later sources.
+   * Configuration sources are processed in registration order,
+   * so sources registered later will override values from earlier sources.
    *
    * @param source - The constructor for the configuration source class
    * @param scope - The dependency injection scope (defaults to Singleton)
@@ -90,6 +91,131 @@ export class ConfigurationBuilder {
    */
   fromEnv(): this {
     return this.fromSource(EnvironmentSource);
+  }
+
+  /**
+   * Registers a file-based configuration source.
+   *
+   * This method creates a configuration source that reads from a file in JSON, YAML, or TOML format.
+   * The file format is automatically detected based on the file extension:
+   * - `.json` - JSON format
+   * - `.yaml`, `.yml` - YAML format
+   * - `.toml` - TOML format
+   *
+   * By default, the file is loaded and parsed once, then cached for subsequent reads (Singleton scope).
+   * When `allowReloading` is true, the source is registered as Transient, allowing runtime configuration updates.
+   * If the file doesn't exist or cannot be parsed, the source will return empty configuration.
+   *
+   * @param filePath - Absolute or relative path to the configuration file
+   * @param options.allowReloading - Whether to allow runtime reloading (defaults to false for performance)
+   * @returns The ConfigurationBuilder instance for method chaining
+   *
+   * @example
+   * ```typescript
+   * // Load from JSON file (cached, high performance)
+   * builder.fromFile("./config/app.json");
+   *
+   * // Load with reloading enabled (allows runtime updates)
+   * builder.fromFile("./config/dynamic.json", { allowReloading: true });
+   *
+   * // Load from YAML file
+   * builder.fromFile("./config/database.yaml");
+   *
+   * // Load from TOML file
+   * builder.fromFile("./config/server.toml");
+   *
+   * // Chaining with precedence (TOML overrides YAML overrides JSON)
+   * builder
+   *   .fromFile("./config/defaults.json")
+   *   .fromFile("./config/environment.yaml")
+   *   .fromFile("./config/local.toml", { allowReloading: true }); // Only local config allows reloading
+   * ```
+   */
+  fromFile(filePath: string, options?: { allowReloading?: boolean }): this {
+    return this.fromSource(
+      class extends FileSource {
+        constructor() {
+          super(filePath);
+        }
+      },
+      options?.allowReloading ? Scope.Transient : Scope.Singleton,
+    );
+  }
+
+  /**
+   * Registers an object-based configuration source.
+   *
+   * This method creates a configuration source from a plain JavaScript object.
+   * It's particularly useful for testing scenarios where you want to override
+   * configuration values or provide mock configuration data.
+   *
+   * The object structure should match the hierarchical section structure,
+   * and all values will be converted to strings as required by the configuration system.
+   *
+   * @param source - A plain object containing configuration data
+   * @returns The ConfigurationBuilder instance for method chaining
+   *
+   * @example
+   * ```typescript
+   * // Override configuration for testing
+   * builder.fromObject({
+   *   database: {
+   *     host: "localhost",
+   *     port: 5432,
+   *     ssl: false
+   *   },
+   *   api: {
+   *     endpoint: "https://test-api.example.com"
+   *   }
+   * });
+   *
+   * // Later access with: config.getSection(["database"]) -> { host: "localhost", port: "5432", ssl: "false" }
+   * ```
+   */
+  fromObject(source: Record<string, unknown>): this {
+    return this.fromSource(
+      class implements IConfigurationSource {
+        read(section: string[]): Promise<Record<string, string>> {
+          if (section.length === 0) {
+            // Return all top-level keys as strings
+            const result: Record<string, string> = {};
+            for (const [key, value] of Object.entries(source)) {
+              if (typeof value === "string") {
+                result[key] = value;
+              } else if (value !== null && value !== undefined) {
+                result[key] = String(value);
+              }
+            }
+            return Promise.resolve(result);
+          }
+
+          // Navigate through the object hierarchy using the section path
+          let current: any = source;
+          for (const sectionName of section) {
+            if (current && typeof current === "object" && sectionName in current) {
+              current = current[sectionName];
+            } else {
+              return Promise.resolve({}); // Section not found
+            }
+          }
+
+          // If we found the section, flatten it to string key-value pairs
+          if (current && typeof current === "object" && !Array.isArray(current)) {
+            const result: Record<string, string> = {};
+            for (const [key, value] of Object.entries(current)) {
+              if (typeof value === "string") {
+                result[key] = value;
+              } else if (value !== null && value !== undefined) {
+                result[key] = String(value);
+              }
+            }
+            return Promise.resolve(result);
+          }
+
+          return Promise.resolve({});
+        }
+      },
+    );
   }
 
   /**

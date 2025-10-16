@@ -14,8 +14,8 @@ export const IConfigurationSource: Type<IConfigurationSource> = new Type<IConfig
  * Each source receives a hierarchical section path and returns all configuration
  * values that belong to that section.
  *
- * Sources are processed in reverse order of registration, meaning sources registered
- * earlier will override values from sources registered later. This allows for a
+ * Sources are processed in registration order, meaning sources registered
+ * later will override values from sources registered earlier. This allows for a
  * layered configuration approach where environment-specific values can override
  * default values.
  */

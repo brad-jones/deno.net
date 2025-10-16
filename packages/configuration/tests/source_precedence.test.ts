@@ -48,18 +48,18 @@ class ThirdSource implements IConfigurationSource {
   }
 }
 
-Deno.test("Configuration source precedence - first registered wins", async () => {
+Deno.test("Configuration source precedence - last registered wins", async () => {
   const container = new Container();
 
   // Register sources in order: first, second, third
-  // The key test: first registered should override later ones
+  // The key test: last registered should override earlier ones
   container.addSingleton(IConfigurationSource, FirstSource);
   container.addSingleton(IConfigurationSource, SecondSource);
   container.addSingleton(IConfigurationSource, ThirdSource);
 
   // Create configuration root with these sources
   const sources = container.getServices(IConfigurationSource);
-  const configRoot = new ConfigurationRoot(sources);
+  const configRoot = new ConfigurationRoot(() => sources);
 
   // Test the merged configuration
   const result = await configRoot.getSection("app");
@@ -67,8 +67,8 @@ Deno.test("Configuration source precedence - first registered wins", async () =>
   console.log("Sources processing order:", sources.map((s) => s.constructor.name));
   console.log("Final merged result:", result);
 
-  // The critical assertion: first source should win for conflicting keys
-  expect(result.name).toBe("first-name");
+  // The critical assertion: last source should win for conflicting keys
+  expect(result.name).toBe("third-name");
 
   // All unique keys should be present
   expect(result.onlyInFirst).toBe("first-value");
@@ -79,7 +79,7 @@ Deno.test("Configuration source precedence - first registered wins", async () =>
   expect(result.debug).toBe("true");
 });
 
-Deno.test("Understanding the source reversal logic", async () => {
+Deno.test("Understanding the source processing logic", async () => {
   const container = new Container();
 
   // Register in order: A, B, C
@@ -88,21 +88,18 @@ Deno.test("Understanding the source reversal logic", async () => {
   container.addSingleton(IConfigurationSource, ThirdSource);
 
   const sources = container.getServices(IConfigurationSource);
-  console.log("Original order:", sources.map((s) => s.constructor.name));
-
-  const reversed = sources.toReversed();
-  console.log("Reversed order:", reversed.map((s) => s.constructor.name));
+  console.log("Processing order:", sources.map((s) => s.constructor.name));
 
   // Simulate the merging logic step by step
   let values: Record<string, string> = {};
 
-  for (const source of reversed) {
+  for (const source of sources) {
     const sourceData = await source.read(["app"]);
     console.log(`Processing ${source.constructor.name}:`, sourceData);
     values = { ...values, ...sourceData };
     console.log("Values after merge:", values);
   }
 
-  // This demonstrates that later in the loop (which is earlier in registration) wins
-  expect(values.name).toBe("first-name");
+  // This demonstrates that later in the loop (which is later in registration) wins
+  expect(values.name).toBe("third-name");
 });

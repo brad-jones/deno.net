@@ -111,6 +111,29 @@ builder.fromEnv();
 builder.fromSource(EnvironmentSource);
 ```
 
+#### ObjectSource
+
+Creates configuration from plain JavaScript objects. Perfect for testing and overrides.
+
+```typescript
+builder.fromObject({
+  database: {
+    host: "localhost",
+    port: 5432,
+    ssl: false,
+  },
+  logging: {
+    level: "debug",
+  },
+});
+```
+
+This is particularly useful for:
+
+- **Testing**: Override specific configuration values in tests
+- **Development**: Provide development-specific overrides
+- **Runtime**: Dynamic configuration from API responses or user input
+
 ### Custom Sources
 
 Implement the `IConfigurationSource` interface:
@@ -154,20 +177,22 @@ builder.fromSource(FileConfigurationSource);
 
 ## Source Precedence
 
-**Important**: Earlier registered sources take precedence over later registered sources.
+**Important**: Later registered sources take precedence over earlier registered sources.
 
 ```typescript
 builder
-  .fromSource(FileConfigurationSource) // 🏆 Highest precedence
-  .fromSource(EnvironmentConfigurationSource); // 📉 Lower precedence
+  .fromSource(FileConfigurationSource) // 📉 Lower precedence
+  .fromSource(EnvironmentConfigurationSource) // 🏆 Highest precedence
+  .fromObject({ database: { host: "test" } }); // � Testing override - highest precedence
 
-// If both sources have the same key, FileConfigurationSource wins
+// If all sources have the same key, the fromObject value wins
 ```
 
 This allows for typical configuration layering:
 
-1. Register defaults/base configuration first (highest precedence)
-2. Register environment-specific overrides later (lower precedence)
+1. Register defaults/base configuration first (lower precedence)
+2. Register environment-specific overrides later (higher precedence)
+3. Register test overrides last (highest precedence)
 
 ## Configuration Access Patterns
 
@@ -213,12 +238,18 @@ class WebServer {
 
 ### Runtime Configuration Reloading
 
-For dynamic configuration updates, register options with `Transient` scope:
+For dynamic configuration updates, enable reloading on file sources and use transient options:
 
 ```typescript
 import { Scope } from "@brad-jones/deno-net-container";
 
-// Register as transient so it's re-evaluated on each access
+// Enable runtime reloading for configuration files
+builder
+  .fromFile("./config/static.json") // Cached (high performance)
+  .fromFile("./config/dynamic.json", true) // Reloadable (runtime updates)
+  .fromEnv();
+
+// Register options as transient so they're re-evaluated on each access
 builder.configureOptions(DatabaseOptions, Scope.Transient);
 
 class DatabaseService {
@@ -227,7 +258,7 @@ class DatabaseService {
   ) {}
 
   async reconnect() {
-    // This will re-read configuration from sources
+    // This will re-read configuration from reloadable sources
     const currentOptions = await this.getOptions();
     // ... reconnect with new options
   }

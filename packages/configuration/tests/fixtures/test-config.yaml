@@ -1,0 +1,12 @@
+database:
+  host: yaml-host
+  port: 3306
+  ssl: false
+
+logging:
+  level: debug
+  format: text
+
+cache:
+  redis_url: redis://localhost:6379
+  ttl: 3600
