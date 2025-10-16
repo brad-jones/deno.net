@@ -1,7 +1,7 @@
 {
   "name": "@brad-jones/deno-net-configuration",
   "exports": "./src/mod.ts",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "MIT",
   "publish": {
     "include": [
