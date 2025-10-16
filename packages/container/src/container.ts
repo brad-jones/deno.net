@@ -4,7 +4,17 @@ import { expandGlob } from "@std/fs";
 import { Scope, Type } from "./types.ts";
 import { injectionContext } from "./injection.ts";
 import { importModule } from "@brad-jones/jsr-dynamic-imports";
-import type { Constructor, ContainerModule, IContainer, ServiceRegistration, Token, ValueProvider } from "./types.ts";
+import { isClass, isFunc, isToken, isValueProvider } from "./utils.ts";
+import type {
+  AbstractConstructor,
+  Constructor,
+  ContainerModule,
+  IContainer,
+  InjectableFunction,
+  ServiceRegistration,
+  Token,
+  ValueProvider,
+} from "./types.ts";
 
 export class Container implements IContainer {
   #parent: Container | undefined = undefined;
@@ -41,6 +51,10 @@ export class Container implements IContainer {
       services.push({ scope, factory: (_, additionalParameters) => new provider!.useClass!(...additionalParameters) });
     }
 
+    if (provider!.useFunc) {
+      services.push({ scope, factory: (_, additionalParameters) => provider!.useFunc!(...additionalParameters) });
+    }
+
     if (provider!.useFactory) {
       services.push({ scope, factory: provider!.useFactory });
     }
@@ -63,40 +77,7 @@ export class Container implements IContainer {
     }
   }
 
-  #addWithScope<T>(scope: Scope, ...args: unknown[]): this {
-    if (args.length === 1) {
-      return this.add(
-        scope,
-        args[0] as Token<T>,
-        { useClass: args[0] as Constructor<T> },
-      );
-    }
-
-    if (
-      typeof args[1] === "object" &&
-      ("useValue" in args[1]! || "useFactory" in args[1]! ||
-        "useClass" in args[1]!)
-    ) {
-      return this.add(
-        scope,
-        args[0] as Token<T>,
-        args[1] as ValueProvider<T>,
-      );
-    }
-
-    if (typeof args[1] === "function") {
-      if (args[1].prototype) {
-        const useClass = args[1] as Constructor<T>;
-        return this.add(scope, args[0] as Token<T>, { useClass });
-      }
-
-      const useFactory = args[1] as (c: IContainer) => T;
-      return this.add(scope, args[0] as Token<T>, { useFactory });
-    }
-
-    throw new Error("unknown args");
-  }
-
+  addTransient<T>(func: InjectableFunction<T>): this;
   addTransient<T>(klass: new (...args: any[]) => T): this;
   addTransient<T>(token: Token<T>, provider: ValueProvider<T>): this;
   addTransient<T>(token: Token<T>, klass: Constructor<T>): this;
@@ -105,6 +86,7 @@ export class Container implements IContainer {
     return this.#addWithScope<T>(Scope.Transient, ...args);
   }
 
+  addScoped<T>(func: InjectableFunction<T>): this;
   addScoped<T>(klass: new (...args: any[]) => T): this;
   addScoped<T>(token: Token<T>, provider: ValueProvider<T>): this;
   addScoped<T>(token: Token<T>, klass: Constructor<T>): this;
@@ -113,6 +95,7 @@ export class Container implements IContainer {
     return this.#addWithScope<T>(Scope.Scoped, ...args);
   }
 
+  addSingleton<T>(func: InjectableFunction<T>): this;
   addSingleton<T>(klass: new (...args: any[]) => T): this;
   addSingleton<T>(token: Token<T>, provider: ValueProvider<T>): this;
   addSingleton<T>(token: Token<T>, klass: Constructor<T>): this;
@@ -121,6 +104,9 @@ export class Container implements IContainer {
     return this.#addWithScope<T>(Scope.Singleton, ...args);
   }
 
+  getService<T>(token: Token<T>): T;
+  getService<T extends InjectableFunction>(token: T, ...options: Parameters<T>): ReturnType<T>;
+  getService<T extends AbstractConstructor>(token: T, ...options: ConstructorParameters<T>): InstanceType<T>;
   getService<T>(token: Token<T>, ...options: unknown[]): T {
     return injectionContext(this).run(() => {
       const services = this.#getRegisteredServices(token);
@@ -131,6 +117,8 @@ export class Container implements IContainer {
     });
   }
 
+  getServices<T>(token: Token<T>): T[];
+  getServices<T>(tokens: Token<T>[]): T[];
   getServices<T>(tokens: Token<T> | Token<T>[]): T[] {
     return injectionContext(this).run(() => {
       const values: T[] = [];
@@ -145,14 +133,54 @@ export class Container implements IContainer {
     });
   }
 
+  callFunc<T, Args extends readonly unknown[]>(f: (...args: Args) => T, ...fArgs: Args): T {
+    return injectionContext(this).run(() => f(...fArgs));
+  }
+
+  createChild(_scope?: string): IContainer {
+    return new Container(this);
+  }
+
+  #addWithScope<T>(scope: Scope, ...args: unknown[]): this {
+    if (args.length === 1) {
+      if (isClass(args[0])) {
+        return this.add(scope, args[0], { useClass: args[0] });
+      }
+      if (isFunc(args[0])) {
+        return this.add(scope, args[0], { useFunc: args[0] });
+      }
+    }
+
+    if (isToken<T>(args[0])) {
+      if (isValueProvider<T>(args[1])) {
+        return this.add(scope, args[0], args[1]);
+      }
+
+      if (isClass(args[1])) {
+        return this.add(scope, args[0], { useClass: args[1] });
+      }
+
+      if (isFunc(args[1])) {
+        return this.add(scope, args[0], { useFactory: args[1] });
+      }
+    }
+
+    throw new Error("unknown args");
+  }
+
   #getRegisteredServices<T>(token: Token<T>): ServiceRegistration<T>[] {
     const services = this.#registry.get(token) as ServiceRegistration<T>[] | undefined;
     if (!services) {
-      if (!(token instanceof Type)) {
-        // For constructor tokens, create a default registration
+      if (isFunc(token)) {
         return [{
           scope: Scope.Transient,
-          factory: (_, additionalParameters) => new (token as Constructor<T>)(...additionalParameters),
+          factory: (_, additionalParameters) => token(...additionalParameters),
+        }];
+      }
+      if (isClass(token)) {
+        return [{
+          scope: Scope.Transient,
+          factory: (_, additionalParameters) => new token(...additionalParameters),
         }];
       }
       return [];
@@ -188,14 +216,6 @@ export class Container implements IContainer {
     }
 
     return value as T;
-  }
-
-  callFunc<T, Args extends readonly unknown[]>(f: (...args: Args) => T, ...fArgs: Args): T {
-    return injectionContext(this).run(() => f(...fArgs));
-  }
-
-  createChild(_scope?: string): IContainer {
-    return new Container(this);
   }
 }
 

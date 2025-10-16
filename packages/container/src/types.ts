@@ -8,9 +8,10 @@ export type ContainerModule = (c: IContainer) => void;
 /**
  * The container requires a key to map constructed values to.
  */
-export type Token<T> = Type<T> | Constructor<T> | AbstractConstructor<T>;
-export type Constructor<T> = new (...args: any[]) => T;
-export type AbstractConstructor<T> = abstract new (...args: any[]) => T;
+export type Token<T = any> = Type<T> | Constructor<T> | AbstractConstructor<T> | InjectableFunction<T>;
+export type Constructor<T = any> = new (...args: any[]) => T;
+export type AbstractConstructor<T = any> = abstract new (...args: any[]) => T;
+export type InjectableFunction<T = any> = (...args: any[]) => T;
 
 /**
  * Use this as a runtime type to stand-in for interfaces.
@@ -86,6 +87,11 @@ export interface ValueProvider<T> {
    * The typical use case is to bind an interface to a class that implements the interface.
    */
   useClass?: Constructor<T>;
+
+  /**
+   * Allows one to register individual functions into the container.
+   */
+  useFunc?: InjectableFunction<T>;
 
   /**
    * For complex scenarios you can supply your own factory function.
@@ -191,8 +197,8 @@ export interface IContainer {
    *
    * NB: This is not strictly required for transient scoped services.
    *     The container includes functionality that will automatically
-   *     construct concrete classes that not explicitly registered with
-   *     the container.
+   *     register concrete classes that are not explicitly registered
+   *     with the container.
    *
    * @param klass - The constructor function for the class
    * @returns The container instance for method chaining
@@ -211,6 +217,33 @@ export interface IContainer {
    * ```
    */
   addTransient<T>(klass: new (...args: any[]) => T): this;
+
+  /**
+   * Bind a function to the container with transient lifetime.
+   *
+   * NB: This is not strictly required for transient scoped services.
+   *     The container includes functionality that will automatically
+   *     register functions that are not explicitly registered with
+   *     the container.
+   *
+   * @param func - The function to register
+   * @returns The container instance for method chaining
+   *
+   * @example
+   * ```ts
+   * function parseConfig(logger = inject(ILogger)("config")) {
+   *   logger.info("parsing app config");
+   *   return {
+   *     debugMode: Deno.env.get('DEBUG_MODE') ? true : false,
+   *   };
+   * }
+   *
+   * container.addTransient(parseConfig);
+   *
+   * container.getService(parseConfig).debugMode;
+   * ```
+   */
+  addTransient<T>(func: InjectableFunction<T>): this;
 
   /**
    * Bind a token to a class with transient lifetime.
@@ -291,6 +324,29 @@ export interface IContainer {
   addScoped<T>(klass: new (...args: any[]) => T): this;
 
   /**
+   * Bind a function to the container with scoped lifetime.
+   * One instance will be created per scope (typically per request in web applications).
+   *
+   * @param func - The function to register
+   * @returns The container instance for method chaining
+   *
+   * @example
+   * ```ts
+   * function parseConfig(logger = inject(ILogger)("config")) {
+   *   logger.info("parsing app config");
+   *   return {
+   *     debugMode: Deno.env.get('DEBUG_MODE') ? true : false,
+   *   };
+   * }
+   *
+   * container.addScoped(parseConfig);
+   *
+   * container.getService(parseConfig).debugMode;
+   * ```
+   */
+  addScoped<T>(func: InjectableFunction<T>): this;
+
+  /**
    * Bind a token to a class with scoped lifetime.
    * One instance will be created per scope (typically per request in web applications).
    *
@@ -355,6 +411,29 @@ export interface IContainer {
   addSingleton<T>(klass: new (...args: any[]) => T): this;
 
   /**
+   * Bind a function to the container with singleton lifetime.
+   * One instance will be created for the entire application lifetime.
+   *
+   * @param func - The function to register
+   * @returns The container instance for method chaining
+   *
+   * @example
+   * ```ts
+   * function parseConfig(logger = inject(ILogger)("config")) {
+   *   logger.info("parsing app config");
+   *   return {
+   *     debugMode: Deno.env.get('DEBUG_MODE') ? true : false,
+   *   };
+   * }
+   *
+   * container.addSingleton(parseConfig);
+   *
+   * container.getService(parseConfig).debugMode;
+   * ```
+   */
+  addSingleton<T>(func: InjectableFunction<T>): this;
+
+  /**
    * Bind a token to a class with singleton lifetime.
    * One instance will be created for the entire application lifetime.
    *
@@ -406,6 +485,76 @@ export interface IContainer {
   getService<T>(token: Token<T>): T;
 
   /**
+   * Resolve a single service instance using an injectable function with optional function parameters.
+   * This overload allows you to pass specific parameters when resolving services registered as functions,
+   * which is useful for functions that require runtime parameters or when you want to provide
+   * specific arguments to the function being resolved.
+   *
+   * When a function is registered with scoped or singleton lifetime, the result of calling the function
+   * is cached according to the lifetime scope. The function parameters are only considered during
+   * the initial invocation that creates the cached result.
+   *
+   * @template T - The function type that extends a function signature
+   * @param token - The injectable function to resolve and call
+   * @param options - Optional parameters to pass to the function when it's invoked.
+   *                  These parameters must match the function's parameter signature.
+   * @returns The result of calling the injectable function with the provided parameters
+   *
+   * @example
+   * Basic usage with a parameterless function:
+   * ```ts
+   * const createTimestamp = () => new Date();
+   * container.addSingleton(createTimestamp);
+   *
+   * const timestamp1 = container.getService(createTimestamp);
+   * const timestamp2 = container.getService(createTimestamp);
+   * // timestamp1 === timestamp2 (same instance due to singleton caching)
+   * ```
+   *
+   * @example
+   * Usage with function parameters:
+   * ```ts
+   * const createCounter = (initialValue: number, step: number = 1) => {
+   *   let count = initialValue;
+   *   return {
+   *     increment: () => count += step,
+   *     get value() { return count; }
+   *   };
+   * };
+   *
+   * container.addTransient(createCounter);
+   *
+   * // Pass parameters to the function
+   * const counter1 = container.getService(createCounter, 100, 5);
+   * const counter2 = container.getService(createCounter, 200, 10);
+   *
+   * console.log(counter1.value); // 100
+   * console.log(counter2.value); // 200
+   * ```
+   *
+   * @example
+   * Scoped lifetime with parameters (first call determines the cached result):
+   * ```ts
+   * const createSessionData = (userId: string) => ({
+   *   userId,
+   *   sessionId: crypto.randomUUID(),
+   *   createdAt: new Date()
+   * });
+   *
+   * container.addScoped(createSessionData);
+   *
+   * // First call creates and caches the result
+   * const session1 = container.getService(createSessionData, "user123");
+   * // Second call returns the cached result (ignores new parameters)
+   * const session2 = container.getService(createSessionData, "user456");
+   *
+   * console.log(session1 === session2); // true
+   * console.log(session1.userId); // "user123" (from first call)
+   * ```
+   */
+  getService<T extends InjectableFunction>(token: T, ...options: Parameters<T>): ReturnType<T>;
+
+  /**
    * Resolve a single service instance using a constructor with optional constructor parameters.
    * This overload allows you to pass specific constructor arguments when resolving services,
    * which is useful for services that require runtime parameters or when you want to override
@@ -431,10 +580,7 @@ export interface IContainer {
    * const dbService = container.getService(DatabaseService, "postgresql://localhost:5432/mydb", 5000);
    * ```
    */
-  getService<T extends abstract new (...args: any) => any>(
-    token: T,
-    ...options: ConstructorParameters<T>
-  ): InstanceType<T>;
+  getService<T extends AbstractConstructor>(token: T, ...options: ConstructorParameters<T>): InstanceType<T>;
 
   /**
    * Resolve all service instances registered for a given token.
@@ -522,6 +668,12 @@ export interface IContainer {
    *
    * const user = container.callFunc(processUser, "user123");
    * ```
+   *
+   * NB: If you want to cache the value returned from the function
+   *     you can register the function into the container.
+   *
+   *     See: `addScoped<T>(func: InjectableFunction<T>)`
+   *     & `addSingleton<T>(func: InjectableFunction<T>)`
    */
   callFunc<T, Args extends readonly unknown[]>(f: (...args: Args) => T, ...fArgs: Args): T;
 
