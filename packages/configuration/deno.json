@@ -1,0 +1,20 @@
+{
+  "name": "@brad-jones/deno-net-configuration",
+  "exports": "./src/mod.ts",
+  "version": "0.0.0",
+  "license": "MIT",
+  "publish": {
+    "include": [
+      "src/**/*.ts",
+      "README.md",
+      "CHANGELOG.md"
+    ]
+  },
+  "imports": {
+    "@brad-jones/jsr-dynamic-imports": "jsr:@brad-jones/jsr-dynamic-imports@^0.1.1",
+    "@mesqueeb/case-anything": "jsr:@mesqueeb/case-anything@^3.1.0",
+    "@std/expect": "jsr:@std/expect@^1.0.17",
+    "@std/fs": "jsr:@std/fs@^1.0.19",
+    "@zod/zod": "jsr:@zod/zod@^4.1.12"
+  }
+}

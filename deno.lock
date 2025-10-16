@@ -15,6 +15,7 @@
     "jsr:@logtape/file@^1.1.1": "1.1.1",
     "jsr:@logtape/logtape@^1.1.1": "1.1.1",
     "jsr:@logtape/pretty@^1.1.1": "1.1.1",
+    "jsr:@mesqueeb/case-anything@^3.1.0": "3.1.0",
     "jsr:@openjs/port-free@1": "1.0.0",
     "jsr:@paolostyle/hono-zod-openapi@^1.0.1": "1.0.1",
     "jsr:@std/assert@^1.0.14": "1.0.15",
@@ -124,6 +125,9 @@
         "jsr:@logtape/logtape",
         "npm:@types/node"
       ]
+    },
+    "@mesqueeb/case-anything@3.1.0": {
+      "integrity": "0e463b752f95dbdfa42c97b0e60911170fd8206508522fffc23a9e83d63bb4c2"
     },
     "@openjs/port-free@1.0.0": {
       "integrity": "0b70adc419a37d6c15d049a369cbc2020795bf50118409dde077efcae9e8e2e4"
@@ -267,6 +271,15 @@
           "jsr:@zod/zod@^4.1.12",
           "npm:ky@^1.11.0",
           "npm:zod-openapi@^5.4.3"
+        ]
+      },
+      "packages/configuration": {
+        "dependencies": [
+          "jsr:@brad-jones/jsr-dynamic-imports@~0.1.1",
+          "jsr:@mesqueeb/case-anything@^3.1.0",
+          "jsr:@std/expect@^1.0.17",
+          "jsr:@std/fs@^1.0.19",
+          "jsr:@zod/zod@^4.1.12"
         ]
       },
       "packages/container": {

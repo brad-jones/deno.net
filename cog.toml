@@ -59,3 +59,7 @@ include = ["packages/http-context/**"]
 [packages.middleware]
 path = "packages/middleware"
 include = ["packages/middleware/**"]
+
+[packages.configuration]
+path = "packages/configuration"
+include = ["packages/configuration/**"]
