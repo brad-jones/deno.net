@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## logging-v0.1.3 - 2025-10-16
+#### Continuous Integration
+- force a release of all packages - (1e75ef6) - brad-jones
+
+- - -
+
 ## logging-v0.1.2 - 2025-10-15
 #### Bug Fixes
 - use jsr-dynamic-imports packageto workaround https://github.com/denoland/deno/discussions/26266 - (b651f5a) - brad-jones
