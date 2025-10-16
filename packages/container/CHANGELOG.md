@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## container-v0.3.1 - 2025-10-16
+#### Continuous Integration
+- force a release of all packages - (1e75ef6) - brad-jones
+
+- - -
+
 ## container-v0.3.0 - 2025-10-16
 #### Features
 - **(container)** add injectable function overloads with parameter support - (143cdee) - *brad-jones*
