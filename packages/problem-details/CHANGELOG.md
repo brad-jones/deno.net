@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## problem-details-v0.1.2 - 2025-10-16
+#### Continuous Integration
+- force a release of all packages - (1e75ef6) - brad-jones
+
+- - -
+
 ## problem-details-v0.1.1 - 2025-10-14
 #### Build system
 - **(publish)** publish deno first to avoid creating tags and releases when we fail to actually publish - (e74da64) - *brad-jones*
