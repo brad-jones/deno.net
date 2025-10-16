@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## configuration-v0.1.1 - 2025-10-16
+#### Continuous Integration
+- force a release of all packages - (1e75ef6) - brad-jones
+
+- - -
+
 ## configuration-v0.1.0 - 2025-10-16
 #### Features
 - **(configuration)** initial commit - (ed158f9) - *brad-jones*
