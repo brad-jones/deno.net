@@ -2,6 +2,46 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.4.0 - 2025-10-16
+#### Miscellaneous Chores
+- **(version)** middleware-v0.1.3 - (4978dca) - github-actions[bot]
+
+- - -
+
+## logging-v0.1.4 - 2025-10-16
+#### Miscellaneous Chores
+- **(version)** logging-v0.1.4 - (6aa8a6c) - github-actions[bot]
+
+- - -
+
+## http-context-v0.1.3 - 2025-10-16
+#### Miscellaneous Chores
+- **(version)** http-context-v0.1.3 - (a1b37b8) - github-actions[bot]
+
+- - -
+
+## problem-details-v0.1.3 - 2025-10-16
+#### Miscellaneous Chores
+- **(version)** problem-details-v0.1.3 - (70f8061) - github-actions[bot]
+
+- - -
+
+## configuration-v0.2.0 - 2025-10-16
+#### Miscellaneous Chores
+- **(version)** configuration-v0.2.0 - (fae3f1b) - github-actions[bot]
+
+- - -
+
+## container-v0.3.2 - 2025-10-16
+#### Continuous Integration
+- **(cog)** should now release packages when dependencies change - (8488401) - *brad-jones*
+#### Features
+- **(configuration)** added fromFile & fromObject - (102df57) - *brad-jones*
+#### Miscellaneous Chores
+- **(version)** container-v0.3.2 - (a0fd9c7) - github-actions[bot]
+
+- - -
+
 ## app-builder-v0.3.1 - 2025-10-16
 #### Continuous Integration
 - force a release of all packages - (1e75ef6) - brad-jones
