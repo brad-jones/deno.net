@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## problem-details-v0.1.3 - 2025-10-16
+#### Continuous Integration
+- **(cog)** should now release packages when dependencies change - (8488401) - *brad-jones*
+
+- - -
+
 ## problem-details-v0.1.2 - 2025-10-16
 #### Continuous Integration
 - force a release of all packages - (1e75ef6) - brad-jones
