@@ -1,9 +1,70 @@
 // deno-lint-ignore-file no-explicit-any
 
 import type { JSONValue } from "@hono/hono/utils/types";
-import type { ZodOpenApiOperationObject } from "zod-openapi";
 import type { ContentfulStatusCode } from "@hono/hono/utils/http-status";
 import type { HttpContext, ResponseHeaders } from "@brad-jones/deno-net-http-context";
+import type { CreateDocumentOptions, ZodOpenApiObject, ZodOpenApiOperationObject } from "zod-openapi";
+
+/**
+ * Configuration options for OpenAPI document generation and customization.
+ * Used to control how OpenAPI documents are built and what additional metadata is included.
+ */
+export interface OpenAPIDocsOptions {
+  /**
+   * Partial OpenAPI document properties to merge with the generated document.
+   * These overrides allow customization of the final OpenAPI specification.
+   * Common overrides include info, servers, security, and components sections.
+   *
+   * @example
+   * ```typescript
+   * {
+   *   docOverrides: {
+   *     info: {
+   *       title: "My API",
+   *       version: "1.0.0",
+   *       description: "A comprehensive API for managing resources",
+   *       contact: { email: "support@example.com" },
+   *       license: { name: "MIT", url: "https://opensource.org/licenses/MIT" }
+   *     },
+   *     servers: [
+   *       { url: "https://api.example.com", description: "Production server" },
+   *       { url: "https://staging-api.example.com", description: "Staging server" }
+   *     ],
+   *     security: [{ bearerAuth: [] }],
+   *     components: {
+   *       securitySchemes: {
+   *         bearerAuth: {
+   *           type: "http",
+   *           scheme: "bearer",
+   *           bearerFormat: "JWT"
+   *         }
+   *       }
+   *     }
+   *   }
+   * }
+   * ```
+   */
+  docOverrides?: Partial<ZodOpenApiObject>;
+
+  /**
+   * Options to pass directly to the zod-openapi createDocument function.
+   * These options control the low-level document generation behavior.
+   *
+   * @see {@link https://github.com/asteasolutions/zod-to-openapi} zod-openapi documentation
+   *
+   * @example
+   * ```typescript
+   * {
+   *   zodOpenApiOptions: {
+   *     // Control how Zod schemas are transformed to OpenAPI schemas
+   *     strict: true,
+   *     // Additional transformation options as supported by zod-openapi
+   *   }
+   * }
+   * ```
+   */
+  zodOpenApiOptions?: CreateDocumentOptions;
+}
 
 /**
  * Type-safe request context for OpenAPI operations.

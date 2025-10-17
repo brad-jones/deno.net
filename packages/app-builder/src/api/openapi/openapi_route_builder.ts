@@ -1,78 +1,12 @@
 import * as yaml from "@std/yaml";
 import { accepts } from "@hono/hono/accepts";
 import { createDocument } from "zod-openapi";
-import { OpenApiUiBuilder } from "./ui_builder.ts";
-import type { OpenApiRequestContext } from "./types.ts";
-import type {
-  CreateDocumentOptions,
-  ZodOpenApiObject,
-  ZodOpenApiOperationObject,
-  ZodOpenApiPathItemObject,
-} from "zod-openapi";
-import type { IContainer } from "@brad-jones/deno-net-container";
-import { IRoute } from "../types.ts";
-import type { RouteBuilder } from "../route_builder.ts";
-
-/**
- * Configuration options for OpenAPI document generation and customization.
- * Used to control how OpenAPI documents are built and what additional metadata is included.
- */
-export interface OpenAPIDocsOptions {
-  /**
-   * Partial OpenAPI document properties to merge with the generated document.
-   * These overrides allow customization of the final OpenAPI specification.
-   * Common overrides include info, servers, security, and components sections.
-   *
-   * @example
-   * ```typescript
-   * {
-   *   docOverrides: {
-   *     info: {
-   *       title: "My API",
-   *       version: "1.0.0",
-   *       description: "A comprehensive API for managing resources",
-   *       contact: { email: "support@example.com" },
-   *       license: { name: "MIT", url: "https://opensource.org/licenses/MIT" }
-   *     },
-   *     servers: [
-   *       { url: "https://api.example.com", description: "Production server" },
-   *       { url: "https://staging-api.example.com", description: "Staging server" }
-   *     ],
-   *     security: [{ bearerAuth: [] }],
-   *     components: {
-   *       securitySchemes: {
-   *         bearerAuth: {
-   *           type: "http",
-   *           scheme: "bearer",
-   *           bearerFormat: "JWT"
-   *         }
-   *       }
-   *     }
-   *   }
-   * }
-   * ```
-   */
-  docOverrides?: Partial<ZodOpenApiObject>;
-
-  /**
-   * Options to pass directly to the zod-openapi createDocument function.
-   * These options control the low-level document generation behavior.
-   *
-   * @see {@link https://github.com/asteasolutions/zod-to-openapi} zod-openapi documentation
-   *
-   * @example
-   * ```typescript
-   * {
-   *   zodOpenApiOptions: {
-   *     // Control how Zod schemas are transformed to OpenAPI schemas
-   *     strict: true,
-   *     // Additional transformation options as supported by zod-openapi
-   *   }
-   * }
-   * ```
-   */
-  zodOpenApiOptions?: CreateDocumentOptions;
-}
+import { OpenApiUiBuilder } from "./openapi_ui_builder.ts";
+import { IOpenApiHandler, OpenApiHandler } from "./openapi_handler.ts";
+import { IRoute, type RouteBuilder } from "../route_builder.ts";
+import { type IContainer, inject } from "@brad-jones/deno-net-container";
+import type { OpenAPIDocsOptions, OpenApiRequestContext } from "./types.ts";
+import type { ZodOpenApiOperationObject, ZodOpenApiPathItemObject } from "zod-openapi";
 
 /**
  * A specialized route builder for OpenAPI-compliant routes with schema validation and documentation.
@@ -84,18 +18,8 @@ export class OpenApiRouteBuilder {
    *
    * @param routeBuilder - The parent RouteBuilder instance that owns this OpenAPI builder
    */
-  constructor(private services: IContainer, private routeBuilder: RouteBuilder) {}
-
-  /**
-   * Hono uses the form /foo/:bar (amoungst other regex syntax),
-   * where as OpenAPI expects /foo/{bar} so this converts the Hono path
-   * to something an OpenAPI spec will be happy with.
-   *
-   * @internal
-   * @credit https://github.com/paolostyle/hono-zod-openapi/blob/06fb5cfb72f061c63f294ff75828a4fa6b442da8/src/createOpenApiDocument.ts#L173
-   */
-  #normalizePathParams(path: string): string {
-    return path.replace(/:([a-zA-Z0-9-_]+)\??(\{.*?\})?/g, "{$1}");
+  constructor(private services: IContainer, private routeBuilder: RouteBuilder) {
+    this.services.addSingleton(IOpenApiHandler, OpenApiHandler);
   }
 
   /**
@@ -150,15 +74,9 @@ export class OpenApiRouteBuilder {
     openApiOperation: OpenApi,
     openApiHandler: (ctx: OpenApiRequestContext<OpenApi>) => Promise<Response> | Response,
   ): this {
-    this.services.addSingleton(IRoute, {
-      useValue: {
-        method: "get",
-        path,
-        openApiPath: this.#normalizePathParams(path),
-        openApiOperation,
-        openApiHandler,
-      },
-    });
+    this.routeBuilder.mapGet(path, (ctx, handler = inject(IOpenApiHandler)) => {
+      return handler.handle(ctx, { openApiOperation, openApiHandler });
+    }, openApiOperation);
     return this;
   }
 
@@ -205,15 +123,9 @@ export class OpenApiRouteBuilder {
     openApiOperation: OpenApi,
     openApiHandler: (ctx: OpenApiRequestContext<OpenApi>) => Promise<Response> | Response,
   ): this {
-    this.services.addSingleton(IRoute, {
-      useValue: {
-        method: "post",
-        path,
-        openApiPath: this.#normalizePathParams(path),
-        openApiOperation,
-        openApiHandler,
-      },
-    });
+    this.routeBuilder.mapPost(path, (ctx, handler = inject(IOpenApiHandler)) => {
+      return handler.handle(ctx, { openApiOperation, openApiHandler });
+    }, openApiOperation);
     return this;
   }
 
@@ -264,15 +176,9 @@ export class OpenApiRouteBuilder {
     openApiOperation: OpenApi,
     openApiHandler: (ctx: OpenApiRequestContext<OpenApi>) => Promise<Response> | Response,
   ): this {
-    this.services.addSingleton(IRoute, {
-      useValue: {
-        method: "put",
-        path,
-        openApiPath: this.#normalizePathParams(path),
-        openApiOperation,
-        openApiHandler,
-      },
-    });
+    this.routeBuilder.mapPut(path, (ctx, handler = inject(IOpenApiHandler)) => {
+      return handler.handle(ctx, { openApiOperation, openApiHandler });
+    }, openApiOperation);
     return this;
   }
 
@@ -323,15 +229,9 @@ export class OpenApiRouteBuilder {
     openApiOperation: OpenApi,
     openApiHandler: (ctx: OpenApiRequestContext<OpenApi>) => Promise<Response> | Response,
   ): this {
-    this.services.addSingleton(IRoute, {
-      useValue: {
-        method: "patch",
-        path,
-        openApiPath: this.#normalizePathParams(path),
-        openApiOperation,
-        openApiHandler,
-      },
-    });
+    this.routeBuilder.mapPatch(path, (ctx, handler = inject(IOpenApiHandler)) => {
+      return handler.handle(ctx, { openApiOperation, openApiHandler });
+    }, openApiOperation);
     return this;
   }
 
@@ -384,15 +284,9 @@ export class OpenApiRouteBuilder {
     openApiOperation: OpenApi,
     openApiHandler: (ctx: OpenApiRequestContext<OpenApi>) => Promise<Response> | Response,
   ): this {
-    this.services.addSingleton(IRoute, {
-      useValue: {
-        method: "delete",
-        path,
-        openApiPath: this.#normalizePathParams(path),
-        openApiOperation,
-        openApiHandler,
-      },
-    });
+    this.routeBuilder.mapDelete(path, (ctx, handler = inject(IOpenApiHandler)) => {
+      return handler.handle(ctx, { openApiOperation, openApiHandler });
+    }, openApiOperation);
     return this;
   }
 
@@ -441,15 +335,9 @@ export class OpenApiRouteBuilder {
     openApiOperation: OpenApi,
     openApiHandler: (ctx: OpenApiRequestContext<OpenApi>) => Promise<Response> | Response,
   ): this {
-    this.services.addSingleton(IRoute, {
-      useValue: {
-        allMethods: true,
-        path,
-        openApiPath: this.#normalizePathParams(path),
-        openApiOperation,
-        openApiHandler,
-      },
-    });
+    this.routeBuilder.mapAll(path, (ctx, handler = inject(IOpenApiHandler)) => {
+      return handler.handle(ctx, { openApiOperation, openApiHandler });
+    }, openApiOperation);
     return this;
   }
 
@@ -526,16 +414,22 @@ export class OpenApiRouteBuilder {
     openApiOperation: OpenApi,
     openApiHandler: (ctx: OpenApiRequestContext<OpenApi>) => Promise<Response> | Response,
   ): this {
-    this.services.addSingleton(IRoute, {
-      useValue: {
-        customMethod: method,
-        path,
-        openApiPath: this.#normalizePathParams(path),
-        openApiOperation,
-        openApiHandler,
-      },
-    });
+    this.routeBuilder.mapCustom(method, path, (ctx, handler = inject(IOpenApiHandler)) => {
+      return handler.handle(ctx, { openApiOperation, openApiHandler });
+    }, openApiOperation);
     return this;
+  }
+
+  /**
+   * Hono uses the form /foo/:bar (amoungst other regex syntax),
+   * where as OpenAPI expects /foo/{bar} so this converts the Hono path
+   * to something an OpenAPI spec will be happy with.
+   *
+   * @internal
+   * @credit https://github.com/paolostyle/hono-zod-openapi/blob/06fb5cfb72f061c63f294ff75828a4fa6b442da8/src/createOpenApiDocument.ts#L173
+   */
+  #normalizePathParams(path: string): string {
+    return path.replace(/:([a-zA-Z0-9-_]+)\??(\{.*?\})?/g, "{$1}");
   }
 
   /**
@@ -562,12 +456,14 @@ export class OpenApiRouteBuilder {
    * ```
    */
   buildDoc(options?: OpenAPIDocsOptions): ReturnType<typeof createDocument> {
-    const openApiRoutes = this.services.getServices(IRoute).filter((_) => _.openApiOperation);
+    const openApiRoutes = this.services.getServices(IRoute).filter((_) =>
+      _.metadata && typeof _.metadata === "object" && "responses" in _.metadata
+    );
 
     // Group routes by path to handle multiple HTTP methods on the same path
     const pathGroups = new Map<string, IRoute[]>();
     for (const route of openApiRoutes) {
-      const openApiPath = route.openApiPath!;
+      const openApiPath = this.#normalizePathParams(route.path);
       if (!pathGroups.has(openApiPath)) {
         pathGroups.set(openApiPath, []);
       }
@@ -580,7 +476,7 @@ export class OpenApiRouteBuilder {
         const pathItem: ZodOpenApiPathItemObject = {};
 
         for (const route of routes) {
-          const operation = route.openApiOperation!;
+          const operation = route.metadata as ZodOpenApiOperationObject;
 
           if (route.method) {
             // Standard HTTP methods

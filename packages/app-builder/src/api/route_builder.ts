@@ -1,11 +1,35 @@
 // deno-lint-ignore-file no-explicit-any
 
 import { expandGlob } from "@std/fs";
-import { IRoute } from "./types.ts";
 import { importModule } from "@brad-jones/jsr-dynamic-imports";
-import type { IContainer } from "@brad-jones/deno-net-container";
-import { OpenApiRouteBuilder } from "./openapi/route_builder.ts";
+import { OpenApiRouteBuilder } from "./openapi/openapi_route_builder.ts";
 import type { HttpContext } from "@brad-jones/deno-net-http-context";
+import { type IContainer, Type } from "@brad-jones/deno-net-container";
+
+/**
+ * IoC injection token for retrieving the list of mapped routes.
+ */
+export const IRoute: Type<IRoute> = new Type<IRoute>("IRoute");
+
+/**
+ * Represents a route configuration manifest that defines how HTTP requests are handled.
+ *
+ * @template Path - The URL path pattern type, extends string
+ */
+export interface IRoute<Path extends string = any> {
+  /** HTTP method for the route (GET, POST, PUT, PATCH, DELETE) */
+  method?: "get" | "post" | "put" | "patch" | "delete";
+  /** Whether this route handles all HTTP methods */
+  allMethods?: boolean;
+  /** Custom HTTP method(s) for non-standard methods */
+  customMethod?: string | string[];
+  /** The URL path pattern for the route */
+  path: Path;
+  /** Standard HTTP handler function */
+  httpHandler: (ctx: HttpContext<Path>, ...args: unknown[]) => Promise<Response> | Response;
+  /** Optional metadata to attach to the route, usually for the purposes of documentation eg: OpenAPI. */
+  metadata?: unknown;
+}
 
 /**
  * A function that configures routes using a RouteBuilder instance.
@@ -58,8 +82,9 @@ export class RouteBuilder {
   mapGet<Path extends string = any>(
     path: Path,
     httpHandler: (ctx: HttpContext<Path>) => Promise<Response> | Response,
+    metadata?: unknown,
   ): this {
-    this.services.addSingleton(IRoute, { useValue: { method: "get", path, httpHandler } });
+    this.services.addSingleton(IRoute, { useValue: { method: "get", path, httpHandler, metadata } });
     return this;
   }
 
@@ -85,8 +110,9 @@ export class RouteBuilder {
   mapPost<Path extends string = any>(
     path: string,
     httpHandler: (ctx: HttpContext<Path>) => Promise<Response> | Response,
+    metadata?: unknown,
   ): this {
-    this.services.addSingleton(IRoute, { useValue: { method: "post", path, httpHandler } });
+    this.services.addSingleton(IRoute, { useValue: { method: "post", path, httpHandler, metadata } });
     return this;
   }
 
@@ -114,8 +140,9 @@ export class RouteBuilder {
   mapPut<Path extends string = any>(
     path: string,
     httpHandler: (ctx: HttpContext<Path>) => Promise<Response> | Response,
+    metadata?: unknown,
   ): this {
-    this.services.addSingleton(IRoute, { useValue: { method: "put", path, httpHandler } });
+    this.services.addSingleton(IRoute, { useValue: { method: "put", path, httpHandler, metadata } });
     return this;
   }
 
@@ -143,8 +170,9 @@ export class RouteBuilder {
   mapPatch<Path extends string = any>(
     path: string,
     httpHandler: (ctx: HttpContext<Path>) => Promise<Response> | Response,
+    metadata?: unknown,
   ): this {
-    this.services.addSingleton(IRoute, { useValue: { method: "patch", path, httpHandler } });
+    this.services.addSingleton(IRoute, { useValue: { method: "patch", path, httpHandler, metadata } });
     return this;
   }
 
@@ -175,8 +203,9 @@ export class RouteBuilder {
   mapDelete<Path extends string = any>(
     path: string,
     httpHandler: (ctx: HttpContext<Path>) => Promise<Response> | Response,
+    metadata?: unknown,
   ): this {
-    this.services.addSingleton(IRoute, { useValue: { method: "delete", path, httpHandler } });
+    this.services.addSingleton(IRoute, { useValue: { method: "delete", path, httpHandler, metadata } });
     return this;
   }
 
@@ -202,8 +231,9 @@ export class RouteBuilder {
   mapAll<Path extends string = any>(
     path: string,
     httpHandler: (ctx: HttpContext<Path>) => Promise<Response> | Response,
+    metadata?: unknown,
   ): this {
-    this.services.addSingleton(IRoute, { useValue: { allMethods: true, path, httpHandler } });
+    this.services.addSingleton(IRoute, { useValue: { allMethods: true, path, httpHandler, metadata } });
     return this;
   }
 
@@ -234,8 +264,9 @@ export class RouteBuilder {
     method: string | string[],
     path: string,
     httpHandler: (ctx: HttpContext<Path>) => Promise<Response> | Response,
+    metadata?: unknown,
   ): this {
-    this.services.addSingleton(IRoute, { useValue: { customMethod: method, path, httpHandler } });
+    this.services.addSingleton(IRoute, { useValue: { customMethod: method, path, httpHandler, metadata } });
     return this;
   }
 
