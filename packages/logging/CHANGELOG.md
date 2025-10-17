@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## logging-v0.2.1 - 2025-10-17
+#### Miscellaneous Chores
+- **(logging)** default to showing properties when using pretty formatter - (d81371f) - *brad-jones*
+
+- - -
+
 ## logging-v0.2.0 - 2025-10-17
 #### Features
 - **(container)** now tracks disposable objects and is now disposable it's self - (c77a42f) - *brad-jones*

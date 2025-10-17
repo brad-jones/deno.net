@@ -1,7 +1,7 @@
 {
   "name": "@brad-jones/deno-net-logging",
   "exports": "./src/mod.ts",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "publish": {
     "include": [
