@@ -11,7 +11,7 @@ builder.routes.openapi
   .mapDoc("/docs/openapi")
   .mapScalarUi("/docs");
 
-builder.middleware.useModule(httpLogging());
+builder.middleware.useModule(httpLogging({ fields: "full", combineLogs: false }));
 
 await builder.routes.mapModules(`${import.meta.dirname}/routes/**/*.ts`);
 
