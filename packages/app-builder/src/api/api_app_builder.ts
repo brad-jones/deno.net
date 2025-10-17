@@ -315,6 +315,7 @@ export class ApiAppBuilder extends AppBuilder<Deno.ServeDefaultExport> {
         childContainer.addScoped(HttpContext, { useValue: ctx });
         ctx.set("services", childContainer);
         await next();
+        await childContainer[Symbol.asyncDispose]();
       },
     );
 
@@ -412,13 +413,20 @@ export class ApiAppBuilder extends AppBuilder<Deno.ServeDefaultExport> {
     options?:
       | Deno.ServeTcpOptions
       | (Deno.ServeTcpOptions & Deno.TlsCertifiedKeyPem),
-  ): Promise<{ server: Deno.HttpServer<Deno.NetAddr>; client: KyInstance }> {
+  ): Promise<{ server: Deno.HttpServer<Deno.NetAddr>; client: KyInstance } & AsyncDisposable> {
     options ??= { port: await getPort({ random: true, min: 3001 }) };
     const server = Deno.serve(options, (await this.build()).fetch);
     const client = ky.create({
       prefixUrl: `${"cert" in options ? "https" : "http"}://${server.addr.hostname}:${server.addr.port}`,
     });
-    return { server, client };
+    return {
+      server,
+      client,
+      [Symbol.asyncDispose]: async (): Promise<void> => {
+        await server.shutdown();
+        await this.services[Symbol.asyncDispose]();
+      },
+    };
   }
 }
 

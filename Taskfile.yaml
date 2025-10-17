@@ -21,6 +21,7 @@ tasks:
   lint:
     cmds:
       - task -t ./packages/app-builder/Taskfile.yaml lint
+      - task -t ./packages/configuration/Taskfile.yaml lint
       - task -t ./packages/container/Taskfile.yaml lint
       - task -t ./packages/http-context/Taskfile.yaml lint
       - task -t ./packages/logging/Taskfile.yaml lint

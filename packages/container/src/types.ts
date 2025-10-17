@@ -120,7 +120,7 @@ export interface ValueProvider<T> {
  * const userService = container.getService(UserService);
  * ```
  */
-export interface IContainer {
+export interface IContainer extends AsyncDisposable {
   /**
    * Register services using a module function that configures the container.
    * This method allows for organized service registration by grouping related

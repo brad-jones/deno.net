@@ -21,6 +21,8 @@ export class Container implements IContainer {
   #scopedValues = new Map<ServiceRegistration<unknown>, unknown>();
   #singletonValues = new Map<ServiceRegistration<unknown>, unknown>();
   #registry = new Map<Token<unknown>, ServiceRegistration<unknown>[]>();
+  #scopedAndTransientDisposables: (Disposable | AsyncDisposable)[] = [];
+  #singletonDisposables: (Disposable | AsyncDisposable)[] = [];
 
   private get rootContainer(): Container {
     let c: Container;
@@ -37,6 +39,28 @@ export class Container implements IContainer {
     if (parent) {
       this.#parent = parent;
       this.#registry = parent.#registry;
+    }
+  }
+
+  async [Symbol.asyncDispose](): Promise<void> {
+    // Dispose scoped resources
+    for (const disposable of this.#scopedAndTransientDisposables) {
+      if (Symbol.asyncDispose in disposable) {
+        await disposable[Symbol.asyncDispose]();
+      } else if (Symbol.dispose in disposable) {
+        disposable[Symbol.dispose]();
+      }
+    }
+
+    // Dispose singleton resources (only for root container)
+    if (!this.#parent) {
+      for (const disposable of this.#singletonDisposables) {
+        if (Symbol.asyncDispose in disposable) {
+          await disposable[Symbol.asyncDispose]();
+        } else if (Symbol.dispose in disposable) {
+          disposable[Symbol.dispose]();
+        }
+      }
     }
   }
 
@@ -188,6 +212,21 @@ export class Container implements IContainer {
     return services;
   }
 
+  #trackDisposeable<T extends object>(scope: Scope, value: T): T {
+    if (Symbol.asyncDispose in value || Symbol.dispose in value) {
+      switch (scope) {
+        case Scope.Transient:
+        case Scope.Scoped:
+          this.#scopedAndTransientDisposables.push(value as Disposable | AsyncDisposable);
+          break;
+        case Scope.Singleton:
+          this.rootContainer.#singletonDisposables.push(value as Disposable | AsyncDisposable);
+          break;
+      }
+    }
+    return value;
+  }
+
   #resolveService<T>(registration: ServiceRegistration<T>, additionalConstructorParameters?: unknown[]): T {
     let value: unknown | undefined = undefined;
 
@@ -213,6 +252,10 @@ export class Container implements IContainer {
         }
         break;
       }
+    }
+
+    if (value && typeof value === "object") {
+      this.#trackDisposeable(registration.scope, value);
     }
 
     return value as T;

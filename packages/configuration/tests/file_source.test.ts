@@ -1,11 +1,14 @@
+import { join } from "@std/path";
 import { expect } from "@std/expect";
 import { Container } from "@brad-jones/deno-net-container";
-import { ConfigurationBuilder } from "../src/configuration_builder.ts";
 import { FileSource } from "../src/sources/file_source.ts";
 import { IConfiguration } from "../src/configuration_root.ts";
+import { ConfigurationBuilder } from "../src/configuration_builder.ts";
+
+const fixturesDir = join(import.meta.dirname!, "fixtures");
 
 Deno.test("FileSource - reads JSON configuration", async () => {
-  const source = new FileSource("tests/fixtures/test-config.json");
+  const source = new FileSource(join(fixturesDir, "test-config.json"));
 
   const databaseConfig = await source.read(["database"]);
   expect(databaseConfig).toEqual({
@@ -23,7 +26,7 @@ Deno.test("FileSource - reads JSON configuration", async () => {
 });
 
 Deno.test("FileSource - reads YAML configuration", async () => {
-  const source = new FileSource("tests/fixtures/test-config.yaml");
+  const source = new FileSource(join(fixturesDir, "test-config.yaml"));
 
   const databaseConfig = await source.read(["database"]);
   expect(databaseConfig).toEqual({
@@ -40,7 +43,7 @@ Deno.test("FileSource - reads YAML configuration", async () => {
 });
 
 Deno.test("FileSource - reads TOML configuration", async () => {
-  const source = new FileSource("tests/fixtures/test-config.toml");
+  const source = new FileSource(join(fixturesDir, "test-config.toml"));
 
   const databaseConfig = await source.read(["database"]);
   expect(databaseConfig).toEqual({
@@ -63,14 +66,14 @@ Deno.test("FileSource - reads TOML configuration", async () => {
 });
 
 Deno.test("FileSource - handles non-existent file gracefully", async () => {
-  const source = new FileSource("tests/fixtures/non-existent.json");
+  const source = new FileSource(join(fixturesDir, "non-existent.json"));
 
   const config = await source.read(["database"]);
   expect(config).toEqual({});
 });
 
 Deno.test("FileSource - handles non-existent sections", async () => {
-  const source = new FileSource("tests/fixtures/test-config.json");
+  const source = new FileSource(join(fixturesDir, "test-config.json"));
 
   const config = await source.read(["nonexistent"]);
   expect(config).toEqual({});
@@ -81,19 +84,20 @@ Deno.test("FileSource - handles non-existent sections", async () => {
 
 Deno.test("FileSource - handles unsupported file format", async () => {
   // Create a temporary file with unsupported extension
-  await Deno.writeTextFile("tests/fixtures/test.txt", "some content");
+  const testFile = join(fixturesDir, "test.txt");
+  await Deno.writeTextFile(testFile, "some content");
 
-  const source = new FileSource("tests/fixtures/test.txt");
+  const source = new FileSource(testFile);
 
   const config = await source.read(["section"]);
   expect(config).toEqual({}); // Should return empty config on error
 
   // Cleanup
-  await Deno.remove("tests/fixtures/test.txt");
+  await Deno.remove(testFile);
 });
 
 Deno.test("FileSource - caches file content", async () => {
-  const source = new FileSource("tests/fixtures/test-config.json");
+  const source = new FileSource(join(fixturesDir, "test-config.json"));
 
   // First read
   const config1 = await source.read(["database"]);
@@ -114,7 +118,7 @@ Deno.test("ConfigurationBuilder.fromFile - integrates with builder", async () =>
   const container = new Container();
   const builder = new ConfigurationBuilder(container);
 
-  builder.fromFile("tests/fixtures/test-config.json");
+  builder.fromFile(join(fixturesDir, "test-config.json"));
 
   const config = container.getService(IConfiguration);
 
@@ -133,8 +137,8 @@ Deno.test("ConfigurationBuilder.fromFile - supports chaining and precedence", as
 
   // Register files in order - later should override earlier
   builder
-    .fromFile("tests/fixtures/test-config.json") // JSON: host="localhost"
-    .fromFile("tests/fixtures/test-config.yaml"); // YAML: host="yaml-host"
+    .fromFile(join(fixturesDir, "test-config.json")) // JSON: host="localhost"
+    .fromFile(join(fixturesDir, "test-config.yaml")); // YAML: host="yaml-host"
 
   const config = container.getService(IConfiguration);
 
@@ -157,9 +161,9 @@ Deno.test("ConfigurationBuilder.fromFile - works with multiple formats", async (
 
   // Chain multiple file formats
   builder
-    .fromFile("tests/fixtures/test-config.json")
-    .fromFile("tests/fixtures/test-config.yaml")
-    .fromFile("tests/fixtures/test-config.toml");
+    .fromFile(join(fixturesDir, "test-config.json"))
+    .fromFile(join(fixturesDir, "test-config.yaml"))
+    .fromFile(join(fixturesDir, "test-config.toml"));
 
   const config = container.getService(IConfiguration);
 
@@ -183,7 +187,7 @@ Deno.test("ConfigurationBuilder.fromFile - allowReloading=false (default) caches
   const builder = new ConfigurationBuilder(container);
 
   // Register without reloading (default behavior)
-  builder.fromFile("tests/fixtures/test-config.json");
+  builder.fromFile(join(fixturesDir, "test-config.json"));
 
   const config = container.getService(IConfiguration);
 
@@ -203,7 +207,7 @@ Deno.test("ConfigurationBuilder.fromFile - allowReloading=false (default) caches
 });
 
 Deno.test("ConfigurationBuilder.fromFile - allowReloading=true creates new instances", async () => {
-  const tempFile = "tests/fixtures/reloading-test.json";
+  const tempFile = join(fixturesDir, "reloading-test.json");
 
   // Create initial config file
   const initialConfig = {
