@@ -363,7 +363,7 @@ export class LoggingBuilder {
         break;
       case "pretty":
         this.services.addSingleton(token, {
-          useFactory: () => new PrettyFormatter({ timestamp: "date-time-timezone", wordWrap: false }),
+          useFactory: () => new PrettyFormatter({ timestamp: "date-time-timezone", wordWrap: false, properties: true }),
         });
         break;
     }
