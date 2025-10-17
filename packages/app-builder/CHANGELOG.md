@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.6.0 - 2025-10-17
+#### Miscellaneous Chores
+- **(version)** middleware-v0.3.0 - (56b59c3) - github-actions[bot]
+
+- - -
+
+## logging-v0.2.1 - 2025-10-17
+#### Features
+- **(logging)** added some actual logging to the http middleware - (81bfd69) - *brad-jones*
+#### Miscellaneous Chores
+- **(logging)** default to showing properties when using pretty formatter - (d81371f) - *brad-jones*
+- **(version)** logging-v0.2.1 - (fe9197b) - github-actions[bot]
+#### Refactoring
+- **(app-builder)** openapi logic is now much more contained & decoupled from the main api builder. - (6b77925) - *brad-jones*
+
+- - -
+
 ## app-builder-v0.5.0 - 2025-10-17
 #### Miscellaneous Chores
 - **(version)** middleware-v0.2.0 - (019f79a) - github-actions[bot]
