@@ -2,6 +2,38 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.5.0 - 2025-10-17
+#### Miscellaneous Chores
+- **(version)** middleware-v0.2.0 - (019f79a) - github-actions[bot]
+
+- - -
+
+## logging-v0.2.0 - 2025-10-17
+#### Miscellaneous Chores
+- **(version)** logging-v0.2.0 - (0b2c8e7) - github-actions[bot]
+
+- - -
+
+## http-context-v0.2.0 - 2025-10-17
+#### Miscellaneous Chores
+- **(version)** http-context-v0.2.0 - (fdcda7f) - github-actions[bot]
+
+- - -
+
+## configuration-v0.3.0 - 2025-10-17
+#### Miscellaneous Chores
+- **(version)** configuration-v0.3.0 - (022dd51) - github-actions[bot]
+
+- - -
+
+## container-v0.4.0 - 2025-10-17
+#### Features
+- **(container)** now tracks disposable objects and is now disposable it's self - (c77a42f) - *brad-jones*
+#### Miscellaneous Chores
+- **(version)** container-v0.4.0 - (cb367bb) - github-actions[bot]
+
+- - -
+
 ## app-builder-v0.4.0 - 2025-10-16
 #### Miscellaneous Chores
 - **(version)** middleware-v0.1.3 - (4978dca) - github-actions[bot]
