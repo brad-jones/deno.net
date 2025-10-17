@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## container-v0.4.0 - 2025-10-17
+#### Features
+- **(container)** now tracks disposable objects and is now disposable it's self - (c77a42f) - *brad-jones*
+
+- - -
+
 ## container-v0.3.2 - 2025-10-16
 #### Continuous Integration
 - **(cog)** should now release packages when dependencies change - (8488401) - *brad-jones*
