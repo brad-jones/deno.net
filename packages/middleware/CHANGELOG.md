@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## middleware-v0.3.0 - 2025-10-17
+#### Features
+- **(logging)** added some actual logging to the http middleware - (81bfd69) - *brad-jones*
+#### Miscellaneous Chores
+- **(logging)** default to showing properties when using pretty formatter - (d81371f) - *brad-jones*
+- **(version)** logging-v0.2.1 - (fe9197b) - github-actions[bot]
+
+- - -
+
 ## middleware-v0.2.0 - 2025-10-17
 #### Miscellaneous Chores
 - **(version)** logging-v0.2.0 - (0b2c8e7) - github-actions[bot]
