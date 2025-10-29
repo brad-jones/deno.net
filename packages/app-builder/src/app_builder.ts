@@ -1,4 +1,5 @@
 import { LoggingBuilder } from "@brad-jones/deno-net-logging";
+import { EnvironmentBuilder } from "./environment_builder.ts";
 import { ConfigurationBuilder } from "@brad-jones/deno-net-configuration";
 import { Container, type IContainer } from "@brad-jones/deno-net-container";
 
@@ -7,6 +8,8 @@ import { Container, type IContainer } from "@brad-jones/deno-net-container";
  */
 export abstract class AppBuilder<T> {
   readonly services: IContainer = new Container();
+
+  readonly environment: EnvironmentBuilder = new EnvironmentBuilder(this.services);
 
   readonly configuration: ConfigurationBuilder = new ConfigurationBuilder(this.services);
 
