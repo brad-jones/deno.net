@@ -21,11 +21,15 @@ tasks:
   lint:
     cmds:
       - task -t ./packages/app-builder/Taskfile.yaml lint
+      - task -t ./packages/bundler/Taskfile.yaml lint
       - task -t ./packages/configuration/Taskfile.yaml lint
       - task -t ./packages/container/Taskfile.yaml lint
+      - task -t ./packages/formatter/Taskfile.yaml lint
       - task -t ./packages/http-context/Taskfile.yaml lint
+      - task -t ./packages/islands/Taskfile.yaml lint
       - task -t ./packages/logging/Taskfile.yaml lint
       - task -t ./packages/middleware/Taskfile.yaml lint
+      - task -t ./packages/open-api-client/Taskfile.yaml lint
       - task -t ./packages/problem-details/Taskfile.yaml lint
 
   test:
