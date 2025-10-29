@@ -192,6 +192,9 @@ export class PageHandlerBuilder {
           hydrationScript = `${hydrationScript}${importName}("${islandId}");\n`;
         }
       }
+
+      // TODO: We might need to split the islands script up into individual scripts, one per island to enable HMR.
+
       this.script(
         hydrationScript,
         `${this.path === "/" ? "/islands" : `${this.#normalizePathParams(this.path)}-islands`}.js`,
