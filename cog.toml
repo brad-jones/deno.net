@@ -65,6 +65,13 @@ include = [
   "packages/container/**",
 ]
 
+[packages.bundler]
+path = "packages/bundler"
+include = [
+  "packages/bundler/**",
+  "packages/container/**",
+]
+
 [packages.formatter]
 path = "packages/formatter"
 include = [

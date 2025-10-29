@@ -76,8 +76,20 @@ jobs:
     with:
       project: formatter
 
-  middleware:
+  bundler:
     needs: [formatter]
+    uses: ./.github/workflows/_publish.yaml
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: write
+      packages: write
+      attestations: write
+    with:
+      project: bundler
+
+  middleware:
+    needs: [bundler]
     uses: ./.github/workflows/_publish.yaml
     secrets: inherit
     permissions:
