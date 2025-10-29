@@ -1,12 +1,12 @@
 import { useState } from "@hono/hono/jsx";
-import { HydrateIsland, Island, onClient } from "@brad-jones/deno-net-islands/client";
+import { hydrateIsland, Island, onClient } from "@brad-jones/deno-net-islands/client";
 
 export interface Counter2Props {
   id: string;
   initialCount?: number;
 }
 
-export default (id: string) => HydrateIsland<Counter2Props>(id, (props) => <Counter2 {...props} />);
+export default (id: string) => hydrateIsland<Counter2Props>(id, (props) => <Counter2 {...props} />);
 
 export function Counter2(props: Counter2Props) {
   const [count, setCount] = useState(props.initialCount ?? 0);

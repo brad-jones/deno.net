@@ -1,23 +1,27 @@
 import { ApiClient } from "../client.ts";
 import { useEffect, useState } from "@hono/hono/jsx";
-import { HydrateIsland, Island, onClient } from "@brad-jones/deno-net-islands/client";
+import { hydrateIsland, Island, onClient, trackIslandState } from "@brad-jones/deno-net-islands/client";
 
 export interface CounterProps {
   id: string;
   initialCount?: number;
 }
 
-export default (id: string) => HydrateIsland<CounterProps>(id, (props) => <Counter {...props} />);
+export default (id: string) => hydrateIsland<CounterProps>(id, (props) => <Counter {...props} />);
 
 export function Counter(props: CounterProps) {
   const [count, setCount] = useState(props.initialCount ?? 0);
 
+  trackIslandState(props.id, { count });
+
   useEffect(() => {
-    (async () => {
-      await new Promise((r) => setTimeout(r, 3000));
-      const response = await new ApiClient()["/count"].get();
-      setCount(response.body.currentCount);
-    })();
+    if (onClient) {
+      (async () => {
+        await new Promise((r) => setTimeout(r, 3000));
+        const response = await new ApiClient()["/count"].get();
+        setCount(response.body.currentCount);
+      })();
+    }
   }, [count]);
 
   return (
