@@ -1,7 +1,8 @@
 {
   "workspace": [
     "./examples/*",
-    "./packages/*"
+    "./packages/*",
+    "./packages/bundler/tests/js/deno/fixtures"
   ],
   "imports": {
     "@cliffy/command": "jsr:@cliffy/command@^1.0.0-rc.8",
