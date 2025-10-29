@@ -7,8 +7,8 @@ import { type Constructor, type IContainer, Scope } from "@brad-jones/deno-net-c
 export class MiddlewareBuilder {
   constructor(private services: IContainer) {}
 
-  use<T extends Constructor<IMiddleware>>(handler: T, scope?: Scope): this;
   use<T extends (ctx: HttpContext, next: Next) => Promise<void>>(handler: T): this;
+  use<T extends Constructor<IMiddleware>>(handler: T, scope?: Scope): this;
   use(handler: Constructor<IMiddleware> | ((ctx: HttpContext, next: Next) => Promise<void>), scope?: Scope): this {
     let classicalMiddleware;
 
