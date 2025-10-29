@@ -30,6 +30,7 @@ export class JavascriptFormatter extends DprintFormatter {
       {
         ...options?.globalOptions,
         wasmPath: `${import.meta.dirname}/plugin.wasm`,
+        fileExt: "tsx",
       },
       options,
     );
