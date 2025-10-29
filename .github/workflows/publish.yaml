@@ -100,8 +100,20 @@ jobs:
     with:
       project: islands
 
-  middleware:
+  open-api-client:
     needs: [islands]
+    uses: ./.github/workflows/_publish.yaml
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: write
+      packages: write
+      attestations: write
+    with:
+      project: open-api-client
+
+  middleware:
+    needs: [open-api-client]
     uses: ./.github/workflows/_publish.yaml
     secrets: inherit
     permissions:

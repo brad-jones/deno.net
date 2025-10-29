@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+# https://taskfile.dev
+version: 3
+
+dotenv: [".env"]
+set: [pipefail]
+shopt: [globstar]
+
+tasks:
+  lint:
+    desc: Lints the package to ensure it is of a high enough quality to be published.
+    cmds:
+      - deno publish --dry-run --allow-dirty --allow-slow-types
+
+  test:
+    desc: Runs the package test suite
+    cmds:
+      - deno test -A
+
+  package:
+    desc: This is triggered by cog as a pre_bump_hook to generate all the final publishable artifacts
+    deps:
+      - lint
+      - test
+    requires:
+      vars:
+        - COG_VERSION
+        - COG_VERSION_TAG
+        - COG_PACKAGE_NAME
+    cmds:
+      - >-
+          echo '
+            const config = JSON.parse(Deno.readTextFileSync("deno.json"));
+            config.version = "{{.COG_VERSION}}";
+            Deno.writeTextFileSync("deno.json", JSON.stringify(config, null, 2));
+          ' | deno run -A -
+
+  publish:
+    desc: This is triggered by cog as a post_bump_hook to publish all the final publishable artifacts
+    requires:
+      vars:
+        - COG_VERSION
+        - COG_VERSION_TAG
+        - COG_PACKAGE_NAME
+    cmds:
+      - deno publish --allow-slow-types
+      - git push && git push --tags
+      - cog-extract-changelog.ts < CHANGELOG.md > GITHUB_CHANGELOG.md
+      - gh release create {{.COG_VERSION_TAG}} -F GITHUB_CHANGELOG.md

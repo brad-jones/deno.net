@@ -79,6 +79,14 @@ include = [
   "packages/container/**",
 ]
 
+[packages.open-api-client]
+path = "packages/open-api-client"
+include = [
+  "packages/open-api-client/**",
+  "packages/container/**",
+  "packages/formatter/**",
+]
+
 [packages.islands]
 path = "packages/islands"
 include = [
