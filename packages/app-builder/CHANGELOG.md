@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.7.2 - 2025-10-29
+#### Bug Fixes
+- (**app-builder**) added writeOpenApiArtifacts method & deferred the route module loading - (b2d0f1e) - *brad-jones*
+
+- - -
+
 ## app-builder-v0.7.1 - 2025-10-29
 #### Miscellaneous Chores
 - added another TODO comment about the wip HMR feature - (8166023) - brad-jones
