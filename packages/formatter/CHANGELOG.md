@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## formatter-v0.1.1 - 2025-10-29
+#### Bug Fixes
+- (**formatter**) js formatter will now deal with typescript input - (0e057c4) - *brad-jones*
+
+- - -
+
 ## formatter-v0.1.0 - 2025-10-29
 #### Features
 - (**container**) now tracks disposable objects and is now disposable it's self - (c77a42f) - *brad-jones*
