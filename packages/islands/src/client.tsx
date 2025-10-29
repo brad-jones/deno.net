@@ -1,4 +1,5 @@
 import type { Child } from "@hono/hono/jsx";
+import type { JSX } from "@hono/hono/jsx/jsx-runtime";
 import { hydrateRoot } from "@hono/hono/jsx/dom/client";
 
 export const onClient = globalThis.document ? true : false;
@@ -21,7 +22,7 @@ export function HydrateIsland<T>(id: string, componentFactory: (initialState: T)
 
 export function Island(
   { id, filePath, initialState, children }: { id?: string; filePath?: string; initialState?: unknown; children: Child },
-): Child {
+): JSX.Element {
   // If we are rendering in the client, do not wrap the children.
   if (globalThis.document) return <>{children}</>;
 
