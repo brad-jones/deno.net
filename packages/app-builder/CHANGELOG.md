@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.7.0 - 2025-10-29
+#### Features
+- (**app-builder**) started working on the web app builder implementation - (c9fc5cd) - *brad-jones*
+- (**app-builder**) added the environment builder - (182881a) - *brad-jones*
+- (**app-builder**) added open api client generation - (44eaecc) - *brad-jones*
+#### Bug Fixes
+- (**middleware**) overload order is important to help typescript infer the correct method signature - (fdd9131) - *brad-jones*
+#### Miscellaneous Chores
+- (**version**) middleware-v0.3.1 - (6f3e81f) - github-actions[bot]
+
+- - -
+
 ## app-builder-v0.6.0 - 2025-10-17
 #### Miscellaneous Chores
 - **(version)** middleware-v0.3.0 - (56b59c3) - github-actions[bot]
