@@ -7,6 +7,14 @@ set: [pipefail]
 shopt: [globstar]
 
 tasks:
-  run:
+  build:
     cmds:
-      - deno serve -A ./src/main.ts
+      - deno run -A ./src/main.ts
+
+  start:
+    cmds:
+      - deno serve --host 127.0.0.1 --port 80 -A ./src/main.ts
+
+  watch:
+    cmds:
+      - deno serve --watch --watch-exclude=deno.json --host 127.0.0.1 --port 80 -A ./src/main.ts

@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+# https://taskfile.dev
+version: 3
+
+dotenv: [".env"]
+set: [pipefail]
+shopt: [globstar]
+
+tasks:
+  build:
+    cmds:
+      - echo 'import { builder } from "./src/main.tsx"; await builder.build();' | deno run -A -
+
+  start:
+    cmds:
+      - echo 'import app from "./src/main.tsx"; await app();' | deno run -A -
+
+  watch:
+    cmds:
+      - >-
+          echo 'import app from "./src/main.tsx"; await app();' | deno run
+          --watch=$(deno eval -p 'Deno.args.join(",")' ./**/*.{ts,tsx})
+          --watch-exclude=deno.json
+          --watch-exclude=src/client.ts
+          -A -
