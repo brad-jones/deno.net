@@ -1,0 +1,31 @@
+{
+  "name": "@brad-jones/deno-net-islands",
+  "exports": {
+    "./client": "./src/client.tsx",
+    "./server": "./src/server.ts"
+  },
+  "version": "0.0.0",
+  "license": "MIT",
+  "publish": {
+    "include": [
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "README.md",
+      "CHANGELOG.md"
+    ]
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "@hono/hono/jsx",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "dom.asynciterable",
+      "deno.ns",
+      "deno.unstable"
+    ]
+  },
+  "imports": {
+    "@hono/hono": "jsr:@hono/hono@^4.9.10"
+  }
+}

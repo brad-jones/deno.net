@@ -79,6 +79,14 @@ include = [
   "packages/container/**",
 ]
 
+[packages.islands]
+path = "packages/islands"
+include = [
+  "packages/islands/**",
+  "packages/container/**",
+  "packages/http-context/**",
+]
+
 [packages.middleware]
 path = "packages/middleware"
 include = [

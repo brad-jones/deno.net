@@ -88,8 +88,20 @@ jobs:
     with:
       project: bundler
 
-  middleware:
+  islands:
     needs: [bundler]
+    uses: ./.github/workflows/_publish.yaml
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: write
+      packages: write
+      attestations: write
+    with:
+      project: islands
+
+  middleware:
+    needs: [islands]
     uses: ./.github/workflows/_publish.yaml
     secrets: inherit
     permissions:
