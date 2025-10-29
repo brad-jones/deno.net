@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.7.1 - 2025-10-29
+#### Miscellaneous Chores
+- added another TODO comment about the wip HMR feature - (8166023) - brad-jones
+
+- - -
+
 ## app-builder-v0.7.0 - 2025-10-29
 #### Features
 - (**app-builder**) started working on the web app builder implementation - (c9fc5cd) - *brad-jones*
