@@ -1,5 +1,5 @@
-import { z } from "jsr:@zod/zod@^4.1.12";
-import { BaseClient, type OpenAPIResponses } from "jsr:@brad-jones/deno-net-open-api-client@0.0.0/client";
+import { z } from "@zod/zod";
+import { BaseClient, type OpenAPIResponses } from "@brad-jones/deno-net-open-api-client/client";
 
 // Path Schemas
 export const PathSchema = {

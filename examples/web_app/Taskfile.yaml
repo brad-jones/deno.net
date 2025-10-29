@@ -9,7 +9,7 @@ shopt: [globstar]
 tasks:
   build:
     cmds:
-      - echo 'import { builder } from "./src/main.tsx"; await builder.build();' | deno run -A -
+      - echo 'import { builder } from "./src/main.tsx"; await builder.writeOpenApiArtifacts();' | deno run -A -
 
   start:
     cmds:

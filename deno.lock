@@ -165,6 +165,9 @@
     "@hono/hono@4.10.1": {
       "integrity": "cea3f17677afcd84a654cd1633c136e6bb2220bfa512fdac56614bb97c39fdbf"
     },
+    "@hono/hono@4.10.3": {
+      "integrity": "d37db91cace43d80dccdbb49b396bd4f97e019c8566c20201cb1d9e4a3009e45"
+    },
     "@logtape/file@1.1.2": {
       "integrity": "27b4fdb442676ce5254533855622efb1daaad5dfb4859aaa24eb84f5eb196364",
       "dependencies": [
