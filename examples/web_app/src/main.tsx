@@ -17,8 +17,10 @@ builder.middleware.useModule(
   }),
 );
 
-builder.routes.openapi
-  .writeClient(`${import.meta.dirname}/client.ts`)
+builder.routes.mapModules(`${import.meta.dirname}/routes/**/*.ts`)
+  .openapi.writeClient(`${import.meta.dirname}/client.ts`, {
+    importSpecifiers: { zod: "@zod/zod", baseClient: "@brad-jones/deno-net-open-api-client" },
+  })
   .mapDoc("/docs/openapi")
   .mapScalarUi("/docs");
 
@@ -26,7 +28,7 @@ if (builder.environment.isDevelopment()) {
   builder.pages.formatHtml({ globalOptions: { lineWidth: 120, newLineKind: "lf" } });
 }
 
-builder.pages
+builder.pages.mapModules(`${import.meta.dirname}/pages/**/*.tsx`)
   //.hmr(builder.environment.isDevelopment())
   .bundleStylesWithTailwind({ optimize: !builder.environment.isDevelopment() })
   .bundleScriptWithDeno({
@@ -42,8 +44,5 @@ builder.pages
       },
     },
   });
-
-await builder.routes.mapModules(`${import.meta.dirname}/routes/**/*.ts`);
-await builder.pages.mapModules(`${import.meta.dirname}/pages/**/*.tsx`);
 
 export default () => builder.run({ hostname: "127.0.0.1", port: 80 });

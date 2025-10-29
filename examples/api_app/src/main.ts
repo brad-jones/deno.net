@@ -6,13 +6,11 @@ export const builder = new ApiAppBuilder();
 builder.logging.addConsole({ formatter: "pretty" });
 builder.services.addTransient(IPingPong, PingPong);
 
-builder.routes.openapi
-  .writeDoc(`${import.meta.dirname}/openapi.json`)
-  .mapDoc("/docs/openapi")
-  .mapScalarUi("/docs");
-
 builder.middleware.useModule(httpLogging({ fields: "full", combineLogs: false }));
 
-await builder.routes.mapModules(`${import.meta.dirname}/routes/**/*.ts`);
+builder.routes.mapModules(`${import.meta.dirname}/routes/**/*.ts`)
+  .openapi.writeDoc(`${import.meta.dirname}/openapi.json`)
+  .mapDoc("/docs/openapi")
+  .mapScalarUi("/docs");
 
 export default await builder.build() satisfies Deno.ServeDefaultExport;

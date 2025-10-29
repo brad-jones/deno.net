@@ -239,17 +239,24 @@ export class PageRouteBuilder {
     return this;
   }
 
-  async mapModules(glob: string): Promise<void> {
-    for await (const entry of expandGlob(glob)) {
-      if (entry.isFile) {
-        const module = await importModule(entry.path);
-        this.mapModule(module["default"] as PageModule);
+  mapModules(glob: string): this {
+    this.#asyncJobs.push(async () => {
+      for await (const entry of expandGlob(glob)) {
+        if (entry.isFile) {
+          const module = await importModule(entry.path);
+          this.mapModule(module["default"] as PageModule);
+        }
       }
-    }
+    });
+    return this;
   }
+
+  #asyncJobs: (() => Promise<void>)[] = [];
 
   async build(): Promise<void> {
     const logger = this.services.getService(ILogger)(["deno.net", "app-builder", "pages"]);
+
+    await Promise.all(this.#asyncJobs.map((_) => _()));
 
     logger.debug("Discovering islands");
     let start = performance.now();

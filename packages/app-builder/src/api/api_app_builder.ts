@@ -36,6 +36,7 @@ export class ApiAppBuilder extends AppBuilder<Deno.ServeDefaultExport> {
 
   protected async buildHonoApp(): Promise<Hono<HonoCtx>> {
     const logger = this.services.getService(ILogger)(["deno.net", "api", "builder"]);
+    await this.routes.build();
 
     const app = new Hono<HonoCtx>();
 
@@ -99,6 +100,11 @@ export class ApiAppBuilder extends AppBuilder<Deno.ServeDefaultExport> {
     }
 
     return app;
+  }
+
+  async writeOpenApiArtifacts() {
+    await this.initLogging({ reset: true });
+    await this.buildHonoApp();
   }
 
   /**
