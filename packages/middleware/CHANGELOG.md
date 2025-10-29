@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## middleware-v0.3.1 - 2025-10-29
+#### Bug Fixes
+- (**middleware**) overload order is important to help typescript infer the correct method signature - (fdd9131) - *brad-jones*
+
+- - -
+
 ## middleware-v0.3.0 - 2025-10-17
 #### Features
 - **(logging)** added some actual logging to the http middleware - (81bfd69) - *brad-jones*
