@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## islands-v0.2.0 - 2025-10-29
+#### Features
+- (**islands**) added some hmr state tracking - (ebbce84) - *brad-jones*
+
+- - -
+
 ## islands-v0.1.1 - 2025-10-29
 #### Bug Fixes
 - (**islands**) use correct return type of JSX.Element not Child - (51b3fd3) - *brad-jones*
