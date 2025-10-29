@@ -2,11 +2,15 @@ import * as yaml from "@std/yaml";
 import { accepts } from "@hono/hono/accepts";
 import { createDocument } from "zod-openapi";
 import { OpenApiUiBuilder } from "./openapi_ui_builder.ts";
-import { IOpenApiHandler, OpenApiHandler } from "./openapi_handler.ts";
 import { IRoute, type RouteBuilder } from "../route_builder.ts";
+import { IOpenApiHandler, OpenApiHandler } from "./openapi_handler.ts";
 import { type IContainer, inject } from "@brad-jones/deno-net-container";
 import type { OpenAPIDocsOptions, OpenApiRequestContext } from "./types.ts";
 import type { ZodOpenApiOperationObject, ZodOpenApiPathItemObject } from "zod-openapi";
+import {
+  openAPIClientGeneration,
+  type OpenAPIClientGeneratorOptions,
+} from "@brad-jones/deno-net-open-api-client/generator";
 
 /**
  * A specialized route builder for OpenAPI-compliant routes with schema validation and documentation.
@@ -506,7 +510,7 @@ export class OpenApiRouteBuilder {
     return createDocument({
       openapi: "3.1.1",
       info: {
-        title: "Api Specification",
+        title: "Api",
         version: "0.0.0",
       },
       paths,
@@ -584,6 +588,52 @@ export class OpenApiRouteBuilder {
    */
   writeDoc(path: string, options?: OpenAPIDocsOptions): this {
     this.#docPath = { path, options };
+    return this;
+  }
+
+  #clientPath?: string;
+
+  /**
+   * The stored client path, or undefined if none has been set.
+   */
+  get clientPath(): string | undefined {
+    return this.#clientPath;
+  }
+
+  /**
+   * Configures automatic generation of a TypeScript client from the OpenAPI specification.
+   * The client will be generated when the main build() method is called, providing type-safe
+   * API client code based on your OpenAPI routes and schemas.
+   *
+   * @param path - The file path where the generated TypeScript client should be written.
+   *               Should typically end with `.ts` extension for TypeScript client code.
+   * @param options - Optional configuration for client generation
+   * @param options.importSpecifiers - Custom import specifiers for dependencies
+   * @param options.importSpecifiers.zod - Import specifier for Zod library (e.g., "@zod/zod")
+   * @param options.importSpecifiers.baseClient - Import specifier for the base client library
+   * @returns This OpenApiRouteBuilder instance for method chaining
+   *
+   * @example
+   * ```typescript
+   * // Generate a basic TypeScript client
+   * builder.routes.openapi
+   *   .writeClient("./src/generated/api-client.ts")
+   *   .transformDoc({
+   *     docOverrides: {
+   *       info: { title: "My API", version: "1.0.0" }
+   *     }
+   *   });
+   *
+   * // Usage of generated client
+   * import { MyApiClient } from "./src/generated/api-client.ts";
+   *
+   * const client = new MyApiClient();
+   * const user = await client["/user/{id}"].get({ params: { id: "123" } }); // Fully type-safe!
+   * ```
+   */
+  writeClient(path: string, options?: OpenAPIClientGeneratorOptions): this {
+    this.services.addModule(openAPIClientGeneration(options));
+    this.#clientPath = path;
     return this;
   }
 

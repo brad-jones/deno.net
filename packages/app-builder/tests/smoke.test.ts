@@ -1,6 +1,6 @@
+import { z } from "@zod/zod";
 import { expect } from "@std/expect";
 import { ApiAppBuilder, fromJson, fromPath } from "../src/mod.ts";
-import z from "@zod/zod";
 
 Deno.test("SmokeTest", async () => {
   const builder = new ApiAppBuilder();
@@ -28,4 +28,42 @@ Deno.test("fromJson", async () => {
   await using app = await builder.run();
   const result = await app.client.post("create", { json: { foo: "bar" } }).json();
   expect(result).toMatchObject({ receivedPayload: { foo: "bar" } });
+});
+
+Deno.test("OpenAPI Client Smoke Test", async () => {
+  const builder = new ApiAppBuilder();
+
+  builder.routes.openapi
+    .writeClient(`${import.meta.dirname}/client.ts`, {
+      importSpecifiers: {
+        zod: "@zod/zod",
+        baseClient: "@brad-jones/deno-net-open-api-client",
+      },
+    })
+    .mapGet(
+      "/foo/:bar",
+      {
+        requestParams: {
+          path: z.object({ bar: z.string() }),
+        },
+        responses: {
+          200: {
+            content: {
+              "application/json": {
+                schema: z.object({ message: z.string() }),
+              },
+            },
+          },
+        },
+      },
+      (ctx) => ctx.response(200, { message: `counter: ${ctx.pathParams.bar}` }),
+    );
+
+  await using app = await builder.run();
+
+  const { ApiClient } = await import("./client.ts");
+  const client = new ApiClient({ baseUrl: app.serverUrl });
+  const response = await client["/foo/{bar}"].get({ params: { bar: "123" } });
+  expect(response.status).toBe(200);
+  expect(response.body.message).toBe("counter: 123");
 });

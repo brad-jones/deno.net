@@ -7,7 +7,9 @@ import { IRoute, RouteBuilder } from "./route_builder.ts";
 import { HttpContext } from "@brad-jones/deno-net-http-context";
 import type { IContainer } from "@brad-jones/deno-net-container";
 import { ProblemDetails } from "@brad-jones/deno-net-problem-details";
+import { IOpenAPIClientGenerator } from "@brad-jones/deno-net-open-api-client/generator";
 import { IMiddleware, MiddlewareBuilder } from "@brad-jones/deno-net-middleware";
+import { ILogger } from "@brad-jones/deno-net-logging";
 
 /**
  * A builder designed for backend HTTP APIs.
@@ -32,24 +34,8 @@ export class ApiAppBuilder extends AppBuilder<Deno.ServeDefaultExport> {
    */
   readonly routes: RouteBuilder = new RouteBuilder(this.services);
 
-  /**
-   * Using all the options configured against the builder,
-   * this method finally constructs the application.
-   *
-   * @returns A ready to serve HTTP application.
-   *
-   * @example
-   * ```typescript
-   * const builder = new ApiAppBuilder();
-   * builder.routes.mapGet("/ping", (ctx) => ctx.json({ ping: "pong" }));
-   * export default builder.build() satisfies Deno.ServeDefaultExport;
-   * ```
-   *
-   * Then execute with `deno serve`.
-   * @see https://docs.deno.com/runtime/reference/cli/serve
-   */
-  override async build(): Promise<Deno.ServeDefaultExport> {
-    await this.initLogging({ reset: true });
+  protected async buildHonoApp(): Promise<Hono<HonoCtx>> {
+    const logger = this.services.getService(ILogger)(["deno.net", "api", "builder"]);
 
     const app = new Hono<HonoCtx>();
 
@@ -99,10 +85,41 @@ export class ApiAppBuilder extends AppBuilder<Deno.ServeDefaultExport> {
       const docOptions = this.routes.openapi.docPath.options ?? this.routes.openapi.docOptions;
       const document = this.routes.openapi.buildDoc(docOptions);
       const serialized = filePath.endsWith(".json") ? JSON.stringify(document, null, "  ") : yaml.stringify(document);
-      Deno.writeTextFileSync(filePath, serialized);
+      await Deno.writeTextFile(filePath, serialized);
+      logger.info("written OpenAPI document to {filePath}", { filePath });
+    }
+
+    if (this.routes.openapi.clientPath) {
+      const filePath = this.routes.openapi.clientPath;
+      const document = this.routes.openapi.buildDoc(this.routes.openapi.docOptions);
+      // deno-lint-ignore no-explicit-any
+      const tsSrcCode = await this.services.getService(IOpenAPIClientGenerator).generate(document as any);
+      await Deno.writeTextFile(filePath, tsSrcCode);
+      logger.info("written OpenAPI client to {filePath}", { filePath });
     }
 
     return app;
+  }
+
+  /**
+   * Using all the options configured against the builder,
+   * this method finally constructs the application.
+   *
+   * @returns A ready to serve HTTP application.
+   *
+   * @example
+   * ```typescript
+   * const builder = new ApiAppBuilder();
+   * builder.routes.mapGet("/ping", (ctx) => ctx.json({ ping: "pong" }));
+   * export default builder.build() satisfies Deno.ServeDefaultExport;
+   * ```
+   *
+   * Then execute with `deno serve`.
+   * @see https://docs.deno.com/runtime/reference/cli/serve
+   */
+  override async build(): Promise<Deno.ServeDefaultExport> {
+    await this.initLogging({ reset: true });
+    return await this.buildHonoApp();
   }
 
   /**
@@ -149,14 +166,14 @@ export class ApiAppBuilder extends AppBuilder<Deno.ServeDefaultExport> {
     options?:
       | Deno.ServeTcpOptions
       | (Deno.ServeTcpOptions & Deno.TlsCertifiedKeyPem),
-  ): Promise<{ server: Deno.HttpServer<Deno.NetAddr>; client: KyInstance } & AsyncDisposable> {
+  ): Promise<{ server: Deno.HttpServer<Deno.NetAddr>; serverUrl: string; client: KyInstance } & AsyncDisposable> {
     options ??= { port: await getPort({ random: true, min: 3001 }) };
     const server = Deno.serve(options, (await this.build()).fetch);
-    const client = ky.create({
-      prefixUrl: `${"cert" in options ? "https" : "http"}://${server.addr.hostname}:${server.addr.port}`,
-    });
+    const serverUrl = `${"cert" in options ? "https" : "http"}://${server.addr.hostname}:${server.addr.port}`;
+    const client = ky.create({ prefixUrl: serverUrl });
     return {
       server,
+      serverUrl,
       client,
       [Symbol.asyncDispose]: async (): Promise<void> => {
         await server.shutdown();
