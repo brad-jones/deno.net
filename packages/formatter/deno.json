@@ -1,0 +1,26 @@
+{
+  "name": "@brad-jones/deno-net-formatter",
+  "version": "0.0.0",
+  "exports": "./src/mod.ts",
+  "publish": {
+    "include": [
+      "src/**/*.ts",
+      "src/**/*.wasm",
+      "src/**/*.json",
+      "README.md",
+      "CHANGELOG.md"
+    ]
+  },
+  "imports": {
+    "@cspotcode/outdent": "jsr:@cspotcode/outdent@^0.8.0",
+    "@dprint/formatter": "jsr:@dprint/formatter@^0.4.1",
+    "@mesqueeb/case-anything": "jsr:@mesqueeb/case-anything@^3.1.0",
+    "@octokit/rest": "npm:@octokit/rest@^22.0.0",
+    "@std/expect": "jsr:@std/expect@^1.0.17",
+    "@std/fs": "jsr:@std/fs@^1.0.19",
+    "@std/path": "jsr:@std/path@^1.1.2",
+    "@std/semver": "jsr:@std/semver@^1.0.6",
+    "json-schema-to-typescript": "npm:json-schema-to-typescript@^15.0.4",
+    "ky": "npm:ky@^1.13.0"
+  }
+}

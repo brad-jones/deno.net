@@ -64,8 +64,20 @@ jobs:
     with:
       project: logging
 
-  middleware:
+  formatter:
     needs: [logging]
+    uses: ./.github/workflows/_publish.yaml
+    secrets: inherit
+    permissions:
+      id-token: write
+      contents: write
+      packages: write
+      attestations: write
+    with:
+      project: formatter
+
+  middleware:
+    needs: [formatter]
     uses: ./.github/workflows/_publish.yaml
     secrets: inherit
     permissions:
