@@ -1,5 +1,8 @@
 import { z } from "@zod/zod";
-import { BaseClient, type OpenAPIResponses } from "@brad-jones/deno-net-open-api-client/client";
+import {
+  BaseClient,
+  type OpenAPIResponses,
+} from "@brad-jones/deno-net-open-api-client/client";
 
 // Component Schemas
 export const PetSchema = z.object({

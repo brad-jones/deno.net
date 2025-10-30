@@ -1,5 +1,8 @@
 import { z } from "@zod/zod";
-import { BaseClient, type OpenAPIResponses } from "@brad-jones/deno-net-open-api-client/client";
+import {
+  BaseClient,
+  type OpenAPIResponses,
+} from "@brad-jones/deno-net-open-api-client/client";
 
 // Component Schemas
 export const OrderSchema = z.object({
@@ -408,7 +411,8 @@ export class SwaggerPetstoreClient extends BaseClient {
       request: z.input<typeof PathSchema["/user"]["post"]["request"]>,
     ): Promise<
       OpenAPIResponses<typeof PathSchema["/user"]["post"]["response"]>
-    > => this.sendRequest("/user", "post", PathSchema["/user"]["post"], request),
+    > =>
+      this.sendRequest("/user", "post", PathSchema["/user"]["post"], request),
   };
 
   readonly "/user/createWithList" = {

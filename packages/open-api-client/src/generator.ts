@@ -89,7 +89,7 @@ export class OpenAPIClientGenerator implements IOpenAPIClientGenerator {
     if (this.options?.importSpecifiers?.baseClient) {
       importSpecifiers.baseClient = this.options?.importSpecifiers.baseClient;
     } else {
-      importSpecifiers.baseClient = "jsr:@brad-jones/deno-net-open-api-client@0.1.3";
+      importSpecifiers.baseClient = "jsr:@brad-jones/deno-net-open-api-client@0.1.4";
     }
 
     return importSpecifiers as ImportSpecifiers;
