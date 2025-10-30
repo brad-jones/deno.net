@@ -8,7 +8,7 @@ import {
 export const PathSchema = {
   "/foo/{bar}": {
     get: {
-      request: z.object({ params: z.object({ bar: z.string() }) }),
+      request: z.object({ params: z.object({ "bar": z.string() }) }),
       response: { 200: z.object({ "message": z.string() }) },
     },
   },

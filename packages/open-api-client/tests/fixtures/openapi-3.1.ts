@@ -23,7 +23,7 @@ export const PathSchema = {
   "/pets": {
     get: {
       request: z.object({
-        query: z.object({ limit: z.string().optional() }).optional(),
+        query: z.object({ "limit": z.string().optional() }).optional(),
       }),
       response: { 200: PetsSchema, default: ErrorSchema },
     },
@@ -31,7 +31,7 @@ export const PathSchema = {
   },
   "/pets/{petId}": {
     get: {
-      request: z.object({ params: z.object({ petId: z.string() }) }),
+      request: z.object({ params: z.object({ "petId": z.string() }) }),
       response: { 200: PetSchema, default: ErrorSchema },
     },
   },

@@ -240,8 +240,8 @@ export class OpenAPIClientGenerator implements IOpenAPIClientGenerator {
     // Path parameters
     const pathParams = operation.parameters?.filter((p) => p.in === "path") || [];
     if (pathParams.length > 0) {
-      const paramProps = pathParams.map((p) => `${p.name}:z.string()`).join(",");
-      requestParts.push(`params:z.object({ ${paramProps} })`);
+      const paramProps = pathParams.map((p) => `"${p.name}":z.string()`).join(",");
+      requestParts.push(`params:z.object({${paramProps}})`);
     }
 
     // Query parameters
@@ -249,9 +249,9 @@ export class OpenAPIClientGenerator implements IOpenAPIClientGenerator {
     if (queryParams.length > 0) {
       const queryProps = queryParams.map((p) => {
         const optional = !p.required ? ".optional()" : "";
-        return `${p.name}:z.string()${optional}`;
+        return `"${p.name}":z.string()${optional}`;
       }).join(",");
-      requestParts.push(`query:z.object({ ${queryProps} }).optional()`);
+      requestParts.push(`query:z.object({${queryProps}}).optional()`);
     }
 
     // Headers
@@ -259,7 +259,7 @@ export class OpenAPIClientGenerator implements IOpenAPIClientGenerator {
     if (headerParams.length > 0) {
       const headerProps = headerParams.map((p) => {
         const optional = !p.required ? ".optional()" : "";
-        return `${p.name}: z.string()${optional}`;
+        return `"${p.name}":z.string()${optional}`;
       }).join(",");
       requestParts.push(`headers:z.object({${headerProps}}).optional()`);
     }

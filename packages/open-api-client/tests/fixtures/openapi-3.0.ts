@@ -75,7 +75,9 @@ export const PathSchema = {
   },
   "/pet/findByStatus": {
     get: {
-      request: z.object({ query: z.object({ status: z.string() }).optional() }),
+      request: z.object({
+        query: z.object({ "status": z.string() }).optional(),
+      }),
       response: {
         200: z.array(PetSchema),
         400: z.unknown().optional(),
@@ -85,7 +87,7 @@ export const PathSchema = {
   },
   "/pet/findByTags": {
     get: {
-      request: z.object({ query: z.object({ tags: z.string() }).optional() }),
+      request: z.object({ query: z.object({ "tags": z.string() }).optional() }),
       response: {
         200: z.array(PetSchema),
         400: z.unknown().optional(),
@@ -95,7 +97,7 @@ export const PathSchema = {
   },
   "/pet/{petId}": {
     get: {
-      request: z.object({ params: z.object({ petId: z.string() }) }),
+      request: z.object({ params: z.object({ "petId": z.string() }) }),
       response: {
         200: PetSchema,
         400: z.unknown().optional(),
@@ -105,10 +107,10 @@ export const PathSchema = {
     },
     post: {
       request: z.object({
-        params: z.object({ petId: z.string() }),
+        params: z.object({ "petId": z.string() }),
         query: z.object({
-          name: z.string().optional(),
-          status: z.string().optional(),
+          "name": z.string().optional(),
+          "status": z.string().optional(),
         }).optional(),
       }),
       response: {
@@ -119,8 +121,8 @@ export const PathSchema = {
     },
     delete: {
       request: z.object({
-        params: z.object({ petId: z.string() }),
-        headers: z.object({ api_key: z.string().optional() }).optional(),
+        params: z.object({ "petId": z.string() }),
+        headers: z.object({ "api_key": z.string().optional() }).optional(),
       }),
       response: {
         200: z.unknown().optional(),
@@ -132,8 +134,8 @@ export const PathSchema = {
   "/pet/{petId}/uploadImage": {
     post: {
       request: z.object({
-        params: z.object({ petId: z.string() }),
-        query: z.object({ additionalMetadata: z.string().optional() })
+        params: z.object({ "petId": z.string() }),
+        query: z.object({ "additionalMetadata": z.string().optional() })
           .optional(),
         body: z.string().optional(),
       }),
@@ -161,7 +163,7 @@ export const PathSchema = {
   },
   "/store/order/{orderId}": {
     get: {
-      request: z.object({ params: z.object({ orderId: z.string() }) }),
+      request: z.object({ params: z.object({ "orderId": z.string() }) }),
       response: {
         200: OrderSchema,
         400: z.unknown().optional(),
@@ -170,7 +172,7 @@ export const PathSchema = {
       },
     },
     delete: {
-      request: z.object({ params: z.object({ orderId: z.string() }) }),
+      request: z.object({ params: z.object({ "orderId": z.string() }) }),
       response: {
         200: z.unknown().optional(),
         400: z.unknown().optional(),
@@ -195,8 +197,8 @@ export const PathSchema = {
     get: {
       request: z.object({
         query: z.object({
-          username: z.string().optional(),
-          password: z.string().optional(),
+          "username": z.string().optional(),
+          "password": z.string().optional(),
         }).optional(),
       }),
       response: {
@@ -216,7 +218,7 @@ export const PathSchema = {
   },
   "/user/{username}": {
     get: {
-      request: z.object({ params: z.object({ username: z.string() }) }),
+      request: z.object({ params: z.object({ "username": z.string() }) }),
       response: {
         200: UserSchema,
         400: z.unknown().optional(),
@@ -226,7 +228,7 @@ export const PathSchema = {
     },
     put: {
       request: z.object({
-        params: z.object({ username: z.string() }),
+        params: z.object({ "username": z.string() }),
         body: UserSchema.optional(),
       }),
       response: {
@@ -237,7 +239,7 @@ export const PathSchema = {
       },
     },
     delete: {
-      request: z.object({ params: z.object({ username: z.string() }) }),
+      request: z.object({ params: z.object({ "username": z.string() }) }),
       response: {
         200: z.unknown().optional(),
         400: z.unknown().optional(),
