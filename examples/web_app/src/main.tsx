@@ -29,7 +29,7 @@ if (builder.environment.isDevelopment()) {
 }
 
 builder.pages.mapModules(`${import.meta.dirname}/pages/**/*.tsx`)
-  //.hmr(builder.environment.isDevelopment())
+  .hmr(builder.environment.isDevelopment())
   .bundleStylesWithTailwind({ optimize: !builder.environment.isDevelopment() })
   .bundleScriptWithDeno({
     disableCache: builder.environment.isDevelopment(),
@@ -45,4 +45,6 @@ builder.pages.mapModules(`${import.meta.dirname}/pages/**/*.tsx`)
     },
   });
 
-export default () => builder.run({ hostname: "127.0.0.1", port: 80 });
+if (import.meta.main) {
+  await builder.run({ hostname: "127.0.0.1", port: 80 });
+}

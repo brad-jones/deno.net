@@ -30,6 +30,8 @@
     - then we need the equivalent of the "import.meta.hot" api for modules to implement & we need to inject that into our pages.
     - I think this is where I would like to make that a standalone library and not nessarily tie it to deno.net
 
+- must use react-jsx, precompile does not work with deno --watch-hmr
+
 - figure out how to incorporate shadcn, (tailwind plus maybe?) and any other decent tailwind components libs
 
 - other CSS in JS frameworks

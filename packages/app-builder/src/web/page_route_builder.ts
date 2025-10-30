@@ -44,7 +44,13 @@ export class PageRouteBuilder {
 
   hmr(enable?: boolean): ExternalPageRouteBuilder {
     if (enable === true || typeof enable === "undefined") {
-      this.routeBuilder.mapGet(
+      addEventListener("hmr", (e) => {
+        if (e instanceof CustomEvent && e.type === "hmr") {
+          const replacedModule = e.detail.path;
+        }
+      });
+
+      /*this.routeBuilder.mapGet(
         "/scripts",
         async (ctx) => {
           const originalImport = ctx.req.query("import");
@@ -86,7 +92,7 @@ export class PageRouteBuilder {
             "Content-Type": "application/javascript",
           });
         },
-      );
+      );*/
     }
     return this;
   }

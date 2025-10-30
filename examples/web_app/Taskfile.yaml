@@ -13,13 +13,23 @@ tasks:
 
   start:
     cmds:
-      - echo 'import app from "./src/main.tsx"; await app();' | deno run -A -
+      - deno run -A ./src/main.tsx
 
   watch:
     cmds:
       - >-
-          echo 'import app from "./src/main.tsx"; await app();' | deno run
+          deno run
           --watch=$(deno eval -p 'Deno.args.join(",")' ./**/*.{ts,tsx})
           --watch-exclude=deno.json
           --watch-exclude=src/client.ts
-          -A -
+          -A ./src/main.tsx
+
+  watch-hmr:
+    cmds:
+      - >-
+          deno run
+          --watch-hmr
+          --watch-exclude=deno.json
+          --watch-exclude=src/client.ts
+          --no-clear-screen
+          -A ./src/main.tsx

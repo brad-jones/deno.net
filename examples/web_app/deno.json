@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "jsx": "precompile",
+    "jsx": "react-jsx",
     "jsxImportSource": "@hono/hono/jsx",
     "lib": [
       "dom",
