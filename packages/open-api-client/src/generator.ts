@@ -3,7 +3,6 @@ import * as yaml from "@std/yaml";
 import { outdent } from "@cspotcode/outdent";
 import { pascalCase } from "@mesqueeb/case-anything";
 import { type ContainerModule, inject, Type } from "@brad-jones/deno-net-container";
-import { type DenoConfigFile, readDenoConfigFile } from "@brad-jones/deno-config";
 import { type IFormatter, IJavascriptFormatter, JavascriptFormatter } from "@brad-jones/deno-net-formatter";
 import {
   type OpenAPIOperationSchema,
@@ -66,7 +65,7 @@ export class OpenAPIClientGenerator implements IOpenAPIClientGenerator {
 
   async generate(spec: OpenAPISpec): Promise<string> {
     const validatedSpec = OpenAPISpec.parse(spec);
-    const imports = await this.resolveImportSpecifiers();
+    const imports = this.resolveImportSpecifiers();
 
     return await this.jsFmt.fmt(outdent`
       import { z } from "${imports.zod}";
@@ -78,26 +77,19 @@ export class OpenAPIClientGenerator implements IOpenAPIClientGenerator {
     `);
   }
 
-  protected async resolveImportSpecifiers(): Promise<ImportSpecifiers> {
+  protected resolveImportSpecifiers(): ImportSpecifiers {
     const importSpecifiers: Partial<ImportSpecifiers> = {};
-
-    let c: DenoConfigFile | undefined;
-    const readConfig = async () => {
-      if (!c) c = await readDenoConfigFile(import.meta.filename!);
-      return c;
-    };
 
     if (this.options?.importSpecifiers?.zod) {
       importSpecifiers.zod = this.options?.importSpecifiers.zod;
     } else {
-      importSpecifiers.zod = (await readConfig())!.imports!["@zod/zod"];
+      importSpecifiers.zod = "jsr:@zod/zod@^4.1.12";
     }
 
     if (this.options?.importSpecifiers?.baseClient) {
       importSpecifiers.baseClient = this.options?.importSpecifiers.baseClient;
     } else {
-      const config = await readConfig();
-      importSpecifiers.baseClient = `jsr:${config!.name}@${config!.version}`;
+      importSpecifiers.baseClient = "jsr:@brad-jones/deno-net-open-api-client@0.1.0";
     }
 
     return importSpecifiers as ImportSpecifiers;
