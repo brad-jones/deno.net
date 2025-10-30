@@ -43,7 +43,7 @@ export abstract class DprintFormatter implements IFormatter {
     );
 
     try {
-      return Deno.readFile(cachedFile);
+      return await Deno.readFile(cachedFile);
     } catch (e) {
       if (e instanceof Deno.errors.NotFound) {
         const wasmModuleBytes = await ky.get(url).bytes();
