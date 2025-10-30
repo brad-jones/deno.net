@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.7.6 - 2025-10-30
+#### Bug Fixes
+- (**formatter**) forgot to await Deno.readFile in downloadWasmFormatter - (7540ce2) - *brad-jones*
+#### Miscellaneous Chores
+- (**version**) open-api-client-v0.1.3 - (8e1f56d) - github-actions[bot]
+- (**version**) formatter-v0.1.3 - (18c2ef1) - github-actions[bot]
+
+- - -
+
 ## app-builder-v0.7.5 - 2025-10-30
 #### Bug Fixes
 - (**formatter**) need to download the wasm module - (78f9e54) - *brad-jones*
