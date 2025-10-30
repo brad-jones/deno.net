@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## formatter-v0.1.3 - 2025-10-30
+#### Bug Fixes
+- (**formatter**) forgot to await Deno.readFile in downloadWasmFormatter - (7540ce2) - *brad-jones*
+
+- - -
+
 ## formatter-v0.1.2 - 2025-10-30
 #### Bug Fixes
 - (**formatter**) need to download the wasm module - (78f9e54) - *brad-jones*
