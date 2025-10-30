@@ -22,7 +22,7 @@
     "@std/fs": "jsr:@std/fs@^1.0.19",
     "@std/path": "jsr:@std/path@^1.1.2",
     "@std/yaml": "jsr:@std/yaml@^1.0.10",
-    "@zod/zod": "jsr:@zod/zod@^4.1.12",
+    "@zod/zod": "npm:zod@^4.1.12",
     "ky": "npm:ky@^1.11.0",
     "zod-openapi": "npm:zod-openapi@^5.4.3"
   }

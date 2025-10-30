@@ -12,6 +12,6 @@
   },
   "imports": {
     "@std/expect": "jsr:@std/expect@^1.0.17",
-    "@zod/zod": "jsr:@zod/zod@^4.1.12"
+    "@zod/zod": "npm:zod@^4.1.12"
   }
 }

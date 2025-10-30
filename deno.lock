@@ -54,7 +54,6 @@
     "jsr:@std/text@~1.0.7": "1.0.16",
     "jsr:@std/toml@^1.0.11": "1.0.11",
     "jsr:@std/yaml@^1.0.10": "1.0.10",
-    "jsr:@zod/zod@4": "4.1.12",
     "jsr:@zod/zod@^4.1.12": "4.1.12",
     "npm:@brad-jones/jsr-dynamic-imports@0.1.1": "0.1.1",
     "npm:@hono/zod-validator@~0.7.3": "0.7.4_hono@4.10.1_zod@4.1.12",
@@ -74,7 +73,8 @@
     "npm:tailwindcss@^4.1.15": "4.1.16",
     "npm:zod-openapi@^5.4.2": "5.4.3_zod@4.1.12",
     "npm:zod-openapi@^5.4.3": "5.4.3_zod@4.1.12",
-    "npm:zod@4": "4.1.12"
+    "npm:zod@4": "4.1.12",
+    "npm:zod@^4.1.12": "4.1.12"
   },
   "jsr": {
     "@117/mutex@1.0.8": {
@@ -84,7 +84,7 @@
       "integrity": "f9164661d3c2b2e5e5dcf195b2baff96d2351f41b9c2e0ff243d39193842a69e",
       "dependencies": [
         "jsr:@std/path@^1.1.2",
-        "jsr:@zod/zod@^4.1.12"
+        "jsr:@zod/zod"
       ]
     },
     "@brad-jones/jsr-dynamic-imports@0.1.1": {
@@ -195,8 +195,8 @@
       "dependencies": [
         "npm:@hono/zod-validator",
         "npm:hono",
-        "npm:zod",
-        "npm:zod-openapi@^5.4.2"
+        "npm:zod-openapi@^5.4.2",
+        "npm:zod@4"
       ]
     },
     "@std/assert@1.0.15": {
@@ -919,7 +919,7 @@
       "jsr:@cliffy/command@^1.0.0-rc.8",
       "jsr:@david/dax@~0.43.2",
       "jsr:@std/streams@^1.0.13",
-      "jsr:@zod/zod@^4.1.12"
+      "npm:zod@^4.1.12"
     ],
     "members": {
       "examples/web_app": {
@@ -940,9 +940,9 @@
           "jsr:@std/fs@^1.0.19",
           "jsr:@std/path@^1.1.2",
           "jsr:@std/yaml@^1.0.10",
-          "jsr:@zod/zod@^4.1.12",
           "npm:ky@^1.11.0",
-          "npm:zod-openapi@^5.4.3"
+          "npm:zod-openapi@^5.4.3",
+          "npm:zod@^4.1.12"
         ]
       },
       "packages/bundler": {
@@ -979,7 +979,7 @@
           "jsr:@std/path@^1.1.2",
           "jsr:@std/toml@^1.0.11",
           "jsr:@std/yaml@^1.0.10",
-          "jsr:@zod/zod@^4.1.12"
+          "npm:zod@^4.1.12"
         ]
       },
       "packages/container": {
@@ -1040,13 +1040,13 @@
           "jsr:@mesqueeb/case-anything@^3.1.0",
           "jsr:@std/expect@^1.0.17",
           "jsr:@std/yaml@^1.0.10",
-          "jsr:@zod/zod@^4.1.12"
+          "npm:zod@^4.1.12"
         ]
       },
       "packages/problem-details": {
         "dependencies": [
           "jsr:@std/expect@^1.0.17",
-          "jsr:@zod/zod@^4.1.12"
+          "npm:zod@^4.1.12"
         ]
       }
     }
