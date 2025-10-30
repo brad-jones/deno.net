@@ -1,15 +1,12 @@
 import { z } from "@zod/zod";
-import {
-  BaseClient,
-  type OpenAPIResponses,
-} from "@brad-jones/deno-net-open-api-client/client";
+import { BaseClient, type OpenAPIResponses } from "@brad-jones/deno-net-open-api-client/client";
 
 // Path Schemas
 export const PathSchema = {
   "/foo/{bar}": {
     get: {
       request: z.object({ params: z.object({ bar: z.string() }) }),
-      response: { 200: z.object({ message: z.string() }) },
+      response: { 200: z.object({ "message": z.string() }) },
     },
   },
 };

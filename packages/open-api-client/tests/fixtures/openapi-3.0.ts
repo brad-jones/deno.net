@@ -1,53 +1,50 @@
 import { z } from "@zod/zod";
-import {
-  BaseClient,
-  type OpenAPIResponses,
-} from "@brad-jones/deno-net-open-api-client/client";
+import { BaseClient, type OpenAPIResponses } from "@brad-jones/deno-net-open-api-client/client";
 
 // Component Schemas
 export const OrderSchema = z.object({
-  id: z.number().int().optional(),
-  petId: z.number().int().optional(),
-  quantity: z.number().int().optional(),
-  shipDate: z.string().optional(),
-  status: z.enum(["placed", "approved", "delivered"]).optional(),
-  complete: z.boolean().optional(),
+  "id": z.number().int().optional(),
+  "petId": z.number().int().optional(),
+  "quantity": z.number().int().optional(),
+  "shipDate": z.string().optional(),
+  "status": z.enum(["placed", "approved", "delivered"]).optional(),
+  "complete": z.boolean().optional(),
 });
 
 export const CategorySchema = z.object({
-  id: z.number().int().optional(),
-  name: z.string().optional(),
+  "id": z.number().int().optional(),
+  "name": z.string().optional(),
 });
 
 export const UserSchema = z.object({
-  id: z.number().int().optional(),
-  username: z.string().optional(),
-  firstName: z.string().optional(),
-  lastName: z.string().optional(),
-  email: z.string().optional(),
-  password: z.string().optional(),
-  phone: z.string().optional(),
-  userStatus: z.number().int().optional(),
+  "id": z.number().int().optional(),
+  "username": z.string().optional(),
+  "firstName": z.string().optional(),
+  "lastName": z.string().optional(),
+  "email": z.string().optional(),
+  "password": z.string().optional(),
+  "phone": z.string().optional(),
+  "userStatus": z.number().int().optional(),
 });
 
 export const TagSchema = z.object({
-  id: z.number().int().optional(),
-  name: z.string().optional(),
+  "id": z.number().int().optional(),
+  "name": z.string().optional(),
 });
 
 export const PetSchema = z.object({
-  id: z.number().int().optional(),
-  name: z.string(),
-  category: CategorySchema.optional(),
-  photoUrls: z.array(z.string()),
-  tags: z.array(TagSchema).optional(),
-  status: z.enum(["available", "pending", "sold"]).optional(),
+  "id": z.number().int().optional(),
+  "name": z.string(),
+  "category": CategorySchema.optional(),
+  "photoUrls": z.array(z.string()),
+  "tags": z.array(TagSchema).optional(),
+  "status": z.enum(["available", "pending", "sold"]).optional(),
 });
 
 export const ApiResponseSchema = z.object({
-  code: z.number().int().optional(),
-  type: z.string().optional(),
-  message: z.string().optional(),
+  "code": z.number().int().optional(),
+  "type": z.string().optional(),
+  "message": z.string().optional(),
 });
 
 // Path Schemas
@@ -411,8 +408,7 @@ export class SwaggerPetstoreClient extends BaseClient {
       request: z.input<typeof PathSchema["/user"]["post"]["request"]>,
     ): Promise<
       OpenAPIResponses<typeof PathSchema["/user"]["post"]["response"]>
-    > =>
-      this.sendRequest("/user", "post", PathSchema["/user"]["post"], request),
+    > => this.sendRequest("/user", "post", PathSchema["/user"]["post"], request),
   };
 
   readonly "/user/createWithList" = {

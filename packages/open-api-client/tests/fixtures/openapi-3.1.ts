@@ -1,21 +1,18 @@
 import { z } from "@zod/zod";
-import {
-  BaseClient,
-  type OpenAPIResponses,
-} from "@brad-jones/deno-net-open-api-client/client";
+import { BaseClient, type OpenAPIResponses } from "@brad-jones/deno-net-open-api-client/client";
 
 // Component Schemas
 export const PetSchema = z.object({
-  id: z.number().int(),
-  name: z.string(),
-  tag: z.string().optional(),
+  "id": z.number().int(),
+  "name": z.string(),
+  "tag": z.string().optional(),
 });
 
 export const PetsSchema = z.array(PetSchema);
 
 export const ErrorSchema = z.object({
-  code: z.number().int(),
-  message: z.string(),
+  "code": z.number().int(),
+  "message": z.string(),
 });
 
 // Path Schemas

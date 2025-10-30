@@ -184,7 +184,7 @@ export class OpenAPIClientGenerator implements IOpenAPIClientGenerator {
       const zodPropSchema = this.convertOpenAPISchemaToZod(propSchema);
       const isRequired = required.includes(propName);
       const optional = isRequired ? "" : ".optional()";
-      properties.push(`${propName}:${zodPropSchema}${optional}`);
+      properties.push(`"${propName}":${zodPropSchema}${optional}`);
     }
 
     return `z.object({${properties.join(",")}})`;
