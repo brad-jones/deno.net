@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## open-api-client-v0.1.5 - 2025-10-30
+#### Bug Fixes
+- (**open-api-client**) same fix as last but for headers, path params & query string (quote property keys) - (ceeb165) - *brad-jones*
+
+- - -
+
 ## open-api-client-v0.1.4 - 2025-10-30
 #### Bug Fixes
 - (**open-api-client**) quote property keys - (51fe91a) - *brad-jones*
