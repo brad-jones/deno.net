@@ -108,10 +108,14 @@ include = [
 path = "packages/app-builder"
 include = [
   "packages/app-builder/**",
+  "packages/bundler/**",
   "packages/configuration/**",
   "packages/container/**",
+  "packages/formatter/**",
   "packages/http-context/**",
+  "packages/islands/**",
   "packages/logging/**",
   "packages/middleware/**",
+  "packages/open-api-client/**",
   "packages/problem-details/**",
 ]
