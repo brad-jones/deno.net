@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## open-api-client-v0.1.1 - 2025-10-30
+#### Bug Fixes
+- (**open-api-client**) hard code default import specifiers - (ea9919d) - *brad-jones*
+
+- - -
+
 ## open-api-client-v0.1.0 - 2025-10-29
 #### Features
 - (**container**) now tracks disposable objects and is now disposable it's self - (c77a42f) - *brad-jones*
