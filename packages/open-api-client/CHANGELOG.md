@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## open-api-client-v0.1.7 - 2025-10-30
+#### Bug Fixes
+- (**zod**) import zod from npm because we use zod-openapi and it has bugs when we use the JSR version of zod - (6f4d1e7) - *brad-jones*
+
+- - -
+
 ## open-api-client-v0.1.6 - 2025-10-30
 #### Bug Fixes
 - (**open-api-client**) ensure query and header parameters are required - (d7a7916) - *brad-jones*

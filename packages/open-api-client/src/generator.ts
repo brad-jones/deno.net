@@ -83,13 +83,13 @@ export class OpenAPIClientGenerator implements IOpenAPIClientGenerator {
     if (this.options?.importSpecifiers?.zod) {
       importSpecifiers.zod = this.options?.importSpecifiers.zod;
     } else {
-      importSpecifiers.zod = "jsr:@zod/zod@^4.1.12";
+      importSpecifiers.zod = "npm:zod@^4.1.12";
     }
 
     if (this.options?.importSpecifiers?.baseClient) {
       importSpecifiers.baseClient = this.options?.importSpecifiers.baseClient;
     } else {
-      importSpecifiers.baseClient = "jsr:@brad-jones/deno-net-open-api-client@0.1.6";
+      importSpecifiers.baseClient = "jsr:@brad-jones/deno-net-open-api-client@0.1.7";
     }
 
     return importSpecifiers as ImportSpecifiers;
