@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.7.10 - 2025-10-30
+#### Bug Fixes
+- (**app-builder**) ensure the request is cloned for validation purposes in the open api handler - (cf631e4) - *brad-jones*
+
+- - -
+
 ## app-builder-v0.7.9 - 2025-10-30
 #### Bug Fixes
 - (**open-api-client**) ensure query and header parameters are required - (d7a7916) - *brad-jones*
