@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## problem-details-v0.1.4 - 2025-10-30
+#### Bug Fixes
+- (**zod**) import zod from npm because we use zod-openapi and it has bugs when we use the JSR version of zod - (6f4d1e7) - *brad-jones*
+
+- - -
+
 ## problem-details-v0.1.3 - 2025-10-16
 #### Continuous Integration
 - **(cog)** should now release packages when dependencies change - (8488401) - *brad-jones*
