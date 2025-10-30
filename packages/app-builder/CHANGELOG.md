@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.7.11 - 2025-10-30
+#### Bug Fixes
+- (**zod**) import zod from npm because we use zod-openapi and it has bugs when we use the JSR version of zod - (6f4d1e7) - *brad-jones*
+#### Miscellaneous Chores
+- (**version**) open-api-client-v0.1.7 - (d10e32a) - github-actions[bot]
+- (**version**) problem-details-v0.1.4 - (bc18a91) - github-actions[bot]
+- (**version**) configuration-v0.3.1 - (685b515) - github-actions[bot]
+
+- - -
+
 ## app-builder-v0.7.10 - 2025-10-30
 #### Bug Fixes
 - (**app-builder**) ensure the request is cloned for validation purposes in the open api handler - (cf631e4) - *brad-jones*
