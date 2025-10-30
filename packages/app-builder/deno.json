@@ -1,7 +1,7 @@
 {
   "name": "@brad-jones/deno-net-app-builder",
   "exports": "./src/mod.ts",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "license": "MIT",
   "publish": {
     "include": [
