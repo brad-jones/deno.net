@@ -240,6 +240,7 @@ export class OpenAPIClientGenerator implements IOpenAPIClientGenerator {
     // Path parameters
     const pathParams = operation.parameters?.filter((p) => p.in === "path") || [];
     if (pathParams.length > 0) {
+      // Path parameters are always required by OpenAPI spec definition
       const paramProps = pathParams.map((p) => `"${p.name}":z.string()`).join(",");
       requestParts.push(`params:z.object({${paramProps}})`);
     }
@@ -251,7 +252,10 @@ export class OpenAPIClientGenerator implements IOpenAPIClientGenerator {
         const optional = !p.required ? ".optional()" : "";
         return `"${p.name}":z.string()${optional}`;
       }).join(",");
-      requestParts.push(`query:z.object({${queryProps}}).optional()`);
+      // Make query object required if it contains any required properties
+      const hasRequiredProperties = queryParams.some((p) => p.required);
+      const queryObjectOptional = hasRequiredProperties ? "" : ".optional()";
+      requestParts.push(`query:z.object({${queryProps}})${queryObjectOptional}`);
     }
 
     // Headers
@@ -261,7 +265,10 @@ export class OpenAPIClientGenerator implements IOpenAPIClientGenerator {
         const optional = !p.required ? ".optional()" : "";
         return `"${p.name}":z.string()${optional}`;
       }).join(",");
-      requestParts.push(`headers:z.object({${headerProps}}).optional()`);
+      // Make headers object required if it contains any required properties
+      const hasRequiredProperties = headerParams.some((p) => p.required);
+      const headerObjectOptional = hasRequiredProperties ? "" : ".optional()";
+      requestParts.push(`headers:z.object({${headerProps}})${headerObjectOptional}`);
     }
 
     // Request body

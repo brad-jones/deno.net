@@ -1,8 +1,5 @@
 import { z } from "@zod/zod";
-import {
-  BaseClient,
-  type OpenAPIResponses,
-} from "@brad-jones/deno-net-open-api-client/client";
+import { BaseClient, type OpenAPIResponses } from "@brad-jones/deno-net-open-api-client/client";
 
 // Component Schemas
 export const OrderSchema = z.object({
@@ -75,9 +72,7 @@ export const PathSchema = {
   },
   "/pet/findByStatus": {
     get: {
-      request: z.object({
-        query: z.object({ "status": z.string() }).optional(),
-      }),
+      request: z.object({ query: z.object({ "status": z.string() }) }),
       response: {
         200: z.array(PetSchema),
         400: z.unknown().optional(),
@@ -87,7 +82,7 @@ export const PathSchema = {
   },
   "/pet/findByTags": {
     get: {
-      request: z.object({ query: z.object({ "tags": z.string() }).optional() }),
+      request: z.object({ query: z.object({ "tags": z.string() }) }),
       response: {
         200: z.array(PetSchema),
         400: z.unknown().optional(),
@@ -413,8 +408,7 @@ export class SwaggerPetstoreClient extends BaseClient {
       request: z.input<typeof PathSchema["/user"]["post"]["request"]>,
     ): Promise<
       OpenAPIResponses<typeof PathSchema["/user"]["post"]["response"]>
-    > =>
-      this.sendRequest("/user", "post", PathSchema["/user"]["post"], request),
+    > => this.sendRequest("/user", "post", PathSchema["/user"]["post"], request),
   };
 
   readonly "/user/createWithList" = {
