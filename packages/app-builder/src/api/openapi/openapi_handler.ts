@@ -215,7 +215,7 @@ export class OpenApiHandler implements IOpenApiHandler {
     const bodySchema = op.requestBody?.content["application/json"]?.schema as any as ZodType;
     if (bodySchema && "safeParse" in bodySchema) {
       try {
-        const bodyResult = bodySchema.safeParse(await ctx.req.json());
+        const bodyResult = bodySchema.safeParse(await ctx.req.raw.clone().json());
         if (!bodyResult.success) {
           throw new ValidationProblem({
             instance: `#/request/body`,
