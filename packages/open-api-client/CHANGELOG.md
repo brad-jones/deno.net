@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## open-api-client-v0.1.2 - 2025-10-30
+#### Bug Fixes
+- (**formatter**) need to download the wasm module - (78f9e54) - *brad-jones*
+#### Miscellaneous Chores
+- (**version**) formatter-v0.1.2 - (44172da) - github-actions[bot]
+
+- - -
+
 ## open-api-client-v0.1.1 - 2025-10-30
 #### Bug Fixes
 - (**open-api-client**) hard code default import specifiers - (ea9919d) - *brad-jones*
