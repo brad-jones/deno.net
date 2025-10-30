@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## configuration-v0.3.1 - 2025-10-30
+#### Bug Fixes
+- (**zod**) import zod from npm because we use zod-openapi and it has bugs when we use the JSR version of zod - (6f4d1e7) - *brad-jones*
+
+- - -
+
 ## configuration-v0.3.0 - 2025-10-17
 #### Features
 - **(container)** now tracks disposable objects and is now disposable it's self - (c77a42f) - *brad-jones*
