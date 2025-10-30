@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.7.4 - 2025-10-30
+#### Bug Fixes
+- (**open-api-client**) hard code default import specifiers - (ea9919d) - *brad-jones*
+#### Miscellaneous Chores
+- (**version**) open-api-client-v0.1.1 - (2994981) - github-actions[bot]
+
+- - -
+
 ## app-builder-v0.7.3 - 2025-10-30
 #### Miscellaneous Chores
 - playing around with hmr - (14820bc) - brad-jones
