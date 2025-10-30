@@ -29,7 +29,8 @@ export class MarkdownFormatter extends DprintFormatter {
     super(
       {
         ...options?.globalOptions,
-        wasmPath: `${import.meta.dirname}/plugin.wasm`,
+        wasmPath: new URL("plugin.wasm", import.meta.url),
+        wasm256Sha: "5eb4e23248231ce0fc6b6379229b3bf7e0f649b337eacf47764ee8fe2c062257",
       },
       options,
     );

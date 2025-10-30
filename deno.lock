@@ -994,6 +994,7 @@
           "jsr:@cspotcode/outdent@0.8",
           "jsr:@dprint/formatter@~0.4.1",
           "jsr:@mesqueeb/case-anything@^3.1.0",
+          "jsr:@std/encoding@^1.0.10",
           "jsr:@std/expect@^1.0.17",
           "jsr:@std/fs@^1.0.19",
           "jsr:@std/path@^1.1.2",

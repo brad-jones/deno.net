@@ -29,7 +29,8 @@ export class PythonFormatter extends DprintFormatter {
     super(
       {
         ...options?.globalOptions,
-        wasmPath: `${import.meta.dirname}/plugin.wasm`,
+        wasmPath: new URL("plugin.wasm", import.meta.url),
+        wasm256Sha: "f245c81534d3ac334b046e173139c8e02f52d39879d15123d98df8780807e0b2",
       },
       options,
     );

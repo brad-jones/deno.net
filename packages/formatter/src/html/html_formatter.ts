@@ -29,7 +29,8 @@ export class HtmlFormatter extends DprintFormatter {
     super(
       {
         ...options?.globalOptions,
-        wasmPath: `${import.meta.dirname}/plugin.wasm`,
+        wasmPath: new URL("plugin.wasm", import.meta.url),
+        wasm256Sha: "4d0c47230e485d9c0503f5b3209df765c9093641f05baee59e1d1c0869209abb",
       },
       options,
     );

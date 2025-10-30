@@ -16,6 +16,7 @@
     "@dprint/formatter": "jsr:@dprint/formatter@^0.4.1",
     "@mesqueeb/case-anything": "jsr:@mesqueeb/case-anything@^3.1.0",
     "@octokit/rest": "npm:@octokit/rest@^22.0.0",
+    "@std/encoding": "jsr:@std/encoding@^1.0.10",
     "@std/expect": "jsr:@std/expect@^1.0.17",
     "@std/fs": "jsr:@std/fs@^1.0.19",
     "@std/path": "jsr:@std/path@^1.1.2",

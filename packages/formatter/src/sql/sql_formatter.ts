@@ -29,7 +29,8 @@ export class SqlFormatter extends DprintFormatter {
     super(
       {
         ...options?.globalOptions,
-        wasmPath: `${import.meta.dirname}/plugin.wasm`,
+        wasmPath: new URL("plugin.wasm", import.meta.url),
+        wasm256Sha: "05138c7cd3651e57d70603cd5cc45fe3a0ed2c439b5ce3dee0a2b31103849871",
       },
       options,
     );

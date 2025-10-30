@@ -29,7 +29,8 @@ export class DockerfileFormatter extends DprintFormatter {
     super(
       {
         ...options?.globalOptions,
-        wasmPath: `${import.meta.dirname}/plugin.wasm`,
+        wasmPath: new URL("plugin.wasm", import.meta.url),
+        wasm256Sha: "19a2b5b187593f0416266cf650b72c1a958388a8e03e1a8d4681a041f18e92a7",
       },
       options,
     );

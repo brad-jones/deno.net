@@ -29,7 +29,8 @@ export class TomlFormatter extends DprintFormatter {
     super(
       {
         ...options?.globalOptions,
-        wasmPath: `${import.meta.dirname}/plugin.wasm`,
+        wasmPath: new URL("plugin.wasm", import.meta.url),
+        wasm256Sha: "0126c8112691542d30b52a639076ecc83e07bace877638cee7c6915fd36b8629",
       },
       options,
     );

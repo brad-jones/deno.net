@@ -29,7 +29,8 @@ export class YamlFormatter extends DprintFormatter {
     super(
       {
         ...options?.globalOptions,
-        wasmPath: `${import.meta.dirname}/plugin.wasm`,
+        wasmPath: new URL("plugin.wasm", import.meta.url),
+        wasm256Sha: "892879491ae3401d612682a492ea7b47e0eeadcbbe73178f6bb183563c277b15",
       },
       options,
     );

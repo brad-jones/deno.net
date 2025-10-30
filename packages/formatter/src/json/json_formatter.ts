@@ -29,7 +29,8 @@ export class JsonFormatter extends DprintFormatter {
     super(
       {
         ...options?.globalOptions,
-        wasmPath: `${import.meta.dirname}/plugin.wasm`,
+        wasmPath: new URL("plugin.wasm", import.meta.url),
+        wasm256Sha: "188a08916eeccf2414e06c8b51d8f44d3695f055a0d63cef39eace0a11e247bc",
       },
       options,
     );

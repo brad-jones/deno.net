@@ -1,9 +1,11 @@
 #!/usr/bin/env -S deno run -qA --ext=ts
 import ky from "ky";
 import * as fs from "@std/fs";
+import { $ } from "@david/dax";
 import * as path from "@std/path";
 import * as semver from "@std/semver";
 import { Octokit } from "@octokit/rest";
+import { encodeHex } from "@std/encoding";
 import { outdent } from "@cspotcode/outdent";
 import { compile } from "json-schema-to-typescript";
 import { camelCase, pascalCase } from "@mesqueeb/case-anything";
@@ -41,13 +43,17 @@ for (const [fileType, pluginRepo] of Object.entries(dprintPlugins)) {
   console.log(`downloading ${wasmAsset!.browser_download_url}`);
   await Deno.writeFile(`${basePath}/plugin.wasm`, (await ky.get(wasmAsset!.browser_download_url)).body!);
 
+  const wasm256Sha = encodeHex(await crypto.subtle.digest("SHA-256", await Deno.readFile(`${basePath}/plugin.wasm`)));
+
   const schemaAsset = release.data.assets.find((_) => _.name === "schema.json");
   console.log(`downloading ${schemaAsset!.browser_download_url}`);
   await Deno.writeFile(`${basePath}/schema.json`, (await ky.get(schemaAsset!.browser_download_url)).body!);
+  await $`dprint fmt ${`${basePath}/schema.json`}`;
 
   const schema = JSON.parse(await Deno.readTextFile(`${basePath}/schema.json`));
   schema.title = "Schema";
   await Deno.writeTextFile(`${basePath}/schema.ts`, await compile(schema, "-", { additionalProperties: false }));
+  await $`dprint fmt ${`${basePath}/schema.ts`}`;
 
   await Deno.writeTextFile(
     `${basePath}/${fileType}_formatter.ts`,
@@ -85,7 +91,9 @@ for (const [fileType, pluginRepo] of Object.entries(dprintPlugins)) {
           super(
             {
               ...options?.globalOptions,
-              wasmPath: \`\${import.meta.dirname}/plugin.wasm\`,
+              wasmPath: new URL("plugin.wasm", import.meta.url),
+              wasm256Sha: "${wasm256Sha}",
+              ${fileType === "javascript" ? 'fileExt: "tsx",' : ""}
             },
             options,
           );
@@ -93,10 +101,13 @@ for (const [fileType, pluginRepo] of Object.entries(dprintPlugins)) {
       }
     `,
   );
+
+  await $`dprint fmt ${`${basePath}/${fileType}_formatter.ts`}`;
 }
 
+const modPath = path.resolve(`${import.meta.dirname}/../src/mod.ts`);
 await Deno.writeTextFile(
-  path.resolve(`${import.meta.dirname}/../src/mod.ts`),
+  modPath,
   outdent`
     export * from "./formatter.ts";
     export * from "./dprint_formatter.ts";
@@ -107,3 +118,5 @@ await Deno.writeTextFile(
   }
   `,
 );
+
+await $`dprint fmt ${modPath}`;
