@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.7.7 - 2025-10-30
+#### Bug Fixes
+- (**open-api-client**) quote property keys - (51fe91a) - *brad-jones*
+#### Miscellaneous Chores
+- (**version**) open-api-client-v0.1.4 - (bd16197) - github-actions[bot]
+
+- - -
+
 ## app-builder-v0.7.6 - 2025-10-30
 #### Bug Fixes
 - (**formatter**) forgot to await Deno.readFile in downloadWasmFormatter - (7540ce2) - *brad-jones*
