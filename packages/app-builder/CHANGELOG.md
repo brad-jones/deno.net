@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.7.9 - 2025-10-30
+#### Bug Fixes
+- (**open-api-client**) ensure query and header parameters are required - (d7a7916) - *brad-jones*
+#### Miscellaneous Chores
+- (**version**) open-api-client-v0.1.6 - (7634dcf) - github-actions[bot]
+
+- - -
+
 ## app-builder-v0.7.8 - 2025-10-30
 #### Bug Fixes
 - (**open-api-client**) same fix as last but for headers, path params & query string (quote property keys) - (ceeb165) - *brad-jones*
