@@ -1,5 +1,5 @@
-import { z } from "@zod/zod";
 import { expect } from "@std/expect";
+import { z } from "@zod/zod";
 import { ApiAppBuilder, fromJson, fromPath } from "../src/mod.ts";
 
 Deno.test("SmokeTest", async () => {
@@ -35,9 +35,11 @@ Deno.test("OpenAPI Client Smoke Test", async () => {
 
   builder.routes.openapi
     .writeClient(`${import.meta.dirname}/client.ts`, {
+      validateRequests: true,
+      validateResponses: true,
       importSpecifiers: {
         zod: "@zod/zod",
-        baseClient: "@brad-jones/deno-net-open-api-client",
+        client: "@brad-jones/deno-net-open-api-client",
       },
     })
     .mapGet(
@@ -63,7 +65,7 @@ Deno.test("OpenAPI Client Smoke Test", async () => {
 
   const { ApiClient } = await import("./client.ts");
   const client = new ApiClient({ baseUrl: app.serverUrl });
-  const response = await client["/foo/{bar}"].get({ params: { bar: "123" } });
+  const response = await client["/foo/{bar}"].get({ path: { bar: "123" } });
   expect(response.status).toBe(200);
   expect(response.body.message).toBe("counter: 123");
 });
