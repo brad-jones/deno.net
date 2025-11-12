@@ -1,0 +1,20 @@
+openapi: 3.1.1
+info:
+  title: ParameterSerializationApi
+  version: 0.0.1
+paths:
+  /pet/findByTags:
+    get:
+      parameters:
+        - in: query
+          name: tags
+          required: true
+          explode: true
+          style: pipeDelimited
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        "200":
+          description: OK

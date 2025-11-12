@@ -1,16 +1,13 @@
-import * as yaml from "@std/yaml";
+import { type IContainer, inject } from "@brad-jones/deno-net-container";
+import { openAPIClientModule, type OpenAPIClientModuleOptions } from "@brad-jones/deno-net-open-api-client";
 import { accepts } from "@hono/hono/accepts";
+import * as yaml from "@std/yaml";
+import type { ZodOpenApiOperationObject, ZodOpenApiPathItemObject } from "zod-openapi";
 import { createDocument } from "zod-openapi";
-import { OpenApiUiBuilder } from "./openapi_ui_builder.ts";
 import { IRoute, type RouteBuilder } from "../route_builder.ts";
 import { IOpenApiHandler, OpenApiHandler } from "./openapi_handler.ts";
-import { type IContainer, inject } from "@brad-jones/deno-net-container";
+import { OpenApiUiBuilder } from "./openapi_ui_builder.ts";
 import type { OpenAPIDocsOptions, OpenApiRequestContext } from "./types.ts";
-import type { ZodOpenApiOperationObject, ZodOpenApiPathItemObject } from "zod-openapi";
-import {
-  openAPIClientGeneration,
-  type OpenAPIClientGeneratorOptions,
-} from "@brad-jones/deno-net-open-api-client/generator";
 
 /**
  * A specialized route builder for OpenAPI-compliant routes with schema validation and documentation.
@@ -631,8 +628,8 @@ export class OpenApiRouteBuilder {
    * const user = await client["/user/{id}"].get({ params: { id: "123" } }); // Fully type-safe!
    * ```
    */
-  writeClient(path: string, options?: OpenAPIClientGeneratorOptions): this {
-    this.services.addModule(openAPIClientGeneration(options));
+  writeClient(path: string, options?: OpenAPIClientModuleOptions): this {
+    this.services.addModule(openAPIClientModule(options));
     this.#clientPath = path;
     return this;
   }

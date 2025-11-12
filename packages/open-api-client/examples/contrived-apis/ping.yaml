@@ -1,0 +1,17 @@
+openapi: 3.1.1
+info:
+  title: PingApi
+  version: 0.0.1
+paths:
+  /ping:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pong:
+                    type: string

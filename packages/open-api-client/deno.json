@@ -1,10 +1,7 @@
 {
   "name": "@brad-jones/deno-net-open-api-client",
-  "exports": {
-    "./client": "./src/base_client.ts",
-    "./generator": "./src/generator.ts"
-  },
-  "version": "0.1.7",
+  "exports": "./src/mod.ts",
+  "version": "0.1.6",
   "license": "MIT",
   "publish": {
     "include": [
@@ -16,9 +13,13 @@
   "imports": {
     "@brad-jones/deno-config": "jsr:@brad-jones/deno-config@^1.0.0",
     "@cspotcode/outdent": "jsr:@cspotcode/outdent@^0.8.0",
-    "@david/dax": "jsr:@david/dax@^0.43.2",
+    "@david/dax": "jsr:@david/dax@^0.42.0",
     "@mesqueeb/case-anything": "jsr:@mesqueeb/case-anything@^3.1.0",
+    "@standard-schema/spec": "jsr:@standard-schema/spec@^1.0.0",
+    "@std/encoding": "jsr:@std/encoding@^1.0.10",
     "@std/expect": "jsr:@std/expect@^1.0.17",
+    "@std/fs": "jsr:@std/fs@^1.0.19",
+    "@std/path": "jsr:@std/path@^1.0.10",
     "@std/yaml": "jsr:@std/yaml@^1.0.10",
     "@zod/zod": "npm:zod@^4.1.12"
   }

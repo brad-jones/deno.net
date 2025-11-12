@@ -15,13 +15,20 @@ tasks:
   test:
     desc: Runs the package test suite
     cmds:
-      - deno test -A
+      - deno test -A --coverage --coverage-raw-data-only './src/**/*.test.ts' './tests/**/*.test.ts'
+      - deno coverage --include='^file://.*open-api-client/src'
+
+  generate:
+    desc: Generates all the example clients
+    cmds:
+      - deno run -A ./examples/generate-example-apis.ts
 
   package:
     desc: This is triggered by cog as a pre_bump_hook to generate all the final publishable artifacts
     deps:
       - lint
       - test
+      - generate
     requires:
       vars:
         - COG_VERSION

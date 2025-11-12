@@ -1,0 +1,195 @@
+openapi: 3.0.0
+info:
+  title: Response Headers Demo API
+  version: 1.0.0
+  description: Demo API to showcase response header generation
+
+servers:
+  - url: https://api.example.com/v1
+
+paths:
+  /paginated-data:
+    get:
+      operationId: getPaginatedData
+      summary: Get paginated data with pagination headers
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        "200":
+          description: Successful response with pagination metadata in headers
+          headers:
+            X-Total-Count:
+              description: Total number of items
+              required: true
+              schema:
+                type: integer
+              example: 1000
+            X-Page-Number:
+              description: Current page number
+              schema:
+                type: integer
+              example: 1
+            X-Page-Size:
+              description: Number of items per page
+              schema:
+                type: integer
+              example: 20
+            X-Total-Pages:
+              description: Total number of pages
+              schema:
+                type: integer
+              example: 50
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+
+  /rate-limited:
+    get:
+      operationId: getRateLimitedData
+      summary: Get data with rate limit information in headers
+      responses:
+        "200":
+          description: Success with rate limit headers
+          headers:
+            X-RateLimit-Limit:
+              description: Request limit per hour
+              schema:
+                type: integer
+            X-RateLimit-Remaining:
+              description: Remaining requests for this hour
+              schema:
+                type: integer
+            X-RateLimit-Reset:
+              description: Unix timestamp when the rate limit resets
+              schema:
+                type: integer
+                format: int64
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+        "429":
+          description: Rate limit exceeded
+          headers:
+            Retry-After:
+              description: Number of seconds to wait before retrying
+              required: true
+              schema:
+                type: integer
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                format: int64
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  message:
+                    type: string
+
+  /with-etag:
+    get:
+      operationId: getWithEtag
+      summary: Get resource with ETag for caching
+      parameters:
+        - name: If-None-Match
+          in: header
+          description: ETag from previous response
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Resource content
+          headers:
+            ETag:
+              description: Entity tag for cache validation
+              required: true
+              schema:
+                type: string
+              example: '"33a64df551425fcc55e4d42a148795d9f25f89d4"'
+            Cache-Control:
+              description: Cache directives
+              schema:
+                type: string
+              example: "max-age=3600, must-revalidate"
+            Last-Modified:
+              description: Last modification date
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  content:
+                    type: string
+        "304":
+          description: Not Modified - use cached version
+          headers:
+            ETag:
+              description: Entity tag matching the request
+              required: true
+              schema:
+                type: string
+
+  /inferred-headers:
+    get:
+      operationId: getInferredHeaders
+      summary: Example with headers inferred from examples
+      responses:
+        "200":
+          description: Response with headers inferred from examples
+          headers:
+            X-Request-Id:
+              description: Unique request identifier
+              example: "550e8400-e29b-41d4-a716-446655440000"
+            X-Response-Time:
+              description: Response time in milliseconds
+              example: 123
+            X-Server-Version:
+              description: API server version
+              examples:
+                production:
+                  value: "2.1.0"
+            X-Is-Cached:
+              description: Whether response was served from cache
+              example: false
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string

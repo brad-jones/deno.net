@@ -1,0 +1,40 @@
+openapi: 3.1.1
+info:
+  title: HelloWorldApi
+  version: 0.0.1
+paths:
+  /hello/{name}:
+    get:
+      description: Says hello to a given name.
+      parameters:
+        - description: The name to say hello to.
+          in: path
+          required: true
+          name: name
+          schema:
+            type: string
+        - in: query
+          name: lastName
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        default:
+          description: Error

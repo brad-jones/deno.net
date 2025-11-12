@@ -1,15 +1,15 @@
+import type { IContainer } from "@brad-jones/deno-net-container";
+import { HttpContext } from "@brad-jones/deno-net-http-context";
+import { ILogger } from "@brad-jones/deno-net-logging";
+import { IMiddleware, MiddlewareBuilder } from "@brad-jones/deno-net-middleware";
+import { IClientGenerator } from "@brad-jones/deno-net-open-api-client";
+import { ProblemDetails } from "@brad-jones/deno-net-problem-details";
+import { type Context, Hono } from "@hono/hono";
+import { getPort } from "@openjs/port-free";
 import * as yaml from "@std/yaml";
 import ky, { type KyInstance } from "ky";
-import { getPort } from "@openjs/port-free";
 import { AppBuilder } from "../app_builder.ts";
-import { type Context, Hono } from "@hono/hono";
 import { IRoute, RouteBuilder } from "./route_builder.ts";
-import { HttpContext } from "@brad-jones/deno-net-http-context";
-import type { IContainer } from "@brad-jones/deno-net-container";
-import { ProblemDetails } from "@brad-jones/deno-net-problem-details";
-import { IOpenAPIClientGenerator } from "@brad-jones/deno-net-open-api-client/generator";
-import { IMiddleware, MiddlewareBuilder } from "@brad-jones/deno-net-middleware";
-import { ILogger } from "@brad-jones/deno-net-logging";
 
 /**
  * A builder designed for backend HTTP APIs.
@@ -94,8 +94,7 @@ export class ApiAppBuilder extends AppBuilder<Deno.ServeDefaultExport> {
       const filePath = this.routes.openapi.clientPath;
       const document = this.routes.openapi.buildDoc(this.routes.openapi.docOptions);
       // deno-lint-ignore no-explicit-any
-      const tsSrcCode = await this.services.getService(IOpenAPIClientGenerator).generate(document as any);
-      await Deno.writeTextFile(filePath, tsSrcCode);
+      await this.services.getService(IClientGenerator).generate(document as any, filePath);
       logger.info("written OpenAPI client to {filePath}", { filePath });
     }
 

@@ -1,320 +1,437 @@
 # @brad-jones/deno-net-open-api-client
 
-A powerful, type-safe OpenAPI client generator for TypeScript/Deno that creates
-fully typed HTTP clients from OpenAPI 3.0/3.1 specifications.
+A powerful TypeScript code generator that transforms OpenAPI specifications into strongly-typed, tree-shakeable API clients for Deno.
 
-## ✨ Features
+## Features
 
-- 🔒 **Full Type Safety** - Complete TypeScript inference with discriminated union responses
-- 🎯 **OpenAPI 3.0/3.1 Support** - Validates and generates clients from standard OpenAPI specs
-- 🔗 **`$ref` Resolution** - Automatically resolves component schema references
-- 🛡️ **Request/Response Validation** - Runtime validation using Zod schemas
-- 📊 **Status Code Discrimination** - Different response types for different HTTP status codes
-- 🎨 **Clean Generated Code** - Readable, maintainable TypeScript output
-- ⚡ **Deno Native** - Built for modern JavaScript runtimes
+- **🎯 Full Type Safety** - Generate TypeScript types directly from your OpenAPI spec with complete IntelliSense support
+- **📦 Tree-Shakeable** - Functional client style allows bundlers to eliminate unused API operations
+- **✅ Runtime Validation** - Optional Zod schema generation for request/response validation
+- **🔄 Multiple Client Styles** - Choose between classical OOP or functional programming styles
+- **🌐 OpenAPI 3.x Support** - Full support for OpenAPI 3.0 and 3.1 specifications
+- **📝 Auto-Documentation** - Preserve JSDoc comments from your OpenAPI descriptions
+- **🎨 Customizable** - Configure output style, validation, and more
 
-## 📦 Installation
+## Installation
 
 ```bash
 deno add jsr:@brad-jones/deno-net-open-api-client
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
-### 1. Generate a Client
+### Generate a Client
 
 ```typescript
-import { OpenAPIClientGenerator } from "@brad-jones/deno-net-open-api-client";
-
-// Your OpenAPI specification
-const openApiSpec = {
-  openapi: "3.0.0",
-  info: { title: "Pet Store API", version: "1.0.0" },
-  paths: {
-    "/pets/{id}": {
-      get: {
-        parameters: [
-          { name: "id", in: "path", required: true, schema: { type: "string" } },
-        ],
-        responses: {
-          "200": {
-            description: "Pet found",
-            content: {
-              "application/json": {
-                schema: { $ref: "#/components/schemas/Pet" },
-              },
-            },
-          },
-          "404": {
-            description: "Pet not found",
-            content: {
-              "application/json": {
-                schema: { $ref: "#/components/schemas/Error" },
-              },
-            },
-          },
-        },
-      },
-    },
-  },
-  components: {
-    schemas: {
-      Pet: {
-        type: "object",
-        required: ["id", "name"],
-        properties: {
-          id: { type: "integer" },
-          name: { type: "string" },
-          tag: { type: "string" },
-        },
-      },
-      Error: {
-        type: "object",
-        required: ["code", "message"],
-        properties: {
-          code: { type: "integer" },
-          message: { type: "string" },
-        },
-      },
-    },
-  },
-};
+import { ClassicalClientGenerator } from "@brad-jones/deno-net-open-api-client";
 
 // Generate the client
-const generator = new OpenAPIClientGenerator();
-const clientCode = await generator.generate(openApiSpec);
-
-// Save to file
-await Deno.writeTextFile("./generated-client.ts", clientCode);
+const generator = new ClassicalClientGenerator();
+await generator.generateFromFile("./openapi.yaml", "./client.ts");
 ```
 
-### 2. Use the Generated Client
+### Use the Generated Client
 
 ```typescript
-import { PetStoreApiClient } from "./generated-client.ts";
+import { ApiClient } from "./client.ts";
 
-const client = new PetStoreApiClient({
-  baseUrl: "https://api.petstore.com/v1",
-  validateRequests: true,
-  validateResponses: true,
+const client = new ApiClient({
+  baseUrl: "https://api.example.com",
+  headers: {
+    "Authorization": "Bearer your-token-here",
+  },
 });
 
-// Make type-safe requests
-const response = await client["/pets/{id}"].get({
-  params: { id: "123" },
+// Make API calls with full type safety
+const response = await client["/users/{id}"].get({
+  path: { id: 123 },
 });
 
-// Type-safe response handling
 if (response.status === 200) {
-  // TypeScript knows response.body is Pet
-  console.log(`Found pet: ${response.body.name}`);
-  if (response.body.tag) {
-    console.log(`Tag: ${response.body.tag}`);
-  }
-} else if (response.status === 404) {
-  // TypeScript knows response.body is Error
-  console.log(`Pet not found: ${response.body.message}`);
+  console.log(response.body); // Fully typed!
 }
 ```
 
-## 🎯 Generated Code Structure
+## Client Styles
 
-The generator produces three main parts:
+This package supports two different client generation styles to suit your preferences and use case.
 
-### 1. Component Schemas
+### Classical Client (OOP Style)
+
+The classical client generates a class with path-based access to operations.
+Best for traditional OOP applications or when you want a single client instance.
+And bundle size is not a concern.
 
 ```typescript
-export const PetSchema = z.object({
-  id: z.number().int(),
-  name: z.string(),
-  tag: z.string().optional(),
-});
+import { ClassicalClientGenerator } from "@brad-jones/deno-net-open-api-client";
 
-export const ErrorSchema = z.object({
-  code: z.number().int(),
-  message: z.string(),
-});
+const generator = new ClassicalClientGenerator();
+const code = await generator.generate(spec);
 ```
 
-### 2. The Main Path Schema
+**Usage:**
 
 ```typescript
-export const PathSchema = {
-  "/pets/{id}": {
-    get: {
-      request: z.object({
-        params: z.object({
-          id: z.string(),
-        }),
-      }),
-      response: {
-        200: PetSchema,
-        404: ErrorSchema,
-      },
-    },
-  },
+const client = new ApiClient(config);
+
+// Path-based access with inline methods
+await client["/users/{id}"].get({ path: { id: 123 } });
+await client["/users"].post({ body: { name: "John" } });
+await client["/users/{id}"].delete({ path: { id: 123 } });
+```
+
+**Pros:**
+
+- Familiar OOP pattern
+- Single client instance
+- Clear path-based organization
+
+**Cons:**
+
+- Larger bundle size (entire client is included)
+- Less optimal for tree-shaking
+
+### Functional Client
+
+The functional client generates standalone functions for each operation.
+Best for modern applications where bundle size matters and tree-shaking is important.
+
+```typescript
+import { FunctionalClientGenerator } from "@brad-jones/deno-net-open-api-client";
+
+const generator = new FunctionalClientGenerator();
+const code = await generator.generate(spec);
+```
+
+#### Usage Option 1: Convenience Client (includes all operations)
+
+```typescript
+import { createClient } from "./client.ts";
+
+const client = createClient(config);
+await client.getUserById({ path: { id: 123 } });
+```
+
+#### Usage Option 2: Custom Client (cherry-pick operations for better tree-shaking)
+
+```typescript
+import { createCustomClient, getUserById, updateUser } from "./client.ts";
+
+const client = createCustomClient(config, {
+  getUserById,
+  updateUser,
+  // Only include operations you need
+});
+
+await client.getUserById({ path: { id: 123 } });
+```
+
+#### Usage Option 3: Direct Operation Usage (maximum tree-shaking)
+
+```typescript
+import { getUserById, updateUser } from "./client.ts";
+
+const config = {
+  baseUrl: "https://api.example.com",
+  headers: { "Authorization": "Bearer token" },
 };
+
+// Call operations directly without a client wrapper
+const user = await getUserById(config, { path: { id: 123 } });
+const updated = await updateUser(config, {
+  path: { id: 123 },
+  body: { name: "Jane" },
+});
 ```
 
-### 3. Client Class
+**Pros:**
+
+- Excellent tree-shaking support
+- Smaller bundle sizes
+- Flexible composition
+- Easier to test individual operations
+
+**Cons:**
+
+- More verbose import statements
+- Less discoverable API surface
+
+## Configuration
+
+### Generator Options
+
+Both generators accept the following options:
 
 ```typescript
-export class PetStoreApiClient extends BaseClient {
-  readonly "/pets/{id}" = {
-    get: (
-      request: z.input<typeof ClientTypes["/pets/{id}"]["get"]["request"]>,
-    ): Promise<OpenAPIResponses<typeof ClientTypes["/pets/{id}"]["get"]["response"]>> =>
-      this.sendRequest("/pets/{id}", "get", ClientTypes["/pets/{id}"]["get"], request),
+interface ClientGeneratorOptions {
+  /**
+   * If true, generates Zod schemas for request validation.
+   *
+   * @default false
+   */
+  validateRequests?: boolean;
+
+  /**
+   * If true, generates Zod schemas for response validation.
+   *
+   * @default false
+   */
+  validateResponses?: boolean;
+
+  /**
+   * If true, formats the generated code using the configured formatter.
+   *
+   * @default true
+   */
+  fmtResult?: boolean;
+
+  /**
+   * Custom import specifiers for runtime dependencies.
+   */
+  importSpecifiers?: {
+    /** Custom Zod import specifier (e.g., "npm:zod@1.2.3") */
+    zod?: string;
+    /** Custom client runtime import specifier (e.g., "./my-custom-fetch.ts") */
+    client?: string;
   };
 }
 ```
 
-## 🔧 Configuration Options
-
-### BaseClientOptions
+**Example usage:**
 
 ```typescript
-interface BaseClientOptions {
-  baseUrl: string; // API base URL
-  customFetch?: typeof fetch; // Custom fetch implementation
-  validateRequests?: boolean; // Validate requests (default: true)
-  validateResponses?: boolean; // Validate responses (default: false)
-  additionalHeaders?: Record<string, string>; // Default headers for all requests
+import { ClassicalClientGenerator } from "@brad-jones/deno-net-open-api-client";
+
+const generator = new ClassicalClientGenerator({
+  validateRequests: true, // Enable request validation
+  validateResponses: true, // Enable response validation
+  fmtResult: true, // Format the output (default)
+  importSpecifiers: {
+    zod: "npm:zod@3.22.4", // Use specific Zod version
+  },
+});
+
+const clientCode = await generator.generate(spec);
+```
+
+### Client Configuration
+
+Generated clients require a configuration object:
+
+```typescript
+interface OpenAPIClientConfig {
+  /**
+   * Base URL for all API requests
+   */
+  baseUrl: string | URL;
+
+  /**
+   * Default headers to include in all requests
+   *
+   * @optional
+   */
+  headers?: Record<string, string>;
+
+  /**
+   * Custom fetch implementation (useful for testing)
+   *
+   * @optional
+   */
+  fetch?: typeof fetch;
 }
 ```
 
-### Advanced Usage
+**Example with all options:**
 
 ```typescript
-const client = new PetStoreApiClient({
-  baseUrl: "https://api.petstore.com/v1",
-  validateRequests: true,
-  validateResponses: true,
-  additionalHeaders: {
-    "Authorization": "Bearer your-token",
-    "User-Agent": "MyApp/1.0",
+const client = new ApiClient({
+  baseUrl: "https://api.example.com/v1",
+  headers: {
+    "Authorization": "Bearer token",
+    "X-API-Version": "2024-01-01",
   },
-  customFetch: async (input, init) => {
-    // Add custom logic (logging, retries, etc.)
-    console.log(`Making request to: ${input}`);
-    return fetch(input, init);
-  },
+  fetch: customFetchWithRetry, // Your custom fetch implementation
 });
 ```
 
-## 🛡️ Error Handling
+## Runtime Validation
 
-The client provides sophisticated error handling for different scenarios:
-
-### Invalid Responses
-
-```typescript
-import { InvalidResponse } from "@brad-jones/deno-net-open-api-client";
-
-try {
-  const response = await client["/pets/{id}"].get({ params: { id: "123" } });
-} catch (error) {
-  if (error instanceof InvalidResponse) {
-    console.log(`HTTP ${error.status}`);
-
-    // Access the response headers
-    console.log("Response headers:", error.headers);
-
-    // Access the raw response body
-    console.log("Response body:", new TextDecoder().decode(error.body));
-  }
-}
-```
-
-### Validation Errors
+When `validateRequests: true` and/or `validateResponses: true` are enabled,
+the generator creates Zod schemas for both requests and responses,
+providing runtime type safety.
 
 ```typescript
-import { ZodError } from "@zod/zod";
-
-try {
-  const response = await client["/pets"].post({
-    body: { invalid: "data" }, // Missing required fields
-  });
-} catch (error) {
-  if (error instanceof ZodError) {
-    console.log("Validation error:", error.errors);
-  }
-}
-```
-
-## 🎨 Supported OpenAPI Features
-
-### Schema Types
-
-- ✅ Object schemas with required/optional properties
-- ✅ Array schemas with typed items
-- ✅ String schemas with enums
-- ✅ Number/integer schemas with constraints
-- ✅ Boolean schemas
-- ✅ `$ref` references to component schemas
-- ✅ Nested object structures
-
-### Parameters
-
-- ✅ Path parameters
-- ✅ Query parameters (required/optional)
-- ✅ Header parameters
-- ✅ Request body (JSON content type)
-
-### Responses
-
-- ✅ Multiple status codes with different schemas
-- ✅ Content-type based response parsing
-- ✅ Empty responses (204 No Content)
-- ✅ Error responses with detailed schemas
-
-### HTTP Methods
-
-- ✅ GET, POST, PUT, DELETE, PATCH
-- ✅ HEAD, OPTIONS, TRACE
-
-## 🔍 Type Safety Examples
-
-### Discriminated Union Responses
-
-```typescript
-const response = await client["/pets/{id}"].get({ params: { id: "123" } });
-
-// Exhaustive checking with TypeScript
-switch (response.status) {
-  case 200: {
-    // TypeScript knows this is Pet
-    console.log(`Pet name: ${response.body.name}`);
-    break;
-  }
-  case 404: {
-    // TypeScript knows this is Error
-    console.log(`Error: ${response.body.message}`);
-    break;
-  }
-  default: {
-    // TypeScript ensures all cases are handled
-    const _exhaustive: never = response;
-    break;
-  }
-}
-```
-
-### Request Validation
-
-```typescript
-// TypeScript will enforce correct request structure
-await client["/pets"].post({
+// Request validation ensures you're sending valid data
+await client["/users"].post({
   body: {
-    id: 123, // ✅ Required field
-    name: "Fluffy", // ✅ Required field
-    tag: "cat", // ✅ Optional field
-    // missing fields will cause TypeScript error
+    name: "John",
+    age: "invalid", // ❌ Throws validation error at runtime
+  },
+});
+
+// Response validation ensures the API returns expected data
+const response = await client["/users/{id}"].get({ path: { id: 123 } });
+// ✅ Response body is validated against the schema
+```
+
+## Response Handling
+
+All API calls return an `OpenAPIResponse` with the following structure:
+
+```typescript
+type OpenAPIResponse<T> = {
+  status: number;
+  headers: Headers;
+  body: T[keyof T]["body"];
+  raw: Response;
+};
+```
+
+**Example with type narrowing:**
+
+```typescript
+const response = await client["/users/{id}"].get({ path: { id: 123 } });
+
+if (response.status === 200) {
+  // TypeScript knows body is the 200 response type
+  console.log(response.body.name);
+} else if (response.status === 404) {
+  // TypeScript knows body is the 404 response type
+  console.log(response.body.error);
+}
+
+// Access raw fetch Response for advanced use cases
+console.log(response.raw.ok);
+```
+
+## Parameter Serialization
+
+The client automatically handles parameter serialization according to OpenAPI specification:
+
+### Path Parameters
+
+```typescript
+// Simple style (default): /users/123
+await client["/users/{id}"].get({
+  path: { id: 123 },
+});
+
+// Array: /users/1,2,3
+await client["/users/{ids}"].get({
+  path: { ids: [1, 2, 3] },
+});
+```
+
+### Query Parameters
+
+```typescript
+// Form style (default): ?tags=red&tags=blue
+await client["/items"].get({
+  query: { tags: ["red", "blue"] },
+});
+
+// Deep object: ?filter[name]=John&filter[age]=30
+await client["/items"].get({
+  query: { filter: { name: "John", age: 30 } },
+});
+```
+
+### Header Parameters
+
+```typescript
+await client["/data"].get({
+  headers: {
+    "X-API-Key": "secret",
   },
 });
 ```
 
-## 🔗 Related Projects
+### Cookie Parameters
 
-This OpenAPI client generator is part of the [@brad-jones/deno-net](https://github.com/brad-jones/deno.net) ecosystem
-for building modern web applications with Deno and TypeScript.
+```typescript
+await client["/session"].get({
+  cookies: {
+    session_id: "abc123",
+  },
+});
+```
+
+## Advanced Usage
+
+### Dependency Injection
+
+If you're using `@brad-jones/deno-net-container`, you can register the generator as a service:
+
+```typescript
+import { openAPIClientModule } from "@brad-jones/deno-net-open-api-client";
+import { Container } from "@brad-jones/deno-net-container";
+
+const container = new Container();
+container.useModule(
+  openAPIClientModule({
+    style: "functional", // or "classical"
+    validateRequests: true,
+    validateResponses: true,
+  }),
+);
+
+const generator = container.get(IClientGenerator);
+```
+
+## Examples
+
+The `examples/` directory contains generated clients from various OpenAPI specifications:
+
+### Contrived APIs
+
+- **hello-world** - Simple greeting API
+- **petstore** - Classic Swagger Petstore example
+- **runtime-validation** - Demonstrates Zod validation
+- **parameter-serialization** - Various parameter styles
+
+### Real-World APIs
+
+- **GitHub API** - GitHub REST API v3
+- **Stripe API** - Payment processing
+- **PayPal API** - Payment platform
+- **Xero API** - Accounting software
+
+Explore these examples to see the generator in action with different API designs.
+
+## OpenAPI Support
+
+### Supported Versions
+
+- ✅ OpenAPI 3.1.x (full support)
+- ✅ OpenAPI 3.0.x (full support)
+- ❌ OpenAPI 2.0 / Swagger (not supported)
+
+### Content Types
+
+- ✅ `application/json` (full support)
+- ⚠️ Other content types (planned for future releases)
+
+### Parameter Styles
+
+- ✅ Path parameters (simple, label, matrix)
+- ✅ Query parameters (form, spaceDelimited, pipeDelimited, deepObject)
+- ✅ Header parameters (simple)
+- ✅ Cookie parameters (form)
+
+## Related Packages
+
+This package is part of the [@brad-jones/deno-net](../../README.md) framework:
+
+- **@brad-jones/deno-net-app-builder** - Application builder and server
+- **@brad-jones/deno-net-container** - Dependency injection container
+
+## Credits
+
+Inspired by:
+
+- <https://heyapi.dev/>
+- <https://openapi-ts.dev/>
+- <https://gunzip.github.io/apical-ts/>
+  - <https://www.reddit.com/r/typescript/comments/1n96vjh/building_a_robust_openapitotypescript_tool/>
+
+And others...
