@@ -5,6 +5,9 @@
   "editor.renderWhitespace": "boundary",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.sortImports": "explicit"
+  },
   "files.associations": {
     "*.gitmsgtpl": "git-commit"
   },
