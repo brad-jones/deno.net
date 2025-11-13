@@ -38,3 +38,10 @@ paths:
                     type: string
         default:
           description: Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fooBar:
+                    type: string

@@ -28,7 +28,6 @@ tasks:
     deps:
       - lint
       - test
-      - generate
     requires:
       vars:
         - COG_VERSION

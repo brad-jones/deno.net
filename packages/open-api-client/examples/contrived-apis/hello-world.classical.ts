@@ -5,7 +5,7 @@ import {
   type OpenAPIClientConfig,
   openAPIFetch,
   type OpenAPIResponses,
-} from "jsr:@brad-jones/deno-net-open-api-client@0.2.1";
+} from "jsr:@brad-jones/deno-net-open-api-client@0.2.2";
 import { z } from "npm:zod@^4.1.12";
 
 /**
@@ -43,7 +43,9 @@ export class ApiClient {
         };
         /** Error */
         "default": {
-          body: unknown;
+          body: {
+            fooBar?: string;
+          };
         };
       }>
     > =>
@@ -71,7 +73,11 @@ export class ApiClient {
                 error: z.string().optional(),
               }),
             }),
-            "default": z.object({ body: z.unknown() }),
+            "default": z.object({
+              body: z.object({
+                fooBar: z.string().optional(),
+              }),
+            }),
           },
         },
         request,

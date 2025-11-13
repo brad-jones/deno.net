@@ -5,7 +5,7 @@ import {
   type OpenAPIClientConfig,
   openAPIFetch,
   type OpenAPIResponses,
-} from "jsr:@brad-jones/deno-net-open-api-client@0.2.1";
+} from "jsr:@brad-jones/deno-net-open-api-client@0.2.2";
 import { z } from "npm:zod@^4.1.12";
 
 export type _400 = unknown;
@@ -1019,7 +1019,7 @@ export const DependentProcessListSchema: z.ZodType<DependentProcessList> = z.arr
   5,
 );
 
-export const EmailAddressSchema: z.ZodType<EmailAddress> = z.string().regex(new RegExp("^.+@[^\"\\-].+$")).min(3).max(
+export const EmailAddressSchema: z.ZodType<EmailAddress> = z.string().regex(new RegExp('^.+@[^"\\-].+$')).min(3).max(
   254,
 );
 

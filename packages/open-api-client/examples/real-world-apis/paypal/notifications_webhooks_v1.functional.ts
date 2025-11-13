@@ -6,7 +6,7 @@ import {
   type OpenAPIClientConfig,
   openAPIFetch,
   type OpenAPIResponses,
-} from "jsr:@brad-jones/deno-net-open-api-client@0.2.1";
+} from "jsr:@brad-jones/deno-net-open-api-client@0.2.2";
 import { z } from "npm:zod@^4.1.12";
 
 export type Error = unknown;
@@ -1224,7 +1224,7 @@ export const simulateEventPost = (
     request,
   ) as any;
 
-export { createCustomClient } from "jsr:@brad-jones/deno-net-open-api-client@0.2.1";
+export { createCustomClient } from "jsr:@brad-jones/deno-net-open-api-client@0.2.2";
 
 /**
  * Create a client with all available operations.
