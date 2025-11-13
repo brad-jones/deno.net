@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.8.5 - 2025-11-13
+#### Bug Fixes
+- (**open-api-client**) had to make another change to the way the default response is handled - (5ed36e6) - *brad-jones*
+#### Miscellaneous Chores
+- (**version**) open-api-client-v0.2.4 - (6750896) - github-actions[bot]
+
+- - -
+
 ## app-builder-v0.8.4 - 2025-11-13
 #### Bug Fixes
 - (**open-api-client**) update response type to cater for default case - (e660d85) - *brad-jones*
