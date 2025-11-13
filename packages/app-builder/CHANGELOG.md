@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.8.2 - 2025-11-13
+#### Bug Fixes
+- (**open-api-client**) export serializers so one can build custom fetch implementations - (d0e803e) - *brad-jones*
+#### Miscellaneous Chores
+- (**version**) open-api-client-v0.2.2 - (715026c) - github-actions[bot]
+
+- - -
+
 ## app-builder-v0.8.1 - 2025-11-13
 #### Bug Fixes
 - (**open-api-client**) regex escaping was broken because original example was incorrect - (268e0a6) - *brad-jones*
