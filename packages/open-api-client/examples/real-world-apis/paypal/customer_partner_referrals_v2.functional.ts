@@ -6,7 +6,7 @@ import {
   type OpenAPIClientConfig,
   openAPIFetch,
   type OpenAPIResponses,
-} from "jsr:@brad-jones/deno-net-open-api-client@0.1.6";
+} from "jsr:@brad-jones/deno-net-open-api-client@0.2.0";
 import { z } from "npm:zod@^4.1.12";
 
 export type _400 = unknown;
@@ -894,9 +894,9 @@ export const BusinessDocumentTypeSchema: z.ZodType<BusinessDocumentType> = z.enu
 ]);
 
 export const BusinessIndustrySchema: z.ZodType<BusinessIndustry> = z.object({
-  category: z.string().regex(new RegExp("^\d+$")).min(1).max(20),
-  mcc_code: z.string().regex(new RegExp("^\d+$")).min(1).max(20),
-  subcategory: z.string().regex(new RegExp("^\d+$")).min(1).max(20),
+  category: z.string().regex(new RegExp("^\\d+$")).min(1).max(20),
+  mcc_code: z.string().regex(new RegExp("^\\d+$")).min(1).max(20),
+  subcategory: z.string().regex(new RegExp("^\\d+$")).min(1).max(20),
 });
 
 export const BusinessNameSchema: z.ZodType<BusinessName> = z.object({
@@ -1020,7 +1020,7 @@ export const DependentProcessListSchema: z.ZodType<DependentProcessList> = z.arr
   5,
 );
 
-export const EmailAddressSchema: z.ZodType<EmailAddress> = z.string().regex(new RegExp("^.+@[^\"\-].+$")).min(3).max(
+export const EmailAddressSchema: z.ZodType<EmailAddress> = z.string().regex(new RegExp('^.+@[^"\\-].+$')).min(3).max(
   254,
 );
 
@@ -1220,7 +1220,7 @@ export const MandateSchema: z.ZodType<Mandate> = z.object({
 
 export const BankSchema: z.ZodType<Bank> = z.object({
   nick_name: z.string().regex(new RegExp("^[0-9A-Za-z_-]+$")).min(1).max(50).optional(),
-  account_number: z.string().regex(new RegExp("\d+")).min(1).max(50),
+  account_number: z.string().regex(new RegExp("\\d+")).min(1).max(50),
   account_type: z.enum(["CHECKING", "SAVINGS"]),
   currency_code: CurrencyCodeSchema.optional(),
   identifiers: IdentifierListSchema.optional(),
@@ -1632,7 +1632,7 @@ export const partnerReferralsRead = (config: OpenAPIClientConfig, request: {
     request,
   ) as any;
 
-export { createCustomClient } from "jsr:@brad-jones/deno-net-open-api-client@0.1.6";
+export { createCustomClient } from "jsr:@brad-jones/deno-net-open-api-client@0.2.0";
 
 /**
  * Create a client with all available operations.

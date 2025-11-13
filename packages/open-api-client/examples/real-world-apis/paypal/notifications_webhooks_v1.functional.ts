@@ -6,7 +6,7 @@ import {
   type OpenAPIClientConfig,
   openAPIFetch,
   type OpenAPIResponses,
-} from "jsr:@brad-jones/deno-net-open-api-client@0.1.6";
+} from "jsr:@brad-jones/deno-net-open-api-client@0.2.0";
 import { z } from "npm:zod@^4.1.12";
 
 export type Error = unknown;
@@ -572,8 +572,8 @@ export const SwaggerLinkDescriptionSchema: z.ZodType<SwaggerLinkDescription> = L
 export const VerifyWebhookSignatureSchema: z.ZodType<VerifyWebhookSignature> = z.object({
   auth_algo: z.string().regex(new RegExp("^[a-zA-Z0-9]+$")).max(100),
   cert_url: z.string().max(500),
-  transmission_id: z.string().regex(new RegExp("^(?!\d+$)\w+\S+")).max(50),
-  transmission_sig: z.string().regex(new RegExp("^(?!\d+$)\w+\S+")).max(500),
+  transmission_id: z.string().regex(new RegExp("^(?!\\d+$)\\w+\\S+")).max(50),
+  transmission_sig: z.string().regex(new RegExp("^(?!\\d+$)\\w+\\S+")).max(500),
   transmission_time: z.string().max(100),
   webhook_id: z.string().regex(new RegExp("^[a-zA-Z0-9]+$")).max(50),
   webhook_event: EventSchema,
@@ -606,7 +606,7 @@ export const WebhookList_1Schema: z.ZodType<WebhookList_1> = z.object({
 
 export const WebhooksLookupSchema: z.ZodType<WebhooksLookup> = z.object({
   id: z.string().optional(),
-  client_id: z.string().regex(new RegExp("^(?!\d+$)\w+\S+")).max(128).optional(),
+  client_id: z.string().regex(new RegExp("^(?!\\d+$)\\w+\\S+")).max(128).optional(),
   links: DefinitionsLinkDescriptionListSchema.optional(),
 });
 
@@ -1224,7 +1224,7 @@ export const simulateEventPost = (
     request,
   ) as any;
 
-export { createCustomClient } from "jsr:@brad-jones/deno-net-open-api-client@0.1.6";
+export { createCustomClient } from "jsr:@brad-jones/deno-net-open-api-client@0.2.0";
 
 /**
  * Create a client with all available operations.

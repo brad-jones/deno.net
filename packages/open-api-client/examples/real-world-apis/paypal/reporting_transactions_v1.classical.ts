@@ -5,7 +5,7 @@ import {
   type OpenAPIClientConfig,
   openAPIFetch,
   type OpenAPIResponses,
-} from "jsr:@brad-jones/deno-net-open-api-client@0.1.6";
+} from "jsr:@brad-jones/deno-net-open-api-client@0.2.0";
 import { z } from "npm:zod@^4.1.12";
 
 /**
@@ -478,8 +478,8 @@ export const AccountIdSchema: z.ZodType<AccountId> = z.string().regex(new RegExp
 );
 
 export const CheckoutOptionSchema: z.ZodType<CheckoutOption> = z.object({
-  checkout_option_name: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(200).optional(),
-  checkout_option_value: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(200).optional(),
+  checkout_option_name: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(200).optional(),
+  checkout_option_value: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(200).optional(),
 });
 
 export const CheckoutOptionListSchema: z.ZodType<CheckoutOptionList> = z.array(CheckoutOptionSchema).min(1).max(32767);
@@ -504,13 +504,13 @@ export const DateTimeSchema: z.ZodType<DateTime> = z.string().regex(
 ).min(20).max(64);
 
 export const AuctionInfoSchema: z.ZodType<AuctionInfo> = z.object({
-  auction_site: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(200).optional(),
-  auction_item_site: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(4000).optional(),
-  auction_buyer_id: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(500).optional(),
+  auction_site: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(200).optional(),
+  auction_item_site: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(4000).optional(),
+  auction_buyer_id: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(500).optional(),
   auction_closing_date: DateTimeSchema.optional(),
 });
 
-export const EmailAddressSchema: z.ZodType<EmailAddress> = z.string().regex(new RegExp("^.+@[^\"\-].+$")).min(3).max(
+export const EmailAddressSchema: z.ZodType<EmailAddress> = z.string().regex(new RegExp('^.+@[^"\\-].+$')).min(3).max(
   254,
 );
 
@@ -648,10 +648,10 @@ export const BalancesResponseSchema: z.ZodType<BalancesResponse> = z.object({
 });
 
 export const IncentiveDetailSchema: z.ZodType<IncentiveDetail> = z.object({
-  incentive_type: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(500).optional(),
-  incentive_code: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(200).optional(),
+  incentive_type: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(500).optional(),
+  incentive_code: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(200).optional(),
   incentive_amount: MoneySchema.optional(),
-  incentive_program_code: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(100).optional(),
+  incentive_program_code: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(100).optional(),
 });
 
 export const IncentiveDetailListSchema: z.ZodType<IncentiveDetailList> = z.array(IncentiveDetailSchema).min(1).max(
@@ -685,11 +685,11 @@ export const PercentageSchema: z.ZodType<Percentage> = z.string().regex(
 );
 
 export const ItemDetailSchema: z.ZodType<ItemDetail> = z.object({
-  item_code: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(1000).optional(),
-  item_name: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(200).optional(),
-  item_description: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(2000).optional(),
-  item_options: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(4000).optional(),
-  item_quantity: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(4000).optional(),
+  item_code: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(1000).optional(),
+  item_name: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(200).optional(),
+  item_description: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(2000).optional(),
+  item_options: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(4000).optional(),
+  item_quantity: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(4000).optional(),
   item_unit_price: MoneySchema.optional(),
   item_amount: MoneySchema.optional(),
   discount_amount: MoneySchema.optional(),
@@ -702,7 +702,7 @@ export const ItemDetailSchema: z.ZodType<ItemDetail> = z.object({
   handling_amount: MoneySchema.optional(),
   insurance_amount: MoneySchema.optional(),
   total_item_amount: MoneySchema.optional(),
-  invoice_number: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(200).optional(),
+  invoice_number: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(200).optional(),
   checkout_options: CheckoutOptionListSchema.optional(),
 });
 
@@ -711,7 +711,7 @@ export const ItemDetailListSchema: z.ZodType<ItemDetailList> = z.array(ItemDetai
 export const CartInfoSchema: z.ZodType<CartInfo> = z.object({
   item_details: ItemDetailListSchema.optional(),
   tax_inclusive: z.boolean().optional(),
-  paypal_invoice_id: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(127).optional(),
+  paypal_invoice_id: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(127).optional(),
 });
 
 export const PhoneSchema: z.ZodType<Phone> = z.object({
@@ -732,8 +732,8 @@ export const PayerInfoSchema: z.ZodType<PayerInfo> = z.object({
 });
 
 export const ShippingInfoSchema: z.ZodType<ShippingInfo> = z.object({
-  name: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(500).optional(),
-  method: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(500).optional(),
+  name: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(500).optional(),
+  method: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(500).optional(),
   address: AddressSchema.optional(),
   secondary_shipping_address: AddressSchema.optional(),
 });
@@ -762,14 +762,14 @@ export const TransactionInfoSchema: z.ZodType<TransactionInfo> = z.object({
   other_amount: MoneySchema.optional(),
   tip_amount: MoneySchema.optional(),
   transaction_status: z.string().regex(new RegExp("^[a-zA-Z0-9]*$")).min(1).max(1).optional(),
-  transaction_subject: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(256).optional(),
-  transaction_note: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(4000).optional(),
+  transaction_subject: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(256).optional(),
+  transaction_note: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(4000).optional(),
   payment_tracking_id: z.string().regex(new RegExp("^[a-zA-Z0-9]*$")).min(1).max(127).optional(),
   bank_reference_id: z.string().regex(new RegExp("^[a-zA-Z0-9]*$")).min(1).max(127).optional(),
   ending_balance: MoneySchema.optional(),
   available_balance: MoneySchema.optional(),
-  invoice_id: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(127).optional(),
-  custom_field: z.string().regex(new RegExp("^[a-zA-Z0-9_'\-., \":;\!?]*$")).min(1).max(127).optional(),
+  invoice_id: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(127).optional(),
+  custom_field: z.string().regex(new RegExp("^[a-zA-Z0-9_'\\-., \":;\\!?]*$")).min(1).max(127).optional(),
   protection_eligibility: z.string().regex(new RegExp("^[a-zA-Z0-9]*$")).min(1).max(2).optional(),
   credit_term: z.string().regex(new RegExp("^[a-zA-Z0-9.]*$")).min(1).max(25).optional(),
   credit_transactional_fee: MoneySchema.optional(),

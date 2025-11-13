@@ -6,7 +6,7 @@ import {
   type OpenAPIClientConfig,
   openAPIFetch,
   type OpenAPIResponses,
-} from "jsr:@brad-jones/deno-net-open-api-client@0.1.6";
+} from "jsr:@brad-jones/deno-net-open-api-client@0.2.0";
 import { z } from "npm:zod@^4.1.12";
 
 export type AcceptClaimType = "REFUND" | "REFUND_WITH_RETURN" | "PARTIAL_REFUND" | "REFUND_WITH_RETURN_SHIPMENT_LABEL";
@@ -2404,7 +2404,7 @@ export const AcceptClaimResponseOptionsSchema: z.ZodType<AcceptClaimResponseOpti
 });
 
 export const AcceptOfferSchema: z.ZodType<AcceptOffer> = z.object({
-  note: z.string().regex(new RegExp("^(.|\r?\n)*$")).min(1).max(2000).optional(),
+  note: z.string().regex(new RegExp("^(.|\\r?\\n)*$")).min(1).max(2000).optional(),
 });
 
 export const AcknowledgementTypeSchema: z.ZodType<AcknowledgementType> = z.enum([
@@ -2579,7 +2579,7 @@ export const AdjudicationTypeSchema: z.ZodType<AdjudicationType> = z.enum([
 ]);
 
 export const BuyerSchema: z.ZodType<Buyer> = z.object({
-  name: z.string().regex(new RegExp("^[^~!@#$%^*()_{}:|\t\n/]+$")).min(1).max(2000).optional(),
+  name: z.string().regex(new RegExp("^[^~!@#$%^*()_{}:|\\t\\n/]+$")).min(1).max(2000).optional(),
 });
 
 export const BuyerEscalationReasonSchema: z.ZodType<BuyerEscalationReason> = z.unknown();
@@ -2660,7 +2660,7 @@ export const DefinitionsSubReasonsListSchema: z.ZodType<DefinitionsSubReasonsLis
 ).min(1).max(10);
 
 export const DenyOfferSchema: z.ZodType<DenyOffer> = z.object({
-  note: z.string().regex(new RegExp("^(.|\r?\n)*$")).min(1).max(2000),
+  note: z.string().regex(new RegExp("^(.|\\r?\\n)*$")).min(1).max(2000),
 });
 
 export const DisputeChannelSchema: z.ZodType<DisputeChannel> = z.enum(["INTERNAL", "EXTERNAL", "ALERT"]);
@@ -2715,7 +2715,7 @@ export const DisputeStateSchema: z.ZodType<DisputeState> = z.enum([
 ]);
 
 export const DocumentSchema: z.ZodType<Document> = z.object({
-  name: z.string().regex(new RegExp("^[A-Za-z0-9-_,\s]+[.]{1}[A-Za-z]+$")).min(1).max(2000).optional(),
+  name: z.string().regex(new RegExp("^[A-Za-z0-9-_,\\s]+[.]{1}[A-Za-z]+$")).min(1).max(2000).optional(),
   url: z.string().optional(),
 });
 
@@ -2727,13 +2727,13 @@ export const DocumentListSchema: z.ZodType<DocumentList> = z.array(DocumentSchem
 
 export const EmailAddressSchema: z.ZodType<EmailAddress> = z.string().regex(
   new RegExp(
-    "^(?:[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[A-Za-z0-9-]*[A-Za-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$",
+    "^(?:[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[A-Za-z0-9-]*[A-Za-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])$",
   ),
 ).min(3).max(254);
 
 export const CommunicationDetailsSchema: z.ZodType<CommunicationDetails> = z.object({
   email: EmailAddressSchema.optional(),
-  note: z.string().regex(new RegExp("^(.|\r?\n)*$")).min(1).max(2000).optional(),
+  note: z.string().regex(new RegExp("^(.|\\r?\\n)*$")).min(1).max(2000).optional(),
   time_posted: DateTimeSchema.optional(),
 });
 
@@ -2849,7 +2849,7 @@ export const ErrorDefaultSchema: z.ZodType<ErrorDefault> = z.union([
 ]);
 
 export const EscalateSchema: z.ZodType<Escalate> = z.object({
-  note: z.string().regex(new RegExp("^(.|\r?\n)*$")).min(1).max(2000).optional(),
+  note: z.string().regex(new RegExp("^(.|\\r?\\n)*$")).min(1).max(2000).optional(),
   buyer_escalation_reason: BuyerEscalationReasonSchema.optional(),
 });
 
@@ -2918,7 +2918,7 @@ export const MerchantContactedOutcomeSchema: z.ZodType<MerchantContactedOutcome>
 export const MessageSchema: z.ZodType<Message> = z.object({
   posted_by: z.enum(["BUYER", "SELLER", "ARBITER"]).optional(),
   time_posted: DateTimeSchema.optional(),
-  content: z.string().regex(new RegExp("^(.|\r?\n)*$")).min(0).max(2000).optional(),
+  content: z.string().regex(new RegExp("^(.|\\r?\\n)*$")).min(0).max(2000).optional(),
   documents: DocumentListSchema.optional(),
 });
 
@@ -2969,12 +2969,12 @@ export const IncorrectTransactionAmountSchema: z.ZodType<IncorrectTransactionAmo
 export const ItemInfoSchema: z.ZodType<ItemInfo> = z.object({
   item_id: z.string().regex(new RegExp("^.*$")).min(1).max(255).optional(),
   item_name: z.string().regex(new RegExp("^.*$")).min(1).max(2000).optional(),
-  item_description: z.string().regex(new RegExp("^(.|\r?\n)*$")).min(1).max(2000).optional(),
+  item_description: z.string().regex(new RegExp("^(.|\\r?\\n)*$")).min(1).max(2000).optional(),
   item_quantity: z.string().regex(new RegExp("^[1-9][0-9]{0,9}$")).min(1).max(10).optional(),
   partner_transaction_id: z.string().regex(new RegExp("^[A-Za-z0-9]+$")).min(1).max(255).optional(),
   reason: DisputeReasonSchema.optional(),
   dispute_amount: MoneySchema.optional(),
-  notes: z.string().regex(new RegExp("^(.|\r?\n)*$")).min(1).max(2000).optional(),
+  notes: z.string().regex(new RegExp("^(.|\\r?\\n)*$")).min(1).max(2000).optional(),
   item_type: ItemTypeSchema.optional(),
   product_details: ItemProductDetailsSchema.optional(),
   service_details: ItemServiceDetailsSchema.optional(),
@@ -3012,7 +3012,7 @@ export const OfferTypeSchema: z.ZodType<OfferType> = z.enum([
 ]);
 
 export const MakeOfferSchema: z.ZodType<MakeOffer> = z.object({
-  note: z.string().regex(new RegExp("^(.|\r?\n)*$")).min(1).max(2000),
+  note: z.string().regex(new RegExp("^(.|\\r?\\n)*$")).min(1).max(2000),
   offer_amount: MoneySchema.optional(),
   return_shipping_address: AddressPortableSchema.optional(),
   invoice_id: z.string().regex(new RegExp("^.*$")).min(1).max(127).optional(),
@@ -3025,7 +3025,7 @@ export const OfferHistorySchema: z.ZodType<OfferHistory> = z.object({
   event_type: z.enum(["PROPOSED", "ACCEPTED", "DENIED"]).optional(),
   offer_type: OfferTypeSchema.optional(),
   offer_amount: MoneySchema.optional(),
-  notes: z.string().regex(new RegExp("^(.|\r?\n)*$")).min(1).max(2000).optional(),
+  notes: z.string().regex(new RegExp("^(.|\\r?\\n)*$")).min(1).max(2000).optional(),
   dispute_life_cycle_stage: DisputeLifecycleStageSchema.optional(),
 });
 
@@ -3085,20 +3085,20 @@ export const ReturnDetailsSchema: z.ZodType<ReturnDetails> = z.object({
   return_time: DateTimeSchema.optional(),
   mode: z.enum(["SHIPPED", "IN_PERSON"]).optional(),
   receipt: z.boolean().optional(),
-  return_confirmation_number: z.string().regex(new RegExp("^[A-Za-z0-9:\-]+$")).min(1).max(255).optional(),
+  return_confirmation_number: z.string().regex(new RegExp("^[A-Za-z0-9:\\-]+$")).min(1).max(255).optional(),
   returned: z.boolean().optional(),
 });
 
 export const SellerSchema: z.ZodType<Seller> = z.object({
   email: EmailAddressSchema.optional(),
   merchant_id: z.string().regex(new RegExp("^[0-9A-Za-z]+$")).min(1).max(255).optional(),
-  name: z.string().regex(new RegExp("^[^~!@#$%^*()_{}:|\t\n/]+$")).min(1).max(2000).optional(),
+  name: z.string().regex(new RegExp("^[^~!@#$%^*()_{}:|\\t\\n/]+$")).min(1).max(2000).optional(),
 });
 
 export const ServiceDetailsSchema: z.ZodType<ServiceDetails> = z.object({
-  description: z.string().regex(new RegExp("^(.|\r?\n)*$")).min(1).max(2000).optional(),
+  description: z.string().regex(new RegExp("^(.|\\r?\\n)*$")).min(1).max(2000).optional(),
   service_started: z.enum(["YES", "NO", "CANCELLED"]).optional(),
-  note: z.string().regex(new RegExp("^(.|\r?\n)*$")).min(1).max(2000).optional(),
+  note: z.string().regex(new RegExp("^(.|\\r?\\n)*$")).min(1).max(2000).optional(),
   sub_reasons: DefinitionsSubReasonsListSchema.optional(),
   purchase_url: z.string().optional(),
 });
@@ -3140,7 +3140,7 @@ export const SubReasonsSchema: z.ZodType<SubReasons> = z.enum(["DAMAGED", "DIFFE
 export const SubReasonsListSchema: z.ZodType<SubReasonsList> = z.array(SubReasonsSchema).min(1).max(10);
 
 export const ProductDetailsSchema: z.ZodType<ProductDetails> = z.object({
-  description: z.string().regex(new RegExp("^(.|\r?\n)*$")).min(1).max(2000).optional(),
+  description: z.string().regex(new RegExp("^(.|\\r?\\n)*$")).min(1).max(2000).optional(),
   product_received: z.enum(["YES", "NO", "RETURNED"]).optional(),
   product_received_time: DateTimeSchema.optional(),
   expected_delivery_date: DateTimeSchema.optional(),
@@ -3175,7 +3175,7 @@ export const SupportingInfoDefinitionsDocumentListSchema: z.ZodType<SupportingIn
 ).min(1).max(100);
 
 export const SupportingInfoSchema: z.ZodType<SupportingInfo> = z.object({
-  notes: z.string().regex(new RegExp("^(.|\r?\n)*$")).min(1).max(2000).optional(),
+  notes: z.string().regex(new RegExp("^(.|\\r?\\n)*$")).min(1).max(2000).optional(),
   documents: SupportingInfoDefinitionsDocumentListSchema.optional(),
   source: z.enum(["SUBMITTED_BY_BUYER", "SUBMITTED_BY_SELLER", "SUBMITTED_BY_PARTNER"]).optional(),
   provided_time: DateTimeSchema.optional(),
@@ -4537,7 +4537,7 @@ export const EvidenceSchema: z.ZodType<Evidence> = z.object({
   ]).optional(),
   evidence_info: EvidenceInfoSchema.optional(),
   documents: DefinitionsDocumentListSchema.optional(),
-  notes: z.string().regex(new RegExp("^(.|\r?\n)*$")).min(1).max(2000).optional(),
+  notes: z.string().regex(new RegExp("^(.|\\r?\\n)*$")).min(1).max(2000).optional(),
   source: z.enum([
     "REQUESTED_FROM_BUYER",
     "REQUESTED_FROM_SELLER",
@@ -4573,8 +4573,8 @@ export const TransactionInfoSchema: z.ZodType<TransactionInfo> = z.object({
   ]).optional(),
   gross_amount: MoneySchema.optional(),
   gross_asset: CryptocurrencySchema.optional(),
-  invoice_number: z.string().regex(new RegExp("^[A-Za-z0-9:\-|]+$")).min(1).max(127).optional(),
-  custom: z.string().regex(new RegExp("^(.|\r?\n)*$")).min(1).max(2000).optional(),
+  invoice_number: z.string().regex(new RegExp("^[A-Za-z0-9:\\-|]+$")).min(1).max(127).optional(),
+  custom: z.string().regex(new RegExp("^(.|\\r?\\n)*$")).min(1).max(2000).optional(),
   buyer: BuyerSchema.optional(),
   seller: SellerSchema.optional(),
   items: ItemInfoListSchema.optional(),
@@ -4692,7 +4692,7 @@ export const disputesList = (config: OpenAPIClientConfig, request?: {
           ).min(20).max(64).default("Current date and time").optional(),
           disputed_transaction_id: z.string().regex(new RegExp("^[0-9A-Z_]+$")).min(1).max(255).optional(),
           page_size: z.number().int().min(1).max(50).default(10).optional(),
-          next_page_token: z.string().regex(new RegExp("^[A-Za-z0-9+\/=]+$")).min(1).max(255).default(
+          next_page_token: z.string().regex(new RegExp("^[A-Za-z0-9+\\/=]+$")).min(1).max(255).default(
             "The first page of data",
           ).optional(),
           dispute_state: z.string().regex(new RegExp("^[0-9A-Z_]+$")).min(1).max(2000).optional(),
@@ -5480,7 +5480,7 @@ export const disputesProvideSupportingInfo = (config: OpenAPIClientConfig, reque
     request,
   ) as any;
 
-export { createCustomClient } from "jsr:@brad-jones/deno-net-open-api-client@0.1.6";
+export { createCustomClient } from "jsr:@brad-jones/deno-net-open-api-client@0.2.0";
 
 /**
  * Create a client with all available operations.
