@@ -815,6 +815,19 @@ Deno.test("ZodSchemaGenerator - escapes quotes in regex pattern", () => {
   expect(result).toContain('new RegExp("^\\"quoted\\"$")');
 });
 
+Deno.test("ZodSchemaGenerator - escapes slashes in regex pattern", () => {
+  const sanitizer = new SchemaSanitizer();
+  const generator = new ZodSchemaGenerator(sanitizer);
+
+  const schema: OpenAPISchemaObjectSchema = {
+    type: "string",
+    pattern: "^\\d\\d\\d\\d-\\d\\d-\\d\\d.*$",
+  };
+
+  const result = generator.generate(schema);
+  expect(result).toContain('new RegExp("^\\\\d\\\\d\\\\d\\\\d-\\\\d\\\\d-\\\\d\\\\d.*$")');
+});
+
 Deno.test("ZodSchemaGenerator - handles inline mode for non-component refs", () => {
   const schemas: Record<string, OpenAPISchemaObjectSchema> = {
     Status: { type: "string", enum: ["active", "inactive"] },

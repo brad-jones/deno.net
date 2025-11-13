@@ -248,10 +248,7 @@ export class ZodSchemaGenerator implements ISchemaConverter {
 
     // Handle pattern (explicit validation)
     if ("pattern" in schema && typeof schema.pattern === "string") {
-      // Only escape double quotes in the regex pattern
-      // Backslashes are already properly escaped in the regex string
-      const escapedPattern = schema.pattern.replace(/"/g, '\\"');
-      result += `.regex(new RegExp("${escapedPattern}"))`;
+      result += `.regex(new RegExp(${JSON.stringify(schema.pattern)}))`;
     }
 
     // Handle string constraints
