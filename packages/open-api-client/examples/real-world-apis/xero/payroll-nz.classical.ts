@@ -678,14 +678,15 @@ export type EmployeeStatutorySickLeave = {
   /** Whether another leave (Paternity, Shared Parental specifically) occurs during the requested leave's period. While this is allowed it could affect payment amounts */
   overlapsWithOtherLeave?: boolean;
   /** If the leave requested was considered "not entitled", the reasons why are listed here. */
-  entitlementFailureReasons?: (
-    | "UnableToCalculateAwe"
-    | "AweLowerThanLel"
-    | "NotQualifiedInPreviousPiw"
-    | "ExceededMaximumEntitlementWeeksOfSsp"
-    | "ExceededMaximumDurationOfPiw"
-    | "SufficientNoticeNotGiven"
-  )[];
+  entitlementFailureReasons?:
+    (
+      | "UnableToCalculateAwe"
+      | "AweLowerThanLel"
+      | "NotQualifiedInPreviousPiw"
+      | "ExceededMaximumEntitlementWeeksOfSsp"
+      | "ExceededMaximumDurationOfPiw"
+      | "SufficientNoticeNotGiven"
+    )[];
 };
 
 export type EmployeeWorkingPattern = {

@@ -4168,7 +4168,7 @@ export const CobrandedCardSchema: z.ZodType<CobrandedCard> = z.object({
 export const CobrandedCardListSchema: z.ZodType<CobrandedCardList> = z.array(CobrandedCardSchema).min(0).max(25);
 
 export const Level2CardProcessingDataSchema: z.ZodType<Level2CardProcessingData> = z.object({
-  invoice_id: z.string().regex(new RegExp('^[\\w‘\\-.,":;\\!?]*$')).min(1).max(127).optional(),
+  invoice_id: z.string().regex(new RegExp("^[\\w‘\\-.,\":;\\!?]*$")).min(1).max(127).optional(),
   tax_total: MoneySchema.optional(),
 });
 

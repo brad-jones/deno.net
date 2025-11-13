@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## open-api-client-v0.2.1 - 2025-11-13
+#### Bug Fixes
+- (**open-api-client**) regex escaping was broken because original example was incorrect - (268e0a6) - *brad-jones*
+#### Miscellaneous Chores
+- (**open-api-client**) re-gen examples - (9558a61) - *brad-jones*
+
+- - -
+
 ## open-api-client-v0.2.0 - 2025-11-12
 #### Features
 - (**open-api-client**) major refactor - (6812d97) - *brad-jones*
