@@ -6,7 +6,7 @@ import {
   type OpenAPIClientConfig,
   openAPIFetch,
   type OpenAPIResponses,
-} from "jsr:@brad-jones/deno-net-open-api-client@0.2.0";
+} from "jsr:@brad-jones/deno-net-open-api-client@0.2.1";
 import { z } from "npm:zod@^4.1.12";
 
 /** Data transfer object for public create usage end point */
@@ -452,7 +452,7 @@ export const getUsageRecords = (config: OpenAPIClientConfig, request: {
     request,
   ) as any;
 
-export { createCustomClient } from "jsr:@brad-jones/deno-net-open-api-client@0.2.0";
+export { createCustomClient } from "jsr:@brad-jones/deno-net-open-api-client@0.2.1";
 
 /**
  * Create a client with all available operations.

@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## open-api-client-v0.2.2 - 2025-11-13
+#### Bug Fixes
+- (**open-api-client**) export serializers so one can build custom fetch implementations - (d0e803e) - *brad-jones*
+
+- - -
+
 ## open-api-client-v0.2.1 - 2025-11-13
 #### Bug Fixes
 - (**open-api-client**) regex escaping was broken because original example was incorrect - (268e0a6) - *brad-jones*
