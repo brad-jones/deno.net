@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## open-api-client-v0.2.3 - 2025-11-13
+#### Bug Fixes
+- (**open-api-client**) update response type to cater for default case - (e660d85) - *brad-jones*
+#### Miscellaneous Chores
+- (**open-api-client**) re-gen examples again, also made this manual, slows pipeline down too much - (b6c3c31) - *brad-jones*
+
+- - -
+
 ## open-api-client-v0.2.2 - 2025-11-13
 #### Bug Fixes
 - (**open-api-client**) export serializers so one can build custom fetch implementations - (d0e803e) - *brad-jones*
