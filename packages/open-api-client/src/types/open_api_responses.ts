@@ -102,13 +102,13 @@ export type OpenAPIResponses<
     >,
 > = {
   [K in keyof TResponses]: K extends number
-    ? TResponses[K] extends { body: infer TBody; headers: infer THeaders } ? OpenAPIResponse<K, TBody, THeaders>
-    : TResponses[K] extends { body: infer TBody } ? OpenAPIResponse<K, TBody, Record<string, string>>
+    ? TResponses[K] extends { body: infer TBody; headers: infer THeaders } ? OpenAPIResponse<K, TBody, THeaders, false>
+    : TResponses[K] extends { body: infer TBody } ? OpenAPIResponse<K, TBody, Record<string, string>, false>
     : never
     : K extends "default"
       ? TResponses[K] extends { body: infer TBody; headers: infer THeaders }
-        ? OpenAPIResponse<"default", TBody, THeaders>
-      : TResponses[K] extends { body: infer TBody } ? OpenAPIResponse<"default", TBody, Record<string, string>>
+        ? OpenAPIResponse<number, TBody, THeaders, true>
+      : TResponses[K] extends { body: infer TBody } ? OpenAPIResponse<number, TBody, Record<string, string>, true>
       : never
     : never;
 }[keyof TResponses];

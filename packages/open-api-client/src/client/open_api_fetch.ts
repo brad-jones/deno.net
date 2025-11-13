@@ -80,7 +80,7 @@ export async function openAPIFetch(
   config: OpenAPIClientConfig,
   metadata: OpenAPIRequestMetadata,
   request?: OpenAPIRequest,
-): Promise<OpenAPIResponse> {
+): Promise<OpenAPIResponse<number, unknown, Record<string, string>, boolean>> {
   // 1. Validate the global client config using Zod
   const validatedConfig = OpenAPIClientConfig.parse(config);
 
@@ -165,11 +165,13 @@ export async function openAPIFetch(
     raw: clonedResponse,
   };
 
-  // 8. Response validation, using whatever schema we are given (optional)
+  // 8. Response validation and determine if this is a default response
+  let isDefault = false;
   if (metadata.responseSchema) {
-    let schema = metadata.responseSchema[responseObject.status];
+    let schema = metadata.responseSchema[response.status];
     if (!schema && metadata.responseSchema["default"]) {
       schema = metadata.responseSchema["default"];
+      isDefault = true;
     }
     if (schema) {
       const result = await schema["~standard"].validate(responseObject);
@@ -181,5 +183,5 @@ export async function openAPIFetch(
     }
   }
 
-  return responseObject;
+  return { ...responseObject, isDefault };
 }
