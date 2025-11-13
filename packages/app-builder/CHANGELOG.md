@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.8.3 - 2025-11-13
+#### Bug Fixes
+- (**app-builder**) align the OpenApiRequestContext with the OpenAPIRequest type from the client - (6a866b2) - *brad-jones*
+
+- - -
+
 ## app-builder-v0.8.2 - 2025-11-13
 #### Bug Fixes
 - (**open-api-client**) export serializers so one can build custom fetch implementations - (d0e803e) - *brad-jones*
