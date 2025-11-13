@@ -1,8 +1,8 @@
 // deno-lint-ignore-file no-explicit-any
 
-import type { JSONValue } from "@hono/hono/utils/types";
-import type { ContentfulStatusCode } from "@hono/hono/utils/http-status";
 import type { HttpContext, ResponseHeaders } from "@brad-jones/deno-net-http-context";
+import type { ContentfulStatusCode } from "@hono/hono/utils/http-status";
+import type { JSONValue } from "@hono/hono/utils/types";
 import type { CreateDocumentOptions, ZodOpenApiObject, ZodOpenApiOperationObject } from "zod-openapi";
 
 /**
@@ -105,16 +105,16 @@ export class OpenApiRequestContext<OpenApi extends ZodOpenApiOperationObject = a
    * Creates a new OpenAPI request context.
    *
    * @param httpContext - The underlying HTTP context
-   * @param pathParams - Extracted and typed path parameters
-   * @param queryParams - Extracted and typed query parameters
+   * @param path - Extracted and typed path parameters
+   * @param query - Extracted and typed query parameters
    * @param headers - Extracted and typed request headers
    * @param cookies - Extracted and typed request cookies
    * @param body - Extracted and typed request body
    */
   constructor(
     public readonly httpContext: HttpContext,
-    public readonly pathParams: ExtractPathParameters<OpenApi>,
-    public readonly queryParams: ExtractQueryParameters<OpenApi>,
+    public readonly path: ExtractPathParameters<OpenApi>,
+    public readonly query: ExtractQueryParameters<OpenApi>,
     public readonly headers: ExtractRequestHeaders<OpenApi>,
     public readonly cookies: ExtractRequestCookies<OpenApi>,
     public readonly body: ExtractRequestBody<OpenApi>,

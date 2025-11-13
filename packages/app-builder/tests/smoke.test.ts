@@ -58,7 +58,7 @@ Deno.test("OpenAPI Client Smoke Test", async () => {
           },
         },
       },
-      (ctx) => ctx.response(200, { message: `counter: ${ctx.pathParams.bar}` }),
+      (ctx) => ctx.response(200, { message: `counter: ${ctx.path.bar}` }),
     );
 
   await using app = await builder.run();

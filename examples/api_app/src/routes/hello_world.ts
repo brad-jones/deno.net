@@ -1,5 +1,5 @@
-import { z } from "@zod/zod";
 import { fromPath, RouteBuilder, RouteModule } from "@brad-jones/deno-net-app-builder";
+import { z } from "@zod/zod";
 
 export default ((r: RouteBuilder) => {
   r.mapGet("/hello/:name", (ctx, name = fromPath("name")) => ctx.json({ message: `Hello ${name}` }));
@@ -29,6 +29,6 @@ export default ((r: RouteBuilder) => {
         },
       },
     },
-    (ctx) => ctx.response(200, { message: `Hello ${ctx.pathParams.name}, you are ${ctx.body.age} years old.` }),
+    (ctx) => ctx.response(200, { message: `Hello ${ctx.path.name}, you are ${ctx.body.age} years old.` }),
   );
 }) satisfies RouteModule;

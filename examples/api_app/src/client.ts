@@ -5,7 +5,7 @@ import {
   type OpenAPIClientConfig,
   openAPIFetch,
   type OpenAPIResponses,
-} from "jsr:@brad-jones/deno-net-open-api-client@0.1.6";
+} from "jsr:@brad-jones/deno-net-open-api-client@0.2.1";
 
 /**
  * API Client class with path-based access to all operations.
