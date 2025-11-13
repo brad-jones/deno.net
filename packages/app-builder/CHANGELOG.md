@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.8.4 - 2025-11-13
+#### Bug Fixes
+- (**open-api-client**) update response type to cater for default case - (e660d85) - *brad-jones*
+#### Miscellaneous Chores
+- (**open-api-client**) re-gen examples again, also made this manual, slows pipeline down too much - (b6c3c31) - *brad-jones*
+- (**version**) open-api-client-v0.2.3 - (1938207) - github-actions[bot]
+
+- - -
+
 ## app-builder-v0.8.3 - 2025-11-13
 #### Bug Fixes
 - (**app-builder**) align the OpenApiRequestContext with the OpenAPIRequest type from the client - (6a866b2) - *brad-jones*
