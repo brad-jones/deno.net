@@ -7,7 +7,7 @@ import {
   openAPIFetch,
   type OpenAPIResponsePromise,
   type OpenAPIResponses,
-} from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
+} from "jsr:@brad-jones/deno-net-open-api-client@0.2.5";
 import { z } from "npm:zod@^4.1.12";
 
 export const getPetFindbytags = (config: OpenAPIClientConfig, request: {
@@ -40,7 +40,7 @@ export const getPetFindbytags = (config: OpenAPIClientConfig, request: {
     request,
   ) as any;
 
-export { createCustomClient } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
+export { createCustomClient } from "jsr:@brad-jones/deno-net-open-api-client@0.2.5";
 
 /**
  * Create a client with all available operations.
