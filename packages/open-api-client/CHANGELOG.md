@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## open-api-client-v0.2.5 - 2025-11-14
+#### Bug Fixes
+- (**open-api-client**) added is response pattern matching method - (e6c3a9a) - *brad-jones*
+#### Miscellaneous Chores
+- (**open-api-client**) re-gen examples - (7d27ef7) - *brad-jones*
+
+- - -
+
 ## open-api-client-v0.2.4 - 2025-11-13
 #### Bug Fixes
 - (**open-api-client**) had to make another change to the way the default response is handled - (5ed36e6) - *brad-jones*
