@@ -237,7 +237,7 @@ Deno.test("openAPIFetch - Empty response body", async () => {
   );
 
   expect(result.status).toBe(204);
-  expect(result.body).toBe(undefined);
+  expect(result.body).toBe("");
 });
 
 Deno.test("openAPIFetch - Non-JSON response", async () => {
@@ -259,8 +259,7 @@ Deno.test("openAPIFetch - Non-JSON response", async () => {
   );
 
   expect(result.status).toBe(200);
-  expect(result.body).toBe(undefined);
-  expect(await result.raw.text()).toBe("Plain text response");
+  expect(result.body).toBe("Plain text response");
 });
 
 Deno.test("openAPIFetch - Missing config throws error", async () => {

@@ -1,6 +1,6 @@
 import type { OpenAPIRequest, OpenAPIRequestMetadata, OpenAPIResponse, OpenAPIResponsePromise } from "../types/mod.ts";
 import { OpenAPIClientConfig } from "./config.ts";
-import { ResponseError } from "./response_error.ts";
+import { InvalidRequestError, InvalidResponseError, ResponseError } from "./response_error.ts";
 import { serializeCookies, serializeHeaders, serializePath, serializeQuery } from "./serializers/mod.ts";
 
 /**
@@ -98,9 +98,7 @@ export function openAPIFetch<
     if (metadata.requestSchema && request) {
       const result = await metadata.requestSchema["~standard"].validate(request);
       if (result.issues) {
-        throw new Error(
-          `Request validation failed: ${JSON.stringify(result.issues)}`,
-        );
+        throw new InvalidRequestError(request, result.issues);
       }
     }
 
@@ -154,19 +152,29 @@ export function openAPIFetch<
       body,
     });
 
-    // 7. Parse response
-    // TODO: Support content types other than JSON
+    // Clone the response early on so that we can be sure we
+    // return a raw response object without locked readers.
     const clonedResponse = response.clone();
 
+    // 7. Parse response
     let responseBody: unknown;
-    if (response.headers.get("Content-Type")?.includes("application/json")) {
-      responseBody = await response.json();
+    const contentType = response.headers.get("Content-Type") ?? response.headers.get("content-type");
+    if (contentType?.includes("application/json") || contentType?.includes("+json")) {
+      try {
+        responseBody = await response.json();
+      } catch (error) {
+        throw new ResponseError(
+          `Failed to parse JSON response: ${error instanceof Error ? error.message : String(error)}`,
+          clonedResponse,
+        );
+      }
+    } else {
+      // TODO: Support content types other than JSON
+      responseBody = await response.text();
     }
 
     const responseHeaders: Record<string, string> = {};
-    response.headers.forEach((value: string, key: string) => {
-      responseHeaders[key] = value;
-    });
+    for (const [k, v] of response.headers) responseHeaders[k] = v;
 
     const responseObject = {
       status: response.status,
@@ -186,9 +194,7 @@ export function openAPIFetch<
       if (schema) {
         const result = await schema["~standard"].validate(responseObject);
         if (result.issues) {
-          throw new Error(
-            `Response validation failed: ${JSON.stringify(result.issues)}`,
-          );
+          throw new InvalidResponseError(clonedResponse, result.issues);
         }
       }
     }
