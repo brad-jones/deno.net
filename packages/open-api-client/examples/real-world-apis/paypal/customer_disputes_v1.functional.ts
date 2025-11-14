@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -4662,7 +4663,7 @@ export const disputesList = (config: OpenAPIClientConfig, request?: {
     /** The date and time when the dispute was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`. update_time_after must be within the last 180 days and the default is the maximum time (180 days) supported. */
     update_time_after?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP <code>200 OK</code> status code and a JSON response body that lists disputes with a full or summary set of details. Default is a summary set of details, which shows the <code>dispute_id</code>, <code>reason</code>, <code>status</code>, <code>dispute_amount</code>, <code>create_time</code>, and <code>update_time</code> fields for each dispute. */
     200: {
@@ -4727,7 +4728,7 @@ export const disputesGet = (config: OpenAPIClientConfig, request: {
     /** The ID of the dispute for which to provide the supporting information. */
     id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows dispute details. */
     200: {
@@ -4773,7 +4774,7 @@ export const disputesPatch = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body: PatchRequest;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successfully accepted request returns the HTTP `202 Accepted` status code and a JSON response body that includes a [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) to the ID of the request. The Clients can choose webhook option as well to receive dispute update notification. */
     202: {
@@ -4834,7 +4835,7 @@ export const disputesProvideEvidence = (config: OpenAPIClientConfig, request: {
     /** The ID of the dispute for which to provide the supporting information. */
     id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that includes a link to the dispute. */
     200: {
@@ -4879,7 +4880,7 @@ export const disputesAppeal = (config: OpenAPIClientConfig, request: {
     /** The ID of the dispute for which to provide the supporting information. */
     id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that includes a link to the dispute. */
     200: {
@@ -4925,7 +4926,7 @@ export const disputesAcceptClaim = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that includes a link to the dispute. */
     200: {
@@ -4971,7 +4972,7 @@ export const disputesAdjudicate = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body: Adjudicate;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that includes a link to the dispute. */
     200: {
@@ -5028,7 +5029,7 @@ export const disputesRequireEvidence = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body: RequireEvidence;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that includes a link to the dispute. */
     200: {
@@ -5085,7 +5086,7 @@ export const disputesEscalate = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body?: Escalate;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that includes a link to the dispute. */
     200: {
@@ -5142,7 +5143,7 @@ export const disputesSendMessage = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that includes a link to the dispute. */
     200: {
@@ -5198,7 +5199,7 @@ export const disputesMakeOffer = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body: MakeOffer;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that includes a link to the dispute. */
     200: {
@@ -5255,7 +5256,7 @@ export const disputesAcceptOffer = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body?: AcceptOffer;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that includes a link to the dispute. */
     200: {
@@ -5317,7 +5318,7 @@ export const disputesDenyOffer = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body: DenyOffer;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that includes a link to the dispute. */
     200: {
@@ -5374,7 +5375,7 @@ export const disputesAcknowledgeReturnItem = (config: OpenAPIClientConfig, reque
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that includes a link to the dispute. */
     200: {
@@ -5430,7 +5431,7 @@ export const disputesProvideSupportingInfo = (config: OpenAPIClientConfig, reque
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that includes a link to the dispute. */
     200: {

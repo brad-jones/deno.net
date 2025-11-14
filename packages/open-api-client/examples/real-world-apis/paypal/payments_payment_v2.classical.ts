@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -1238,7 +1239,7 @@ export class ApiClient {
         /** An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote> */
         "PayPal-Auth-Assertion"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP <code>200 OK</code> status code and a JSON response body that shows authorization details. */
         200: {
@@ -1306,7 +1307,7 @@ export class ApiClient {
         "PayPal-Auth-Assertion"?: string;
       };
       body: CaptureRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP <code>200 OK</code> status code and a JSON response body that shows captured payment details. */
         200: {
@@ -1402,7 +1403,7 @@ export class ApiClient {
         "PayPal-Auth-Assertion"?: string;
       };
       body?: ReauthorizeRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP <code>200 OK</code> status code and a JSON response body that shows the reauthorized payment details. */
         200: {
@@ -1487,7 +1488,7 @@ export class ApiClient {
         /** The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> */
         Prefer?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP <code>200 OK</code> status code and a JSON response body that shows authorization details. This response is returned when the Prefer header is set to return=representation. */
         200: {
@@ -1568,7 +1569,7 @@ export class ApiClient {
         /** The PayPal-generated ID for the captured payment to refund. */
         capture_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP <code>200 OK</code> status code and a JSON response body that shows captured payment details. */
         200: {
@@ -1638,7 +1639,7 @@ export class ApiClient {
         "PayPal-Auth-Assertion"?: string;
       };
       body?: RefundRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP <code>200 OK</code> status code and a JSON response body that shows refund details. */
         200: {
@@ -1729,7 +1730,7 @@ export class ApiClient {
         /** An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote> */
         "PayPal-Auth-Assertion"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP <code>200 OK</code> status code and a JSON response body that shows refund details. */
         200: {

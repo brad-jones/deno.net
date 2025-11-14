@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -118,7 +119,7 @@ export const UserSchema: z.ZodType<User> = z.object({
  *
  * Add a new pet to the store.
  */
-export const addPet = (config: OpenAPIClientConfig, request: { body: Pet }): Promise<
+export const addPet = (config: OpenAPIClientConfig, request: { body: Pet }): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful operation */
     200: {
@@ -161,7 +162,10 @@ export const addPet = (config: OpenAPIClientConfig, request: { body: Pet }): Pro
  *
  * Update an existing pet by Id.
  */
-export const updatePet = (config: OpenAPIClientConfig, request: { body: Pet }): Promise<
+export const updatePet = (
+  config: OpenAPIClientConfig,
+  request: { body: Pet },
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful operation */
     200: {
@@ -214,7 +218,7 @@ export const findPetsByStatus = (config: OpenAPIClientConfig, request: {
     /** Status values that need to be considered for filter */
     status: "available" | "pending" | "sold";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** successful operation */
     200: {
@@ -259,7 +263,7 @@ export const findPetsByTags = (config: OpenAPIClientConfig, request: {
     /** Tags to filter by */
     tags: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** successful operation */
     200: {
@@ -304,7 +308,7 @@ export const getPetById = (config: OpenAPIClientConfig, request: {
     /** ID of pet to return */
     petId: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** successful operation */
     200: {
@@ -360,7 +364,7 @@ export const updatePetWithForm = (config: OpenAPIClientConfig, request: {
     /** Status of pet that needs to be updated */
     status?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** successful operation */
     200: {
@@ -412,7 +416,7 @@ export const deletePet = (config: OpenAPIClientConfig, request: {
   headers?: {
     api_key?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Pet deleted */
     200: {
@@ -465,7 +469,7 @@ export const uploadFile = (config: OpenAPIClientConfig, request: {
     additionalMetadata?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** successful operation */
     200: {
@@ -513,7 +517,7 @@ export const uploadFile = (config: OpenAPIClientConfig, request: {
  *
  * Returns a map of status codes to quantities.
  */
-export const getInventory = (config: OpenAPIClientConfig): Promise<
+export const getInventory = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** successful operation */
     200: {
@@ -542,7 +546,10 @@ export const getInventory = (config: OpenAPIClientConfig): Promise<
  *
  * Place a new order in the store.
  */
-export const placeOrder = (config: OpenAPIClientConfig, request?: { body?: Order }): Promise<
+export const placeOrder = (
+  config: OpenAPIClientConfig,
+  request?: { body?: Order },
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** successful operation */
     200: {
@@ -590,7 +597,7 @@ export const getOrderById = (config: OpenAPIClientConfig, request: {
     /** ID of order that needs to be fetched */
     orderId: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** successful operation */
     200: {
@@ -640,7 +647,7 @@ export const deleteOrder = (config: OpenAPIClientConfig, request: {
     /** ID of the order that needs to be deleted */
     orderId: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** order deleted */
     200: {
@@ -685,7 +692,10 @@ export const deleteOrder = (config: OpenAPIClientConfig, request: {
  *
  * This can only be done by the logged in user.
  */
-export const createUser = (config: OpenAPIClientConfig, request?: { body?: User }): Promise<
+export const createUser = (
+  config: OpenAPIClientConfig,
+  request?: { body?: User },
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** successful operation */
     200: {
@@ -721,7 +731,7 @@ export const createUser = (config: OpenAPIClientConfig, request?: { body?: User 
 export const createUsersWithListInput = (
   config: OpenAPIClientConfig,
   request: { body: User[] },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful operation */
     200: {
@@ -761,7 +771,7 @@ export const loginUser = (config: OpenAPIClientConfig, request?: {
     /** The password for login in clear text */
     password?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** successful operation */
     200: {
@@ -814,7 +824,7 @@ export const loginUser = (config: OpenAPIClientConfig, request?: {
  *
  * Log user out of the system.
  */
-export const logoutUser = (config: OpenAPIClientConfig): Promise<
+export const logoutUser = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** successful operation */
     200: {
@@ -848,7 +858,7 @@ export const getUserByName = (config: OpenAPIClientConfig, request: {
     /** The name that needs to be fetched. Use user1 for testing */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** successful operation */
     200: {
@@ -899,7 +909,7 @@ export const updateUser = (config: OpenAPIClientConfig, request: {
     username: string;
   };
   body?: User;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** successful operation */
     200: {
@@ -950,7 +960,7 @@ export const deleteUser = (config: OpenAPIClientConfig, request: {
     /** The name that needs to be deleted */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** User deleted */
     200: {

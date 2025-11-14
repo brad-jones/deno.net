@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -826,7 +827,7 @@ export class ApiClient {
         "PayPal-Request-Id"?: string;
       };
       body: CreatePayoutRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP <code>201 Created</code> status code and a JSON response body that shows the ID for the payout and payout details. To show payout status, use the <code>payout_batch_id</code> value that appears in the response. If the initial scan that checks for syntax errors, missing or duplicated keywords, and more succeeds, the <code>batch_status</code> is <code>PENDING</code>. The initial scan checks for syntax errors and missing or duplicated keywords. The API does not immediately validate some payout item values, such as the receiver phone numbers. */
         201: {
@@ -884,7 +885,7 @@ export class ApiClient {
         /** The ID of the payout item to cancel. */
         payout_item_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP <code>200 OK</code> status code and a JSON response body with a <code>payout_item_details</code> object, which contains data about a payout item including the transaction status. */
         200: {
@@ -936,7 +937,7 @@ export class ApiClient {
         /** The ID of the payout item to cancel. */
         payout_item_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code with a JSON response body that shows payout item details. */
         200: {
@@ -1003,7 +1004,7 @@ export class ApiClient {
         /** Indicates whether to show the total items and total pages count in the response. */
         total_required?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows batch payout details. */
         200: {

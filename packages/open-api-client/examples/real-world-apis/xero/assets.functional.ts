@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -311,7 +312,7 @@ export const getAssets = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -370,7 +371,7 @@ export const createAsset = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: Asset;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** return single object - create new asset */
     200: {
@@ -445,7 +446,7 @@ export const getAssetById = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -488,7 +489,7 @@ export const getAssetTypes = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -531,7 +532,7 @@ export const createAssetType = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: AssetType;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** results single object -  created fixed type */
     200: {
@@ -606,7 +607,7 @@ export const getAssetSettings = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {

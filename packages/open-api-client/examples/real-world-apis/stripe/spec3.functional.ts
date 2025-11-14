@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -35830,7 +35831,7 @@ export const getAccount = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -35869,7 +35870,7 @@ export const getAccount = (config: OpenAPIClientConfig, request: {
 export const postAccountLinks = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -35903,7 +35904,7 @@ export const postAccountLinks = (
 export const postAccountSessions = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -35953,7 +35954,7 @@ export const getAccounts = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36026,7 +36027,7 @@ export const getAccounts = (config: OpenAPIClientConfig, request: {
 export const postAccounts = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36066,7 +36067,7 @@ export const getAccountsAccount = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36122,7 +36123,7 @@ export const postAccountsAccount = (config: OpenAPIClientConfig, request: {
     account: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36168,7 +36169,7 @@ export const deleteAccountsAccount = (config: OpenAPIClientConfig, request: {
     account: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36208,7 +36209,7 @@ export const postAccountsAccountBankAccounts = (config: OpenAPIClientConfig, req
     account: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36254,7 +36255,7 @@ export const getAccountsAccountBankAccountsId = (config: OpenAPIClientConfig, re
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36305,7 +36306,7 @@ export const postAccountsAccountBankAccountsId = (config: OpenAPIClientConfig, r
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36348,7 +36349,7 @@ export const deleteAccountsAccountBankAccountsId = (config: OpenAPIClientConfig,
     id: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36393,7 +36394,7 @@ export const getAccountsAccountCapabilities = (config: OpenAPIClientConfig, requ
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36456,7 +36457,7 @@ export const getAccountsAccountCapabilitiesCapability = (config: OpenAPIClientCo
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36502,7 +36503,7 @@ export const postAccountsAccountCapabilitiesCapability = (config: OpenAPIClientC
     capability: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36555,7 +36556,7 @@ export const getAccountsAccountExternalAccounts = (config: OpenAPIClientConfig, 
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36623,7 +36624,7 @@ export const postAccountsAccountExternalAccounts = (config: OpenAPIClientConfig,
     account: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36669,7 +36670,7 @@ export const getAccountsAccountExternalAccountsId = (config: OpenAPIClientConfig
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36720,7 +36721,7 @@ export const postAccountsAccountExternalAccountsId = (config: OpenAPIClientConfi
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36763,7 +36764,7 @@ export const deleteAccountsAccountExternalAccountsId = (config: OpenAPIClientCon
     id: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36806,7 +36807,7 @@ export const postAccountsAccountLoginLinks = (config: OpenAPIClientConfig, reque
     account: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36865,7 +36866,7 @@ export const getAccountsAccountPeople = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36939,7 +36940,7 @@ export const postAccountsAccountPeople = (config: OpenAPIClientConfig, request: 
     account: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -36984,7 +36985,7 @@ export const getAccountsAccountPeoplePerson = (config: OpenAPIClientConfig, requ
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37030,7 +37031,7 @@ export const postAccountsAccountPeoplePerson = (config: OpenAPIClientConfig, req
     person: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37072,7 +37073,7 @@ export const deleteAccountsAccountPeoplePerson = (config: OpenAPIClientConfig, r
     person: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37132,7 +37133,7 @@ export const getAccountsAccountPersons = (config: OpenAPIClientConfig, request: 
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37206,7 +37207,7 @@ export const postAccountsAccountPersons = (config: OpenAPIClientConfig, request:
     account: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37251,7 +37252,7 @@ export const getAccountsAccountPersonsPerson = (config: OpenAPIClientConfig, req
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37297,7 +37298,7 @@ export const postAccountsAccountPersonsPerson = (config: OpenAPIClientConfig, re
     person: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37339,7 +37340,7 @@ export const deleteAccountsAccountPersonsPerson = (config: OpenAPIClientConfig, 
     person: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37382,7 +37383,7 @@ export const postAccountsAccountReject = (config: OpenAPIClientConfig, request: 
     account: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37428,7 +37429,7 @@ export const getApplePayDomains = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37483,7 +37484,7 @@ export const getApplePayDomains = (config: OpenAPIClientConfig, request: {
 export const postApplePayDomains = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37521,7 +37522,7 @@ export const getApplePayDomainsDomain = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37563,7 +37564,7 @@ export const deleteApplePayDomainsDomain = (config: OpenAPIClientConfig, request
     domain: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37619,7 +37620,7 @@ export const getApplicationFees = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37697,7 +37698,7 @@ export const getApplicationFeesFeeRefundsId = (config: OpenAPIClientConfig, requ
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37745,7 +37746,7 @@ export const postApplicationFeesFeeRefundsId = (config: OpenAPIClientConfig, req
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37790,7 +37791,7 @@ export const getApplicationFeesId = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37829,7 +37830,7 @@ export const postApplicationFeesIdRefund = (config: OpenAPIClientConfig, request
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37879,7 +37880,7 @@ export const getApplicationFeesIdRefunds = (config: OpenAPIClientConfig, request
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -37949,7 +37950,7 @@ export const postApplicationFeesIdRefunds = (config: OpenAPIClientConfig, reques
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38001,7 +38002,7 @@ export const getAppsSecrets = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38066,7 +38067,7 @@ export const getAppsSecrets = (config: OpenAPIClientConfig, request: {
 export const postAppsSecrets = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38100,7 +38101,7 @@ export const postAppsSecrets = (
 export const postAppsSecretsDelete = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38144,7 +38145,7 @@ export const getAppsSecretsFind = (config: OpenAPIClientConfig, request: {
     };
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38197,7 +38198,7 @@ export const getBalance = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38262,7 +38263,7 @@ export const getBalanceHistory = (config: OpenAPIClientConfig, request: {
     type?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38344,7 +38345,7 @@ export const getBalanceHistoryId = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38390,7 +38391,7 @@ export const getBalanceSettings = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38430,7 +38431,7 @@ export const getBalanceSettings = (config: OpenAPIClientConfig, request: {
 export const postBalanceSettings = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38490,7 +38491,7 @@ export const getBalanceTransactions = (config: OpenAPIClientConfig, request: {
     type?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38572,7 +38573,7 @@ export const getBalanceTransactionsId = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38627,7 +38628,7 @@ export const getBillingAlerts = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38685,7 +38686,7 @@ export const getBillingAlerts = (config: OpenAPIClientConfig, request: {
 export const postBillingAlerts = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38725,7 +38726,7 @@ export const getBillingAlertsId = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38769,7 +38770,7 @@ export const postBillingAlertsIdActivate = (config: OpenAPIClientConfig, request
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38809,7 +38810,7 @@ export const postBillingAlertsIdArchive = (config: OpenAPIClientConfig, request:
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38849,7 +38850,7 @@ export const postBillingAlertsIdDeactivate = (config: OpenAPIClientConfig, reque
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38903,7 +38904,7 @@ export const getBillingCreditBalanceSummary = (config: OpenAPIClientConfig, requ
     };
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -38973,7 +38974,7 @@ export const getBillingCreditBalanceTransactions = (config: OpenAPIClientConfig,
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39040,7 +39041,7 @@ export const getBillingCreditBalanceTransactionsId = (config: OpenAPIClientConfi
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39095,7 +39096,7 @@ export const getBillingCreditGrants = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39152,7 +39153,7 @@ export const getBillingCreditGrants = (config: OpenAPIClientConfig, request: {
 export const postBillingCreditGrants = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39193,7 +39194,7 @@ export const getBillingCreditGrantsId = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39238,7 +39239,7 @@ export const postBillingCreditGrantsId = (config: OpenAPIClientConfig, request: 
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39279,7 +39280,7 @@ export const postBillingCreditGrantsIdExpire = (config: OpenAPIClientConfig, req
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39320,7 +39321,7 @@ export const postBillingCreditGrantsIdVoid = (config: OpenAPIClientConfig, reque
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39358,7 +39359,7 @@ export const postBillingCreditGrantsIdVoid = (config: OpenAPIClientConfig, reque
 export const postBillingMeterEventAdjustments = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39392,7 +39393,7 @@ export const postBillingMeterEventAdjustments = (
 export const postBillingMeterEvents = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39437,7 +39438,7 @@ export const getBillingMeters = (config: OpenAPIClientConfig, request: {
     status?: "active" | "inactive";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39494,7 +39495,7 @@ export const getBillingMeters = (config: OpenAPIClientConfig, request: {
 export const postBillingMeters = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39534,7 +39535,7 @@ export const getBillingMetersId = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39578,7 +39579,7 @@ export const postBillingMetersId = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39618,7 +39619,7 @@ export const postBillingMetersIdDeactivate = (config: OpenAPIClientConfig, reque
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39677,7 +39678,7 @@ export const getBillingMetersIdEventSummaries = (config: OpenAPIClientConfig, re
     value_grouping_window?: "day" | "hour";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39742,7 +39743,7 @@ export const postBillingMetersIdReactivate = (config: OpenAPIClientConfig, reque
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39793,7 +39794,7 @@ export const getBillingPortalConfigurations = (config: OpenAPIClientConfig, requ
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39851,7 +39852,7 @@ export const getBillingPortalConfigurations = (config: OpenAPIClientConfig, requ
 export const postBillingPortalConfigurations = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39891,7 +39892,7 @@ export const getBillingPortalConfigurationsConfiguration = (config: OpenAPIClien
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39935,7 +39936,7 @@ export const postBillingPortalConfigurationsConfiguration = (config: OpenAPIClie
     configuration: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -39973,7 +39974,7 @@ export const postBillingPortalConfigurationsConfiguration = (config: OpenAPIClie
 export const postBillingPortalSessions = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40029,7 +40030,7 @@ export const getCharges = (config: OpenAPIClientConfig, request: {
     transfer_group?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40102,7 +40103,7 @@ export const getCharges = (config: OpenAPIClientConfig, request: {
 export const postCharges = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40148,7 +40149,7 @@ export const getChargesSearch = (config: OpenAPIClientConfig, request: {
     query: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40213,7 +40214,7 @@ export const getChargesCharge = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40257,7 +40258,7 @@ export const postChargesCharge = (config: OpenAPIClientConfig, request: {
     charge: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40301,7 +40302,7 @@ export const postChargesChargeCapture = (config: OpenAPIClientConfig, request: {
     charge: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40343,7 +40344,7 @@ export const getChargesChargeDispute = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40382,7 +40383,7 @@ export const postChargesChargeDispute = (config: OpenAPIClientConfig, request: {
     charge: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40417,7 +40418,7 @@ export const postChargesChargeDisputeClose = (config: OpenAPIClientConfig, reque
     charge: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40468,7 +40469,7 @@ export const postChargesChargeRefund = (config: OpenAPIClientConfig, request: {
     charge: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40518,7 +40519,7 @@ export const getChargesChargeRefunds = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40591,7 +40592,7 @@ export const postChargesChargeRefunds = (config: OpenAPIClientConfig, request: {
     charge: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40634,7 +40635,7 @@ export const getChargesChargeRefundsRefund = (config: OpenAPIClientConfig, reque
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40678,7 +40679,7 @@ export const postChargesChargeRefundsRefund = (config: OpenAPIClientConfig, requ
     refund: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40747,7 +40748,7 @@ export const getCheckoutSessions = (config: OpenAPIClientConfig, request: {
     subscription?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40825,7 +40826,7 @@ export const getCheckoutSessions = (config: OpenAPIClientConfig, request: {
 export const postCheckoutSessions = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40865,7 +40866,7 @@ export const getCheckoutSessionsSession = (config: OpenAPIClientConfig, request:
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40911,7 +40912,7 @@ export const postCheckoutSessionsSession = (config: OpenAPIClientConfig, request
     session: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -40953,7 +40954,7 @@ export const postCheckoutSessionsSessionExpire = (config: OpenAPIClientConfig, r
     session: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41003,7 +41004,7 @@ export const getCheckoutSessionsSessionLineItems = (config: OpenAPIClientConfig,
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41073,7 +41074,7 @@ export const getClimateOrders = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41130,7 +41131,7 @@ export const getClimateOrders = (config: OpenAPIClientConfig, request: {
 export const postClimateOrders = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41171,7 +41172,7 @@ export const getClimateOrdersOrder = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41216,7 +41217,7 @@ export const postClimateOrdersOrder = (config: OpenAPIClientConfig, request: {
     order: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41260,7 +41261,7 @@ export const postClimateOrdersOrderCancel = (config: OpenAPIClientConfig, reques
     order: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41307,7 +41308,7 @@ export const getClimateProducts = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41369,7 +41370,7 @@ export const getClimateProductsProduct = (config: OpenAPIClientConfig, request: 
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41420,7 +41421,7 @@ export const getClimateSuppliers = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41482,7 +41483,7 @@ export const getClimateSuppliersSupplier = (config: OpenAPIClientConfig, request
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41530,7 +41531,7 @@ export const getConfirmationTokensConfirmationToken = (config: OpenAPIClientConf
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41581,7 +41582,7 @@ export const getCountrySpecs = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41643,7 +41644,7 @@ export const getCountrySpecsCountry = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41701,7 +41702,7 @@ export const getCoupons = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41773,7 +41774,7 @@ export const getCoupons = (config: OpenAPIClientConfig, request: {
 export const postCoupons = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41813,7 +41814,7 @@ export const getCouponsCoupon = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41857,7 +41858,7 @@ export const postCouponsCoupon = (config: OpenAPIClientConfig, request: {
     coupon: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41897,7 +41898,7 @@ export const deleteCouponsCoupon = (config: OpenAPIClientConfig, request: {
     coupon: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -41955,7 +41956,7 @@ export const getCreditNotes = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -42039,7 +42040,7 @@ export const getCreditNotes = (config: OpenAPIClientConfig, request: {
 export const postCreditNotes = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -42126,7 +42127,7 @@ export const getCreditNotesPreview = (config: OpenAPIClientConfig, request: {
     };
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -42270,7 +42271,7 @@ export const getCreditNotesPreviewLines = (config: OpenAPIClientConfig, request:
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -42385,7 +42386,7 @@ export const getCreditNotesCreditNoteLines = (config: OpenAPIClientConfig, reque
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -42451,7 +42452,7 @@ export const getCreditNotesId = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -42495,7 +42496,7 @@ export const postCreditNotesId = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -42535,7 +42536,7 @@ export const postCreditNotesIdVoid = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -42573,7 +42574,7 @@ export const postCreditNotesIdVoid = (config: OpenAPIClientConfig, request: {
 export const postCustomerSessions = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -42627,7 +42628,7 @@ export const getCustomers = (config: OpenAPIClientConfig, request: {
     test_clock?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -42699,7 +42700,7 @@ export const getCustomers = (config: OpenAPIClientConfig, request: {
 export const postCustomers = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -42745,7 +42746,7 @@ export const getCustomersSearch = (config: OpenAPIClientConfig, request: {
     query: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -42810,7 +42811,7 @@ export const getCustomersCustomer = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -42856,7 +42857,7 @@ export const postCustomersCustomer = (config: OpenAPIClientConfig, request: {
     customer: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -42896,7 +42897,7 @@ export const deleteCustomersCustomer = (config: OpenAPIClientConfig, request: {
     customer: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -42946,7 +42947,7 @@ export const getCustomersCustomerBalanceTransactions = (config: OpenAPIClientCon
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43008,7 +43009,7 @@ export const postCustomersCustomerBalanceTransactions = (config: OpenAPIClientCo
     customer: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43053,7 +43054,7 @@ export const getCustomersCustomerBalanceTransactionsTransaction = (config: OpenA
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43099,7 +43100,7 @@ export const postCustomersCustomerBalanceTransactionsTransaction = (config: Open
     transaction: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43150,7 +43151,7 @@ export const getCustomersCustomerBankAccounts = (config: OpenAPIClientConfig, re
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43216,7 +43217,7 @@ export const postCustomersCustomerBankAccounts = (config: OpenAPIClientConfig, r
     customer: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43261,7 +43262,7 @@ export const getCustomersCustomerBankAccountsId = (config: OpenAPIClientConfig, 
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43305,7 +43306,7 @@ export const postCustomersCustomerBankAccountsId = (config: OpenAPIClientConfig,
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43353,7 +43354,7 @@ export const deleteCustomersCustomerBankAccountsId = (config: OpenAPIClientConfi
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43397,7 +43398,7 @@ export const postCustomersCustomerBankAccountsIdVerify = (config: OpenAPIClientC
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43450,7 +43451,7 @@ export const getCustomersCustomerCards = (config: OpenAPIClientConfig, request: 
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43515,7 +43516,7 @@ export const postCustomersCustomerCards = (config: OpenAPIClientConfig, request:
     customer: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43560,7 +43561,7 @@ export const getCustomersCustomerCardsId = (config: OpenAPIClientConfig, request
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43604,7 +43605,7 @@ export const postCustomersCustomerCardsId = (config: OpenAPIClientConfig, reques
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43652,7 +43653,7 @@ export const deleteCustomersCustomerCardsId = (config: OpenAPIClientConfig, requ
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43699,7 +43700,7 @@ export const getCustomersCustomerCashBalance = (config: OpenAPIClientConfig, req
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43743,7 +43744,7 @@ export const postCustomersCustomerCashBalance = (config: OpenAPIClientConfig, re
     customer: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43793,7 +43794,7 @@ export const getCustomersCustomerCashBalanceTransactions = (config: OpenAPIClien
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43868,7 +43869,7 @@ export const getCustomersCustomerCashBalanceTransactionsTransaction = (config: O
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43914,7 +43915,7 @@ export const getCustomersCustomerDiscount = (config: OpenAPIClientConfig, reques
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -43958,7 +43959,7 @@ export const deleteCustomersCustomerDiscount = (config: OpenAPIClientConfig, req
     customer: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -44000,7 +44001,7 @@ export const postCustomersCustomerFundingInstructions = (config: OpenAPIClientCo
     customer: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -44104,7 +44105,7 @@ export const getCustomersCustomerPaymentMethods = (config: OpenAPIClientConfig, 
       | "zip";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -44223,7 +44224,7 @@ export const getCustomersCustomerPaymentMethodsPaymentMethod = (config: OpenAPIC
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -44278,7 +44279,7 @@ export const getCustomersCustomerSources = (config: OpenAPIClientConfig, request
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -44351,7 +44352,7 @@ export const postCustomersCustomerSources = (config: OpenAPIClientConfig, reques
     customer: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -44394,7 +44395,7 @@ export const getCustomersCustomerSourcesId = (config: OpenAPIClientConfig, reque
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -44438,7 +44439,7 @@ export const postCustomersCustomerSourcesId = (config: OpenAPIClientConfig, requ
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -44486,7 +44487,7 @@ export const deleteCustomersCustomerSourcesId = (config: OpenAPIClientConfig, re
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -44530,7 +44531,7 @@ export const postCustomersCustomerSourcesIdVerify = (config: OpenAPIClientConfig
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -44581,7 +44582,7 @@ export const getCustomersCustomerSubscriptions = (config: OpenAPIClientConfig, r
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -44643,7 +44644,7 @@ export const postCustomersCustomerSubscriptions = (config: OpenAPIClientConfig, 
     customer: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -44688,7 +44689,7 @@ export const getCustomersCustomerSubscriptionsSubscriptionExposedId = (config: O
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -44734,7 +44735,7 @@ export const postCustomersCustomerSubscriptionsSubscriptionExposedId = (config: 
     subscription_exposed_id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -44783,7 +44784,7 @@ export const deleteCustomersCustomerSubscriptionsSubscriptionExposedId = (
     };
     body?: "WARN: application/json is the only supported content type";
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -44827,7 +44828,7 @@ export const getCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount = (
     };
     body: "WARN: application/json is the only supported content type";
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -44876,7 +44877,7 @@ export const deleteCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount =
     };
     body: "WARN: application/json is the only supported content type";
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -44927,7 +44928,7 @@ export const getCustomersCustomerTaxIds = (config: OpenAPIClientConfig, request:
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -44989,7 +44990,7 @@ export const postCustomersCustomerTaxIds = (config: OpenAPIClientConfig, request
     customer: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45034,7 +45035,7 @@ export const getCustomersCustomerTaxIdsId = (config: OpenAPIClientConfig, reques
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45080,7 +45081,7 @@ export const deleteCustomersCustomerTaxIdsId = (config: OpenAPIClientConfig, req
     id: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45139,7 +45140,7 @@ export const getDisputes = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45217,7 +45218,7 @@ export const getDisputesDispute = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45263,7 +45264,7 @@ export const postDisputesDispute = (config: OpenAPIClientConfig, request: {
     dispute: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45305,7 +45306,7 @@ export const postDisputesDisputeClose = (config: OpenAPIClientConfig, request: {
     dispute: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45354,7 +45355,7 @@ export const getEntitlementsActiveEntitlements = (config: OpenAPIClientConfig, r
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45418,7 +45419,7 @@ export const getEntitlementsActiveEntitlementsId = (config: OpenAPIClientConfig,
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45473,7 +45474,7 @@ export const getEntitlementsFeatures = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45531,7 +45532,7 @@ export const getEntitlementsFeatures = (config: OpenAPIClientConfig, request: {
 export const postEntitlementsFeatures = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45572,7 +45573,7 @@ export const getEntitlementsFeaturesId = (config: OpenAPIClientConfig, request: 
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45616,7 +45617,7 @@ export const postEntitlementsFeaturesId = (config: OpenAPIClientConfig, request:
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45654,7 +45655,7 @@ export const postEntitlementsFeaturesId = (config: OpenAPIClientConfig, request:
 export const postEphemeralKeys = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45690,7 +45691,7 @@ export const deleteEphemeralKeysKey = (config: OpenAPIClientConfig, request: {
     key: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45750,7 +45751,7 @@ export const getEvents = (config: OpenAPIClientConfig, request: {
     types?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45829,7 +45830,7 @@ export const getEventsId = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45882,7 +45883,7 @@ export const getExchangeRates = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45946,7 +45947,7 @@ export const getExchangeRatesRateId = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -45995,7 +45996,7 @@ export const postExternalAccountsId = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -46053,7 +46054,7 @@ export const getFileLinks = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -46126,7 +46127,7 @@ export const getFileLinks = (config: OpenAPIClientConfig, request: {
 export const postFileLinks = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -46166,7 +46167,7 @@ export const getFileLinksLink = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -46210,7 +46211,7 @@ export const postFileLinksLink = (config: OpenAPIClientConfig, request: {
     link: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -46285,7 +46286,7 @@ export const getFiles = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -46378,7 +46379,7 @@ export const getFiles = (config: OpenAPIClientConfig, request: {
 export const postFiles = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -46418,7 +46419,7 @@ export const getFilesFile = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -46476,7 +46477,7 @@ export const getFinancialConnectionsAccounts = (config: OpenAPIClientConfig, req
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -46549,7 +46550,7 @@ export const getFinancialConnectionsAccountsAccount = (config: OpenAPIClientConf
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -46595,7 +46596,7 @@ export const postFinancialConnectionsAccountsAccountDisconnect = (config: OpenAP
     account: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -46649,7 +46650,7 @@ export const getFinancialConnectionsAccountsAccountOwners = (config: OpenAPIClie
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -46712,7 +46713,7 @@ export const postFinancialConnectionsAccountsAccountRefresh = (config: OpenAPICl
     account: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -46754,7 +46755,7 @@ export const postFinancialConnectionsAccountsAccountSubscribe = (config: OpenAPI
     account: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -46796,7 +46797,7 @@ export const postFinancialConnectionsAccountsAccountUnsubscribe = (config: OpenA
     account: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -46836,7 +46837,7 @@ export const postFinancialConnectionsAccountsAccountUnsubscribe = (config: OpenA
 export const postFinancialConnectionsSessions = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -46878,7 +46879,7 @@ export const getFinancialConnectionsSessionsSession = (config: OpenAPIClientConf
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -46944,7 +46945,7 @@ export const getFinancialConnectionsTransactions = (config: OpenAPIClientConfig,
     };
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -47025,7 +47026,7 @@ export const getFinancialConnectionsTransactionsTransaction = (config: OpenAPICl
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -47083,7 +47084,7 @@ export const getForwardingRequests = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -47151,7 +47152,7 @@ export const getForwardingRequests = (config: OpenAPIClientConfig, request: {
 export const postForwardingRequests = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -47191,7 +47192,7 @@ export const getForwardingRequestsId = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -47255,7 +47256,7 @@ export const getIdentityVerificationReports = (config: OpenAPIClientConfig, requ
     verification_session?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -47334,7 +47335,7 @@ export const getIdentityVerificationReportsReport = (config: OpenAPIClientConfig
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -47397,7 +47398,7 @@ export const getIdentityVerificationSessions = (config: OpenAPIClientConfig, req
     status?: "canceled" | "processing" | "requires_input" | "verified";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -47476,7 +47477,7 @@ export const getIdentityVerificationSessions = (config: OpenAPIClientConfig, req
 export const postIdentityVerificationSessions = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -47519,7 +47520,7 @@ export const getIdentityVerificationSessionsSession = (config: OpenAPIClientConf
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -47566,7 +47567,7 @@ export const postIdentityVerificationSessionsSession = (config: OpenAPIClientCon
     session: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -47608,7 +47609,7 @@ export const postIdentityVerificationSessionsSessionCancel = (config: OpenAPICli
     session: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -47666,7 +47667,7 @@ export const postIdentityVerificationSessionsSessionRedact = (config: OpenAPICli
     session: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -47723,7 +47724,7 @@ export const getInvoicePayments = (config: OpenAPIClientConfig, request: {
     status?: "canceled" | "open" | "paid";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -47798,7 +47799,7 @@ export const getInvoicePaymentsInvoicePayment = (config: OpenAPIClientConfig, re
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -47850,7 +47851,7 @@ export const getInvoiceRenderingTemplates = (config: OpenAPIClientConfig, reques
     status?: "active" | "archived";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -47915,7 +47916,7 @@ export const getInvoiceRenderingTemplatesTemplate = (config: OpenAPIClientConfig
     version?: number;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -47960,7 +47961,7 @@ export const postInvoiceRenderingTemplatesTemplateArchive = (config: OpenAPIClie
     template: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48000,7 +48001,7 @@ export const postInvoiceRenderingTemplatesTemplateUnarchive = (config: OpenAPICl
     template: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48060,7 +48061,7 @@ export const getInvoiceitems = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48133,7 +48134,7 @@ export const getInvoiceitems = (config: OpenAPIClientConfig, request: {
 export const postInvoiceitems = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48173,7 +48174,7 @@ export const getInvoiceitemsInvoiceitem = (config: OpenAPIClientConfig, request:
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48217,7 +48218,7 @@ export const postInvoiceitemsInvoiceitem = (config: OpenAPIClientConfig, request
     invoiceitem: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48257,7 +48258,7 @@ export const deleteInvoiceitemsInvoiceitem = (config: OpenAPIClientConfig, reque
     invoiceitem: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48325,7 +48326,7 @@ export const getInvoices = (config: OpenAPIClientConfig, request: {
     subscription?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48408,7 +48409,7 @@ export const getInvoices = (config: OpenAPIClientConfig, request: {
 export const postInvoices = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48450,7 +48451,7 @@ export const postInvoices = (
 export const postInvoicesCreatePreview = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48496,7 +48497,7 @@ export const getInvoicesSearch = (config: OpenAPIClientConfig, request: {
     query: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48561,7 +48562,7 @@ export const getInvoicesInvoice = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48610,7 +48611,7 @@ export const postInvoicesInvoice = (config: OpenAPIClientConfig, request: {
     invoice: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48650,7 +48651,7 @@ export const deleteInvoicesInvoice = (config: OpenAPIClientConfig, request: {
     invoice: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48690,7 +48691,7 @@ export const postInvoicesInvoiceAddLines = (config: OpenAPIClientConfig, request
     invoice: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48739,7 +48740,7 @@ export const postInvoicesInvoiceAttachPayment = (config: OpenAPIClientConfig, re
     invoice: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48779,7 +48780,7 @@ export const postInvoicesInvoiceFinalize = (config: OpenAPIClientConfig, request
     invoice: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48829,7 +48830,7 @@ export const getInvoicesInvoiceLines = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48897,7 +48898,7 @@ export const postInvoicesInvoiceLinesLineItemId = (config: OpenAPIClientConfig, 
     line_item_id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48938,7 +48939,7 @@ export const postInvoicesInvoiceMarkUncollectible = (config: OpenAPIClientConfig
     invoice: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -48978,7 +48979,7 @@ export const postInvoicesInvoicePay = (config: OpenAPIClientConfig, request: {
     invoice: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49018,7 +49019,7 @@ export const postInvoicesInvoiceRemoveLines = (config: OpenAPIClientConfig, requ
     invoice: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49060,7 +49061,7 @@ export const postInvoicesInvoiceSend = (config: OpenAPIClientConfig, request: {
     invoice: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49100,7 +49101,7 @@ export const postInvoicesInvoiceUpdateLines = (config: OpenAPIClientConfig, requ
     invoice: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49142,7 +49143,7 @@ export const postInvoicesInvoiceVoid = (config: OpenAPIClientConfig, request: {
     invoice: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49202,7 +49203,7 @@ export const getIssuingAuthorizations = (config: OpenAPIClientConfig, request: {
     status?: "closed" | "expired" | "pending" | "reversed";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49281,7 +49282,7 @@ export const getIssuingAuthorizationsAuthorization = (config: OpenAPIClientConfi
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49325,7 +49326,7 @@ export const postIssuingAuthorizationsAuthorization = (config: OpenAPIClientConf
     authorization: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49366,7 +49367,7 @@ export const postIssuingAuthorizationsAuthorizationApprove = (config: OpenAPICli
     authorization: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49407,7 +49408,7 @@ export const postIssuingAuthorizationsAuthorizationDecline = (config: OpenAPICli
     authorization: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49469,7 +49470,7 @@ export const getIssuingCardholders = (config: OpenAPIClientConfig, request: {
     type?: "company" | "individual";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49543,7 +49544,7 @@ export const getIssuingCardholders = (config: OpenAPIClientConfig, request: {
 export const postIssuingCardholders = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49583,7 +49584,7 @@ export const getIssuingCardholdersCardholder = (config: OpenAPIClientConfig, req
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49627,7 +49628,7 @@ export const postIssuingCardholdersCardholder = (config: OpenAPIClientConfig, re
     cardholder: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49694,7 +49695,7 @@ export const getIssuingCards = (config: OpenAPIClientConfig, request: {
     type?: "physical" | "virtual";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49771,7 +49772,7 @@ export const getIssuingCards = (config: OpenAPIClientConfig, request: {
 export const postIssuingCards = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49811,7 +49812,7 @@ export const getIssuingCardsCard = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49855,7 +49856,7 @@ export const postIssuingCardsCard = (config: OpenAPIClientConfig, request: {
     card: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49913,7 +49914,7 @@ export const getIssuingDisputes = (config: OpenAPIClientConfig, request: {
     transaction?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -49985,7 +49986,7 @@ export const getIssuingDisputes = (config: OpenAPIClientConfig, request: {
 export const postIssuingDisputes = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50025,7 +50026,7 @@ export const getIssuingDisputesDispute = (config: OpenAPIClientConfig, request: 
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50069,7 +50070,7 @@ export const postIssuingDisputesDispute = (config: OpenAPIClientConfig, request:
     dispute: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50109,7 +50110,7 @@ export const postIssuingDisputesDisputeSubmit = (config: OpenAPIClientConfig, re
     dispute: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50165,7 +50166,7 @@ export const getIssuingPersonalizationDesigns = (config: OpenAPIClientConfig, re
     status?: "active" | "inactive" | "rejected" | "review";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50232,7 +50233,7 @@ export const getIssuingPersonalizationDesigns = (config: OpenAPIClientConfig, re
 export const postIssuingPersonalizationDesigns = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50274,7 +50275,7 @@ export const getIssuingPersonalizationDesignsPersonalizationDesign = (config: Op
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50320,7 +50321,7 @@ export const postIssuingPersonalizationDesignsPersonalizationDesign = (config: O
     personalization_design: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50373,7 +50374,7 @@ export const getIssuingPhysicalBundles = (config: OpenAPIClientConfig, request: 
     type?: "custom" | "standard";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50437,7 +50438,7 @@ export const getIssuingPhysicalBundlesPhysicalBundle = (config: OpenAPIClientCon
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50485,7 +50486,7 @@ export const getIssuingSettlementsSettlement = (config: OpenAPIClientConfig, req
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50529,7 +50530,7 @@ export const postIssuingSettlementsSettlement = (config: OpenAPIClientConfig, re
     settlement: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50587,7 +50588,7 @@ export const getIssuingTokens = (config: OpenAPIClientConfig, request: {
     status?: "active" | "deleted" | "requested" | "suspended";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50665,7 +50666,7 @@ export const getIssuingTokensToken = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50709,7 +50710,7 @@ export const postIssuingTokensToken = (config: OpenAPIClientConfig, request: {
     token: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50769,7 +50770,7 @@ export const getIssuingTransactions = (config: OpenAPIClientConfig, request: {
     type?: "capture" | "refund";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50848,7 +50849,7 @@ export const getIssuingTransactionsTransaction = (config: OpenAPIClientConfig, r
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50892,7 +50893,7 @@ export const postIssuingTransactionsTransaction = (config: OpenAPIClientConfig, 
     transaction: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50930,7 +50931,7 @@ export const postIssuingTransactionsTransaction = (config: OpenAPIClientConfig, 
 export const postLinkAccountSessions = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -50972,7 +50973,7 @@ export const getLinkAccountSessionsSession = (config: OpenAPIClientConfig, reque
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -51032,7 +51033,7 @@ export const getLinkedAccounts = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -51105,7 +51106,7 @@ export const getLinkedAccountsAccount = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -51151,7 +51152,7 @@ export const postLinkedAccountsAccountDisconnect = (config: OpenAPIClientConfig,
     account: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -51205,7 +51206,7 @@ export const getLinkedAccountsAccountOwners = (config: OpenAPIClientConfig, requ
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -51268,7 +51269,7 @@ export const postLinkedAccountsAccountRefresh = (config: OpenAPIClientConfig, re
     account: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -51314,7 +51315,7 @@ export const getMandatesMandate = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -51365,7 +51366,7 @@ export const getPaymentAttemptRecords = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -51429,7 +51430,7 @@ export const getPaymentAttemptRecordsId = (config: OpenAPIClientConfig, request:
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -51489,7 +51490,7 @@ export const getPaymentIntents = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -51569,7 +51570,7 @@ export const getPaymentIntents = (config: OpenAPIClientConfig, request: {
 export const postPaymentIntents = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -51615,7 +51616,7 @@ export const getPaymentIntentsSearch = (config: OpenAPIClientConfig, request: {
     query: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -51686,7 +51687,7 @@ export const getPaymentIntentsIntent = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -51737,7 +51738,7 @@ export const postPaymentIntentsIntent = (config: OpenAPIClientConfig, request: {
     intent: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -51787,7 +51788,7 @@ export const getPaymentIntentsIntentAmountDetailsLineItems = (config: OpenAPICli
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -51849,7 +51850,7 @@ export const postPaymentIntentsIntentApplyCustomerBalance = (config: OpenAPIClie
     intent: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -51893,7 +51894,7 @@ export const postPaymentIntentsIntentCancel = (config: OpenAPIClientConfig, requ
     intent: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -51937,7 +51938,7 @@ export const postPaymentIntentsIntentCapture = (config: OpenAPIClientConfig, req
     intent: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -52006,7 +52007,7 @@ export const postPaymentIntentsIntentConfirm = (config: OpenAPIClientConfig, req
     intent: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -52069,7 +52070,7 @@ export const postPaymentIntentsIntentIncrementAuthorization = (config: OpenAPICl
     intent: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -52109,7 +52110,7 @@ export const postPaymentIntentsIntentVerifyMicrodeposits = (config: OpenAPIClien
     intent: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -52158,7 +52159,7 @@ export const getPaymentLinks = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -52215,7 +52216,7 @@ export const getPaymentLinks = (config: OpenAPIClientConfig, request: {
 export const postPaymentLinks = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -52255,7 +52256,7 @@ export const getPaymentLinksPaymentLink = (config: OpenAPIClientConfig, request:
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -52299,7 +52300,7 @@ export const postPaymentLinksPaymentLink = (config: OpenAPIClientConfig, request
     payment_link: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -52349,7 +52350,7 @@ export const getPaymentLinksPaymentLinkLineItems = (config: OpenAPIClientConfig,
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -52420,7 +52421,7 @@ export const getPaymentMethodConfigurations = (config: OpenAPIClientConfig, requ
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -52482,7 +52483,7 @@ export const getPaymentMethodConfigurations = (config: OpenAPIClientConfig, requ
 export const postPaymentMethodConfigurations = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -52522,7 +52523,7 @@ export const getPaymentMethodConfigurationsConfiguration = (config: OpenAPIClien
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -52566,7 +52567,7 @@ export const postPaymentMethodConfigurationsConfiguration = (config: OpenAPIClie
     configuration: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -52617,7 +52618,7 @@ export const getPaymentMethodDomains = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -52675,7 +52676,7 @@ export const getPaymentMethodDomains = (config: OpenAPIClientConfig, request: {
 export const postPaymentMethodDomains = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -52715,7 +52716,7 @@ export const getPaymentMethodDomainsPaymentMethodDomain = (config: OpenAPIClient
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -52759,7 +52760,7 @@ export const postPaymentMethodDomainsPaymentMethodDomain = (config: OpenAPIClien
     payment_method_domain: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -52804,7 +52805,7 @@ export const postPaymentMethodDomainsPaymentMethodDomainValidate = (config: Open
     payment_method_domain: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -52905,7 +52906,7 @@ export const getPaymentMethods = (config: OpenAPIClientConfig, request: {
       | "zip";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53016,7 +53017,7 @@ export const getPaymentMethods = (config: OpenAPIClientConfig, request: {
 export const postPaymentMethods = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53056,7 +53057,7 @@ export const getPaymentMethodsPaymentMethod = (config: OpenAPIClientConfig, requ
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53100,7 +53101,7 @@ export const postPaymentMethodsPaymentMethod = (config: OpenAPIClientConfig, req
     payment_method: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53152,7 +53153,7 @@ export const postPaymentMethodsPaymentMethodAttach = (config: OpenAPIClientConfi
     payment_method: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53192,7 +53193,7 @@ export const postPaymentMethodsPaymentMethodDetach = (config: OpenAPIClientConfi
     payment_method: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53232,7 +53233,7 @@ export const postPaymentMethodsPaymentMethodDetach = (config: OpenAPIClientConfi
 export const postPaymentRecordsReportPayment = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53273,7 +53274,7 @@ export const getPaymentRecordsId = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53319,7 +53320,7 @@ export const postPaymentRecordsIdReportPaymentAttempt = (config: OpenAPIClientCo
     id: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53361,7 +53362,7 @@ export const postPaymentRecordsIdReportPaymentAttemptCanceled = (config: OpenAPI
     id: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53403,7 +53404,7 @@ export const postPaymentRecordsIdReportPaymentAttemptFailed = (config: OpenAPICl
     id: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53445,7 +53446,7 @@ export const postPaymentRecordsIdReportPaymentAttemptGuaranteed = (config: OpenA
     id: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53486,7 +53487,7 @@ export const postPaymentRecordsIdReportPaymentAttemptInformational = (config: Op
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53528,7 +53529,7 @@ export const postPaymentRecordsIdReportRefund = (config: OpenAPIClientConfig, re
     id: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53593,7 +53594,7 @@ export const getPayouts = (config: OpenAPIClientConfig, request: {
     status?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53678,7 +53679,7 @@ export const getPayouts = (config: OpenAPIClientConfig, request: {
 export const postPayouts = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53718,7 +53719,7 @@ export const getPayoutsPayout = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53762,7 +53763,7 @@ export const postPayoutsPayout = (config: OpenAPIClientConfig, request: {
     payout: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53802,7 +53803,7 @@ export const postPayoutsPayoutCancel = (config: OpenAPIClientConfig, request: {
     payout: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53844,7 +53845,7 @@ export const postPayoutsPayoutReverse = (config: OpenAPIClientConfig, request: {
     payout: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53902,7 +53903,7 @@ export const getPlans = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -53975,7 +53976,7 @@ export const getPlans = (config: OpenAPIClientConfig, request: {
 export const postPlans = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -54015,7 +54016,7 @@ export const getPlansPlan = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -54059,7 +54060,7 @@ export const postPlansPlan = (config: OpenAPIClientConfig, request: {
     plan: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -54099,7 +54100,7 @@ export const deletePlansPlan = (config: OpenAPIClientConfig, request: {
     plan: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -54169,7 +54170,7 @@ export const getPrices = (config: OpenAPIClientConfig, request: {
     type?: "one_time" | "recurring";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -54250,7 +54251,7 @@ export const getPrices = (config: OpenAPIClientConfig, request: {
 export const postPrices = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -54296,7 +54297,7 @@ export const getPricesSearch = (config: OpenAPIClientConfig, request: {
     query: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -54361,7 +54362,7 @@ export const getPricesPrice = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -54405,7 +54406,7 @@ export const postPricesPrice = (config: OpenAPIClientConfig, request: {
     price: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -54467,7 +54468,7 @@ export const getProducts = (config: OpenAPIClientConfig, request: {
     url?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -54542,7 +54543,7 @@ export const getProducts = (config: OpenAPIClientConfig, request: {
 export const postProducts = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -54588,7 +54589,7 @@ export const getProductsSearch = (config: OpenAPIClientConfig, request: {
     query: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -54653,7 +54654,7 @@ export const getProductsId = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -54697,7 +54698,7 @@ export const postProductsId = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -54737,7 +54738,7 @@ export const deleteProductsId = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -54787,7 +54788,7 @@ export const getProductsProductFeatures = (config: OpenAPIClientConfig, request:
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -54848,7 +54849,7 @@ export const postProductsProductFeatures = (config: OpenAPIClientConfig, request
     product: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -54895,7 +54896,7 @@ export const getProductsProductFeaturesId = (config: OpenAPIClientConfig, reques
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -54941,7 +54942,7 @@ export const deleteProductsProductFeaturesId = (config: OpenAPIClientConfig, req
     product: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55004,7 +55005,7 @@ export const getPromotionCodes = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55078,7 +55079,7 @@ export const getPromotionCodes = (config: OpenAPIClientConfig, request: {
 export const postPromotionCodes = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55118,7 +55119,7 @@ export const getPromotionCodesPromotionCode = (config: OpenAPIClientConfig, requ
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55162,7 +55163,7 @@ export const postPromotionCodesPromotionCode = (config: OpenAPIClientConfig, req
     promotion_code: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55215,7 +55216,7 @@ export const getQuotes = (config: OpenAPIClientConfig, request: {
     test_clock?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55274,7 +55275,7 @@ export const getQuotes = (config: OpenAPIClientConfig, request: {
 export const postQuotes = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55314,7 +55315,7 @@ export const getQuotesQuote = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55358,7 +55359,7 @@ export const postQuotesQuote = (config: OpenAPIClientConfig, request: {
     quote: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55398,7 +55399,7 @@ export const postQuotesQuoteAccept = (config: OpenAPIClientConfig, request: {
     quote: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55438,7 +55439,7 @@ export const postQuotesQuoteCancel = (config: OpenAPIClientConfig, request: {
     quote: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55488,7 +55489,7 @@ export const getQuotesQuoteComputedUpfrontLineItems = (config: OpenAPIClientConf
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55550,7 +55551,7 @@ export const postQuotesQuoteFinalize = (config: OpenAPIClientConfig, request: {
     quote: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55600,7 +55601,7 @@ export const getQuotesQuoteLineItems = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55666,7 +55667,7 @@ export const getQuotesQuotePdf = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55728,7 +55729,7 @@ export const getRadarEarlyFraudWarnings = (config: OpenAPIClientConfig, request:
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55808,7 +55809,7 @@ export const getRadarEarlyFraudWarningsEarlyFraudWarning = (config: OpenAPIClien
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55870,7 +55871,7 @@ export const getRadarValueListItems = (config: OpenAPIClientConfig, request: {
     value_list: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55942,7 +55943,7 @@ export const getRadarValueListItems = (config: OpenAPIClientConfig, request: {
 export const postRadarValueListItems = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -55982,7 +55983,7 @@ export const getRadarValueListItemsItem = (config: OpenAPIClientConfig, request:
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56026,7 +56027,7 @@ export const deleteRadarValueListItemsItem = (config: OpenAPIClientConfig, reque
     item: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56084,7 +56085,7 @@ export const getRadarValueLists = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56156,7 +56157,7 @@ export const getRadarValueLists = (config: OpenAPIClientConfig, request: {
 export const postRadarValueLists = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56196,7 +56197,7 @@ export const getRadarValueListsValueList = (config: OpenAPIClientConfig, request
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56240,7 +56241,7 @@ export const postRadarValueListsValueList = (config: OpenAPIClientConfig, reques
     value_list: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56280,7 +56281,7 @@ export const deleteRadarValueListsValueList = (config: OpenAPIClientConfig, requ
     value_list: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56338,7 +56339,7 @@ export const getRefunds = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56420,7 +56421,7 @@ export const getRefunds = (config: OpenAPIClientConfig, request: {
 export const postRefunds = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56460,7 +56461,7 @@ export const getRefundsRefund = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56506,7 +56507,7 @@ export const postRefundsRefund = (config: OpenAPIClientConfig, request: {
     refund: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56548,7 +56549,7 @@ export const postRefundsRefundCancel = (config: OpenAPIClientConfig, request: {
     refund: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56602,7 +56603,7 @@ export const getReportingReportRuns = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56672,7 +56673,7 @@ export const getReportingReportRuns = (config: OpenAPIClientConfig, request: {
 export const postReportingReportRuns = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56712,7 +56713,7 @@ export const getReportingReportRunsReportRun = (config: OpenAPIClientConfig, req
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56757,7 +56758,7 @@ export const getReportingReportTypes = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56816,7 +56817,7 @@ export const getReportingReportTypesReportType = (config: OpenAPIClientConfig, r
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56874,7 +56875,7 @@ export const getReviews = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56950,7 +56951,7 @@ export const getReviewsReview = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -56994,7 +56995,7 @@ export const postReviewsReviewApprove = (config: OpenAPIClientConfig, request: {
     review: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57057,7 +57058,7 @@ export const getSetupAttempts = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57154,7 +57155,7 @@ export const getSetupIntents = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57230,7 +57231,7 @@ export const getSetupIntents = (config: OpenAPIClientConfig, request: {
 export const postSetupIntents = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57276,7 +57277,7 @@ export const getSetupIntentsIntent = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57321,7 +57322,7 @@ export const postSetupIntentsIntent = (config: OpenAPIClientConfig, request: {
     intent: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57363,7 +57364,7 @@ export const postSetupIntentsIntentCancel = (config: OpenAPIClientConfig, reques
     intent: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57416,7 +57417,7 @@ export const postSetupIntentsIntentConfirm = (config: OpenAPIClientConfig, reque
     intent: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57456,7 +57457,7 @@ export const postSetupIntentsIntentVerifyMicrodeposits = (config: OpenAPIClientC
     intent: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57514,7 +57515,7 @@ export const getShippingRates = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57586,7 +57587,7 @@ export const getShippingRates = (config: OpenAPIClientConfig, request: {
 export const postShippingRates = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57626,7 +57627,7 @@ export const getShippingRatesShippingRateToken = (config: OpenAPIClientConfig, r
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57670,7 +57671,7 @@ export const postShippingRatesShippingRateToken = (config: OpenAPIClientConfig, 
     shipping_rate_token: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57711,7 +57712,7 @@ export const postSigmaSavedQueriesId = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57758,7 +57759,7 @@ export const getSigmaScheduledQueryRuns = (config: OpenAPIClientConfig, request:
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57820,7 +57821,7 @@ export const getSigmaScheduledQueryRunsScheduledQueryRun = (config: OpenAPIClien
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57862,7 +57863,7 @@ export const getSigmaScheduledQueryRunsScheduledQueryRun = (config: OpenAPIClien
 export const postSources = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57904,7 +57905,7 @@ export const getSourcesSource = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57951,7 +57952,7 @@ export const postSourcesSource = (config: OpenAPIClientConfig, request: {
     source: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -57996,7 +57997,7 @@ export const getSourcesSourceMandateNotificationsMandateNotification = (config: 
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -58049,7 +58050,7 @@ export const getSourcesSourceSourceTransactions = (config: OpenAPIClientConfig, 
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -58115,7 +58116,7 @@ export const getSourcesSourceSourceTransactionsSourceTransaction = (config: Open
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -58158,7 +58159,7 @@ export const postSourcesSourceVerify = (config: OpenAPIClientConfig, request: {
     source: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -58207,7 +58208,7 @@ export const getSubscriptionItems = (config: OpenAPIClientConfig, request: {
     subscription: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -58264,7 +58265,7 @@ export const getSubscriptionItems = (config: OpenAPIClientConfig, request: {
 export const postSubscriptionItems = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -58304,7 +58305,7 @@ export const getSubscriptionItemsItem = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -58348,7 +58349,7 @@ export const postSubscriptionItemsItem = (config: OpenAPIClientConfig, request: 
     item: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -58388,7 +58389,7 @@ export const deleteSubscriptionItemsItem = (config: OpenAPIClientConfig, request
     item: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -58467,7 +58468,7 @@ export const getSubscriptionSchedules = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -58567,7 +58568,7 @@ export const getSubscriptionSchedules = (config: OpenAPIClientConfig, request: {
 export const postSubscriptionSchedules = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -58607,7 +58608,7 @@ export const getSubscriptionSchedulesSchedule = (config: OpenAPIClientConfig, re
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -58651,7 +58652,7 @@ export const postSubscriptionSchedulesSchedule = (config: OpenAPIClientConfig, r
     schedule: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -58691,7 +58692,7 @@ export const postSubscriptionSchedulesScheduleCancel = (config: OpenAPIClientCon
     schedule: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -58731,7 +58732,7 @@ export const postSubscriptionSchedulesScheduleRelease = (config: OpenAPIClientCo
     schedule: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -58823,7 +58824,7 @@ export const getSubscriptions = (config: OpenAPIClientConfig, request: {
     test_clock?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -58937,7 +58938,7 @@ export const getSubscriptions = (config: OpenAPIClientConfig, request: {
 export const postSubscriptions = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -58983,7 +58984,7 @@ export const getSubscriptionsSearch = (config: OpenAPIClientConfig, request: {
     query: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59048,7 +59049,7 @@ export const getSubscriptionsSubscriptionExposedId = (config: OpenAPIClientConfi
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59112,7 +59113,7 @@ export const postSubscriptionsSubscriptionExposedId = (config: OpenAPIClientConf
     subscription_exposed_id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59156,7 +59157,7 @@ export const deleteSubscriptionsSubscriptionExposedId = (config: OpenAPIClientCo
     subscription_exposed_id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59196,7 +59197,7 @@ export const deleteSubscriptionsSubscriptionExposedIdDiscount = (config: OpenAPI
     subscription_exposed_id: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59236,7 +59237,7 @@ export const postSubscriptionsSubscriptionMigrate = (config: OpenAPIClientConfig
     subscription: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59276,7 +59277,7 @@ export const postSubscriptionsSubscriptionResume = (config: OpenAPIClientConfig,
     subscription: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59314,7 +59315,7 @@ export const postSubscriptionsSubscriptionResume = (config: OpenAPIClientConfig,
 export const postTaxCalculations = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59354,7 +59355,7 @@ export const getTaxCalculationsCalculation = (config: OpenAPIClientConfig, reque
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59408,7 +59409,7 @@ export const getTaxCalculationsCalculationLineItems = (config: OpenAPIClientConf
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59479,7 +59480,7 @@ export const getTaxRegistrations = (config: OpenAPIClientConfig, request: {
     status?: "active" | "all" | "expired" | "scheduled";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59536,7 +59537,7 @@ export const getTaxRegistrations = (config: OpenAPIClientConfig, request: {
 export const postTaxRegistrations = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59576,7 +59577,7 @@ export const getTaxRegistrationsId = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59622,7 +59623,7 @@ export const postTaxRegistrationsId = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59663,7 +59664,7 @@ export const getTaxSettings = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59702,7 +59703,7 @@ export const getTaxSettings = (config: OpenAPIClientConfig, request: {
 export const postTaxSettings = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59736,7 +59737,7 @@ export const postTaxSettings = (
 export const postTaxTransactionsCreateFromCalculation = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59770,7 +59771,7 @@ export const postTaxTransactionsCreateFromCalculation = (
 export const postTaxTransactionsCreateReversal = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59810,7 +59811,7 @@ export const getTaxTransactionsTransaction = (config: OpenAPIClientConfig, reque
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59864,7 +59865,7 @@ export const getTaxTransactionsTransactionLineItems = (config: OpenAPIClientConf
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59933,7 +59934,7 @@ export const getTaxCodes = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -59995,7 +59996,7 @@ export const getTaxCodesId = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60052,7 +60053,7 @@ export const getTaxIds = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60119,7 +60120,7 @@ export const getTaxIds = (config: OpenAPIClientConfig, request: {
 export const postTaxIds = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60159,7 +60160,7 @@ export const getTaxIdsId = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60203,7 +60204,7 @@ export const deleteTaxIdsId = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60261,7 +60262,7 @@ export const getTaxRates = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60333,7 +60334,7 @@ export const getTaxRates = (config: OpenAPIClientConfig, request: {
 export const postTaxRates = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60373,7 +60374,7 @@ export const getTaxRatesTaxRate = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60417,7 +60418,7 @@ export const postTaxRatesTaxRate = (config: OpenAPIClientConfig, request: {
     tax_rate: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60466,7 +60467,7 @@ export const getTerminalConfigurations = (config: OpenAPIClientConfig, request: 
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60523,7 +60524,7 @@ export const getTerminalConfigurations = (config: OpenAPIClientConfig, request: 
 export const postTerminalConfigurations = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60563,7 +60564,7 @@ export const getTerminalConfigurationsConfiguration = (config: OpenAPIClientConf
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60612,7 +60613,7 @@ export const postTerminalConfigurationsConfiguration = (config: OpenAPIClientCon
     configuration: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60657,7 +60658,7 @@ export const deleteTerminalConfigurationsConfiguration = (config: OpenAPIClientC
     configuration: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60695,7 +60696,7 @@ export const deleteTerminalConfigurationsConfiguration = (config: OpenAPIClientC
 export const postTerminalConnectionTokens = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60738,7 +60739,7 @@ export const getTerminalLocations = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60795,7 +60796,7 @@ export const getTerminalLocations = (config: OpenAPIClientConfig, request: {
 export const postTerminalLocations = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60835,7 +60836,7 @@ export const getTerminalLocationsLocation = (config: OpenAPIClientConfig, reques
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60879,7 +60880,7 @@ export const postTerminalLocationsLocation = (config: OpenAPIClientConfig, reque
     location: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60919,7 +60920,7 @@ export const deleteTerminalLocationsLocation = (config: OpenAPIClientConfig, req
     location: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -60983,7 +60984,7 @@ export const getTerminalReaders = (config: OpenAPIClientConfig, request: {
     status?: "offline" | "online";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61054,7 +61055,7 @@ export const getTerminalReaders = (config: OpenAPIClientConfig, request: {
 export const postTerminalReaders = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61094,7 +61095,7 @@ export const getTerminalReadersReader = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61140,7 +61141,7 @@ export const postTerminalReadersReader = (config: OpenAPIClientConfig, request: 
     reader: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61182,7 +61183,7 @@ export const deleteTerminalReadersReader = (config: OpenAPIClientConfig, request
     reader: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61222,7 +61223,7 @@ export const postTerminalReadersReaderCancelAction = (config: OpenAPIClientConfi
     reader: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61262,7 +61263,7 @@ export const postTerminalReadersReaderCollectInputs = (config: OpenAPIClientConf
     reader: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61302,7 +61303,7 @@ export const postTerminalReadersReaderCollectPaymentMethod = (config: OpenAPICli
     reader: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61342,7 +61343,7 @@ export const postTerminalReadersReaderConfirmPaymentIntent = (config: OpenAPICli
     reader: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61382,7 +61383,7 @@ export const postTerminalReadersReaderProcessPaymentIntent = (config: OpenAPICli
     reader: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61422,7 +61423,7 @@ export const postTerminalReadersReaderProcessSetupIntent = (config: OpenAPIClien
     reader: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61462,7 +61463,7 @@ export const postTerminalReadersReaderRefundPayment = (config: OpenAPIClientConf
     reader: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61502,7 +61503,7 @@ export const postTerminalReadersReaderSetReaderDisplay = (config: OpenAPIClientC
     reader: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61540,7 +61541,7 @@ export const postTerminalReadersReaderSetReaderDisplay = (config: OpenAPIClientC
 export const postTestHelpersConfirmationTokens = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61576,7 +61577,7 @@ export const postTestHelpersCustomersCustomerFundCashBalance = (config: OpenAPIC
     customer: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61616,7 +61617,7 @@ export const postTestHelpersCustomersCustomerFundCashBalance = (config: OpenAPIC
 export const postTestHelpersIssuingAuthorizations = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61652,7 +61653,7 @@ export const postTestHelpersIssuingAuthorizationsAuthorizationCapture = (config:
     authorization: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61692,7 +61693,7 @@ export const postTestHelpersIssuingAuthorizationsAuthorizationExpire = (config: 
     authorization: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61735,7 +61736,7 @@ export const postTestHelpersIssuingAuthorizationsAuthorizationFinalizeAmount = (
     };
     body: "WARN: application/json is the only supported content type";
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61778,7 +61779,7 @@ export const postTestHelpersIssuingAuthorizationsAuthorizationFraudChallengesRes
     };
     body: "WARN: application/json is the only supported content type";
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61821,7 +61822,7 @@ export const postTestHelpersIssuingAuthorizationsAuthorizationIncrement = (
     };
     body: "WARN: application/json is the only supported content type";
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61861,7 +61862,7 @@ export const postTestHelpersIssuingAuthorizationsAuthorizationReverse = (config:
     authorization: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61901,7 +61902,7 @@ export const postTestHelpersIssuingCardsCardShippingDeliver = (config: OpenAPICl
     card: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61941,7 +61942,7 @@ export const postTestHelpersIssuingCardsCardShippingFail = (config: OpenAPIClien
     card: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -61981,7 +61982,7 @@ export const postTestHelpersIssuingCardsCardShippingReturn = (config: OpenAPICli
     card: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62021,7 +62022,7 @@ export const postTestHelpersIssuingCardsCardShippingShip = (config: OpenAPIClien
     card: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62061,7 +62062,7 @@ export const postTestHelpersIssuingCardsCardShippingSubmit = (config: OpenAPICli
     card: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62104,7 +62105,7 @@ export const postTestHelpersIssuingPersonalizationDesignsPersonalizationDesignAc
     };
     body?: "WARN: application/json is the only supported content type";
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62149,7 +62150,7 @@ export const postTestHelpersIssuingPersonalizationDesignsPersonalizationDesignDe
     };
     body?: "WARN: application/json is the only supported content type";
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62194,7 +62195,7 @@ export const postTestHelpersIssuingPersonalizationDesignsPersonalizationDesignRe
     };
     body: "WARN: application/json is the only supported content type";
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62234,7 +62235,7 @@ export const postTestHelpersIssuingPersonalizationDesignsPersonalizationDesignRe
 export const postTestHelpersIssuingSettlements = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62271,7 +62272,7 @@ export const postTestHelpersIssuingSettlementsSettlementComplete = (config: Open
     settlement: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62309,7 +62310,7 @@ export const postTestHelpersIssuingSettlementsSettlementComplete = (config: Open
 export const postTestHelpersIssuingTransactionsCreateForceCapture = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62343,7 +62344,7 @@ export const postTestHelpersIssuingTransactionsCreateForceCapture = (
 export const postTestHelpersIssuingTransactionsCreateUnlinkedRefund = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62379,7 +62380,7 @@ export const postTestHelpersIssuingTransactionsTransactionRefund = (config: Open
     transaction: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62419,7 +62420,7 @@ export const postTestHelpersRefundsRefundExpire = (config: OpenAPIClientConfig, 
     refund: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62459,7 +62460,7 @@ export const postTestHelpersTerminalReadersReaderPresentPaymentMethod = (config:
     reader: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62502,7 +62503,7 @@ export const postTestHelpersTerminalReadersReaderSucceedInputCollection = (
     };
     body?: "WARN: application/json is the only supported content type";
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62545,7 +62546,7 @@ export const postTestHelpersTerminalReadersReaderTimeoutInputCollection = (
     };
     body?: "WARN: application/json is the only supported content type";
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62592,7 +62593,7 @@ export const getTestHelpersTestClocks = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62648,7 +62649,7 @@ export const getTestHelpersTestClocks = (config: OpenAPIClientConfig, request: {
 export const postTestHelpersTestClocks = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62688,7 +62689,7 @@ export const getTestHelpersTestClocksTestClock = (config: OpenAPIClientConfig, r
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62732,7 +62733,7 @@ export const deleteTestHelpersTestClocksTestClock = (config: OpenAPIClientConfig
     test_clock: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62772,7 +62773,7 @@ export const postTestHelpersTestClocksTestClockAdvance = (config: OpenAPIClientC
     test_clock: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62812,7 +62813,7 @@ export const postTestHelpersTreasuryInboundTransfersIdFail = (config: OpenAPICli
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62852,7 +62853,7 @@ export const postTestHelpersTreasuryInboundTransfersIdReturn = (config: OpenAPIC
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62892,7 +62893,7 @@ export const postTestHelpersTreasuryInboundTransfersIdSucceed = (config: OpenAPI
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62932,7 +62933,7 @@ export const postTestHelpersTreasuryOutboundPaymentsId = (config: OpenAPIClientC
     id: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -62972,7 +62973,7 @@ export const postTestHelpersTreasuryOutboundPaymentsIdFail = (config: OpenAPICli
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63012,7 +63013,7 @@ export const postTestHelpersTreasuryOutboundPaymentsIdPost = (config: OpenAPICli
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63052,7 +63053,7 @@ export const postTestHelpersTreasuryOutboundPaymentsIdReturn = (config: OpenAPIC
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63092,7 +63093,7 @@ export const postTestHelpersTreasuryOutboundTransfersOutboundTransfer = (config:
     outbound_transfer: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63135,7 +63136,7 @@ export const postTestHelpersTreasuryOutboundTransfersOutboundTransferFail = (
     };
     body?: "WARN: application/json is the only supported content type";
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63178,7 +63179,7 @@ export const postTestHelpersTreasuryOutboundTransfersOutboundTransferPost = (
     };
     body?: "WARN: application/json is the only supported content type";
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63221,7 +63222,7 @@ export const postTestHelpersTreasuryOutboundTransfersOutboundTransferReturn = (
     };
     body?: "WARN: application/json is the only supported content type";
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63259,7 +63260,7 @@ export const postTestHelpersTreasuryOutboundTransfersOutboundTransferReturn = (
 export const postTestHelpersTreasuryReceivedCredits = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63293,7 +63294,7 @@ export const postTestHelpersTreasuryReceivedCredits = (
 export const postTestHelpersTreasuryReceivedDebits = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63328,7 +63329,7 @@ export const postTestHelpersTreasuryReceivedDebits = (
 export const postTokens = (
   config: OpenAPIClientConfig,
   request?: { body?: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63368,7 +63369,7 @@ export const getTokensToken = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63435,7 +63436,7 @@ export const getTopups = (config: OpenAPIClientConfig, request: {
     status?: "canceled" | "failed" | "pending" | "succeeded";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63515,7 +63516,7 @@ export const getTopups = (config: OpenAPIClientConfig, request: {
 export const postTopups = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63555,7 +63556,7 @@ export const getTopupsTopup = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63599,7 +63600,7 @@ export const postTopupsTopup = (config: OpenAPIClientConfig, request: {
     topup: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63639,7 +63640,7 @@ export const postTopupsTopupCancel = (config: OpenAPIClientConfig, request: {
     topup: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63697,7 +63698,7 @@ export const getTransfers = (config: OpenAPIClientConfig, request: {
     transfer_group?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63770,7 +63771,7 @@ export const getTransfers = (config: OpenAPIClientConfig, request: {
 export const postTransfers = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63816,7 +63817,7 @@ export const getTransfersIdReversals = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63882,7 +63883,7 @@ export const postTransfersIdReversals = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63926,7 +63927,7 @@ export const getTransfersTransfer = (config: OpenAPIClientConfig, request: {
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -63972,7 +63973,7 @@ export const postTransfersTransfer = (config: OpenAPIClientConfig, request: {
     transfer: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64017,7 +64018,7 @@ export const getTransfersTransferReversalsId = (config: OpenAPIClientConfig, req
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64065,7 +64066,7 @@ export const postTransfersTransferReversalsId = (config: OpenAPIClientConfig, re
     transfer: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64119,7 +64120,7 @@ export const getTreasuryCreditReversals = (config: OpenAPIClientConfig, request:
     status?: "canceled" | "posted" | "processing";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64179,7 +64180,7 @@ export const getTreasuryCreditReversals = (config: OpenAPIClientConfig, request:
 export const postTreasuryCreditReversals = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64219,7 +64220,7 @@ export const getTreasuryCreditReversalsCreditReversal = (config: OpenAPIClientCo
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64278,7 +64279,7 @@ export const getTreasuryDebitReversals = (config: OpenAPIClientConfig, request: 
     status?: "canceled" | "completed" | "processing";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64339,7 +64340,7 @@ export const getTreasuryDebitReversals = (config: OpenAPIClientConfig, request: 
 export const postTreasuryDebitReversals = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64379,7 +64380,7 @@ export const getTreasuryDebitReversalsDebitReversal = (config: OpenAPIClientConf
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64439,7 +64440,7 @@ export const getTreasuryFinancialAccounts = (config: OpenAPIClientConfig, reques
     status?: "closed" | "open";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64510,7 +64511,7 @@ export const getTreasuryFinancialAccounts = (config: OpenAPIClientConfig, reques
 export const postTreasuryFinancialAccounts = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64550,7 +64551,7 @@ export const getTreasuryFinancialAccountsFinancialAccount = (config: OpenAPIClie
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64594,7 +64595,7 @@ export const postTreasuryFinancialAccountsFinancialAccount = (config: OpenAPICli
     financial_account: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64634,7 +64635,7 @@ export const postTreasuryFinancialAccountsFinancialAccountClose = (config: OpenA
     financial_account: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64678,7 +64679,7 @@ export const getTreasuryFinancialAccountsFinancialAccountFeatures = (config: Ope
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64722,7 +64723,7 @@ export const postTreasuryFinancialAccountsFinancialAccountFeatures = (config: Op
     financial_account: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64773,7 +64774,7 @@ export const getTreasuryInboundTransfers = (config: OpenAPIClientConfig, request
     status?: "canceled" | "failed" | "processing" | "succeeded";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64832,7 +64833,7 @@ export const getTreasuryInboundTransfers = (config: OpenAPIClientConfig, request
 export const postTreasuryInboundTransfers = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64872,7 +64873,7 @@ export const getTreasuryInboundTransfersId = (config: OpenAPIClientConfig, reque
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64916,7 +64917,7 @@ export const postTreasuryInboundTransfersInboundTransferCancel = (config: OpenAP
     inbound_transfer: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -64976,7 +64977,7 @@ export const getTreasuryOutboundPayments = (config: OpenAPIClientConfig, request
     status?: "canceled" | "failed" | "posted" | "processing" | "returned";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -65050,7 +65051,7 @@ export const getTreasuryOutboundPayments = (config: OpenAPIClientConfig, request
 export const postTreasuryOutboundPayments = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -65090,7 +65091,7 @@ export const getTreasuryOutboundPaymentsId = (config: OpenAPIClientConfig, reque
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -65134,7 +65135,7 @@ export const postTreasuryOutboundPaymentsIdCancel = (config: OpenAPIClientConfig
     id: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -65185,7 +65186,7 @@ export const getTreasuryOutboundTransfers = (config: OpenAPIClientConfig, reques
     status?: "canceled" | "failed" | "posted" | "processing" | "returned";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -65244,7 +65245,7 @@ export const getTreasuryOutboundTransfers = (config: OpenAPIClientConfig, reques
 export const postTreasuryOutboundTransfers = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -65284,7 +65285,7 @@ export const getTreasuryOutboundTransfersOutboundTransfer = (config: OpenAPIClie
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -65328,7 +65329,7 @@ export const postTreasuryOutboundTransfersOutboundTransferCancel = (config: Open
     outbound_transfer: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -65383,7 +65384,7 @@ export const getTreasuryReceivedCredits = (config: OpenAPIClientConfig, request:
     status?: "failed" | "succeeded";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -65456,7 +65457,7 @@ export const getTreasuryReceivedCreditsId = (config: OpenAPIClientConfig, reques
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -65511,7 +65512,7 @@ export const getTreasuryReceivedDebits = (config: OpenAPIClientConfig, request: 
     status?: "failed" | "succeeded";
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -65576,7 +65577,7 @@ export const getTreasuryReceivedDebitsId = (config: OpenAPIClientConfig, request
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -65646,7 +65647,7 @@ export const getTreasuryTransactionEntries = (config: OpenAPIClientConfig, reque
     transaction?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -65735,7 +65736,7 @@ export const getTreasuryTransactionEntriesId = (config: OpenAPIClientConfig, req
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -65808,7 +65809,7 @@ export const getTreasuryTransactions = (config: OpenAPIClientConfig, request: {
     };
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -65899,7 +65900,7 @@ export const getTreasuryTransactionsId = (config: OpenAPIClientConfig, request: 
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -65950,7 +65951,7 @@ export const getWebhookEndpoints = (config: OpenAPIClientConfig, request: {
     starting_after?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -66006,7 +66007,7 @@ export const getWebhookEndpoints = (config: OpenAPIClientConfig, request: {
 export const postWebhookEndpoints = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -66046,7 +66047,7 @@ export const getWebhookEndpointsWebhookEndpoint = (config: OpenAPIClientConfig, 
     expand?: string[];
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -66090,7 +66091,7 @@ export const postWebhookEndpointsWebhookEndpoint = (config: OpenAPIClientConfig,
     webhook_endpoint: string;
   };
   body?: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {
@@ -66130,7 +66131,7 @@ export const deleteWebhookEndpointsWebhookEndpoint = (config: OpenAPIClientConfi
     webhook_endpoint: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response. */
     200: {

@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -125,7 +126,7 @@ export class ApiClient {
      *
      * Add a new pet to the store.
      */
-    post: (request: { body: Pet }): Promise<
+    post: (request: { body: Pet }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Successful operation */
         200: {
@@ -167,7 +168,7 @@ export class ApiClient {
      *
      * Update an existing pet by Id.
      */
-    put: (request: { body: Pet }): Promise<
+    put: (request: { body: Pet }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Successful operation */
         200: {
@@ -222,7 +223,7 @@ export class ApiClient {
         /** ID of pet to return */
         petId: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** successful operation */
         200: {
@@ -277,7 +278,7 @@ export class ApiClient {
         /** Status of pet that needs to be updated */
         status?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** successful operation */
         200: {
@@ -328,7 +329,7 @@ export class ApiClient {
       headers?: {
         api_key?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Pet deleted */
         200: {
@@ -383,7 +384,7 @@ export class ApiClient {
         additionalMetadata?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** successful operation */
         200: {
@@ -438,7 +439,7 @@ export class ApiClient {
         /** Status values that need to be considered for filter */
         status: "available" | "pending" | "sold";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** successful operation */
         200: {
@@ -485,7 +486,7 @@ export class ApiClient {
         /** Tags to filter by */
         tags: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** successful operation */
         200: {
@@ -527,7 +528,7 @@ export class ApiClient {
      *
      * Returns a map of status codes to quantities.
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** successful operation */
         200: {
@@ -558,7 +559,7 @@ export class ApiClient {
      *
      * Place a new order in the store.
      */
-    post: (request?: { body?: Order }): Promise<
+    post: (request?: { body?: Order }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** successful operation */
         200: {
@@ -608,7 +609,7 @@ export class ApiClient {
         /** ID of order that needs to be fetched */
         orderId: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** successful operation */
         200: {
@@ -657,7 +658,7 @@ export class ApiClient {
         /** ID of the order that needs to be deleted */
         orderId: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** order deleted */
         200: {
@@ -704,7 +705,7 @@ export class ApiClient {
      *
      * This can only be done by the logged in user.
      */
-    post: (request?: { body?: User }): Promise<
+    post: (request?: { body?: User }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** successful operation */
         200: {
@@ -744,7 +745,7 @@ export class ApiClient {
         /** The name that needs to be fetched. Use user1 for testing */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** successful operation */
         200: {
@@ -794,7 +795,7 @@ export class ApiClient {
         username: string;
       };
       body?: User;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** successful operation */
         200: {
@@ -844,7 +845,7 @@ export class ApiClient {
         /** The name that needs to be deleted */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** User deleted */
         200: {
@@ -891,7 +892,7 @@ export class ApiClient {
      *
      * Creates list of users with given input array.
      */
-    post: (request: { body: User[] }): Promise<
+    post: (request: { body: User[] }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Successful operation */
         200: {
@@ -933,7 +934,7 @@ export class ApiClient {
         /** The password for login in clear text */
         password?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** successful operation */
         200: {
@@ -988,7 +989,7 @@ export class ApiClient {
      *
      * Log user out of the system.
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** successful operation */
         200: {

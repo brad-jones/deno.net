@@ -337,6 +337,56 @@ if (!response.isDefault) {
 console.log(response.raw.ok);
 ```
 
+### Body Shortcut Method
+
+For simpler cases where you just want the response body and are confident about the expected status, you can use the `.body()` shortcut method:
+
+```typescript
+import { ResponseError } from "@brad-jones/deno-net-open-api-client";
+
+// Get the body with explicit status code
+try {
+  const user = await client["/users/{id}"].get({ path: { id: 123 } }).body(200);
+  console.log(user.name); // Typed as 200 response body
+} catch (e) {
+  if (e instanceof ResponseError) {
+    console.error(`Expected 200, got ${e.response.status}`);
+  }
+}
+
+// Get the body using default status selection
+try {
+  const user = await client["/users/{id}"].get({ path: { id: 123 } }).body();
+  console.log(user.name); // Typed based on default (200, "default", or first defined)
+} catch (e) {
+  if (e instanceof ResponseError) {
+    console.error(e.message);
+  }
+}
+
+// Get the default/error response
+try {
+  const error = await client["/users/{id}"].get({ path: { id: 999 } }).body("default");
+  console.log(error.message); // Typed as default response body
+} catch (e) {
+  if (e instanceof ResponseError) {
+    console.error(`Unexpected response: ${e.response.status}`);
+  }
+}
+```
+
+**Default Status Selection:**
+
+When calling `.body()` without arguments, the method selects the status code in this priority:
+
+1. **Status 200** if defined in the response schema
+2. **"default" response** if 200 is not defined but "default" is
+3. **First defined response** if neither 200 nor "default" are defined
+
+**Important Note:**
+
+If your API specification defines neither a 200 nor a "default" response, calling `.body()` without arguments will return a union type of all possible response bodies. For proper type narrowing in this case, explicitly specify the status code: `.body(201)` or use the traditional `.is()` pattern.
+
 ### Default Responses
 
 OpenAPI specifications can define a "default" response that matches any status code not explicitly defined. The `isDefault` property indicates when a response matched the default schema:

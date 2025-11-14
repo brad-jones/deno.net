@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -95,7 +96,7 @@ export class ApiClient {
     /**
      * Get your saved addresses
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** List of saved addresses */
         200: {
@@ -116,7 +117,7 @@ export class ApiClient {
     /**
      * Add a new address
      */
-    post: (request: { body: Address }): Promise<
+    post: (request: { body: Address }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Address added */
         201: {
@@ -149,7 +150,7 @@ export class ApiClient {
         email: string;
         password: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Authenticated successfully */
         200: {
@@ -193,7 +194,7 @@ export class ApiClient {
         password: string;
         name?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** User created */
         201: {
@@ -230,7 +231,7 @@ export class ApiClient {
     /**
      * Get current user's cart
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Your cart items */
         200: {
@@ -254,7 +255,7 @@ export class ApiClient {
     /**
      * Add item to cart
      */
-    post: (request: { body: CartItem }): Promise<
+    post: (request: { body: CartItem }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Item added to cart */
         200: {
@@ -287,7 +288,7 @@ export class ApiClient {
         address_id: string;
         payment_method_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Order created */
         201: {
@@ -318,7 +319,7 @@ export class ApiClient {
     /**
      * List your past orders
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Order history */
         200: {
@@ -346,7 +347,7 @@ export class ApiClient {
       path: {
         orderId: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Order detail */
         200: {
@@ -383,7 +384,7 @@ export class ApiClient {
         min_price?: number;
         max_price?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** List of products */
         200: {
@@ -420,7 +421,7 @@ export class ApiClient {
       path: {
         id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Product details */
         200: {

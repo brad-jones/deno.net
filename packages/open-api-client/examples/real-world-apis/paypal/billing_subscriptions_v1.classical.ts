@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -1686,7 +1687,7 @@ export class ApiClient {
         /** The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul> */
         Prefer?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that lists billing plans. */
         200: {
@@ -1758,7 +1759,7 @@ export class ApiClient {
         "PayPal-Request-Id"?: string;
       };
       body: PlanRequestPost;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows billing plan details. */
         200: {
@@ -1831,7 +1832,7 @@ export class ApiClient {
         /** The ID of the subscription. */
         id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows plan details. */
         200: {
@@ -1889,7 +1890,7 @@ export class ApiClient {
         /** The ID of the subscription. */
         id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
         204: {
@@ -1960,7 +1961,7 @@ export class ApiClient {
         /** The ID of the subscription. */
         id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
         204: {
@@ -2026,7 +2027,7 @@ export class ApiClient {
         /** The ID of the subscription. */
         id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
         204: {
@@ -2093,7 +2094,7 @@ export class ApiClient {
         id: string;
       };
       body: UpdatePricingSchemesListRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
         204: {
@@ -2168,7 +2169,7 @@ export class ApiClient {
         "PayPal-Request-Id"?: string;
       };
       body: SubscriptionRequestPost;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows subscription details. */
         200: {
@@ -2245,7 +2246,7 @@ export class ApiClient {
         /** List of fields that are to be returned in the response. Possible value for fields are last_failed_payment and plan. */
         fields?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows subscription details. */
         200: {
@@ -2306,7 +2307,7 @@ export class ApiClient {
         /** The ID of the subscription. */
         id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
         204: {
@@ -2378,7 +2379,7 @@ export class ApiClient {
         id: string;
       };
       body?: SubscriptionActivateRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
         204: {
@@ -2451,7 +2452,7 @@ export class ApiClient {
         id: string;
       };
       body: SubscriptionCancelRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
         204: {
@@ -2528,7 +2529,7 @@ export class ApiClient {
         "PayPal-Request-Id"?: string;
       };
       body: SubscriptionCaptureRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows subscription details. */
         200: {
@@ -2609,7 +2610,7 @@ export class ApiClient {
         id: string;
       };
       body?: SubscriptionReviseRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows subscription details. */
         200: {
@@ -2682,7 +2683,7 @@ export class ApiClient {
         id: string;
       };
       body: SubscriptionSuspendRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
         204: {
@@ -2760,7 +2761,7 @@ export class ApiClient {
         /** The end time of the range of transactions to list. */
         end_time: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows subscription details. */
         200: {

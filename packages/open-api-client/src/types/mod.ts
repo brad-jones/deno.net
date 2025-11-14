@@ -4,5 +4,6 @@ export * from "./open_api_parameter_metadata.ts";
 export * from "./open_api_request.ts";
 export * from "./open_api_request_metadata.ts";
 export * from "./open_api_response.ts";
+export * from "./open_api_response_promise.ts";
 export * from "./open_api_responses.ts";
 export * from "./open_api_spec.ts";

@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -103885,7 +103886,7 @@ export const WorkflowUsageSchema: z.ZodType<WorkflowUsage> = z.object({
  *
  * Get Hypermedia links to resources accessible in GitHub's REST API
  */
-export const metaRoot = (config: OpenAPIClientConfig): Promise<
+export const metaRoot = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -103977,7 +103978,7 @@ export const securityAdvisoriesListGlobalAdvisories = (config: OpenAPIClientConf
     /** The property to sort the results by. */
     sort?: "updated" | "published" | "epss_percentage" | "epss_percentile";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -104038,7 +104039,7 @@ export const securityAdvisoriesGetGlobalAdvisory = (config: OpenAPIClientConfig,
     /** The GHSA (GitHub Security Advisory) identifier of the advisory. */
     ghsa_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -104074,7 +104075,7 @@ export const securityAdvisoriesGetGlobalAdvisory = (config: OpenAPIClientConfig,
  *
  * You must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint.
  */
-export const appsGetAuthenticated = (config: OpenAPIClientConfig): Promise<
+export const appsGetAuthenticated = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -104102,7 +104103,7 @@ export const appsCreateFromManifest = (config: OpenAPIClientConfig, request: {
   path: {
     code: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -104159,7 +104160,7 @@ export const appsCreateFromManifest = (config: OpenAPIClientConfig, request: {
  *
  * You must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint.
  */
-export const appsGetWebhookConfigForApp = (config: OpenAPIClientConfig): Promise<
+export const appsGetWebhookConfigForApp = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -104192,7 +104193,7 @@ export const appsUpdateWebhookConfigForApp = (config: OpenAPIClientConfig, reque
     secret?: WebhookConfigSecret;
     insecure_ssl?: WebhookConfigInsecureSsl;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -104234,7 +104235,7 @@ export const appsListWebhookDeliveries = (config: OpenAPIClientConfig, request?:
     /** Used for pagination: the starting delivery from which the page of deliveries is fetched. Refer to the `link` header for the next and previous page cursors. */
     cursor?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -104279,7 +104280,7 @@ export const appsGetWebhookDelivery = (config: OpenAPIClientConfig, request: {
   path: {
     delivery_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -104323,7 +104324,7 @@ export const appsRedeliverWebhookDelivery = (config: OpenAPIClientConfig, reques
   path: {
     delivery_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     202: {
       body: unknown;
@@ -104367,7 +104368,7 @@ export const appsListInstallationRequestsForAuthenticatedApp = (config: OpenAPIC
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** List of integration installation requests */
     200: {
@@ -104418,7 +104419,7 @@ export const appsListInstallations = (config: OpenAPIClientConfig, request?: {
     since?: string;
     outdated?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** The permissions the installation has are included under the `permissions` key. */
     200: {
@@ -104466,7 +104467,7 @@ export const appsGetInstallation = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the installation. */
     installation_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -104507,7 +104508,7 @@ export const appsDeleteInstallation = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the installation. */
     installation_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -104559,7 +104560,7 @@ export const appsCreateInstallationAccessToken = (config: OpenAPIClientConfig, r
     repository_ids?: number[];
     permissions?: AppPermissions;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -104617,7 +104618,7 @@ export const appsSuspendInstallation = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the installation. */
     installation_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -104658,7 +104659,7 @@ export const appsUnsuspendInstallation = (config: OpenAPIClientConfig, request: 
     /** The unique identifier of the installation. */
     installation_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -104702,7 +104703,7 @@ export const appsDeleteAuthorization = (config: OpenAPIClientConfig, request: {
     /** The OAuth access token used to authenticate to the GitHub API. */
     access_token: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -104748,7 +104749,7 @@ export const appsCheckToken = (config: OpenAPIClientConfig, request: {
     /** The access_token of the OAuth or GitHub application. */
     access_token: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -104798,7 +104799,7 @@ export const appsDeleteToken = (config: OpenAPIClientConfig, request: {
     /** The OAuth access token used to authenticate to the GitHub API. */
     access_token: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -104844,7 +104845,7 @@ export const appsResetToken = (config: OpenAPIClientConfig, request: {
     /** The access_token of the OAuth or GitHub application. */
     access_token: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -104903,7 +104904,7 @@ export const appsScopeToken = (config: OpenAPIClientConfig, request: {
     repository_ids?: number[];
     permissions?: AppPermissions;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -104962,7 +104963,7 @@ export const appsGetBySlug = (config: OpenAPIClientConfig, request: {
   path: {
     app_slug: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -105005,7 +105006,7 @@ export const classroomGetAnAssignment = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the classroom assignment. */
     assignment_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -105050,7 +105051,7 @@ export const classroomListAcceptedAssignmentsForAnAssignment = (config: OpenAPIC
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -105089,7 +105090,7 @@ export const classroomGetAssignmentGrades = (config: OpenAPIClientConfig, reques
     /** The unique identifier of the classroom assignment. */
     assignment_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -105130,7 +105131,7 @@ export const classroomListClassrooms = (config: OpenAPIClientConfig, request?: {
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -105166,7 +105167,7 @@ export const classroomGetAClassroom = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the classroom. */
     classroom_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -105211,7 +105212,7 @@ export const classroomListAssignmentsForAClassroom = (config: OpenAPIClientConfi
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -105245,7 +105246,9 @@ export const classroomListAssignmentsForAClassroom = (config: OpenAPIClientConfi
  *
  * Returns array of all GitHub's codes of conduct.
  */
-export const codesOfConductGetAllCodesOfConduct = (config: OpenAPIClientConfig): Promise<
+export const codesOfConductGetAllCodesOfConduct = (
+  config: OpenAPIClientConfig,
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -105277,7 +105280,7 @@ export const codesOfConductGetConductCode = (config: OpenAPIClientConfig, reques
   path: {
     key: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -105332,7 +105335,7 @@ export const credentialsRevoke = (config: OpenAPIClientConfig, request: {
     /** A list of credentials to be revoked, up to 1000 per request. */
     credentials: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     202: {
       body: unknown;
@@ -105369,7 +105372,7 @@ export const credentialsRevoke = (config: OpenAPIClientConfig, request: {
  *
  * Lists all the emojis available to use on GitHub.
  */
-export const emojisGet = (config: OpenAPIClientConfig): Promise<
+export const emojisGet = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -105414,7 +105417,7 @@ export const codeSecurityGetConfigurationsForEnterprise = (config: OpenAPIClient
     /** A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results after this cursor. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     after?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -105496,7 +105499,7 @@ export const codeSecurityCreateConfigurationForEnterprise = (config: OpenAPIClie
     private_vulnerability_reporting?: "enabled" | "disabled" | "not_set";
     enforcement?: "enforced" | "unenforced";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successfully created code security configuration */
     201: {
@@ -105573,7 +105576,7 @@ export const codeSecurityGetDefaultConfigurationsForEnterprise = (config: OpenAP
     /** The slug version of the enterprise name. */
     enterprise: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -105614,7 +105617,7 @@ export const codeSecurityGetSingleConfigurationForEnterprise = (config: OpenAPIC
     /** The unique identifier of the code security configuration. */
     configuration_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -105670,7 +105673,7 @@ export const codeSecurityDeleteConfigurationForEnterprise = (config: OpenAPIClie
     /** The unique identifier of the code security configuration. */
     configuration_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     204: {
       body: unknown;
@@ -105756,7 +105759,7 @@ export const codeSecurityUpdateEnterpriseConfiguration = (config: OpenAPIClientC
     private_vulnerability_reporting?: "enabled" | "disabled" | "not_set";
     enforcement?: "enforced" | "unenforced";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -105844,7 +105847,7 @@ export const codeSecurityAttachEnterpriseConfiguration = (config: OpenAPIClientC
   body: {
     scope: "all" | "all_without_configurations";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     202: {
       body: unknown;
@@ -105905,7 +105908,7 @@ export const codeSecuritySetConfigurationAsDefaultForEnterprise = (config: OpenA
   body: {
     default_for_new_repos?: "all" | "none" | "private_and_internal" | "public";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Default successfully changed. */
     200: {
@@ -105980,7 +105983,7 @@ export const codeSecurityGetRepositoriesForEnterpriseConfiguration = (config: Op
      */
     status?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -106089,7 +106092,7 @@ export const dependabotListAlertsForEnterprise = (config: OpenAPIClientConfig, r
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -106160,7 +106163,7 @@ export const enterpriseTeamsList = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -106225,7 +106228,7 @@ export const enterpriseTeamsCreate = (config: OpenAPIClientConfig, request: {
       | string
       | /** The ID of the IdP group to assign team membership with. You can get this value from the [REST API endpoints for SCIM](https://docs.github.com/rest/scim#list-provisioned-scim-groups-for-an-enterprise). */ null;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -106275,7 +106278,7 @@ export const enterpriseTeamMembershipsList = (config: OpenAPIClientConfig, reque
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -106330,7 +106333,7 @@ export const enterpriseTeamMembershipsBulkAdd = (config: OpenAPIClientConfig, re
     usernames: /** The handle for the GitHub user account. */
       string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successfully added team members. */
     200: {
@@ -106376,7 +106379,7 @@ export const enterpriseTeamMembershipsBulkRemove = (config: OpenAPIClientConfig,
     usernames: /** The handle for the GitHub user account. */
       string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successfully removed team members. */
     200: {
@@ -106419,7 +106422,7 @@ export const enterpriseTeamMembershipsGet = (config: OpenAPIClientConfig, reques
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** User is a member of the enterprise team. */
     200: {
@@ -106460,7 +106463,7 @@ export const enterpriseTeamMembershipsAdd = (config: OpenAPIClientConfig, reques
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successfully added team member */
     201: {
@@ -106501,7 +106504,7 @@ export const enterpriseTeamMembershipsRemove = (config: OpenAPIClientConfig, req
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -106550,7 +106553,7 @@ export const enterpriseTeamOrganizationsGetAssignments = (config: OpenAPIClientC
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** An array of organizations the team is assigned to */
     200: {
@@ -106597,7 +106600,7 @@ export const enterpriseTeamOrganizationsBulkAdd = (config: OpenAPIClientConfig, 
     organization_slugs: /** Organization slug to assign the team to */
       string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successfully assigned the enterprise team to organizations. */
     200: {
@@ -106643,7 +106646,7 @@ export const enterpriseTeamOrganizationsBulkRemove = (config: OpenAPIClientConfi
     organization_slugs: /** Organization slug to unassign the team from */
       string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successfully unassigned the enterprise team from organizations. */
     204: {
@@ -106686,7 +106689,7 @@ export const enterpriseTeamOrganizationsGetAssignment = (config: OpenAPIClientCo
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** The team is assigned to the organization */
     200: {
@@ -106732,7 +106735,7 @@ export const enterpriseTeamOrganizationsAdd = (config: OpenAPIClientConfig, requ
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successfully assigned the enterprise team to the organization. */
     201: {
@@ -106773,7 +106776,7 @@ export const enterpriseTeamOrganizationsDelete = (config: OpenAPIClientConfig, r
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successfully unassigned the enterprise team from the organization. */
     204: {
@@ -106812,7 +106815,7 @@ export const enterpriseTeamsGet = (config: OpenAPIClientConfig, request: {
     /** The slug of the team name. */
     team_slug: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -106864,7 +106867,7 @@ export const enterpriseTeamsDelete = (config: OpenAPIClientConfig, request: {
     /** The slug of the team name. */
     team_slug: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -106922,7 +106925,7 @@ export const enterpriseTeamsUpdate = (config: OpenAPIClientConfig, request: {
       | string
       | /** The ID of the IdP group to assign team membership with. The new IdP group will replace the existing one, or replace existing direct members if the team isn't currently linked to an IdP group. */ null;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -106980,7 +106983,7 @@ export const activityListPublicEvents = (config: OpenAPIClientConfig, request?: 
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -107036,7 +107039,7 @@ export const activityListPublicEvents = (config: OpenAPIClientConfig, request?: 
  * > [!NOTE]
  * > Private feeds are only returned when [authenticating via Basic Auth](https://docs.github.com/rest/authentication/authenticating-to-the-rest-api#using-basic-authentication) since current feed URIs use the older, non revocable auth tokens.
  */
-export const activityGetFeeds = (config: OpenAPIClientConfig): Promise<
+export const activityGetFeeds = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -107069,7 +107072,7 @@ export const gistsList = (config: OpenAPIClientConfig, request?: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -107132,7 +107135,7 @@ export const gistsCreate = (config: OpenAPIClientConfig, request: {
     /** Flag indicating whether the gist is public */
     public?: boolean | ("true" | "false");
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -107204,7 +107207,7 @@ export const gistsListPublic = (config: OpenAPIClientConfig, request?: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -107265,7 +107268,7 @@ export const gistsListStarred = (config: OpenAPIClientConfig, request?: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -107327,7 +107330,7 @@ export const gistsGet = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the gist. */
     gist_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -107372,7 +107375,7 @@ export const gistsDelete = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the gist. */
     gist_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -107450,7 +107453,7 @@ export const gistsUpdate = (config: OpenAPIClientConfig, request: {
       } | null
     >;
   } | null;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -107520,7 +107523,7 @@ export const gistsListComments = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -107588,7 +107591,7 @@ export const gistsCreateComment = (config: OpenAPIClientConfig, request: {
     /** The comment text. */
     body: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -107653,7 +107656,7 @@ export const gistsGetComment = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the comment. */
     comment_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -107701,7 +107704,7 @@ export const gistsDeleteComment = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the comment. */
     comment_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -107760,7 +107763,7 @@ export const gistsUpdateComment = (config: OpenAPIClientConfig, request: {
     /** The comment text. */
     body: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -107807,7 +107810,7 @@ export const gistsListCommits = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -107870,7 +107873,7 @@ export const gistsListForks = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -107927,7 +107930,7 @@ export const gistsFork = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the gist. */
     gist_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -107984,7 +107987,7 @@ export const gistsCheckIsStarred = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the gist. */
     gist_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response if gist is starred */
     204: {
@@ -108032,7 +108035,7 @@ export const gistsStar = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the gist. */
     gist_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -108077,7 +108080,7 @@ export const gistsUnstar = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the gist. */
     gist_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -108130,7 +108133,7 @@ export const gistsGetRevision = (config: OpenAPIClientConfig, request: {
     gist_id: string;
     sha: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -108173,7 +108176,7 @@ export const gistsGetRevision = (config: OpenAPIClientConfig, request: {
  *
  * List all templates available to pass as an option when [creating a repository](https://docs.github.com/rest/repos/repos#create-a-repository-for-the-authenticated-user).
  */
-export const gitignoreGetAllTemplates = (config: OpenAPIClientConfig): Promise<
+export const gitignoreGetAllTemplates = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -108209,7 +108212,7 @@ export const gitignoreGetTemplate = (config: OpenAPIClientConfig, request: {
   path: {
     name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -108250,7 +108253,7 @@ export const appsListReposAccessibleToInstallation = (config: OpenAPIClientConfi
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -108311,7 +108314,9 @@ export const appsListReposAccessibleToInstallation = (config: OpenAPIClientConfi
  *
  * Once an installation token is revoked, the token is invalidated and cannot be used. Other endpoints that require the revoked installation token must have a new installation token to work. You can create a new token using the "[Create an installation access token for an app](https://docs.github.com/rest/apps/apps#create-an-installation-access-token-for-an-app)" endpoint.
  */
-export const appsRevokeInstallationAccessToken = (config: OpenAPIClientConfig): Promise<
+export const appsRevokeInstallationAccessToken = (
+  config: OpenAPIClientConfig,
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -108370,7 +108375,7 @@ export const issuesList = (config: OpenAPIClientConfig, request?: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -108439,7 +108444,7 @@ export const licensesGetAllCommonlyUsed = (config: OpenAPIClientConfig, request?
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -108479,7 +108484,7 @@ export const licensesGet = (config: OpenAPIClientConfig, request: {
   path: {
     license: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -108529,7 +108534,7 @@ export const markdownRender = (config: OpenAPIClientConfig, request: {
     /** The repository context to use when creating references in `gfm` mode.  For example, setting `context` to `octo-org/octo-repo` will change the text `#42` into an HTML link to issue 42 in the `octo-org/octo-repo` repository. */
     context?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -108580,7 +108585,7 @@ export const markdownRender = (config: OpenAPIClientConfig, request: {
 export const markdownRenderRaw = (
   config: OpenAPIClientConfig,
   request: { body: "WARN: application/json is the only supported content type" },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -108625,7 +108630,7 @@ export const appsGetSubscriptionPlanForAccount = (config: OpenAPIClientConfig, r
     /** account_id parameter */
     account_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -108673,7 +108678,7 @@ export const appsListPlans = (config: OpenAPIClientConfig, request?: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -108737,7 +108742,7 @@ export const appsListAccountsForPlan = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -108800,7 +108805,7 @@ export const appsGetSubscriptionPlanForAccountStubbed = (config: OpenAPIClientCo
     /** account_id parameter */
     account_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -108848,7 +108853,7 @@ export const appsListPlansStubbed = (config: OpenAPIClientConfig, request?: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -108908,7 +108913,7 @@ export const appsListAccountsForPlanStubbed = (config: OpenAPIClientConfig, requ
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -108963,7 +108968,7 @@ export const appsListAccountsForPlanStubbed = (config: OpenAPIClientConfig, requ
  * > [!NOTE]
  * > This endpoint returns both IPv4 and IPv6 addresses. However, not all features support IPv6. You should refer to the specific documentation for each feature to determine if IPv6 is supported.
  */
-export const metaGet = (config: OpenAPIClientConfig): Promise<
+export const metaGet = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -109005,7 +109010,7 @@ export const activityListPublicEventsForRepoNetwork = (config: OpenAPIClientConf
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -109071,7 +109076,7 @@ export const activityListNotificationsForAuthenticatedUser = (config: OpenAPICli
     /** The number of results per page (max 50). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -109141,7 +109146,7 @@ export const activityMarkNotificationsAsRead = (config: OpenAPIClientConfig, req
     /** Whether the notification has been read. */
     read?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     202: {
@@ -109200,7 +109205,7 @@ export const activityGetThread = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the notification thread. This corresponds to the value returned in the `id` field when you retrieve notifications (for example with the [`GET /notifications` operation](https://docs.github.com/rest/activity/notifications#list-notifications-for-the-authenticated-user)). */
     thread_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -109247,7 +109252,7 @@ export const activityMarkThreadAsDone = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the notification thread. This corresponds to the value returned in the `id` field when you retrieve notifications (for example with the [`GET /notifications` operation](https://docs.github.com/rest/activity/notifications#list-notifications-for-the-authenticated-user)). */
     thread_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** No content */
     204: {
@@ -109282,7 +109287,7 @@ export const activityMarkThreadAsRead = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the notification thread. This corresponds to the value returned in the `id` field when you retrieve notifications (for example with the [`GET /notifications` operation](https://docs.github.com/rest/activity/notifications#list-notifications-for-the-authenticated-user)). */
     thread_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Reset Content */
     205: {
@@ -109327,7 +109332,7 @@ export const activityGetThreadSubscriptionForAuthenticatedUser = (config: OpenAP
     /** The unique identifier of the notification thread. This corresponds to the value returned in the `id` field when you retrieve notifications (for example with the [`GET /notifications` operation](https://docs.github.com/rest/activity/notifications#list-notifications-for-the-authenticated-user)). */
     thread_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -109382,7 +109387,7 @@ export const activitySetThreadSubscription = (config: OpenAPIClientConfig, reque
     /** Whether to block all notifications from a thread. */
     ignored?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -109432,7 +109437,7 @@ export const activityDeleteThreadSubscription = (config: OpenAPIClientConfig, re
     /** The unique identifier of the notification thread. This corresponds to the value returned in the `id` field when you retrieve notifications (for example with the [`GET /notifications` operation](https://docs.github.com/rest/activity/notifications#list-notifications-for-the-authenticated-user)). */
     thread_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -109479,7 +109484,7 @@ export const metaGetOctocat = (config: OpenAPIClientConfig, request?: {
     /** The words to show in Octocat's speech bubble */
     s?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -109519,7 +109524,7 @@ export const orgsList = (config: OpenAPIClientConfig, request?: {
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -109576,7 +109581,7 @@ export const dependabotRepositoryAccessForOrg = (config: OpenAPIClientConfig, re
     /** Number of results per page. */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -109641,7 +109646,7 @@ export const dependabotUpdateRepositoryAccessForOrg = (config: OpenAPIClientConf
     /** List of repository IDs to remove. */
     repository_ids_to_remove?: number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -109697,7 +109702,7 @@ export const dependabotSetRepositoryAccessDefaultLevel = (config: OpenAPIClientC
   body: {
     default_level: "public" | "internal";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -109750,7 +109755,7 @@ export const orgsCustomPropertiesForOrgsGetOrganizationValues = (config: OpenAPI
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -109808,7 +109813,7 @@ export const orgsCustomPropertiesForOrgsCreateOrUpdateOrganizationValues = (
       properties: CustomPropertyValue[];
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** No Content when custom property values are successfully created or updated */
     204: {
@@ -109861,7 +109866,7 @@ export const billingGetAllBudgetsOrg = (config: OpenAPIClientConfig, request: {
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -109912,7 +109917,7 @@ export const billingGetBudgetOrg = (config: OpenAPIClientConfig, request: {
     /** The ID corresponding to the budget. */
     budget_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -109972,7 +109977,7 @@ export const billingDeleteBudgetOrg = (config: OpenAPIClientConfig, request: {
     /** The ID corresponding to the budget. */
     budget_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -110050,7 +110055,7 @@ export const billingUpdateBudgetOrg = (config: OpenAPIClientConfig, request: {
     /** A single product or SKU that will be covered in the budget */
     budget_product_sku?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Budget updated successfully */
     200: {
@@ -110183,7 +110188,7 @@ export const billingGetGithubBillingPremiumRequestUsageReportOrg = (config: Open
     /** The product name to query usage for. The name is not case sensitive. */
     product?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -110255,7 +110260,7 @@ export const billingGetGithubBillingUsageReportOrg = (config: OpenAPIClientConfi
     /** If specified, only return results for a single day. The value of `day` is an integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and `month` are used. */
     day?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -110329,7 +110334,7 @@ export const billingGetGithubBillingUsageSummaryReportOrg = (config: OpenAPIClie
     /** The SKU to query for usage. */
     sku?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -110395,7 +110400,7 @@ export const orgsGet = (config: OpenAPIClientConfig, request: {
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -110440,7 +110445,7 @@ export const orgsDelete = (config: OpenAPIClientConfig, request: {
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     202: {
       body: unknown;
@@ -110599,7 +110604,7 @@ export const orgsUpdate = (config: OpenAPIClientConfig, request: {
     /** Controls whether or not deploy keys may be added and used for repositories in the organization. */
     deploy_keys_enabled_for_repositories?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -110678,7 +110683,7 @@ export const actionsGetActionsCacheUsageForOrg = (config: OpenAPIClientConfig, r
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -110730,7 +110735,7 @@ export const actionsGetActionsCacheUsageByRepoForOrg = (config: OpenAPIClientCon
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -110791,7 +110796,7 @@ export const actionsListHostedRunnersForOrg = (config: OpenAPIClientConfig, requ
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -110869,7 +110874,7 @@ export const actionsCreateHostedRunnerForOrg = (config: OpenAPIClientConfig, req
     /** Whether this runner should be used to generate custom images. */
     image_gen?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -110919,7 +110924,7 @@ export const actionsListCustomImagesForOrg = (config: OpenAPIClientConfig, reque
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -110966,7 +110971,7 @@ export const actionsGetCustomImageForOrg = (config: OpenAPIClientConfig, request
     /** Image definition ID of custom image */
     image_definition_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -111006,7 +111011,7 @@ export const actionsDeleteCustomImageFromOrg = (config: OpenAPIClientConfig, req
     /** Image definition ID of custom image */
     image_definition_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -111046,7 +111051,7 @@ export const actionsListCustomImageVersionsForOrg = (config: OpenAPIClientConfig
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -111096,7 +111101,7 @@ export const actionsGetCustomImageVersionForOrg = (config: OpenAPIClientConfig, 
     /** Version of a custom image */
     version: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -111139,7 +111144,7 @@ export const actionsDeleteCustomImageVersionFromOrg = (config: OpenAPIClientConf
     /** Version of a custom image */
     version: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -111176,7 +111181,7 @@ export const actionsGetHostedRunnersGithubOwnedImagesForOrg = (config: OpenAPICl
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -111219,7 +111224,7 @@ export const actionsGetHostedRunnersPartnerImagesForOrg = (config: OpenAPIClient
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -111262,7 +111267,7 @@ export const actionsGetHostedRunnersLimitsForOrg = (config: OpenAPIClientConfig,
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -111297,7 +111302,7 @@ export const actionsGetHostedRunnersMachineSpecsForOrg = (config: OpenAPIClientC
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -111340,7 +111345,7 @@ export const actionsGetHostedRunnersPlatformsForOrg = (config: OpenAPIClientConf
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -111387,7 +111392,7 @@ export const actionsGetHostedRunnerForOrg = (config: OpenAPIClientConfig, reques
     /** Unique identifier of the GitHub-hosted runner. */
     hosted_runner_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -111433,7 +111438,7 @@ export const actionsDeleteHostedRunnerForOrg = (config: OpenAPIClientConfig, req
     /** Unique identifier of the GitHub-hosted runner. */
     hosted_runner_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     202: {
@@ -111486,7 +111491,7 @@ export const actionsUpdateHostedRunnerForOrg = (config: OpenAPIClientConfig, req
       | string
       | /** The version of the runner image to deploy. This is relevant only for runners using custom images. */ null;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -111531,7 +111536,7 @@ export const oidcGetOidcCustomSubTemplateForOrg = (config: OpenAPIClientConfig, 
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A JSON serialized template for OIDC subject claim customization */
     200: {
@@ -111569,7 +111574,7 @@ export const oidcUpdateOidcCustomSubTemplateForOrg = (config: OpenAPIClientConfi
     org: string;
   };
   body: OidcCustomSub;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Empty response */
     201: {
@@ -111615,7 +111620,7 @@ export const actionsGetGithubActionsPermissionsOrganization = (config: OpenAPICl
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -111657,7 +111662,7 @@ export const actionsSetGithubActionsPermissionsOrganization = (config: OpenAPICl
     allowed_actions?: AllowedActions;
     sha_pinning_required?: ShaPinningRequired;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -111699,7 +111704,7 @@ export const actionsGetArtifactAndLogRetentionSettingsOrganization = (config: Op
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -111745,7 +111750,7 @@ export const actionsSetArtifactAndLogRetentionSettingsOrganization = (config: Op
     org: string;
   };
   body: ActionsArtifactAndLogRetention;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** No content */
     204: {
@@ -111802,7 +111807,7 @@ export const actionsGetForkPrContributorApprovalPermissionsOrganization = (
       org: string;
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -111847,7 +111852,7 @@ export const actionsSetForkPrContributorApprovalPermissionsOrganization = (
     };
     body: ActionsForkPrContributorApproval;
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -111891,7 +111896,7 @@ export const actionsGetPrivateRepoForkPrWorkflowsSettingsOrganization = (config:
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -111935,7 +111940,7 @@ export const actionsSetPrivateRepoForkPrWorkflowsSettingsOrganization = (config:
     org: string;
   };
   body: ActionsForkPrWorkflowsPrivateReposRequest;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Empty response for successful settings update */
     204: {
@@ -111995,7 +112000,7 @@ export const actionsListSelectedRepositoriesEnabledGithubActionsOrganization = (
       page?: number;
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -112052,7 +112057,7 @@ export const actionsSetSelectedRepositoriesEnabledGithubActionsOrganization = (
         number[];
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -112094,7 +112099,7 @@ export const actionsEnableSelectedRepositoryGithubActionsOrganization = (config:
     /** The unique identifier of the repository. */
     repository_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -112137,7 +112142,7 @@ export const actionsDisableSelectedRepositoryGithubActionsOrganization = (
       repository_id: number;
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -112175,7 +112180,7 @@ export const actionsGetAllowedActionsOrganization = (config: OpenAPIClientConfig
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -112213,7 +112218,7 @@ export const actionsSetAllowedActionsOrganization = (config: OpenAPIClientConfig
     org: string;
   };
   body?: SelectedActions;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -112251,7 +112256,7 @@ export const actionsGetSelfHostedRunnersPermissionsOrganization = (config: OpenA
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -112299,7 +112304,7 @@ export const actionsSetSelfHostedRunnersPermissionsOrganization = (config: OpenA
   body: {
     enabled_repositories: "all" | "selected" | "none";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** No content */
     204: {
@@ -112364,7 +112369,7 @@ export const actionsListSelectedRepositoriesSelfHostedRunnersOrganization = (
       page?: number;
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -112428,7 +112433,7 @@ export const actionsSetSelectedRepositoriesSelfHostedRunnersOrganization = (
       selected_repository_ids: number[];
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** No content */
     204: {
@@ -112485,7 +112490,7 @@ export const actionsEnableSelectedRepositorySelfHostedRunnersOrganization = (
       repository_id: number;
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** No content */
     204: {
@@ -112544,7 +112549,7 @@ export const actionsDisableSelectedRepositorySelfHostedRunnersOrganization = (
       repository_id: number;
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** No content */
     204: {
@@ -112603,7 +112608,7 @@ export const actionsGetGithubActionsDefaultWorkflowPermissionsOrganization = (
       org: string;
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -112646,7 +112651,7 @@ export const actionsSetGithubActionsDefaultWorkflowPermissionsOrganization = (
     };
     body?: ActionsSetDefaultWorkflowPermissions;
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success response */
     204: {
@@ -112692,7 +112697,7 @@ export const actionsListSelfHostedRunnerGroupsForOrg = (config: OpenAPIClientCon
     /** Only return runner groups that are allowed to be used by this repository. */
     visible_to_repository?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -112762,7 +112767,7 @@ export const actionsCreateSelfHostedRunnerGroupForOrg = (config: OpenAPIClientCo
     /** The identifier of a hosted compute network configuration. */
     network_configuration_id?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -112811,7 +112816,7 @@ export const actionsGetSelfHostedRunnerGroupForOrg = (config: OpenAPIClientConfi
     /** Unique identifier of the self-hosted runner group. */
     runner_group_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -112851,7 +112856,7 @@ export const actionsDeleteSelfHostedRunnerGroupFromOrg = (config: OpenAPIClientC
     /** Unique identifier of the self-hosted runner group. */
     runner_group_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -112907,7 +112912,7 @@ export const actionsUpdateSelfHostedRunnerGroupForOrg = (config: OpenAPIClientCo
       | string
       | /** The identifier of a hosted compute network configuration. */ null;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -112961,7 +112966,7 @@ export const actionsListGithubHostedRunnersInGroupForOrg = (config: OpenAPIClien
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -113025,7 +113030,7 @@ export const actionsListRepoAccessToSelfHostedRunnerGroupInOrg = (config: OpenAP
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -113082,7 +113087,7 @@ export const actionsSetRepoAccessToSelfHostedRunnerGroupInOrg = (config: OpenAPI
     selected_repository_ids: /** Unique identifier of the repository. */
       number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -113127,7 +113132,7 @@ export const actionsAddRepoAccessToSelfHostedRunnerGroupInOrg = (config: OpenAPI
     /** The unique identifier of the repository. */
     repository_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -113170,7 +113175,7 @@ export const actionsRemoveRepoAccessToSelfHostedRunnerGroupInOrg = (config: Open
     /** The unique identifier of the repository. */
     repository_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -113217,7 +113222,7 @@ export const actionsListSelfHostedRunnersInGroupForOrg = (config: OpenAPIClientC
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -113280,7 +113285,7 @@ export const actionsSetSelfHostedRunnersInGroupForOrg = (config: OpenAPIClientCo
     runners: /** Unique identifier of the runner. */
       number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -113325,7 +113330,7 @@ export const actionsAddSelfHostedRunnerToGroupForOrg = (config: OpenAPIClientCon
     /** Unique identifier of the self-hosted runner. */
     runner_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -113368,7 +113373,7 @@ export const actionsRemoveSelfHostedRunnerFromGroupForOrg = (config: OpenAPIClie
     /** Unique identifier of the self-hosted runner. */
     runner_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -113417,7 +113422,7 @@ export const actionsListSelfHostedRunnersForOrg = (config: OpenAPIClientConfig, 
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -113475,7 +113480,7 @@ export const actionsListRunnerApplicationsForOrg = (config: OpenAPIClientConfig,
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -113524,7 +113529,7 @@ export const actionsGenerateRunnerJitconfigForOrg = (config: OpenAPIClientConfig
     /** The working directory to be used for job execution, relative to the runner install directory. */
     work_folder?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     201: {
       body: unknown;
@@ -113586,7 +113591,7 @@ export const actionsCreateRegistrationTokenForOrg = (config: OpenAPIClientConfig
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -113631,7 +113636,7 @@ export const actionsCreateRemoveTokenForOrg = (config: OpenAPIClientConfig, requ
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -113672,7 +113677,7 @@ export const actionsGetSelfHostedRunnerForOrg = (config: OpenAPIClientConfig, re
     /** Unique identifier of the self-hosted runner. */
     runner_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -113714,7 +113719,7 @@ export const actionsDeleteSelfHostedRunnerFromOrg = (config: OpenAPIClientConfig
     /** Unique identifier of the self-hosted runner. */
     runner_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -113760,7 +113765,7 @@ export const actionsListLabelsForSelfHostedRunnerForOrg = (config: OpenAPIClient
     /** Unique identifier of the self-hosted runner. */
     runner_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -113809,7 +113814,7 @@ export const actionsAddCustomLabelsToSelfHostedRunnerForOrg = (config: OpenAPICl
     /** The names of the custom labels to add to the runner. */
     labels: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -113866,7 +113871,7 @@ export const actionsSetCustomLabelsForSelfHostedRunnerForOrg = (config: OpenAPIC
     /** The names of the custom labels to set for the runner. You can pass an empty array to remove all custom labels. */
     labels: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -113919,7 +113924,7 @@ export const actionsRemoveAllCustomLabelsFromSelfHostedRunnerForOrg = (config: O
     /** Unique identifier of the self-hosted runner. */
     runner_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -113970,7 +113975,7 @@ export const actionsRemoveCustomLabelFromSelfHostedRunnerForOrg = (config: OpenA
     /** The name of a self-hosted runner's custom label. */
     name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -114025,7 +114030,7 @@ export const actionsListOrgSecrets = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -114083,7 +114088,7 @@ export const actionsGetOrgPublicKey = (config: OpenAPIClientConfig, request: {
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -114124,7 +114129,7 @@ export const actionsGetOrgSecret = (config: OpenAPIClientConfig, request: {
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -114176,7 +114181,7 @@ export const actionsCreateOrUpdateOrgSecret = (config: OpenAPIClientConfig, requ
     /** An array of repository ids that can access the organization secret. You can only provide a list of repository ids when the `visibility` is set to `selected`. You can manage the list of selected repositories using the [List selected repositories for an organization secret](https://docs.github.com/rest/actions/secrets#list-selected-repositories-for-an-organization-secret), [Set selected repositories for an organization secret](https://docs.github.com/rest/actions/secrets#set-selected-repositories-for-an-organization-secret), and [Remove selected repository from an organization secret](https://docs.github.com/rest/actions/secrets#remove-selected-repository-from-an-organization-secret) endpoints. */
     selected_repository_ids?: number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when creating a secret */
     201: {
@@ -114231,7 +114236,7 @@ export const actionsDeleteOrgSecret = (config: OpenAPIClientConfig, request: {
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -114280,7 +114285,7 @@ export const actionsListSelectedReposForOrgSecret = (config: OpenAPIClientConfig
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -114340,7 +114345,7 @@ export const actionsSetSelectedReposForOrgSecret = (config: OpenAPIClientConfig,
     /** An array of repository ids that can access the organization secret. You can only provide a list of repository ids when the `visibility` is set to `selected`. You can add and remove individual repositories using the [Add selected repository to an organization secret](https://docs.github.com/rest/actions/secrets#add-selected-repository-to-an-organization-secret) and [Remove selected repository from an organization secret](https://docs.github.com/rest/actions/secrets#remove-selected-repository-from-an-organization-secret) endpoints. */
     selected_repository_ids: number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -114388,7 +114393,7 @@ export const actionsAddSelectedRepoToOrgSecret = (config: OpenAPIClientConfig, r
     secret_name: string;
     repository_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** No Content when repository was added to the selected list */
     204: {
@@ -114439,7 +114444,7 @@ export const actionsRemoveSelectedRepoFromOrgSecret = (config: OpenAPIClientConf
     secret_name: string;
     repository_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when repository was removed from the selected list */
     204: {
@@ -114491,7 +114496,7 @@ export const actionsListOrgVariables = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -114557,7 +114562,7 @@ export const actionsCreateOrgVariable = (config: OpenAPIClientConfig, request: {
     /** An array of repository ids that can access the organization variable. You can only provide a list of repository ids when the `visibility` is set to `selected`. */
     selected_repository_ids?: number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when creating a variable */
     201: {
@@ -114604,7 +114609,7 @@ export const actionsGetOrgVariable = (config: OpenAPIClientConfig, request: {
     /** The name of the variable. */
     name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -114646,7 +114651,7 @@ export const actionsDeleteOrgVariable = (config: OpenAPIClientConfig, request: {
     /** The name of the variable. */
     name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -114697,7 +114702,7 @@ export const actionsUpdateOrgVariable = (config: OpenAPIClientConfig, request: {
     /** An array of repository ids that can access the organization variable. You can only provide a list of repository ids when the `visibility` is set to `selected`. */
     selected_repository_ids?: number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -114752,7 +114757,7 @@ export const actionsListSelectedReposForOrgVariable = (config: OpenAPIClientConf
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -114817,7 +114822,7 @@ export const actionsSetSelectedReposForOrgVariable = (config: OpenAPIClientConfi
     /** The IDs of the repositories that can access the organization variable. */
     selected_repository_ids: number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -114869,7 +114874,7 @@ export const actionsAddSelectedRepoToOrgVariable = (config: OpenAPIClientConfig,
     name: string;
     repository_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -114920,7 +114925,7 @@ export const actionsRemoveSelectedRepoFromOrgVariable = (config: OpenAPIClientCo
     name: string;
     repository_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -115000,7 +115005,7 @@ export const orgsCreateArtifactStorageRecord = (config: OpenAPIClientConfig, req
      */
     github_repository?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Artifact metadata storage record stored successfully. */
     200: {
@@ -115077,7 +115082,7 @@ export const orgsListArtifactStorageRecords = (config: OpenAPIClientConfig, requ
     /** The parameter should be set to the attestation's subject's SHA256 digest, in the form `sha256:HEX_DIGEST`. */
     subject_digest: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -115164,7 +115169,7 @@ export const orgsListAttestationsBulk = (config: OpenAPIClientConfig, request: {
      */
     predicate_type?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -115259,7 +115264,7 @@ export const orgsDeleteAttestationsBulk = (config: OpenAPIClientConfig, request:
     org: string;
   };
   body: unknown | unknown;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -115301,7 +115306,7 @@ export const orgsDeleteAttestationsBySubjectDigest = (config: OpenAPIClientConfi
     /** Subject Digest */
     subject_digest: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -115361,7 +115366,7 @@ export const orgsListAttestationRepositories = (config: OpenAPIClientConfig, req
      */
     predicate_type?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -115412,7 +115417,7 @@ export const orgsDeleteAttestationsById = (config: OpenAPIClientConfig, request:
     /** Attestation ID */
     attestation_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -115481,7 +115486,7 @@ export const orgsListAttestations = (config: OpenAPIClientConfig, request: {
      */
     predicate_type?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -115557,7 +115562,7 @@ export const orgsListBlockedUsers = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -115598,7 +115603,7 @@ export const orgsCheckBlockedUser = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** If the user is blocked */
     204: {
@@ -115641,7 +115646,7 @@ export const orgsBlockUser = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -115683,7 +115688,7 @@ export const orgsUnblockUser = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -115735,7 +115740,7 @@ export const campaignsListOrgCampaigns = (config: OpenAPIClientConfig, request: 
     /** The property by which to sort the results. */
     sort?: "created" | "updated" | "ends_at" | "published";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -115801,7 +115806,7 @@ export const campaignsCreateCampaign = (config: OpenAPIClientConfig, request: {
     org: string;
   };
   body: unknown | unknown;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -115866,7 +115871,7 @@ export const campaignsGetCampaignSummary = (config: OpenAPIClientConfig, request
     /** The campaign number. */
     campaign_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -115921,7 +115926,7 @@ export const campaignsDeleteCampaign = (config: OpenAPIClientConfig, request: {
     /** The campaign number. */
     campaign_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Deletion successful */
     204: {
@@ -116001,7 +116006,7 @@ export const campaignsUpdateCampaign = (config: OpenAPIClientConfig, request: {
        */ null;
     state?: CampaignState;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -116090,7 +116095,7 @@ export const codeScanningListAlertsForOrg = (config: OpenAPIClientConfig, reques
     /** If specified, only code scanning alerts with this severity will be returned. */
     severity?: CodeScanningAlertSeverity;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -116167,7 +116172,7 @@ export const codeSecurityGetConfigurationsForOrg = (config: OpenAPIClientConfig,
     /** A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results after this cursor. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     after?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -116260,7 +116265,7 @@ export const codeSecurityCreateConfiguration = (config: OpenAPIClientConfig, req
     private_vulnerability_reporting?: "enabled" | "disabled" | "not_set";
     enforcement?: "enforced" | "unenforced";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successfully created code security configuration */
     201: {
@@ -116332,7 +116337,7 @@ export const codeSecurityGetDefaultConfigurations = (config: OpenAPIClientConfig
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -116389,7 +116394,7 @@ export const codeSecurityDetachConfiguration = (config: OpenAPIClientConfig, req
     selected_repository_ids?: /** Unique identifier of the repository. */
       number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     204: {
       body: unknown;
@@ -116448,7 +116453,7 @@ export const codeSecurityGetConfiguration = (config: OpenAPIClientConfig, reques
     /** The unique identifier of the code security configuration. */
     configuration_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -116504,7 +116509,7 @@ export const codeSecurityDeleteConfiguration = (config: OpenAPIClientConfig, req
     /** The unique identifier of the code security configuration. */
     configuration_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     204: {
       body: unknown;
@@ -116600,7 +116605,7 @@ export const codeSecurityUpdateConfiguration = (config: OpenAPIClientConfig, req
     private_vulnerability_reporting?: "enabled" | "disabled" | "not_set";
     enforcement?: "enforced" | "unenforced";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when a configuration is updated */
     200: {
@@ -116687,7 +116692,7 @@ export const codeSecurityAttachConfiguration = (config: OpenAPIClientConfig, req
     selected_repository_ids?: /** Unique identifier of the repository. */
       number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     202: {
       body: unknown;
@@ -116737,7 +116742,7 @@ export const codeSecuritySetConfigurationAsDefault = (config: OpenAPIClientConfi
   body: {
     default_for_new_repos?: "all" | "none" | "private_and_internal" | "public";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Default successfully changed. */
     200: {
@@ -116812,7 +116817,7 @@ export const codeSecurityGetRepositoriesForConfiguration = (config: OpenAPIClien
      */
     status?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -116870,7 +116875,7 @@ export const codespacesListInOrganization = (config: OpenAPIClientConfig, reques
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -116943,7 +116948,7 @@ export const codespacesSetCodespacesAccess = (config: OpenAPIClientConfig, reque
     /** The usernames of the organization members who should have access to codespaces in the organization. Required when `visibility` is `selected_members`. The provided list of usernames will replace any existing value. */
     selected_usernames?: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when successfully modifying permissions. */
     204: {
@@ -117012,7 +117017,7 @@ export const codespacesSetCodespacesAccessUsers = (config: OpenAPIClientConfig, 
     /** The usernames of the organization members whose codespaces be billed to the organization. */
     selected_usernames: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when successfully modifying permissions. */
     204: {
@@ -117080,7 +117085,7 @@ export const codespacesDeleteCodespacesAccessUsers = (config: OpenAPIClientConfi
     /** The usernames of the organization members whose codespaces should not be billed to the organization. */
     selected_usernames: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when successfully modifying permissions. */
     204: {
@@ -117148,7 +117153,7 @@ export const codespacesListOrgSecrets = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -117202,7 +117207,7 @@ export const codespacesGetOrgPublicKey = (config: OpenAPIClientConfig, request: 
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -117241,7 +117246,7 @@ export const codespacesGetOrgSecret = (config: OpenAPIClientConfig, request: {
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -117299,7 +117304,7 @@ export const codespacesCreateOrUpdateOrgSecret = (config: OpenAPIClientConfig, r
     /** An array of repository IDs that can access the organization secret. You can only provide a list of repository IDs when the `visibility` is set to `selected`. You can manage the list of selected repositories using the [List selected repositories for an organization secret](https://docs.github.com/rest/codespaces/organization-secrets#list-selected-repositories-for-an-organization-secret), [Set selected repositories for an organization secret](https://docs.github.com/rest/codespaces/organization-secrets#set-selected-repositories-for-an-organization-secret), and [Remove selected repository from an organization secret](https://docs.github.com/rest/codespaces/organization-secrets#remove-selected-repository-from-an-organization-secret) endpoints. */
     selected_repository_ids?: number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when creating a secret */
     201: {
@@ -117360,7 +117365,7 @@ export const codespacesDeleteOrgSecret = (config: OpenAPIClientConfig, request: 
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -117411,7 +117416,7 @@ export const codespacesListSelectedReposForOrgSecret = (config: OpenAPIClientCon
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -117473,7 +117478,7 @@ export const codespacesSetSelectedReposForOrgSecret = (config: OpenAPIClientConf
     /** An array of repository ids that can access the organization secret. You can only provide a list of repository ids when the `visibility` is set to `selected`. You can add and remove individual repositories using the [Set selected repositories for an organization secret](https://docs.github.com/rest/codespaces/organization-secrets#set-selected-repositories-for-an-organization-secret) and [Remove selected repository from an organization secret](https://docs.github.com/rest/codespaces/organization-secrets#remove-selected-repository-from-an-organization-secret) endpoints. */
     selected_repository_ids: number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -117525,7 +117530,7 @@ export const codespacesAddSelectedRepoToOrgSecret = (config: OpenAPIClientConfig
     secret_name: string;
     repository_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** No Content when repository was added to the selected list */
     204: {
@@ -117582,7 +117587,7 @@ export const codespacesRemoveSelectedRepoFromOrgSecret = (config: OpenAPIClientC
     secret_name: string;
     repository_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when repository was removed from the selected list */
     204: {
@@ -117641,7 +117646,7 @@ export const copilotGetCopilotOrganizationDetails = (config: OpenAPIClientConfig
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK */
     200: {
@@ -117712,7 +117717,7 @@ export const copilotListCopilotSeats = (config: OpenAPIClientConfig, request: {
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -117798,7 +117803,7 @@ export const copilotAddCopilotSeatsForTeams = (config: OpenAPIClientConfig, requ
     /** List of team names within the organization to which to grant access to GitHub Copilot. */
     selected_teams: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK */
     201: {
@@ -117879,7 +117884,7 @@ export const copilotCancelCopilotSeatAssignmentForTeams = (config: OpenAPIClient
     /** The names of teams from which to revoke access to GitHub Copilot. */
     selected_teams: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK */
     200: {
@@ -117961,7 +117966,7 @@ export const copilotAddCopilotSeatsForUsers = (config: OpenAPIClientConfig, requ
     /** The usernames of the organization members to be granted access to GitHub Copilot. */
     selected_usernames: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK */
     201: {
@@ -118042,7 +118047,7 @@ export const copilotCancelCopilotSeatAssignmentForUsers = (config: OpenAPIClient
     /** The usernames of the organization members for which to revoke access to GitHub Copilot. */
     selected_usernames: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK */
     200: {
@@ -118130,7 +118135,7 @@ export const copilotCopilotMetricsForOrganization = (config: OpenAPIClientConfig
     /** The number of days of metrics to display per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -118258,7 +118263,7 @@ export const dependabotListAlertsForOrg = (config: OpenAPIClientConfig, request:
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -118339,7 +118344,7 @@ export const dependabotListOrgSecrets = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -118395,7 +118400,7 @@ export const dependabotGetOrgPublicKey = (config: OpenAPIClientConfig, request: 
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -118434,7 +118439,7 @@ export const dependabotGetOrgSecret = (config: OpenAPIClientConfig, request: {
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -118484,7 +118489,7 @@ export const dependabotCreateOrUpdateOrgSecret = (config: OpenAPIClientConfig, r
     /** An array of repository ids that can access the organization secret. You can only provide a list of repository ids when the `visibility` is set to `selected`. You can manage the list of selected repositories using the [List selected repositories for an organization secret](https://docs.github.com/rest/dependabot/secrets#list-selected-repositories-for-an-organization-secret), [Set selected repositories for an organization secret](https://docs.github.com/rest/dependabot/secrets#set-selected-repositories-for-an-organization-secret), and [Remove selected repository from an organization secret](https://docs.github.com/rest/dependabot/secrets#remove-selected-repository-from-an-organization-secret) endpoints. Use integers when possible, as strings are supported only to maintain backwards compatibility and may be removed in the future. */
     selected_repository_ids?: (number | string)[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when creating a secret */
     201: {
@@ -118537,7 +118542,7 @@ export const dependabotDeleteOrgSecret = (config: OpenAPIClientConfig, request: 
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -118584,7 +118589,7 @@ export const dependabotListSelectedReposForOrgSecret = (config: OpenAPIClientCon
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -118642,7 +118647,7 @@ export const dependabotSetSelectedReposForOrgSecret = (config: OpenAPIClientConf
     /** An array of repository ids that can access the organization secret. You can only provide a list of repository ids when the `visibility` is set to `selected`. You can add and remove individual repositories using the [Set selected repositories for an organization secret](https://docs.github.com/rest/dependabot/secrets#set-selected-repositories-for-an-organization-secret) and [Remove selected repository from an organization secret](https://docs.github.com/rest/dependabot/secrets#remove-selected-repository-from-an-organization-secret) endpoints. */
     selected_repository_ids: number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -118688,7 +118693,7 @@ export const dependabotAddSelectedRepoToOrgSecret = (config: OpenAPIClientConfig
     secret_name: string;
     repository_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** No Content when repository was added to the selected list */
     204: {
@@ -118737,7 +118742,7 @@ export const dependabotRemoveSelectedRepoFromOrgSecret = (config: OpenAPIClientC
     secret_name: string;
     repository_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when repository was removed from the selected list */
     204: {
@@ -118784,7 +118789,7 @@ export const packagesListDockerMigrationConflictingPackagesForOrganization = (
       org: string;
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -118834,7 +118839,7 @@ export const activityListPublicOrgEvents = (config: OpenAPIClientConfig, request
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -118879,7 +118884,7 @@ export const orgsListFailedInvitations = (config: OpenAPIClientConfig, request: 
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -118941,7 +118946,7 @@ export const orgsListWebhooks = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -119014,7 +119019,7 @@ export const orgsCreateWebhook = (config: OpenAPIClientConfig, request: {
     /** Determines if notifications are sent when the webhook is triggered. Set to `true` to send notifications. */
     active?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -119086,7 +119091,7 @@ export const orgsGetWebhook = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the hook. You can find this value in the `X-GitHub-Hook-ID` header of a webhook delivery. */
     hook_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -119133,7 +119138,7 @@ export const orgsDeleteWebhook = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the hook. You can find this value in the `X-GitHub-Hook-ID` header of a webhook delivery. */
     hook_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -119198,7 +119203,7 @@ export const orgsUpdateWebhook = (config: OpenAPIClientConfig, request: {
     active?: boolean;
     name?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -119260,7 +119265,7 @@ export const orgsGetWebhookConfigForOrg = (config: OpenAPIClientConfig, request:
     /** The unique identifier of the hook. You can find this value in the `X-GitHub-Hook-ID` header of a webhook delivery. */
     hook_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -119309,7 +119314,7 @@ export const orgsUpdateWebhookConfigForOrg = (config: OpenAPIClientConfig, reque
     secret?: WebhookConfigSecret;
     insecure_ssl?: WebhookConfigInsecureSsl;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -119364,7 +119369,7 @@ export const orgsListWebhookDeliveries = (config: OpenAPIClientConfig, request: 
     /** Used for pagination: the starting delivery from which the page of deliveries is fetched. Refer to the `link` header for the next and previous page cursors. */
     cursor?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -119420,7 +119425,7 @@ export const orgsGetWebhookDelivery = (config: OpenAPIClientConfig, request: {
     hook_id: number;
     delivery_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -119473,7 +119478,7 @@ export const orgsRedeliverWebhookDelivery = (config: OpenAPIClientConfig, reques
     hook_id: number;
     delivery_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     202: {
       body: unknown;
@@ -119525,7 +119530,7 @@ export const orgsPingWebhook = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the hook. You can find this value in the `X-GitHub-Hook-ID` header of a webhook delivery. */
     hook_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -119592,7 +119597,7 @@ export const apiInsightsGetRouteStatsByActor = (config: OpenAPIClientConfig, req
     /** Providing a substring will filter results where the API route contains the substring. This is a case-insensitive search. */
     api_route_substring?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -119675,7 +119680,7 @@ export const apiInsightsGetSubjectStats = (config: OpenAPIClientConfig, request:
     /** Providing a substring will filter results where the subject name contains the substring. This is a case-insensitive search. */
     subject_name_substring?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -119733,7 +119738,7 @@ export const apiInsightsGetSummaryStats = (config: OpenAPIClientConfig, request:
     /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
     max_timestamp?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -119780,7 +119785,7 @@ export const apiInsightsGetSummaryStatsByUser = (config: OpenAPIClientConfig, re
     /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
     max_timestamp?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -119830,7 +119835,7 @@ export const apiInsightsGetSummaryStatsByActor = (config: OpenAPIClientConfig, r
     /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
     max_timestamp?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -119885,7 +119890,7 @@ export const apiInsightsGetTimeStats = (config: OpenAPIClientConfig, request: {
     /** The increment of time used to breakdown the query results (5m, 10m, 1h, etc.) */
     timestamp_increment: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -119935,7 +119940,7 @@ export const apiInsightsGetTimeStatsByUser = (config: OpenAPIClientConfig, reque
     /** The increment of time used to breakdown the query results (5m, 10m, 1h, etc.) */
     timestamp_increment: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -119988,7 +119993,7 @@ export const apiInsightsGetTimeStatsByActor = (config: OpenAPIClientConfig, requ
     /** The increment of time used to breakdown the query results (5m, 10m, 1h, etc.) */
     timestamp_increment: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -120060,7 +120065,7 @@ export const apiInsightsGetUserStats = (config: OpenAPIClientConfig, request: {
     /** Providing a substring will filter results where the actor name contains the substring. This is a case-insensitive search. */
     actor_name_substring?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -120115,7 +120120,7 @@ export const appsGetOrgInstallation = (config: OpenAPIClientConfig, request: {
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -120161,7 +120166,7 @@ export const orgsListAppInstallations = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -120214,7 +120219,7 @@ export const interactionsGetRestrictionsForOrg = (config: OpenAPIClientConfig, r
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -120250,7 +120255,7 @@ export const interactionsSetRestrictionsForOrg = (config: OpenAPIClientConfig, r
     org: string;
   };
   body: InteractionLimit;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -120290,7 +120295,7 @@ export const interactionsRemoveRestrictionsForOrg = (config: OpenAPIClientConfig
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -120338,7 +120343,7 @@ export const orgsListPendingInvitations = (config: OpenAPIClientConfig, request:
     /** Filter invitations by their invitation source. */
     invitation_source?: "all" | "member" | "scim";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -120403,7 +120408,7 @@ export const orgsCreateInvitation = (config: OpenAPIClientConfig, request: {
     /** Specify IDs for the teams you want to invite new members to. */
     team_ids?: number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -120456,7 +120461,7 @@ export const orgsCancelInvitation = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the invitation. */
     invitation_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -120508,7 +120513,7 @@ export const orgsListInvitationTeams = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -120560,7 +120565,7 @@ export const orgsListIssueTypes = (config: OpenAPIClientConfig, request: {
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -120605,7 +120610,7 @@ export const orgsCreateIssueType = (config: OpenAPIClientConfig, request: {
     org: string;
   };
   body: OrganizationCreateIssueType;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -120657,7 +120662,7 @@ export const orgsUpdateIssueType = (config: OpenAPIClientConfig, request: {
     issue_type_id: number;
   };
   body: OrganizationUpdateIssueType;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -120709,7 +120714,7 @@ export const orgsDeleteIssueType = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the issue type. */
     issue_type_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -120783,7 +120788,7 @@ export const issuesListForOrg = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -120851,7 +120856,7 @@ export const orgsListMembers = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -120906,7 +120911,7 @@ export const orgsCheckMembershipForUser = (config: OpenAPIClientConfig, request:
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response if requester is an organization member and user is a member */
     204: {
@@ -120965,7 +120970,7 @@ export const orgsRemoveMember = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -121015,7 +121020,7 @@ export const codespacesGetCodespacesForUserInOrg = (config: OpenAPIClientConfig,
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -121089,7 +121094,7 @@ export const codespacesDeleteFromOrganization = (config: OpenAPIClientConfig, re
     /** The name of the codespace. */
     codespace_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     202: {
       body: unknown;
@@ -121151,7 +121156,7 @@ export const codespacesStopInOrganization = (config: OpenAPIClientConfig, reques
     /** The name of the codespace. */
     codespace_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -121220,7 +121225,7 @@ export const copilotGetCopilotSeatDetailsForUser = (config: OpenAPIClientConfig,
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** The user's GitHub Copilot seat details, including usage. */
     200: {
@@ -121279,7 +121284,7 @@ export const orgsGetMembershipForUser = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -121336,7 +121341,7 @@ export const orgsSetMembershipForUser = (config: OpenAPIClientConfig, request: {
   body?: {
     role?: "admin" | "member";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -121390,7 +121395,7 @@ export const orgsRemoveMembershipForUser = (config: OpenAPIClientConfig, request
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -121444,7 +121449,7 @@ export const migrationsListForOrg = (config: OpenAPIClientConfig, request: {
     /** Exclude attributes from the API response to improve performance */
     exclude?: "repositories"[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -121512,7 +121517,7 @@ export const migrationsStartForOrg = (config: OpenAPIClientConfig, request: {
     /** Exclude related items from being returned in the response in order to improve performance of the request. */
     exclude?: "repositories"[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -121579,7 +121584,7 @@ export const migrationsGetStatusForOrg = (config: OpenAPIClientConfig, request: 
     /** Exclude attributes from the API response to improve performance */
     exclude?: "repositories"[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /**
      * *   `pending`, which means the migration hasn't started yet.
@@ -121629,7 +121634,7 @@ export const migrationsDownloadArchiveForOrg = (config: OpenAPIClientConfig, req
     /** The unique identifier of the migration. */
     migration_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     302: {
@@ -121671,7 +121676,7 @@ export const migrationsDeleteArchiveForOrg = (config: OpenAPIClientConfig, reque
     /** The unique identifier of the migration. */
     migration_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -121715,7 +121720,7 @@ export const migrationsUnlockRepoForOrg = (config: OpenAPIClientConfig, request:
     /** repo_name parameter */
     repo_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -121764,7 +121769,7 @@ export const migrationsListReposForOrg = (config: OpenAPIClientConfig, request: 
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -121823,7 +121828,7 @@ export const orgsListOrgRoles = (config: OpenAPIClientConfig, request: {
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response - list of organization roles */
     200: {
@@ -121882,7 +121887,7 @@ export const orgsRevokeAllOrgRolesTeam = (config: OpenAPIClientConfig, request: 
     /** The slug of the team name. */
     team_slug: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -121926,7 +121931,7 @@ export const orgsAssignTeamToOrgRole = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the role. */
     role_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -121981,7 +121986,7 @@ export const orgsRevokeOrgRoleTeam = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the role. */
     role_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -122024,7 +122029,7 @@ export const orgsRevokeAllOrgRolesUser = (config: OpenAPIClientConfig, request: 
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -122068,7 +122073,7 @@ export const orgsAssignUserToOrgRole = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the role. */
     role_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -122123,7 +122128,7 @@ export const orgsRevokeOrgRoleUser = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the role. */
     role_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -122169,7 +122174,7 @@ export const orgsGetOrgRole = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the role. */
     role_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -122225,7 +122230,7 @@ export const orgsListOrgRoleTeams = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response - List of assigned teams */
     200: {
@@ -122296,7 +122301,7 @@ export const orgsListOrgRoleUsers = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response - List of assigned users */
     200: {
@@ -122363,7 +122368,7 @@ export const orgsListOutsideCollaborators = (config: OpenAPIClientConfig, reques
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -122417,7 +122422,7 @@ export const orgsConvertMemberToOutsideCollaborator = (config: OpenAPIClientConf
     /** When set to `true`, the request will be performed asynchronously. Returns a 202 status code when the job is successfully queued. */
     async?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** User is getting converted asynchronously */
     202: {
@@ -122472,7 +122477,7 @@ export const orgsRemoveOutsideCollaborator = (config: OpenAPIClientConfig, reque
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -122538,7 +122543,7 @@ export const packagesListPackagesForOrganization = (config: OpenAPIClientConfig,
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -122597,7 +122602,7 @@ export const packagesGetPackageForOrganization = (config: OpenAPIClientConfig, r
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -122642,7 +122647,7 @@ export const packagesDeletePackageForOrg = (config: OpenAPIClientConfig, request
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -122707,7 +122712,7 @@ export const packagesRestorePackageForOrg = (config: OpenAPIClientConfig, reques
     /** package token */
     token?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -122773,7 +122778,7 @@ export const packagesGetAllPackageVersionsForPackageOwnedByOrg = (config: OpenAP
     /** The state of the package, either active or deleted. */
     state?: "active" | "deleted";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -122835,7 +122840,7 @@ export const packagesGetPackageVersionForOrganization = (config: OpenAPIClientCo
     /** Unique identifier of the package version. */
     package_version_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -122883,7 +122888,7 @@ export const packagesDeletePackageVersionForOrg = (config: OpenAPIClientConfig, 
     /** Unique identifier of the package version. */
     package_version_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -122947,7 +122952,7 @@ export const packagesRestorePackageVersionForOrg = (config: OpenAPIClientConfig,
     /** Unique identifier of the package version. */
     package_version_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -123021,7 +123026,7 @@ export const orgsListPatGrantRequests = (config: OpenAPIClientConfig, request: {
     /** The ID of the token */
     token_id?: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -123103,7 +123108,7 @@ export const orgsReviewPatGrantRequestsInBulk = (config: OpenAPIClientConfig, re
       | string
       | /** Reason for approving or denying the requests. Max 1024 characters. */ null;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     202: {
       body: unknown;
@@ -123169,7 +123174,7 @@ export const orgsReviewPatGrantRequest = (config: OpenAPIClientConfig, request: 
       | string
       | /** Reason for approving or denying the request. Max 1024 characters. */ null;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     204: {
       body: unknown;
@@ -123234,7 +123239,7 @@ export const orgsListPatGrantRequestRepositories = (config: OpenAPIClientConfig,
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -123318,7 +123323,7 @@ export const orgsListPatGrants = (config: OpenAPIClientConfig, request: {
     /** The ID of the token */
     token_id?: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -123397,7 +123402,7 @@ export const orgsUpdatePatAccesses = (config: OpenAPIClientConfig, request: {
     pat_ids: /** Unique identifier of the fine-grained personal access token. */
       number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     202: {
       body: unknown;
@@ -123458,7 +123463,7 @@ export const orgsUpdatePatAccess = (config: OpenAPIClientConfig, request: {
   body: {
     action: "revoke";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     204: {
       body: unknown;
@@ -123522,7 +123527,7 @@ export const orgsListPatGrantRepositories = (config: OpenAPIClientConfig, reques
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -123591,7 +123596,7 @@ export const privateRegistriesListOrgPrivateRegistries = (config: OpenAPIClientC
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -123691,7 +123696,7 @@ export const privateRegistriesCreateOrgPrivateRegistry = (config: OpenAPIClientC
     /** An array of repository IDs that can access the organization private registry. You can only provide a list of repository IDs when `visibility` is set to `selected`. You can manage the list of selected repositories using the [Update a private registry for an organization](https://docs.github.com/rest/private-registries/organization-configurations#update-a-private-registry-for-an-organization) endpoint. This field should be omitted if `visibility` is set to `all` or `private`. */
     selected_repository_ids?: number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** The organization private registry configuration */
     201: {
@@ -123764,7 +123769,7 @@ export const privateRegistriesGetOrgPublicKey = (config: OpenAPIClientConfig, re
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -123823,7 +123828,7 @@ export const privateRegistriesGetOrgPrivateRegistry = (config: OpenAPIClientConf
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** The specified private registry configuration for the organization */
     200: {
@@ -123867,7 +123872,7 @@ export const privateRegistriesDeleteOrgPrivateRegistry = (config: OpenAPIClientC
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -123952,7 +123957,7 @@ export const privateRegistriesUpdateOrgPrivateRegistry = (config: OpenAPIClientC
     /** An array of repository IDs that can access the organization private registry. You can only provide a list of repository IDs when `visibility` is set to `selected`. This field should be omitted if `visibility` is set to `all` or `private`. */
     selected_repository_ids?: number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -124034,7 +124039,7 @@ export const projectsListForOrg = (config: OpenAPIClientConfig, request: {
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -124097,7 +124102,7 @@ export const projectsGetForOrg = (config: OpenAPIClientConfig, request: {
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -124163,7 +124168,7 @@ export const projectsListFieldsForOrg = (config: OpenAPIClientConfig, request: {
     /** A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results after this cursor. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     after?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -124228,7 +124233,7 @@ export const projectsGetFieldForOrg = (config: OpenAPIClientConfig, request: {
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -124303,7 +124308,7 @@ export const projectsListItemsForOrg = (config: OpenAPIClientConfig, request: {
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -124373,7 +124378,7 @@ export const projectsAddItemForOrg = (config: OpenAPIClientConfig, request: {
     /** The numeric ID of the issue or pull request to add to the project. */
     id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -124437,7 +124442,7 @@ export const projectsGetOrgItem = (config: OpenAPIClientConfig, request: {
      */
     fields?: string | string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -124501,7 +124506,7 @@ export const projectsDeleteItemForOrg = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the project item. */
     item_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -124558,7 +124563,7 @@ export const projectsUpdateItemForOrg = (config: OpenAPIClientConfig, request: {
       value: string | number;
     })[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -124618,7 +124623,7 @@ export const orgsCustomPropertiesForReposGetOrganizationDefinitions = (config: O
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -124676,7 +124681,7 @@ export const orgsCustomPropertiesForReposCreateOrUpdateOrganizationDefinitions =
       properties: CustomProperty[];
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -124725,7 +124730,7 @@ export const orgsCustomPropertiesForReposGetOrganizationDefinition = (config: Op
     /** The custom property name */
     custom_property_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -124779,7 +124784,7 @@ export const orgsCustomPropertiesForReposCreateOrUpdateOrganizationDefinition = 
     };
     body: CustomPropertySetPayload;
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -124830,7 +124835,7 @@ export const orgsCustomPropertiesForReposDeleteOrganizationDefinition = (config:
     /** The custom property name */
     custom_property_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     204: {
       body: unknown;
@@ -124882,7 +124887,7 @@ export const orgsCustomPropertiesForReposGetOrganizationValues = (config: OpenAP
     /** Finds repositories in the organization with a query containing one or more search keywords and qualifiers. Qualifiers allow you to limit your search to specific areas of GitHub. The REST API supports the same qualifiers as the web interface for GitHub. To learn more about the format of the query, see [Constructing a search query](https://docs.github.com/rest/search/search#constructing-a-search-query). See "[Searching for repositories](https://docs.github.com/articles/searching-for-repositories/)" for a detailed list of qualifiers. */
     repository_query?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -124956,7 +124961,7 @@ export const orgsCustomPropertiesForReposCreateOrUpdateOrganizationValues = (
       properties: CustomPropertyValue[];
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** No Content when custom property values are successfully created or updated */
     204: {
@@ -125013,7 +125018,7 @@ export const orgsListPublicMembers = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -125062,7 +125067,7 @@ export const orgsCheckPublicMembershipForUser = (config: OpenAPIClientConfig, re
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response if user is a public member */
     204: {
@@ -125107,7 +125112,7 @@ export const orgsSetPublicMembershipForAuthenticatedUser = (config: OpenAPIClien
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -125149,7 +125154,7 @@ export const orgsRemovePublicMembershipForAuthenticatedUser = (config: OpenAPICl
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -125200,7 +125205,7 @@ export const reposListForOrg = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -125299,7 +125304,7 @@ export const reposCreateInOrg = (config: OpenAPIClientConfig, request: {
     /** The custom properties for the new repository. The keys are the custom property names, and the values are the corresponding custom property values. */
     custom_properties?: Record<string, unknown>;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -125389,7 +125394,7 @@ export const reposGetOrgRulesets = (config: OpenAPIClientConfig, request: {
      */
     targets?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -125448,7 +125453,7 @@ export const reposCreateOrgRuleset = (config: OpenAPIClientConfig, request: {
     /** An array of rules within the ruleset. */
     rules?: OrgRules[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -125520,7 +125525,7 @@ export const reposGetOrgRuleSuites = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -125580,7 +125585,7 @@ export const reposGetOrgRuleSuite = (config: OpenAPIClientConfig, request: {
      */
     rule_suite_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -125629,7 +125634,7 @@ export const reposGetOrgRuleset = (config: OpenAPIClientConfig, request: {
     /** The ID of the ruleset. */
     ruleset_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -125686,7 +125691,7 @@ export const reposUpdateOrgRuleset = (config: OpenAPIClientConfig, request: {
     /** An array of rules within the ruleset. */
     rules?: OrgRules[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -125740,7 +125745,7 @@ export const reposDeleteOrgRuleset = (config: OpenAPIClientConfig, request: {
     /** The ID of the ruleset. */
     ruleset_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -125792,7 +125797,7 @@ export const orgsGetOrgRulesetHistory = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -125844,7 +125849,7 @@ export const orgsGetOrgRulesetVersion = (config: OpenAPIClientConfig, request: {
     /** The ID of the version */
     version_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -125921,7 +125926,7 @@ export const secretScanningListAlertsForOrg = (config: OpenAPIClientConfig, requ
     /** A boolean value representing whether or not to hide literal secrets in the results. */
     hide_secret?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -125989,7 +125994,7 @@ export const secretScanningListOrgPatternConfigs = (config: OpenAPIClientConfig,
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -126050,7 +126055,7 @@ export const secretScanningUpdateOrgPatternConfigs = (config: OpenAPIClientConfi
       push_protection_setting?: "disabled" | "enabled";
     })[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -126142,7 +126147,7 @@ export const securityAdvisoriesListOrgRepositoryAdvisories = (config: OpenAPICli
     /** Filter by the state of the repository advisories. Only advisories of this state will be returned. */
     state?: "triage" | "draft" | "published" | "closed";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -126194,7 +126199,7 @@ export const orgsListSecurityManagerTeams = (config: OpenAPIClientConfig, reques
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -126232,7 +126237,7 @@ export const orgsAddSecurityManagerTeam = (config: OpenAPIClientConfig, request:
     /** The slug of the team name. */
     team_slug: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -126271,7 +126276,7 @@ export const orgsRemoveSecurityManagerTeam = (config: OpenAPIClientConfig, reque
     /** The slug of the team name. */
     team_slug: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -126311,7 +126316,7 @@ export const billingGetGithubActionsBillingOrg = (config: OpenAPIClientConfig, r
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -126350,7 +126355,7 @@ export const billingGetGithubPackagesBillingOrg = (config: OpenAPIClientConfig, 
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -126389,7 +126394,7 @@ export const billingGetSharedStorageBillingOrg = (config: OpenAPIClientConfig, r
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -126426,7 +126431,7 @@ export const orgsGetImmutableReleasesSettings = (config: OpenAPIClientConfig, re
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Immutable releases settings response */
     200: {
@@ -126468,7 +126473,7 @@ export const orgsSetImmutableReleasesSettings = (config: OpenAPIClientConfig, re
     /** An array of repository ids for which immutable releases enforcement should be applied. You can only provide a list of repository ids when the `enforced_repositories` is set to `selected`. You can add and remove individual repositories using the [Enable a selected repository for immutable releases in an organization](https://docs.github.com/rest/orgs/orgs#enable-a-selected-repository-for-immutable-releases-in-an-organization) and [Disable a selected repository for immutable releases in an organization](https://docs.github.com/rest/orgs/orgs#disable-a-selected-repository-for-immutable-releases-in-an-organization) endpoints. */
     selected_repository_ids?: number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -126515,7 +126520,7 @@ export const orgsGetImmutableReleasesSettingsRepositories = (config: OpenAPIClie
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -126568,7 +126573,7 @@ export const orgsSetImmutableReleasesSettingsRepositories = (config: OpenAPIClie
     /** An array of repository ids for which immutable releases enforcement should be applied. You can only provide a list of repository ids when the `enforced_repositories` is set to `selected`. You can add and remove individual repositories using the [Enable a selected repository for immutable releases in an organization](https://docs.github.com/rest/orgs/orgs#enable-a-selected-repository-for-immutable-releases-in-an-organization) and [Disable a selected repository for immutable releases in an organization](https://docs.github.com/rest/orgs/orgs#disable-a-selected-repository-for-immutable-releases-in-an-organization) endpoints. */
     selected_repository_ids: number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -126613,7 +126618,7 @@ export const orgsEnableSelectedRepositoryImmutableReleasesOrganization = (
       repository_id: number;
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -126656,7 +126661,7 @@ export const orgsDisableSelectedRepositoryImmutableReleasesOrganization = (
       repository_id: number;
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -126700,7 +126705,7 @@ export const hostedComputeListNetworkConfigurationsForOrg = (config: OpenAPIClie
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -126762,7 +126767,7 @@ export const hostedComputeCreateNetworkConfigurationForOrg = (config: OpenAPICli
     /** The identifier of the network settings to use for the network configuration. Exactly one network settings must be specified. */
     network_settings_ids: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -126806,7 +126811,7 @@ export const hostedComputeGetNetworkConfigurationForOrg = (config: OpenAPIClient
     /** Unique identifier of the hosted compute network configuration. */
     network_configuration_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -126854,7 +126859,7 @@ export const hostedComputeDeleteNetworkConfigurationFromOrg = (config: OpenAPICl
     /** Unique identifier of the hosted compute network configuration. */
     network_configuration_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -126901,7 +126906,7 @@ export const hostedComputeUpdateNetworkConfigurationForOrg = (config: OpenAPICli
     /** The identifier of the network settings to use for the network configuration. Exactly one network settings must be specified. */
     network_settings_ids?: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -126946,7 +126951,7 @@ export const hostedComputeGetNetworkSettingsForOrg = (config: OpenAPIClientConfi
     /** Unique identifier of the hosted compute network settings. */
     network_settings_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -127014,7 +127019,7 @@ export const copilotCopilotMetricsForTeam = (config: OpenAPIClientConfig, reques
     /** The number of days of metrics to display per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -127078,7 +127083,7 @@ export const teamsList = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -127146,7 +127151,7 @@ export const teamsCreate = (config: OpenAPIClientConfig, request: {
     /** The ID of a team to set as the parent team. */
     parent_team_id?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -127204,7 +127209,7 @@ export const teamsGetByName = (config: OpenAPIClientConfig, request: {
     /** The slug of the team name. */
     team_slug: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -127251,7 +127256,7 @@ export const teamsDeleteInOrg = (config: OpenAPIClientConfig, request: {
     /** The slug of the team name. */
     team_slug: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -127305,7 +127310,7 @@ export const teamsUpdateInOrg = (config: OpenAPIClientConfig, request: {
       | number
       | /** The ID of a team to set as the parent team. */ null;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when the updated information already exists */
     200: {
@@ -127383,7 +127388,7 @@ export const teamsListDiscussionsInOrg = (config: OpenAPIClientConfig, request: 
     /** Pinned discussions only filter */
     pinned?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -127450,7 +127455,7 @@ export const teamsCreateDiscussionInOrg = (config: OpenAPIClientConfig, request:
     /** Private posts are only visible to team members, organization owners, and team maintainers. Public posts are visible to all members of the organization. Set to `true` to create a private post. */
     private?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -127500,7 +127505,7 @@ export const teamsGetDiscussionInOrg = (config: OpenAPIClientConfig, request: {
     /** The number that identifies the discussion. */
     discussion_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -127546,7 +127551,7 @@ export const teamsDeleteDiscussionInOrg = (config: OpenAPIClientConfig, request:
     /** The number that identifies the discussion. */
     discussion_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -127598,7 +127603,7 @@ export const teamsUpdateDiscussionInOrg = (config: OpenAPIClientConfig, request:
     /** The discussion post's body text. */
     body?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -127656,7 +127661,7 @@ export const teamsListDiscussionCommentsInOrg = (config: OpenAPIClientConfig, re
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -127721,7 +127726,7 @@ export const teamsCreateDiscussionCommentInOrg = (config: OpenAPIClientConfig, r
     /** The discussion comment's body text. */
     body: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -127772,7 +127777,7 @@ export const teamsGetDiscussionCommentInOrg = (config: OpenAPIClientConfig, requ
     /** The number that identifies the comment. */
     comment_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -127821,7 +127826,7 @@ export const teamsDeleteDiscussionCommentInOrg = (config: OpenAPIClientConfig, r
     /** The number that identifies the comment. */
     comment_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -127874,7 +127879,7 @@ export const teamsUpdateDiscussionCommentInOrg = (config: OpenAPIClientConfig, r
     /** The discussion comment's body text. */
     body: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -127934,7 +127939,7 @@ export const reactionsListForTeamDiscussionCommentInOrg = (config: OpenAPIClient
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -128001,7 +128006,7 @@ export const reactionsCreateForTeamDiscussionCommentInOrg = (config: OpenAPIClie
   body: {
     content: "+1" | "-1" | "laugh" | "confused" | "heart" | "hooray" | "rocket" | "eyes";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when the reaction type has already been added to this team discussion comment */
     200: {
@@ -128060,7 +128065,7 @@ export const reactionsDeleteForTeamDiscussionComment = (config: OpenAPIClientCon
     /** The unique identifier of the reaction. */
     reaction_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -128117,7 +128122,7 @@ export const reactionsListForTeamDiscussionInOrg = (config: OpenAPIClientConfig,
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -128181,7 +128186,7 @@ export const reactionsCreateForTeamDiscussionInOrg = (config: OpenAPIClientConfi
   body: {
     content: "+1" | "-1" | "laugh" | "confused" | "heart" | "hooray" | "rocket" | "eyes";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -128237,7 +128242,7 @@ export const reactionsDeleteForTeamDiscussion = (config: OpenAPIClientConfig, re
     /** The unique identifier of the reaction. */
     reaction_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -128286,7 +128291,7 @@ export const teamsListPendingInvitationsInOrg = (config: OpenAPIClientConfig, re
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -128346,7 +128351,7 @@ export const teamsListMembersInOrg = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -128409,7 +128414,7 @@ export const teamsGetMembershipForUserInOrg = (config: OpenAPIClientConfig, requ
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -128470,7 +128475,7 @@ export const teamsAddOrUpdateMembershipForUserInOrg = (config: OpenAPIClientConf
   body?: {
     role?: "member" | "maintainer";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -128532,7 +128537,7 @@ export const teamsRemoveMembershipForUserInOrg = (config: OpenAPIClientConfig, r
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -128584,7 +128589,7 @@ export const teamsListProjectsInOrg = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -128638,7 +128643,7 @@ export const teamsCheckPermissionsForProjectInOrg = (config: OpenAPIClientConfig
     /** The unique identifier of the project. */
     project_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -128689,7 +128694,7 @@ export const teamsAddOrUpdateProjectPermissionsInOrg = (config: OpenAPIClientCon
   body?: {
     permission?: "read" | "write" | "admin";
   } | null;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -128751,7 +128756,7 @@ export const teamsRemoveProjectInOrg = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the project. */
     project_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -128799,7 +128804,7 @@ export const teamsListReposInOrg = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -128862,7 +128867,7 @@ export const teamsCheckPermissionsForRepoInOrg = (config: OpenAPIClientConfig, r
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Alternative response with repository permissions */
     200: {
@@ -128925,7 +128930,7 @@ export const teamsAddOrUpdateRepoPermissionsInOrg = (config: OpenAPIClientConfig
     /** The permission to grant the team on this repository. We accept the following permissions to be set: `pull`, `triage`, `push`, `maintain`, `admin` and you can also specify a custom repository role name, if the owning organization has defined any. If no permission is specified, the team's `permission` attribute will be used to determine what permission to grant the team on this repository. */
     permission?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -128975,7 +128980,7 @@ export const teamsRemoveRepoInOrg = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -129024,7 +129029,7 @@ export const teamsListChildInOrg = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** if child teams exist */
     200: {
@@ -129096,7 +129101,7 @@ export const orgsEnableOrDisableSecurityProductOnAllOrgRepos = (config: OpenAPIC
     enablement: "enable_all" | "disable_all";
   };
   body?: unknown;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Action started */
     204: {
@@ -129149,7 +129154,7 @@ export const projectsClassicGetColumn = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the column. */
     column_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -129202,7 +129207,7 @@ export const projectsClassicDeleteColumn = (config: OpenAPIClientConfig, request
     /** The unique identifier of the column. */
     column_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -129255,7 +129260,7 @@ export const projectsClassicUpdateColumn = (config: OpenAPIClientConfig, request
     /** Name of the project column */
     name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -129311,7 +129316,7 @@ export const projectsClassicMoveColumn = (config: OpenAPIClientConfig, request: 
     /** The position of the column in a project. Can be one of: `first`, `last`, or `after:<column_id>` to place after the specified column. */
     position: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -129375,7 +129380,7 @@ export const projectsClassicListCollaborators = (config: OpenAPIClientConfig, re
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -129450,7 +129455,7 @@ export const projectsClassicAddCollaborator = (config: OpenAPIClientConfig, requ
   body?: {
     permission?: "read" | "write" | "admin";
   } | null;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -129516,7 +129521,7 @@ export const projectsClassicRemoveCollaborator = (config: OpenAPIClientConfig, r
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -129576,7 +129581,7 @@ export const projectsClassicGetPermissionForUser = (config: OpenAPIClientConfig,
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -129643,7 +129648,7 @@ export const projectsClassicGetPermissionForUser = (config: OpenAPIClientConfig,
  * > [!NOTE]
  * > The `rate` object is closing down. If you're writing new API client code or updating existing code, you should use the `core` object instead of the `rate` object. The `core` object contains the same information that is present in the `rate` object.
  */
-export const rateLimitGet = (config: OpenAPIClientConfig): Promise<
+export const rateLimitGet = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -129698,7 +129703,7 @@ export const reposGet = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -129753,7 +129758,7 @@ export const reposDelete = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -129923,7 +129928,7 @@ export const reposUpdate = (config: OpenAPIClientConfig, request: {
     /** Either `true` to require contributors to sign off on web-based commits, or `false` to not require contributors to sign off on web-based commits. */
     web_commit_signoff_required?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -130038,7 +130043,7 @@ export const actionsListArtifactsForRepo = (config: OpenAPIClientConfig, request
     /** The name field of an artifact. When specified, only artifacts with this name will be returned. */
     name?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -130101,7 +130106,7 @@ export const actionsGetArtifact = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the artifact. */
     artifact_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -130143,7 +130148,7 @@ export const actionsDeleteArtifact = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the artifact. */
     artifact_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -130188,7 +130193,7 @@ export const actionsDownloadArtifact = (config: OpenAPIClientConfig, request: {
     artifact_id: number;
     archive_format: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     302: {
@@ -130245,7 +130250,7 @@ export const actionsGetActionsCacheUsage = (config: OpenAPIClientConfig, request
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -130299,7 +130304,7 @@ export const actionsGetActionsCacheList = (config: OpenAPIClientConfig, request:
     /** The direction to sort the results by. */
     direction?: "asc" | "desc";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -130361,7 +130366,7 @@ export const actionsDeleteActionsCacheByKey = (config: OpenAPIClientConfig, requ
     /** The full Git reference for narrowing down the cache. The `ref` for a branch should be formatted as `refs/heads/<branch name>`. To reference a pull request use `refs/pull/<number>/merge`. */
     ref?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -130407,7 +130412,7 @@ export const actionsDeleteActionsCacheById = (config: OpenAPIClientConfig, reque
     /** The unique identifier of the GitHub Actions cache. */
     cache_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -130452,7 +130457,7 @@ export const actionsGetJobForWorkflowRun = (config: OpenAPIClientConfig, request
     /** The unique identifier of the job. */
     job_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -130498,7 +130503,7 @@ export const actionsDownloadJobLogsForWorkflowRun = (config: OpenAPIClientConfig
     /** The unique identifier of the job. */
     job_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     302: {
@@ -130553,7 +130558,7 @@ export const actionsReRunJobForWorkflowRun = (config: OpenAPIClientConfig, reque
     /** Whether to enable debug logging for the re-run. */
     enable_debug_logging?: boolean;
   } | null;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -130604,7 +130609,7 @@ export const actionsGetCustomOidcSubClaimForRepo = (config: OpenAPIClientConfig,
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Status response */
     200: {
@@ -130659,7 +130664,7 @@ export const actionsSetCustomOidcSubClaimForRepo = (config: OpenAPIClientConfig,
       /** Array of unique strings. Each claim key can only contain alphanumeric characters and underscores. */
       include_claim_keys?: string[];
     };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Empty response */
     201: {
@@ -130724,7 +130729,7 @@ export const actionsListRepoOrganizationSecrets = (config: OpenAPIClientConfig, 
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -130790,7 +130795,7 @@ export const actionsListRepoOrganizationVariables = (config: OpenAPIClientConfig
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -130848,7 +130853,7 @@ export const actionsGetGithubActionsPermissionsRepository = (config: OpenAPIClie
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -130893,7 +130898,7 @@ export const actionsSetGithubActionsPermissionsRepository = (config: OpenAPIClie
     allowed_actions?: AllowedActions;
     sha_pinning_required?: ShaPinningRequired;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -130940,7 +130945,7 @@ export const actionsGetWorkflowAccessToRepository = (config: OpenAPIClientConfig
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -130983,7 +130988,7 @@ export const actionsSetWorkflowAccessToRepository = (config: OpenAPIClientConfig
     repo: string;
   };
   body: ActionsWorkflowAccessToRepository;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -131024,7 +131029,7 @@ export const actionsGetArtifactAndLogRetentionSettingsRepository = (config: Open
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -131069,7 +131074,7 @@ export const actionsSetArtifactAndLogRetentionSettingsRepository = (config: Open
     repo: string;
   };
   body: ActionsArtifactAndLogRetention;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Empty response for successful settings update */
     204: {
@@ -131118,7 +131123,7 @@ export const actionsGetForkPrContributorApprovalPermissionsRepository = (config:
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -131163,7 +131168,7 @@ export const actionsSetForkPrContributorApprovalPermissionsRepository = (config:
     repo: string;
   };
   body: ActionsForkPrContributorApproval;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -131212,7 +131217,7 @@ export const actionsGetPrivateRepoForkPrWorkflowsSettingsRepository = (config: O
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -131261,7 +131266,7 @@ export const actionsSetPrivateRepoForkPrWorkflowsSettingsRepository = (config: O
     repo: string;
   };
   body: ActionsForkPrWorkflowsPrivateReposRequest;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Empty response for successful settings update */
     204: {
@@ -131310,7 +131315,7 @@ export const actionsGetAllowedActionsRepository = (config: OpenAPIClientConfig, 
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -131351,7 +131356,7 @@ export const actionsSetAllowedActionsRepository = (config: OpenAPIClientConfig, 
     repo: string;
   };
   body?: SelectedActions;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -131397,7 +131402,7 @@ export const actionsGetGithubActionsDefaultWorkflowPermissionsRepository = (
       repo: string;
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -131443,7 +131448,7 @@ export const actionsSetGithubActionsDefaultWorkflowPermissionsRepository = (
     };
     body: ActionsSetDefaultWorkflowPermissions;
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success response */
     204: {
@@ -131499,7 +131504,7 @@ export const actionsListSelfHostedRunnersForRepo = (config: OpenAPIClientConfig,
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -131560,7 +131565,7 @@ export const actionsListRunnerApplicationsForRepo = (config: OpenAPIClientConfig
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -131612,7 +131617,7 @@ export const actionsGenerateRunnerJitconfigForRepo = (config: OpenAPIClientConfi
     /** The working directory to be used for job execution, relative to the runner install directory. */
     work_folder?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     201: {
       body: unknown;
@@ -131677,7 +131682,7 @@ export const actionsCreateRegistrationTokenForRepo = (config: OpenAPIClientConfi
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -131725,7 +131730,7 @@ export const actionsCreateRemoveTokenForRepo = (config: OpenAPIClientConfig, req
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -131769,7 +131774,7 @@ export const actionsGetSelfHostedRunnerForRepo = (config: OpenAPIClientConfig, r
     /** Unique identifier of the self-hosted runner. */
     runner_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -131814,7 +131819,7 @@ export const actionsDeleteSelfHostedRunnerFromRepo = (config: OpenAPIClientConfi
     /** Unique identifier of the self-hosted runner. */
     runner_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -131863,7 +131868,7 @@ export const actionsListLabelsForSelfHostedRunnerForRepo = (config: OpenAPIClien
     /** Unique identifier of the self-hosted runner. */
     runner_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -131915,7 +131920,7 @@ export const actionsAddCustomLabelsToSelfHostedRunnerForRepo = (config: OpenAPIC
     /** The names of the custom labels to add to the runner. */
     labels: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -131975,7 +131980,7 @@ export const actionsSetCustomLabelsForSelfHostedRunnerForRepo = (config: OpenAPI
     /** The names of the custom labels to set for the runner. You can pass an empty array to remove all custom labels. */
     labels: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -132031,7 +132036,7 @@ export const actionsRemoveAllCustomLabelsFromSelfHostedRunnerForRepo = (config: 
     /** Unique identifier of the self-hosted runner. */
     runner_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -132085,7 +132090,7 @@ export const actionsRemoveCustomLabelFromSelfHostedRunnerForRepo = (config: Open
     /** The name of a self-hosted runner's custom label. */
     name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -132174,7 +132179,7 @@ export const actionsListWorkflowRunsForRepo = (config: OpenAPIClientConfig, requ
     /** Only returns workflow runs that are associated with the specified `head_sha`. */
     head_sha?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -132263,7 +132268,7 @@ export const actionsGetWorkflowRun = (config: OpenAPIClientConfig, request: {
     /** If `true` pull requests are omitted from the response (empty array). */
     exclude_pull_requests?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -132311,7 +132316,7 @@ export const actionsDeleteWorkflowRun = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the workflow run. */
     run_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -132354,7 +132359,7 @@ export const actionsGetReviewsForRun = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the workflow run. */
     run_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -132397,7 +132402,7 @@ export const actionsApproveWorkflowRun = (config: OpenAPIClientConfig, request: 
     /** The unique identifier of the workflow run. */
     run_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -132458,7 +132463,7 @@ export const actionsListWorkflowRunArtifacts = (config: OpenAPIClientConfig, req
     /** The name field of an artifact. When specified, only artifacts with this name will be returned. */
     name?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -132528,7 +132533,7 @@ export const actionsGetWorkflowRunAttempt = (config: OpenAPIClientConfig, reques
     /** If `true` pull requests are omitted from the response (empty array). */
     exclude_pull_requests?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -132586,7 +132591,7 @@ export const actionsListJobsForWorkflowRunAttempt = (config: OpenAPIClientConfig
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -132657,7 +132662,7 @@ export const actionsDownloadWorkflowRunAttemptLogs = (config: OpenAPIClientConfi
     /** The attempt number of the workflow run. */
     attempt_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     302: {
@@ -132709,7 +132714,7 @@ export const actionsCancelWorkflowRun = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the workflow run. */
     run_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     202: {
@@ -132760,7 +132765,7 @@ export const actionsReviewCustomGatesForRun = (config: OpenAPIClientConfig, requ
     run_id: number;
   };
   body: ReviewCustomGatesCommentRequired | ReviewCustomGatesStateRequired;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -132805,7 +132810,7 @@ export const actionsForceCancelWorkflowRun = (config: OpenAPIClientConfig, reque
     /** The unique identifier of the workflow run. */
     run_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     202: {
@@ -132863,7 +132868,7 @@ export const actionsListJobsForWorkflowRun = (config: OpenAPIClientConfig, reque
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -132928,7 +132933,7 @@ export const actionsDownloadWorkflowRunLogs = (config: OpenAPIClientConfig, requ
     /** The unique identifier of the workflow run. */
     run_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     302: {
@@ -132979,7 +132984,7 @@ export const actionsDeleteWorkflowRunLogs = (config: OpenAPIClientConfig, reques
     /** The unique identifier of the workflow run. */
     run_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -133032,7 +133037,7 @@ export const actionsGetPendingDeploymentsForRun = (config: OpenAPIClientConfig, 
     /** The unique identifier of the workflow run. */
     run_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -133084,7 +133089,7 @@ export const actionsReviewPendingDeploymentsForRun = (config: OpenAPIClientConfi
     /** A comment to accompany the deployment review */
     comment: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -133136,7 +133141,7 @@ export const actionsReRunWorkflow = (config: OpenAPIClientConfig, request: {
     /** Whether to enable debug logging for the re-run. */
     enable_debug_logging?: boolean;
   } | null;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -133189,7 +133194,7 @@ export const actionsReRunWorkflowFailedJobs = (config: OpenAPIClientConfig, requ
     /** Whether to enable debug logging for the re-run. */
     enable_debug_logging?: boolean;
   } | null;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -133243,7 +133248,7 @@ export const actionsGetWorkflowRunUsage = (config: OpenAPIClientConfig, request:
     /** The unique identifier of the workflow run. */
     run_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -133293,7 +133298,7 @@ export const actionsListRepoSecrets = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -133354,7 +133359,7 @@ export const actionsGetRepoPublicKey = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -133398,7 +133403,7 @@ export const actionsGetRepoSecret = (config: OpenAPIClientConfig, request: {
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -133450,7 +133455,7 @@ export const actionsCreateOrUpdateRepoSecret = (config: OpenAPIClientConfig, req
     /** ID of the key you used to encrypt the secret. */
     key_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when creating a secret */
     201: {
@@ -133506,7 +133511,7 @@ export const actionsDeleteRepoSecret = (config: OpenAPIClientConfig, request: {
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -133555,7 +133560,7 @@ export const actionsListRepoVariables = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -133621,7 +133626,7 @@ export const actionsCreateRepoVariable = (config: OpenAPIClientConfig, request: 
     /** The value of the variable. */
     value: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -133669,7 +133674,7 @@ export const actionsGetRepoVariable = (config: OpenAPIClientConfig, request: {
     /** The name of the variable. */
     name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -133714,7 +133719,7 @@ export const actionsDeleteRepoVariable = (config: OpenAPIClientConfig, request: 
     /** The name of the variable. */
     name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -133765,7 +133770,7 @@ export const actionsUpdateRepoVariable = (config: OpenAPIClientConfig, request: 
     /** The value of the variable. */
     value?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -133818,7 +133823,7 @@ export const actionsListRepoWorkflows = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -133881,7 +133886,7 @@ export const actionsGetWorkflow = (config: OpenAPIClientConfig, request: {
     /** The ID of the workflow. You can also pass the workflow file name as a string. */
     workflow_id: number | string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -133924,7 +133929,7 @@ export const actionsDisableWorkflow = (config: OpenAPIClientConfig, request: {
     /** The ID of the workflow. You can also pass the workflow file name as a string. */
     workflow_id: number | string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -133975,7 +133980,7 @@ export const actionsCreateWorkflowDispatch = (config: OpenAPIClientConfig, reque
     /** Input keys and values configured in the workflow file. The maximum number of properties is 10. Any default properties configured in the workflow file will be used when `inputs` are omitted. */
     inputs?: Record<string, unknown>;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -134022,7 +134027,7 @@ export const actionsEnableWorkflow = (config: OpenAPIClientConfig, request: {
     /** The ID of the workflow. You can also pass the workflow file name as a string. */
     workflow_id: number | string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -134105,7 +134110,7 @@ export const actionsListWorkflowRuns = (config: OpenAPIClientConfig, request: {
     /** Only returns workflow runs that are associated with the specified `head_sha`. */
     head_sha?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -134196,7 +134201,7 @@ export const actionsGetWorkflowUsage = (config: OpenAPIClientConfig, request: {
     /** The ID of the workflow. You can also pass the workflow file name as a string. */
     workflow_id: number | string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -134268,7 +134273,7 @@ export const reposListActivities = (config: OpenAPIClientConfig, request: {
      */
     activity_type?: "push" | "force_push" | "branch_creation" | "branch_deletion" | "pr_merge" | "merge_queue_merge";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -134341,7 +134346,7 @@ export const issuesListAssignees = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -134400,7 +134405,7 @@ export const issuesCheckUserCanBeAssigned = (config: OpenAPIClientConfig, reques
     repo: string;
     assignee: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** If the `assignee` can be assigned to issues in the repository, a `204` header with no content is returned. */
     204: {
@@ -134459,7 +134464,7 @@ export const reposCreateAttestation = (config: OpenAPIClientConfig, request: {
       dsseEnvelope?: Record<string, unknown>;
     };
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** response */
     201: {
@@ -134539,7 +134544,7 @@ export const reposListAttestations = (config: OpenAPIClientConfig, request: {
      */
     predicate_type?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -134614,7 +134619,7 @@ export const reposListAutolinks = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -134660,7 +134665,7 @@ export const reposCreateAutolink = (config: OpenAPIClientConfig, request: {
     /** Whether this autolink reference matches alphanumeric characters. If true, the `<num>` parameter of the `url_template` matches alphanumeric characters `A-Z` (case insensitive), `0-9`, and `-`. If false, this autolink reference only matches numeric characters. */
     is_alphanumeric?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** response */
     201: {
@@ -134719,7 +134724,7 @@ export const reposGetAutolink = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the autolink. */
     autolink_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -134766,7 +134771,7 @@ export const reposDeleteAutolink = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the autolink. */
     autolink_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -134809,7 +134814,7 @@ export const reposCheckAutomatedSecurityFixes = (config: OpenAPIClientConfig, re
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response if Dependabot is enabled */
     200: {
@@ -134852,7 +134857,7 @@ export const reposEnableAutomatedSecurityFixes = (config: OpenAPIClientConfig, r
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -134890,7 +134895,7 @@ export const reposDisableAutomatedSecurityFixes = (config: OpenAPIClientConfig, 
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -134934,7 +134939,7 @@ export const reposListBranches = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -134989,7 +134994,7 @@ export const reposGetBranch = (config: OpenAPIClientConfig, request: {
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -135038,7 +135043,7 @@ export const reposGetBranchProtection = (config: OpenAPIClientConfig, request: {
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -135171,7 +135176,7 @@ export const reposUpdateBranchProtection = (config: OpenAPIClientConfig, request
     /** Whether users can pull changes from upstream when the branch is locked. Set to `true` to allow fork syncing. Set to `false` to prevent fork syncing. Default: `false`. */
     allow_fork_syncing?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -135272,7 +135277,7 @@ export const reposDeleteBranchProtection = (config: OpenAPIClientConfig, request
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -135317,7 +135322,7 @@ export const reposGetAdminBranchProtection = (config: OpenAPIClientConfig, reque
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -135360,7 +135365,7 @@ export const reposSetAdminBranchProtection = (config: OpenAPIClientConfig, reque
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -135403,7 +135408,7 @@ export const reposDeleteAdminBranchProtection = (config: OpenAPIClientConfig, re
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -135448,7 +135453,7 @@ export const reposGetPullRequestReviewProtection = (config: OpenAPIClientConfig,
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -135489,7 +135494,7 @@ export const reposDeletePullRequestReviewProtection = (config: OpenAPIClientConf
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -135567,7 +135572,7 @@ export const reposUpdatePullRequestReviewProtection = (config: OpenAPIClientConf
       apps?: string[];
     };
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -135633,7 +135638,7 @@ export const reposGetCommitSignatureProtection = (config: OpenAPIClientConfig, r
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -135680,7 +135685,7 @@ export const reposCreateCommitSignatureProtection = (config: OpenAPIClientConfig
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -135727,7 +135732,7 @@ export const reposDeleteCommitSignatureProtection = (config: OpenAPIClientConfig
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -135772,7 +135777,7 @@ export const reposGetStatusChecksProtection = (config: OpenAPIClientConfig, requ
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -135817,7 +135822,7 @@ export const reposRemoveStatusCheckProtection = (config: OpenAPIClientConfig, re
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -135873,7 +135878,7 @@ export const reposUpdateStatusCheckProtection = (config: OpenAPIClientConfig, re
       app_id?: number;
     }[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -135930,7 +135935,7 @@ export const reposGetAllStatusCheckContexts = (config: OpenAPIClientConfig, requ
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -135981,7 +135986,7 @@ export const reposAddStatusCheckContexts = (config: OpenAPIClientConfig, request
       contexts: string[];
     }
     | /** The name of the status checks */ string[];
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -136046,7 +136051,7 @@ export const reposSetStatusCheckContexts = (config: OpenAPIClientConfig, request
       contexts: string[];
     }
     | /** The name of the status checks */ string[];
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -136107,7 +136112,7 @@ export const reposRemoveStatusCheckContexts = (config: OpenAPIClientConfig, requ
       contexts: string[];
     }
     | /** The name of the status checks */ string[];
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -136167,7 +136172,7 @@ export const reposGetAccessRestrictions = (config: OpenAPIClientConfig, request:
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -136214,7 +136219,7 @@ export const reposDeleteAccessRestrictions = (config: OpenAPIClientConfig, reque
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -136257,7 +136262,7 @@ export const reposGetAppsWithAccessToProtectedBranch = (config: OpenAPIClientCon
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -136308,7 +136313,7 @@ export const reposAddAppAccessRestrictions = (config: OpenAPIClientConfig, reque
     /** The GitHub Apps that have push access to this branch. Use the slugified version of the app name. **Note**: The list of users, apps, and teams in total is limited to 100 items. */
     apps: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -136362,7 +136367,7 @@ export const reposSetAppAccessRestrictions = (config: OpenAPIClientConfig, reque
     /** The GitHub Apps that have push access to this branch. Use the slugified version of the app name. **Note**: The list of users, apps, and teams in total is limited to 100 items. */
     apps: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -136416,7 +136421,7 @@ export const reposRemoveAppAccessRestrictions = (config: OpenAPIClientConfig, re
     /** The GitHub Apps that have push access to this branch. Use the slugified version of the app name. **Note**: The list of users, apps, and teams in total is limited to 100 items. */
     apps: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -136466,7 +136471,7 @@ export const reposGetTeamsWithAccessToProtectedBranch = (config: OpenAPIClientCo
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -136519,7 +136524,7 @@ export const reposAddTeamAccessRestrictions = (config: OpenAPIClientConfig, requ
       teams: string[];
     }
     | /** The slug values for teams */ string[];
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -136578,7 +136583,7 @@ export const reposSetTeamAccessRestrictions = (config: OpenAPIClientConfig, requ
       teams: string[];
     }
     | /** The slug values for teams */ string[];
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -136637,7 +136642,7 @@ export const reposRemoveTeamAccessRestrictions = (config: OpenAPIClientConfig, r
       teams: string[];
     }
     | /** The slug values for teams */ string[];
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -136690,7 +136695,7 @@ export const reposGetUsersWithAccessToProtectedBranch = (config: OpenAPIClientCo
     /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -136745,7 +136750,7 @@ export const reposAddUserAccessRestrictions = (config: OpenAPIClientConfig, requ
     /** The username for users */
     users: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -136803,7 +136808,7 @@ export const reposSetUserAccessRestrictions = (config: OpenAPIClientConfig, requ
     /** The username for users */
     users: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -136861,7 +136866,7 @@ export const reposRemoveUserAccessRestrictions = (config: OpenAPIClientConfig, r
     /** The username for users */
     users: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -136920,7 +136925,7 @@ export const reposRenameBranch = (config: OpenAPIClientConfig, request: {
     /** The new name of the branch. */
     new_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -136982,7 +136987,7 @@ export const checksCreate = (config: OpenAPIClientConfig, request: {
     repo: string;
   };
   body: unknown | unknown;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -137028,7 +137033,7 @@ export const checksGet = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the check run. */
     check_run_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -137075,7 +137080,7 @@ export const checksUpdate = (config: OpenAPIClientConfig, request: {
     check_run_id: number;
   };
   body: unknown | unknown;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -137125,7 +137130,7 @@ export const checksListAnnotations = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -137180,7 +137185,7 @@ export const checksRerequestRun = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the check run. */
     check_run_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -137242,7 +137247,7 @@ export const checksCreateSuite = (config: OpenAPIClientConfig, request: {
     /** The sha of the head commit. */
     head_sha: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when the suite already exists */
     200: {
@@ -137298,7 +137303,7 @@ export const checksSetSuitesPreferences = (config: OpenAPIClientConfig, request:
       setting: boolean;
     }[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -137349,7 +137354,7 @@ export const checksGetSuite = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the check suite. */
     check_suite_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -137407,7 +137412,7 @@ export const checksListForSuite = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -137469,7 +137474,7 @@ export const checksRerequestSuite = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the check suite. */
     check_suite_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -137540,7 +137545,7 @@ export const codeScanningListAlertsForRepo = (config: OpenAPIClientConfig, reque
     /** If specified, only code scanning alerts with this severity will be returned. */
     severity?: CodeScanningAlertSeverity;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -137612,7 +137617,7 @@ export const codeScanningGetAlert = (config: OpenAPIClientConfig, request: {
     /** The number that identifies an alert. You can find this at the end of the URL for a code scanning alert within GitHub, and in the `number` field in the response from the `GET /repos/{owner}/{repo}/code-scanning/alerts` operation. */
     alert_number: AlertNumber;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -137676,7 +137681,7 @@ export const codeScanningUpdateAlert = (config: OpenAPIClientConfig, request: {
     dismissed_comment?: CodeScanningAlertDismissedComment;
     create_request?: CodeScanningAlertCreateRequest;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -137741,7 +137746,7 @@ export const codeScanningGetAutofix = (config: OpenAPIClientConfig, request: {
     /** The number that identifies an alert. You can find this at the end of the URL for a code scanning alert within GitHub, and in the `number` field in the response from the `GET /repos/{owner}/{repo}/code-scanning/alerts` operation. */
     alert_number: AlertNumber;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -137804,7 +137809,7 @@ export const codeScanningCreateAutofix = (config: OpenAPIClientConfig, request: 
     /** The number that identifies an alert. You can find this at the end of the URL for a code scanning alert within GitHub, and in the `number` field in the response from the `GET /repos/{owner}/{repo}/code-scanning/alerts` operation. */
     alert_number: AlertNumber;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK */
     200: {
@@ -137876,7 +137881,7 @@ export const codeScanningCommitAutofix = (config: OpenAPIClientConfig, request: 
     alert_number: AlertNumber;
   };
   body?: CodeScanningAutofixCommits;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Created */
     201: {
@@ -137951,7 +137956,7 @@ export const codeScanningListAlertInstances = (config: OpenAPIClientConfig, requ
     /** The number of the pull request for the results you want to list. */
     pr?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -138042,7 +138047,7 @@ export const codeScanningListRecentAnalyses = (config: OpenAPIClientConfig, requ
     /** The property by which to sort the results. */
     sort?: "created";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -138121,7 +138126,7 @@ export const codeScanningGetAnalysis = (config: OpenAPIClientConfig, request: {
     /** The ID of the analysis, as returned from the `GET /repos/{owner}/{repo}/code-scanning/analyses` operation. */
     analysis_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -138245,7 +138250,7 @@ export const codeScanningDeleteAnalysis = (config: OpenAPIClientConfig, request:
     /** Allow deletion if the specified analysis is the last in a set. If you attempt to delete the final analysis in a set without setting this parameter to `true`, you'll get a 400 response with the message: `Analysis is last of its type and deletion may result in the loss of historical alert data. Please specify confirm_delete.` */
     confirm_delete?: string | null;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -138305,7 +138310,7 @@ export const codeScanningListCodeqlDatabases = (config: OpenAPIClientConfig, req
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -138365,7 +138370,7 @@ export const codeScanningGetCodeqlDatabase = (config: OpenAPIClientConfig, reque
     /** The language of the CodeQL database. */
     language: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -138424,7 +138429,7 @@ export const codeScanningDeleteCodeqlDatabase = (config: OpenAPIClientConfig, re
     /** The language of the CodeQL database. */
     language: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -138483,7 +138488,7 @@ export const codeScanningCreateVariantAnalysis = (config: OpenAPIClientConfig, r
     repo: string;
   };
   body: unknown | unknown | unknown;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Variant analysis submitted for processing */
     201: {
@@ -138539,7 +138544,7 @@ export const codeScanningGetVariantAnalysis = (config: OpenAPIClientConfig, requ
     /** The unique identifier of the variant analysis. */
     codeql_variant_analysis_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -138594,7 +138599,7 @@ export const codeScanningGetVariantAnalysisRepoTask = (config: OpenAPIClientConf
     /** The name of the variant analysis repository. */
     repo_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -138646,7 +138651,7 @@ export const codeScanningGetDefaultSetup = (config: OpenAPIClientConfig, request
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -138699,7 +138704,7 @@ export const codeScanningUpdateDefaultSetup = (config: OpenAPIClientConfig, requ
     repo: string;
   };
   body: CodeScanningDefaultSetupUpdate;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -138819,7 +138824,7 @@ export const codeScanningUploadSarif = (config: OpenAPIClientConfig, request: {
      */
     validate?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     202: {
@@ -138891,7 +138896,7 @@ export const codeScanningGetSarif = (config: OpenAPIClientConfig, request: {
     /** The SARIF ID obtained after uploading. */
     sarif_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -138947,7 +138952,7 @@ export const codeSecurityGetConfigurationForRepository = (config: OpenAPIClientC
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -139009,7 +139014,7 @@ export const reposCodeownersErrors = (config: OpenAPIClientConfig, request: {
     /** A branch, tag or commit name used to determine which version of the CODEOWNERS file to use. Default: the repository's default branch (e.g. `main`) */
     ref?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -139063,7 +139068,7 @@ export const codespacesListInRepositoryForAuthenticatedUser = (config: OpenAPICl
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -139154,7 +139159,7 @@ export const codespacesCreateWithRepoForAuthenticatedUser = (config: OpenAPIClie
     /** Duration in minutes after codespace has gone idle in which it will be deleted. Must be integer minutes between 0 and 43200 (30 days). */
     retention_period_minutes?: number;
   } | null;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when the codespace was successfully created */
     201: {
@@ -139245,7 +139250,7 @@ export const codespacesListDevcontainersInRepositoryForAuthenticatedUser = (
       page?: number;
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -139333,7 +139338,7 @@ export const codespacesRepoMachinesForAuthenticatedUser = (config: OpenAPIClient
     /** The branch or commit to check for prebuild availability and devcontainer restrictions. */
     ref?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -139412,7 +139417,7 @@ export const codespacesPreFlightWithRepoForAuthenticatedUser = (config: OpenAPIC
     /** An alternative IP for default location auto-detection, such as when proxying a request. */
     client_ip?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when a user is able to create codespaces from the repository. */
     200: {
@@ -139488,7 +139493,7 @@ export const codespacesCheckPermissionsForDevcontainer = (config: OpenAPIClientC
     /** Path to the devcontainer.json configuration to use for the permission check. */
     devcontainer_path: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when the permission check is successful */
     200: {
@@ -139559,7 +139564,7 @@ export const codespacesListRepoSecrets = (config: OpenAPIClientConfig, request: 
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -139618,7 +139623,7 @@ export const codespacesGetRepoPublicKey = (config: OpenAPIClientConfig, request:
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -139660,7 +139665,7 @@ export const codespacesGetRepoSecret = (config: OpenAPIClientConfig, request: {
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -139710,7 +139715,7 @@ export const codespacesCreateOrUpdateRepoSecret = (config: OpenAPIClientConfig, 
     /** ID of the key you used to encrypt the secret. */
     key_id?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when creating a secret */
     201: {
@@ -139764,7 +139769,7 @@ export const codespacesDeleteRepoSecret = (config: OpenAPIClientConfig, request:
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -139820,7 +139825,7 @@ export const reposListCollaborators = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -139884,7 +139889,7 @@ export const reposCheckCollaborator = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response if user is a collaborator */
     204: {
@@ -139958,7 +139963,7 @@ export const reposAddCollaborator = (config: OpenAPIClientConfig, request: {
     /** The permission to grant the collaborator. **Only valid on organization-owned repositories.** We accept the following permissions to be set: `pull`, `triage`, `push`, `maintain`, `admin` and you can also specify a custom repository role name, if the owning organization has defined any. */
     permission?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when a new invitation is created */
     201: {
@@ -140046,7 +140051,7 @@ export const reposRemoveCollaborator = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** No Content when collaborator was removed from the repository. */
     204: {
@@ -140103,7 +140108,7 @@ export const reposGetCollaboratorPermissionLevel = (config: OpenAPIClientConfig,
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** if user has admin permissions */
     200: {
@@ -140159,7 +140164,7 @@ export const reposListCommitCommentsForRepo = (config: OpenAPIClientConfig, requ
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -140218,7 +140223,7 @@ export const reposGetCommitComment = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the comment. */
     comment_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -140261,7 +140266,7 @@ export const reposDeleteCommitComment = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the comment. */
     comment_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -140317,7 +140322,7 @@ export const reposUpdateCommitComment = (config: OpenAPIClientConfig, request: {
     /** The contents of the comment */
     body: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -140373,7 +140378,7 @@ export const reactionsListForCommitComment = (config: OpenAPIClientConfig, reque
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -140434,7 +140439,7 @@ export const reactionsCreateForCommitComment = (config: OpenAPIClientConfig, req
   body: {
     content: "+1" | "-1" | "laugh" | "confused" | "heart" | "hooray" | "rocket" | "eyes";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Reaction exists */
     200: {
@@ -140492,7 +140497,7 @@ export const reactionsDeleteForCommitComment = (config: OpenAPIClientConfig, req
     /** The unique identifier of the reaction. */
     reaction_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -140578,7 +140583,7 @@ export const reposListCommits = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -140654,7 +140659,7 @@ export const reposListBranchesForHeadCommit = (config: OpenAPIClientConfig, requ
     /** The SHA of the commit. */
     commit_sha: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -140716,7 +140721,7 @@ export const reposListCommentsForCommit = (config: OpenAPIClientConfig, request:
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -140788,7 +140793,7 @@ export const reposCreateCommitComment = (config: OpenAPIClientConfig, request: {
     /** **Closing down notice**. Use **position** parameter instead. Line number in the file to comment on. */
     line?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -140859,7 +140864,7 @@ export const reposListPullRequestsAssociatedWithCommit = (config: OpenAPIClientC
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -140961,7 +140966,7 @@ export const reposGetCommit = (config: OpenAPIClientConfig, request: {
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -141046,7 +141051,7 @@ export const checksListForRef = (config: OpenAPIClientConfig, request: {
     page?: number;
     app_id?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -141124,7 +141129,7 @@ export const checksListSuitesForRef = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -141197,7 +141202,7 @@ export const reposGetCombinedStatusForRef = (config: OpenAPIClientConfig, reques
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -141254,7 +141259,7 @@ export const reposListCommitStatusesForRef = (config: OpenAPIClientConfig, reque
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -141319,7 +141324,7 @@ export const reposGetCommunityProfileMetrics = (config: OpenAPIClientConfig, req
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -141415,7 +141420,7 @@ export const reposCompareCommits = (config: OpenAPIClientConfig, request: {
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -141500,7 +141505,7 @@ export const reposGetContent = (config: OpenAPIClientConfig, request: {
     /** The name of the commit/branch/tag. Default: the repository’s default branch. */
     ref?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -141593,7 +141598,7 @@ export const reposCreateOrUpdateFileContents = (config: OpenAPIClientConfig, req
       date?: string;
     };
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -141699,7 +141704,7 @@ export const reposDeleteFile = (config: OpenAPIClientConfig, request: {
       email?: string;
     };
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -141777,7 +141782,7 @@ export const reposListContributors = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** If repository contains content */
     200: {
@@ -141896,7 +141901,7 @@ export const dependabotListAlertsForRepo = (config: OpenAPIClientConfig, request
     /** A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results after this cursor. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     after?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -141976,7 +141981,7 @@ export const dependabotGetAlert = (config: OpenAPIClientConfig, request: {
      */
     alert_number: AlertNumber;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -142042,7 +142047,7 @@ export const dependabotUpdateAlert = (config: OpenAPIClientConfig, request: {
     /** An optional comment associated with dismissing the alert. */
     dismissed_comment?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -142116,7 +142121,7 @@ export const dependabotListRepoSecrets = (config: OpenAPIClientConfig, request: 
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -142176,7 +142181,7 @@ export const dependabotGetRepoPublicKey = (config: OpenAPIClientConfig, request:
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -142218,7 +142223,7 @@ export const dependabotGetRepoSecret = (config: OpenAPIClientConfig, request: {
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -142268,7 +142273,7 @@ export const dependabotCreateOrUpdateRepoSecret = (config: OpenAPIClientConfig, 
     /** ID of the key you used to encrypt the secret. */
     key_id?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when creating a secret */
     201: {
@@ -142322,7 +142327,7 @@ export const dependabotDeleteRepoSecret = (config: OpenAPIClientConfig, request:
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -142367,7 +142372,7 @@ export const dependencyGraphDiffRange = (config: OpenAPIClientConfig, request: {
     /** The full path, relative to the repository root, of the dependency manifest file. */
     name?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -142425,7 +142430,7 @@ export const dependencyGraphExportSbom = (config: OpenAPIClientConfig, request: 
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -142484,7 +142489,7 @@ export const dependencyGraphCreateRepositorySnapshot = (config: OpenAPIClientCon
     repo: string;
   };
   body: Snapshot;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -142553,7 +142558,7 @@ export const reposListDeployments = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -142677,7 +142682,7 @@ export const reposCreateDeployment = (config: OpenAPIClientConfig, request: {
     /** Specifies if the given environment is one that end-users directly interact with. Default: `true` when `environment` is `production` and `false` otherwise. */
     production_environment?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -142746,7 +142751,7 @@ export const reposGetDeployment = (config: OpenAPIClientConfig, request: {
     /** deployment_id parameter */
     deployment_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -142800,7 +142805,7 @@ export const reposDeleteDeployment = (config: OpenAPIClientConfig, request: {
     /** deployment_id parameter */
     deployment_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -142855,7 +142860,7 @@ export const reposListDeploymentStatuses = (config: OpenAPIClientConfig, request
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -142934,7 +142939,7 @@ export const reposCreateDeploymentStatus = (config: OpenAPIClientConfig, request
     /** Adds a new `inactive` status to all prior non-transient, non-production environment deployments with the same repository and `environment` name as the created status's deployment. An `inactive` status is only added to deployments that had a `success` state. Default: `true` */
     auto_inactive?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -142997,7 +143002,7 @@ export const reposGetDeploymentStatus = (config: OpenAPIClientConfig, request: {
     deployment_id: number;
     status_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -143053,7 +143058,7 @@ export const reposCreateDispatchEvent = (config: OpenAPIClientConfig, request: {
     /** JSON payload with extra information about the webhook event that your action or workflow may use. The maximum number of top-level properties is 10. The total size of the JSON payload must be less than 64KB. */
     client_payload?: Record<string, unknown>;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -143113,7 +143118,7 @@ export const reposGetAllEnvironments = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -143171,7 +143176,7 @@ export const reposGetEnvironment = (config: OpenAPIClientConfig, request: {
     /** The name of the environment. The name must be URL encoded. For example, any slashes in the name must be replaced with `%2F`. */
     environment_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -143233,7 +143238,7 @@ export const reposCreateOrUpdateEnvironment = (config: OpenAPIClientConfig, requ
       | /** The people or teams that may review jobs that reference the environment. You can list up to six users or teams as reviewers. The reviewers must have at least read access to the repository. Only one of the required reviewers needs to approve the job for it to proceed. */ null;
     deployment_branch_policy?: DeploymentBranchPolicySettings;
   } | null;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -143294,7 +143299,7 @@ export const reposDeleteAnEnvironment = (config: OpenAPIClientConfig, request: {
     /** The name of the environment. The name must be URL encoded. For example, any slashes in the name must be replaced with `%2F`. */
     environment_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Default response */
     204: {
@@ -143345,7 +143350,7 @@ export const reposListDeploymentBranchPolicies = (config: OpenAPIClientConfig, r
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -143402,7 +143407,7 @@ export const reposCreateDeploymentBranchPolicy = (config: OpenAPIClientConfig, r
     environment_name: string;
   };
   body: DeploymentBranchPolicyNamePatternWithType;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -143460,7 +143465,7 @@ export const reposGetDeploymentBranchPolicy = (config: OpenAPIClientConfig, requ
     /** The unique identifier of the branch policy. */
     branch_policy_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -143507,7 +143512,7 @@ export const reposUpdateDeploymentBranchPolicy = (config: OpenAPIClientConfig, r
     branch_policy_id: number;
   };
   body: DeploymentBranchPolicyNamePattern;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -143554,7 +143559,7 @@ export const reposDeleteDeploymentBranchPolicy = (config: OpenAPIClientConfig, r
     /** The unique identifier of the branch policy. */
     branch_policy_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -143600,7 +143605,7 @@ export const reposGetAllDeploymentProtectionRules = (config: OpenAPIClientConfig
     /** The account owner of the repository. The name is not case sensitive. */
     owner: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** List of deployment protection rules */
     200: {
@@ -143660,7 +143665,7 @@ export const reposCreateDeploymentProtectionRule = (config: OpenAPIClientConfig,
     /** The ID of the custom app that will be enabled on the environment. */
     integration_id?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** The enabled custom deployment protection rule */
     201: {
@@ -143718,7 +143723,7 @@ export const reposListCustomDeploymentRuleIntegrations = (config: OpenAPIClientC
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A list of custom deployment rule integrations available for this environment. */
     200: {
@@ -143778,7 +143783,7 @@ export const reposGetCustomDeploymentProtectionRule = (config: OpenAPIClientConf
     /** The unique identifier of the protection rule. */
     protection_rule_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -143826,7 +143831,7 @@ export const reposDisableDeploymentProtectionRule = (config: OpenAPIClientConfig
     /** The unique identifier of the protection rule. */
     protection_rule_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -143879,7 +143884,7 @@ export const actionsListEnvironmentSecrets = (config: OpenAPIClientConfig, reque
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -143943,7 +143948,7 @@ export const actionsGetEnvironmentPublicKey = (config: OpenAPIClientConfig, requ
     /** The name of the environment. The name must be URL encoded. For example, any slashes in the name must be replaced with `%2F`. */
     environment_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -143990,7 +143995,7 @@ export const actionsGetEnvironmentSecret = (config: OpenAPIClientConfig, request
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -144045,7 +144050,7 @@ export const actionsCreateOrUpdateEnvironmentSecret = (config: OpenAPIClientConf
     /** ID of the key you used to encrypt the secret. */
     key_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when creating a secret */
     201: {
@@ -144104,7 +144109,7 @@ export const actionsDeleteEnvironmentSecret = (config: OpenAPIClientConfig, requ
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Default response */
     204: {
@@ -144156,7 +144161,7 @@ export const actionsListEnvironmentVariables = (config: OpenAPIClientConfig, req
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -144225,7 +144230,7 @@ export const actionsCreateEnvironmentVariable = (config: OpenAPIClientConfig, re
     /** The value of the variable. */
     value: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -144276,7 +144281,7 @@ export const actionsGetEnvironmentVariable = (config: OpenAPIClientConfig, reque
     /** The name of the variable. */
     name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -144324,7 +144329,7 @@ export const actionsDeleteEnvironmentVariable = (config: OpenAPIClientConfig, re
     /** The name of the environment. The name must be URL encoded. For example, any slashes in the name must be replaced with `%2F`. */
     environment_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -144378,7 +144383,7 @@ export const actionsUpdateEnvironmentVariable = (config: OpenAPIClientConfig, re
     /** The value of the variable. */
     value?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -144429,7 +144434,7 @@ export const activityListRepoEvents = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -144477,7 +144482,7 @@ export const reposListForks = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -144546,7 +144551,7 @@ export const reposCreateFork = (config: OpenAPIClientConfig, request: {
     /** When forking from an existing repository, fork with only the default branch. */
     default_branch_only?: boolean;
   } | null;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     202: {
@@ -144612,7 +144617,7 @@ export const gitCreateBlob = (config: OpenAPIClientConfig, request: {
     /** The encoding used for `content`. Currently, `"utf-8"` and `"base64"` are supported. */
     encoding?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -144687,7 +144692,7 @@ export const gitGetBlob = (config: OpenAPIClientConfig, request: {
     repo: string;
     file_sha: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -144808,7 +144813,7 @@ export const gitCreateCommit = (config: OpenAPIClientConfig, request: {
     /** The [PGP signature](https://en.wikipedia.org/wiki/Pretty_Good_Privacy) of the commit. GitHub adds the signature to the `gpgsig` header of the created commit. For a commit signature to be verifiable by Git or GitHub, it must be an ASCII-armored detached PGP signature over the string commit as it would be written to the object database. To pass a `signature` parameter, you need to first manually create a valid PGP signature, which can be complicated. You may find it easier to [use the command line](https://git-scm.com/book/id/v2/Git-Tools-Signing-Your-Work) to create signed commits. */
     signature?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -144916,7 +144921,7 @@ export const gitGetCommit = (config: OpenAPIClientConfig, request: {
     /** The SHA of the commit. */
     commit_sha: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -144972,7 +144977,7 @@ export const gitListMatchingRefs = (config: OpenAPIClientConfig, request: {
     /** The Git reference. For more information, see "[Git References](https://git-scm.com/book/en/v2/Git-Internals-Git-References)" in the Git documentation. */
     ref: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -145028,7 +145033,7 @@ export const gitGetRef = (config: OpenAPIClientConfig, request: {
     /** The Git reference. For more information, see "[Git References](https://git-scm.com/book/en/v2/Git-Internals-Git-References)" in the Git documentation. */
     ref: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -145081,7 +145086,7 @@ export const gitCreateRef = (config: OpenAPIClientConfig, request: {
     /** The SHA1 value for this reference. */
     sha: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -145141,7 +145146,7 @@ export const gitDeleteRef = (config: OpenAPIClientConfig, request: {
     /** The Git reference. For more information, see "[Git References](https://git-scm.com/book/en/v2/Git-Internals-Git-References)" in the Git documentation. */
     ref: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -145197,7 +145202,7 @@ export const gitUpdateRef = (config: OpenAPIClientConfig, request: {
     /** Indicates whether to force the update or to make sure the update is a fast-forward update. Leaving this out or setting it to `false` will make sure you're not overwriting work. */
     force?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -145300,7 +145305,7 @@ export const gitCreateTag = (config: OpenAPIClientConfig, request: {
       date?: string;
     };
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -145394,7 +145399,7 @@ export const gitGetTag = (config: OpenAPIClientConfig, request: {
     repo: string;
     tag_sha: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -145477,7 +145482,7 @@ export const gitCreateTree = (config: OpenAPIClientConfig, request: {
      */
     base_tree?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -145560,7 +145565,7 @@ export const gitGetTree = (config: OpenAPIClientConfig, request: {
     /** Setting this parameter to any value returns the objects or subtrees referenced by the tree specified in `:tree_sha`. For example, setting `recursive` to any of the following will enable returning objects or subtrees: `0`, `1`, `"true"`, and `"false"`. Omit this parameter to prevent recursively returning objects or subtrees. */
     recursive?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -145620,7 +145625,7 @@ export const reposListWebhooks = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -145690,7 +145695,7 @@ export const reposCreateWebhook = (config: OpenAPIClientConfig, request: {
     /** Determines if notifications are sent when the webhook is triggered. Set to `true` to send notifications. */
     active?: boolean;
   } | null;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -145764,7 +145769,7 @@ export const reposGetWebhook = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the hook. You can find this value in the `X-GitHub-Hook-ID` header of a webhook delivery. */
     hook_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -145811,7 +145816,7 @@ export const reposDeleteWebhook = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the hook. You can find this value in the `X-GitHub-Hook-ID` header of a webhook delivery. */
     hook_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -145867,7 +145872,7 @@ export const reposUpdateWebhook = (config: OpenAPIClientConfig, request: {
     /** Determines if notifications are sent when the webhook is triggered. Set to `true` to send notifications. */
     active?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -145925,7 +145930,7 @@ export const reposGetWebhookConfigForRepo = (config: OpenAPIClientConfig, reques
     /** The unique identifier of the hook. You can find this value in the `X-GitHub-Hook-ID` header of a webhook delivery. */
     hook_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -145974,7 +145979,7 @@ export const reposUpdateWebhookConfigForRepo = (config: OpenAPIClientConfig, req
     secret?: WebhookConfigSecret;
     insecure_ssl?: WebhookConfigInsecureSsl;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -146027,7 +146032,7 @@ export const reposListWebhookDeliveries = (config: OpenAPIClientConfig, request:
     /** Used for pagination: the starting delivery from which the page of deliveries is fetched. Refer to the `link` header for the next and previous page cursors. */
     cursor?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -146081,7 +146086,7 @@ export const reposGetWebhookDelivery = (config: OpenAPIClientConfig, request: {
     hook_id: number;
     delivery_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -146132,7 +146137,7 @@ export const reposRedeliverWebhookDelivery = (config: OpenAPIClientConfig, reque
     hook_id: number;
     delivery_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     202: {
       body: unknown;
@@ -146181,7 +146186,7 @@ export const reposPingWebhook = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the hook. You can find this value in the `X-GitHub-Hook-ID` header of a webhook delivery. */
     hook_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -146229,7 +146234,7 @@ export const reposTestPushWebhook = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the hook. You can find this value in the `X-GitHub-Hook-ID` header of a webhook delivery. */
     hook_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -146273,7 +146278,7 @@ export const reposCheckImmutableReleases = (config: OpenAPIClientConfig, request
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response if immutable releases are enabled */
     200: {
@@ -146316,7 +146321,7 @@ export const reposEnableImmutableReleases = (config: OpenAPIClientConfig, reques
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     204: {
       body: unknown;
@@ -146357,7 +146362,7 @@ export const reposDisableImmutableReleases = (config: OpenAPIClientConfig, reque
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     204: {
       body: unknown;
@@ -146434,7 +146439,7 @@ export const migrationsGetImportStatus = (config: OpenAPIClientConfig, request: 
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -146496,7 +146501,7 @@ export const migrationsStartImport = (config: OpenAPIClientConfig, request: {
     /** For a tfvc import, the name of the project that is being imported. */
     tfvc_project?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -146564,7 +146569,7 @@ export const migrationsCancelImport = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -146623,7 +146628,7 @@ export const migrationsUpdateImport = (config: OpenAPIClientConfig, request: {
     /** For a tfvc import, the name of the project that is being imported. */
     tfvc_project?: string;
   } | null;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -146683,7 +146688,7 @@ export const migrationsGetCommitAuthors = (config: OpenAPIClientConfig, request:
     /** A user ID. Only return users with an ID greater than this ID. */
     since?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -146743,7 +146748,7 @@ export const migrationsMapCommitAuthor = (config: OpenAPIClientConfig, request: 
     /** The new Git author name. */
     name?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -146801,7 +146806,7 @@ export const migrationsGetLargeFiles = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -146853,7 +146858,7 @@ export const migrationsSetLfsPreference = (config: OpenAPIClientConfig, request:
   body: {
     use_lfs: "opt_in" | "opt_out";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -146904,7 +146909,7 @@ export const appsGetRepoInstallation = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -146950,7 +146955,7 @@ export const interactionsGetRestrictionsForRepo = (config: OpenAPIClientConfig, 
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -146989,7 +146994,7 @@ export const interactionsSetRestrictionsForRepo = (config: OpenAPIClientConfig, 
     repo: string;
   };
   body: InteractionLimit;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -147033,7 +147038,7 @@ export const interactionsRemoveRestrictionsForRepo = (config: OpenAPIClientConfi
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -147082,7 +147087,7 @@ export const reposListInvitations = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -147132,7 +147137,7 @@ export const reposDeleteInvitation = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the invitation. */
     invitation_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -147174,7 +147179,7 @@ export const reposUpdateInvitation = (config: OpenAPIClientConfig, request: {
   body?: {
     permissions?: "read" | "write" | "maintain" | "triage" | "admin";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -147252,7 +147257,7 @@ export const issuesListForRepo = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -147362,7 +147367,7 @@ export const issuesCreate = (config: OpenAPIClientConfig, request: {
       | string
       | /** The name of the issue type to associate with this issue. _NOTE: Only users with push access can set the type for new issues. The type is silently dropped otherwise._ */ null;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -147470,7 +147475,7 @@ export const issuesListCommentsForRepo = (config: OpenAPIClientConfig, request: 
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -147540,7 +147545,7 @@ export const issuesGetComment = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the comment. */
     comment_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -147585,7 +147590,7 @@ export const issuesDeleteComment = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the comment. */
     comment_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -147637,7 +147642,7 @@ export const issuesUpdateComment = (config: OpenAPIClientConfig, request: {
     /** The contents of the comment. */
     body: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -147693,7 +147698,7 @@ export const reactionsListForIssueComment = (config: OpenAPIClientConfig, reques
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -147754,7 +147759,7 @@ export const reactionsCreateForIssueComment = (config: OpenAPIClientConfig, requ
   body: {
     content: "+1" | "-1" | "laugh" | "confused" | "heart" | "hooray" | "rocket" | "eyes";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Reaction exists */
     200: {
@@ -147812,7 +147817,7 @@ export const reactionsDeleteForIssueComment = (config: OpenAPIClientConfig, requ
     /** The unique identifier of the reaction. */
     reaction_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -147858,7 +147863,7 @@ export const issuesListEventsForRepo = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -147913,7 +147918,7 @@ export const issuesGetEvent = (config: OpenAPIClientConfig, request: {
     repo: string;
     event_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -147981,7 +147986,7 @@ export const issuesGet = (config: OpenAPIClientConfig, request: {
     /** The number that identifies the issue. */
     issue_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -148077,7 +148082,7 @@ export const issuesUpdate = (config: OpenAPIClientConfig, request: {
       | string
       | /** The name of the issue type to associate with this issue or use `null` to remove the current issue type. Only users with push access can set the type for issues. Without push access to the repository, type changes are silently dropped. */ null;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -148171,7 +148176,7 @@ export const issuesAddAssignees = (config: OpenAPIClientConfig, request: {
     /** Usernames of people to assign this issue to. _NOTE: Only users with push access can add assignees to an issue. Assignees are silently ignored otherwise._ */
     assignees?: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -148219,7 +148224,7 @@ export const issuesRemoveAssignees = (config: OpenAPIClientConfig, request: {
     /** Usernames of assignees to remove from an issue. _NOTE: Only users with push access can remove assignees from an issue. Assignees are silently ignored otherwise._ */
     assignees?: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -148268,7 +148273,7 @@ export const issuesCheckUserCanBeAssignedToIssue = (config: OpenAPIClientConfig,
     issue_number: number;
     assignee: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response if `assignee` can be assigned to `issue_number` */
     204: {
@@ -148332,7 +148337,7 @@ export const issuesListComments = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -148410,7 +148415,7 @@ export const issuesCreateComment = (config: OpenAPIClientConfig, request: {
     /** The contents of the comment. */
     body: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -148491,7 +148496,7 @@ export const issuesListDependenciesBlockedBy = (config: OpenAPIClientConfig, req
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -148571,7 +148576,7 @@ export const issuesAddBlockedByDependency = (config: OpenAPIClientConfig, reques
     /** The id of the issue that blocks the current issue */
     issue_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -148655,7 +148660,7 @@ export const issuesRemoveDependencyBlockedBy = (config: OpenAPIClientConfig, req
     /** The id of the blocking issue to remove as a dependency */
     issue_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -148734,7 +148739,7 @@ export const issuesListDependenciesBlocking = (config: OpenAPIClientConfig, requ
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -148805,7 +148810,7 @@ export const issuesListEvents = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -148868,7 +148873,7 @@ export const issuesListLabelsOnIssue = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -148948,7 +148953,7 @@ export const issuesAddLabels = (config: OpenAPIClientConfig, request: {
       name: string;
     }[]
     | string;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -149035,7 +149040,7 @@ export const issuesSetLabels = (config: OpenAPIClientConfig, request: {
       name: string;
     }[]
     | string;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -149107,7 +149112,7 @@ export const issuesRemoveAllLabels = (config: OpenAPIClientConfig, request: {
     /** The number that identifies the issue. */
     issue_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -149161,7 +149166,7 @@ export const issuesRemoveLabel = (config: OpenAPIClientConfig, request: {
     issue_number: number;
     name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -149220,7 +149225,7 @@ export const issuesLock = (config: OpenAPIClientConfig, request: {
   body?: {
     lock_reason?: "off-topic" | "too heated" | "resolved" | "spam";
   } | null;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -149283,7 +149288,7 @@ export const issuesUnlock = (config: OpenAPIClientConfig, request: {
     /** The number that identifies the issue. */
     issue_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -149339,7 +149344,7 @@ export const issuesGetParent = (config: OpenAPIClientConfig, request: {
     /** The number that identifies the issue. */
     issue_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -149400,7 +149405,7 @@ export const reactionsListForIssue = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -149465,7 +149470,7 @@ export const reactionsCreateForIssue = (config: OpenAPIClientConfig, request: {
   body: {
     content: "+1" | "-1" | "laugh" | "confused" | "heart" | "hooray" | "rocket" | "eyes";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -149523,7 +149528,7 @@ export const reactionsDeleteForIssue = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the reaction. */
     reaction_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -149577,7 +149582,7 @@ export const issuesRemoveSubIssue = (config: OpenAPIClientConfig, request: {
     /** The id of the sub-issue to remove */
     sub_issue_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -149650,7 +149655,7 @@ export const issuesListSubIssues = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -149728,7 +149733,7 @@ export const issuesAddSubIssue = (config: OpenAPIClientConfig, request: {
     /** Option that, when true, instructs the operation to replace the sub-issues current parent issue */
     replace_parent?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -149805,7 +149810,7 @@ export const issuesReprioritizeSubIssue = (config: OpenAPIClientConfig, request:
     /** The id of the sub-issue to be prioritized before (either positional argument after OR before should be specified). */
     before_id?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -149873,7 +149878,7 @@ export const issuesListEventsForTimeline = (config: OpenAPIClientConfig, request
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -149936,7 +149941,7 @@ export const reposListDeployKeys = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -149998,7 +150003,7 @@ export const reposCreateDeployKey = (config: OpenAPIClientConfig, request: {
      */
     read_only?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -150053,7 +150058,7 @@ export const reposGetDeployKey = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the key. */
     key_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -150098,7 +150103,7 @@ export const reposDeleteDeployKey = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the key. */
     key_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -150143,7 +150148,7 @@ export const issuesListLabelsForRepo = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -150205,7 +150210,7 @@ export const issuesCreateLabel = (config: OpenAPIClientConfig, request: {
     /** A short description of the label. Must be 100 characters or fewer. */
     description?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -150265,7 +150270,7 @@ export const issuesGetLabel = (config: OpenAPIClientConfig, request: {
     repo: string;
     name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -150309,7 +150314,7 @@ export const issuesDeleteLabel = (config: OpenAPIClientConfig, request: {
     repo: string;
     name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -150357,7 +150362,7 @@ export const issuesUpdateLabel = (config: OpenAPIClientConfig, request: {
     /** A short description of the label. Must be 100 characters or fewer. */
     description?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -150401,7 +150406,7 @@ export const reposListLanguages = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -150448,7 +150453,7 @@ export const licensesGetForRepo = (config: OpenAPIClientConfig, request: {
     /** The Git reference for the results you want to list. The `ref` for a branch can be formatted either as `refs/heads/<branch name>` or simply `<branch name>`. To reference a pull request use `refs/pull/<number>/merge`. */
     ref?: CodeScanningRef;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -150497,7 +150502,7 @@ export const reposMergeUpstream = (config: OpenAPIClientConfig, request: {
     /** The name of the branch which should be updated to match upstream. */
     branch: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** The branch has been successfully synced with the upstream repository */
     200: {
@@ -150554,7 +150559,7 @@ export const reposMerge = (config: OpenAPIClientConfig, request: {
     /** Commit message to use for the merge commit. If omitted, a default message will be used. */
     commit_message?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful Response (The resulting merge commit) */
     201: {
@@ -150632,7 +150637,7 @@ export const issuesListMilestones = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -150702,7 +150707,7 @@ export const issuesCreateMilestone = (config: OpenAPIClientConfig, request: {
      */
     due_on?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -150764,7 +150769,7 @@ export const issuesGetMilestone = (config: OpenAPIClientConfig, request: {
     /** The number that identifies the milestone. */
     milestone_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -150809,7 +150814,7 @@ export const issuesDeleteMilestone = (config: OpenAPIClientConfig, request: {
     /** The number that identifies the milestone. */
     milestone_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -150865,7 +150870,7 @@ export const issuesUpdateMilestone = (config: OpenAPIClientConfig, request: {
      */
     due_on?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -150918,7 +150923,7 @@ export const issuesListLabelsForMilestone = (config: OpenAPIClientConfig, reques
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -150983,7 +150988,7 @@ export const activityListRepoNotificationsForAuthenticatedUser = (config: OpenAP
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -151045,7 +151050,7 @@ export const activityMarkRepoNotificationsAsRead = (config: OpenAPIClientConfig,
      */
     last_read_at?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     202: {
@@ -151101,7 +151106,7 @@ export const reposGetPages = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -151148,7 +151153,7 @@ export const reposCreatePagesSite = (config: OpenAPIClientConfig, request: {
     repo: string;
   };
   body: unknown | unknown;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -151200,7 +151205,7 @@ export const reposUpdateInformationAboutPagesSite = (config: OpenAPIClientConfig
     repo: string;
   };
   body: unknown | unknown | unknown | unknown | unknown;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -151255,7 +151260,7 @@ export const reposDeletePagesSite = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -151313,7 +151318,7 @@ export const reposListPagesBuilds = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -151365,7 +151370,7 @@ export const reposRequestPagesBuild = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -151405,7 +151410,7 @@ export const reposGetLatestPagesBuild = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -151446,7 +151451,7 @@ export const reposGetPagesBuild = (config: OpenAPIClientConfig, request: {
     repo: string;
     build_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -151500,7 +151505,7 @@ export const reposCreatePagesDeployment = (config: OpenAPIClientConfig, request:
       /** The OIDC token issued by GitHub Actions certifying the origin of the deployment. */
       oidc_token: string;
     };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -151561,7 +151566,7 @@ export const reposGetPagesDeployment = (config: OpenAPIClientConfig, request: {
     /** The ID of the Pages deployment. You can also give the commit SHA of the deployment. */
     pages_deployment_id: number | string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -151608,7 +151613,7 @@ export const reposCancelPagesDeployment = (config: OpenAPIClientConfig, request:
     /** The ID of the Pages deployment. You can also give the commit SHA of the deployment. */
     pages_deployment_id: number | string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     204: {
       body: unknown;
@@ -151656,7 +151661,7 @@ export const reposGetPagesHealthCheck = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -151713,7 +151718,7 @@ export const reposCheckPrivateVulnerabilityReporting = (config: OpenAPIClientCon
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Private vulnerability reporting status */
     200: {
@@ -151762,7 +151767,7 @@ export const reposEnablePrivateVulnerabilityReporting = (config: OpenAPIClientCo
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     204: {
       body: unknown;
@@ -151803,7 +151808,7 @@ export const reposDisablePrivateVulnerabilityReporting = (config: OpenAPIClientC
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     204: {
       body: unknown;
@@ -151845,7 +151850,7 @@ export const reposCustomPropertiesForReposGetRepositoryValues = (config: OpenAPI
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -151901,7 +151906,7 @@ export const reposCustomPropertiesForReposCreateOrUpdateRepositoryValues = (
       properties: CustomPropertyValue[];
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** No Content when custom property values are successfully created or updated */
     204: {
@@ -151983,7 +151988,7 @@ export const pullsList = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -152083,7 +152088,7 @@ export const pullsCreate = (config: OpenAPIClientConfig, request: {
      */
     issue?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -152166,7 +152171,7 @@ export const pullsListReviewCommentsForRepo = (config: OpenAPIClientConfig, requ
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -152228,7 +152233,7 @@ export const pullsGetReviewComment = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the comment. */
     comment_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -152273,7 +152278,7 @@ export const pullsDeleteReviewComment = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the comment. */
     comment_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -152329,7 +152334,7 @@ export const pullsUpdateReviewComment = (config: OpenAPIClientConfig, request: {
     /** The text of the reply to the review comment. */
     body: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -152381,7 +152386,7 @@ export const reactionsListForPullRequestReviewComment = (config: OpenAPIClientCo
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -152442,7 +152447,7 @@ export const reactionsCreateForPullRequestReviewComment = (config: OpenAPIClient
   body: {
     content: "+1" | "-1" | "laugh" | "confused" | "heart" | "hooray" | "rocket" | "eyes";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Reaction exists */
     200: {
@@ -152500,7 +152505,7 @@ export const reactionsDeleteForPullRequestComment = (config: OpenAPIClientConfig
     /** The unique identifier of the reaction. */
     reaction_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -152564,7 +152569,7 @@ export const pullsGet = (config: OpenAPIClientConfig, request: {
     /** The number that identifies the pull request. */
     pull_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Pass the appropriate [media type](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types) to fetch diff and patch formats. */
     200: {
@@ -152645,7 +152650,7 @@ export const pullsUpdate = (config: OpenAPIClientConfig, request: {
     /** Indicates whether [maintainers can modify](https://docs.github.com/articles/allowing-changes-to-a-pull-request-branch-created-from-a-fork/) the pull request. */
     maintainer_can_modify?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -152724,7 +152729,7 @@ export const codespacesCreateWithPrForAuthenticatedUser = (config: OpenAPIClient
     /** Duration in minutes after codespace has gone idle in which it will be deleted. Must be integer minutes between 0 and 43200 (30 days). */
     retention_period_minutes?: number;
   } | null;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when the codespace was successfully created */
     201: {
@@ -152821,7 +152826,7 @@ export const pullsListReviewComments = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -152910,7 +152915,7 @@ export const pullsCreateReviewComment = (config: OpenAPIClientConfig, request: {
     in_reply_to?: number;
     subject_type?: "line" | "file";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -152995,7 +153000,7 @@ export const pullsCreateReplyForReviewComment = (config: OpenAPIClientConfig, re
     /** The text of the review comment. */
     body: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -153067,7 +153072,7 @@ export const pullsListCommits = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -153136,7 +153141,7 @@ export const pullsListFiles = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -153201,7 +153206,7 @@ export const pullsCheckIfMerged = (config: OpenAPIClientConfig, request: {
     /** The number that identifies the pull request. */
     pull_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response if pull request has been merged */
     204: {
@@ -153257,7 +153262,7 @@ export const pullsMerge = (config: OpenAPIClientConfig, request: {
     sha?: string;
     merge_method?: "merge" | "squash" | "rebase";
   } | null;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** if merge was successful */
     200: {
@@ -153345,7 +153350,7 @@ export const pullsListRequestedReviewers = (config: OpenAPIClientConfig, request
     /** The number that identifies the pull request. */
     pull_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -153396,7 +153401,7 @@ export const pullsRequestReviewers = (config: OpenAPIClientConfig, request: {
     pull_number: number;
   };
   body?: unknown | unknown;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -153453,7 +153458,7 @@ export const pullsRemoveRequestedReviewers = (config: OpenAPIClientConfig, reque
     /** An array of team `slug`s that will be removed. */
     team_reviewers?: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -153515,7 +153520,7 @@ export const pullsListReviews = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** The list of reviews returns in chronological order. */
     200: {
@@ -153604,7 +153609,7 @@ export const pullsCreateReview = (config: OpenAPIClientConfig, request: {
       start_side?: string;
     }[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -153676,7 +153681,7 @@ export const pullsGetReview = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the review. */
     review_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -153735,7 +153740,7 @@ export const pullsUpdateReview = (config: OpenAPIClientConfig, request: {
     /** The body text of the pull request review. */
     body: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -153793,7 +153798,7 @@ export const pullsDeletePendingReview = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the review. */
     review_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -153858,7 +153863,7 @@ export const pullsListCommentsForReview = (config: OpenAPIClientConfig, request:
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -153933,7 +153938,7 @@ export const pullsDismissReview = (config: OpenAPIClientConfig, request: {
     message: string;
     event?: "DISMISS";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -154001,7 +154006,7 @@ export const pullsSubmitReview = (config: OpenAPIClientConfig, request: {
     body?: string;
     event: "APPROVE" | "REQUEST_CHANGES" | "COMMENT";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -154064,7 +154069,7 @@ export const pullsUpdateBranch = (config: OpenAPIClientConfig, request: {
     /** The expected SHA of the pull request's HEAD ref. This is the most recent commit on the pull request's branch. If the expected SHA does not match the pull request's HEAD, you will receive a `422 Unprocessable Entity` status. You can use the "[List commits](https://docs.github.com/rest/commits/commits#list-commits)" endpoint to find the most recent commit SHA. Default: SHA of the pull request's current HEAD ref. */
     expected_head_sha?: string;
   } | null;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     202: {
@@ -154134,7 +154139,7 @@ export const reposGetReadme = (config: OpenAPIClientConfig, request: {
     /** The name of the commit/branch/tag. Default: the repository’s default branch. */
     ref?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -154198,7 +154203,7 @@ export const reposGetReadmeInDirectory = (config: OpenAPIClientConfig, request: 
     /** The name of the commit/branch/tag. Default: the repository’s default branch. */
     ref?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -154256,7 +154261,7 @@ export const reposListReleases = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -154331,7 +154336,7 @@ export const reposCreateRelease = (config: OpenAPIClientConfig, request: {
     generate_release_notes?: boolean;
     make_latest?: "true" | "false" | "legacy";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -154405,7 +154410,7 @@ export const reposGetReleaseAsset = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the asset. */
     asset_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -154452,7 +154457,7 @@ export const reposDeleteReleaseAsset = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the asset. */
     asset_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -154500,7 +154505,7 @@ export const reposUpdateReleaseAsset = (config: OpenAPIClientConfig, request: {
     label?: string;
     state?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -154554,7 +154559,7 @@ export const reposGenerateReleaseNotes = (config: OpenAPIClientConfig, request: 
     /** Specifies a path to a file in the repository containing configuration settings used for generating the release notes. If unspecified, the configuration file located in the repository at '.github/release.yml' or '.github/release.yaml' will be used. If that is not present, the default configuration will be used. */
     configuration_file_path?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Name and body of generated release notes */
     200: {
@@ -154604,7 +154609,7 @@ export const reposGetLatestRelease = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -154644,7 +154649,7 @@ export const reposGetReleaseByTag = (config: OpenAPIClientConfig, request: {
     /** tag parameter */
     tag: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -154692,7 +154697,7 @@ export const reposGetRelease = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the release. */
     release_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** **Note:** This returns an `upload_url` key corresponding to the endpoint for uploading release assets. This key is a hypermedia resource. For more information, see "[Getting started with the REST API](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#hypermedia)." */
     200: {
@@ -154738,7 +154743,7 @@ export const reposDeleteRelease = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the release. */
     release_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -154796,7 +154801,7 @@ export const reposUpdateRelease = (config: OpenAPIClientConfig, request: {
     /** If specified, a discussion of the specified category is created and linked to the release. The value must be a category that already exists in the repository. If there is already a discussion linked to the release, this parameter is ignored. For more information, see "[Managing categories for discussions in your repository](https://docs.github.com/discussions/managing-discussions-for-your-community/managing-categories-for-discussions-in-your-repository)." */
     discussion_category_name?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -154856,7 +154861,7 @@ export const reposListReleaseAssets = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -154932,7 +154937,7 @@ export const reposUploadReleaseAsset = (config: OpenAPIClientConfig, request: {
     label?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response for successful upload */
     201: {
@@ -154990,7 +154995,7 @@ export const reactionsListForRelease = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -155051,7 +155056,7 @@ export const reactionsCreateForRelease = (config: OpenAPIClientConfig, request: 
   body: {
     content: "+1" | "laugh" | "heart" | "hooray" | "rocket" | "eyes";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Reaction exists */
     200: {
@@ -155109,7 +155114,7 @@ export const reactionsDeleteForRelease = (config: OpenAPIClientConfig, request: 
     /** The unique identifier of the reaction. */
     reaction_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -155160,7 +155165,7 @@ export const reposGetBranchRules = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -155217,7 +155222,7 @@ export const reposGetRepoRulesets = (config: OpenAPIClientConfig, request: {
      */
     targets?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -155280,7 +155285,7 @@ export const reposCreateRepoRuleset = (config: OpenAPIClientConfig, request: {
     /** An array of rules within the ruleset. */
     rules?: RepositoryRule[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -155353,7 +155358,7 @@ export const reposGetRepoRuleSuites = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -155415,7 +155420,7 @@ export const reposGetRepoRuleSuite = (config: OpenAPIClientConfig, request: {
      */
     rule_suite_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -155471,7 +155476,7 @@ export const reposGetRepoRuleset = (config: OpenAPIClientConfig, request: {
     /** Include rulesets configured at higher levels that apply to this repository */
     includes_parents?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -155534,7 +155539,7 @@ export const reposUpdateRepoRuleset = (config: OpenAPIClientConfig, request: {
     /** An array of rules within the ruleset. */
     rules?: RepositoryRule[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -155591,7 +155596,7 @@ export const reposDeleteRepoRuleset = (config: OpenAPIClientConfig, request: {
     /** The ID of the ruleset. */
     ruleset_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -155646,7 +155651,7 @@ export const reposGetRepoRulesetHistory = (config: OpenAPIClientConfig, request:
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -155701,7 +155706,7 @@ export const reposGetRepoRulesetVersion = (config: OpenAPIClientConfig, request:
     /** The ID of the version */
     version_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -155781,7 +155786,7 @@ export const secretScanningListAlertsForRepo = (config: OpenAPIClientConfig, req
     /** A boolean value representing whether or not to hide literal secrets in the results. */
     hide_secret?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -155853,7 +155858,7 @@ export const secretScanningGetAlert = (config: OpenAPIClientConfig, request: {
     /** A boolean value representing whether or not to hide literal secrets in the results. */
     hide_secret?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -155915,7 +155920,7 @@ export const secretScanningUpdateAlert = (config: OpenAPIClientConfig, request: 
     alert_number: AlertNumber;
   };
   body: unknown;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -155986,7 +155991,7 @@ export const secretScanningListLocationsForAlert = (config: OpenAPIClientConfig,
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -156055,7 +156060,7 @@ export const secretScanningCreatePushProtectionBypass = (config: OpenAPIClientCo
     reason: SecretScanningPushProtectionBypassReason;
     placeholder_id: SecretScanningPushProtectionBypassPlaceholderId;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -156121,7 +156126,7 @@ export const secretScanningGetScanHistory = (config: OpenAPIClientConfig, reques
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -156186,7 +156191,7 @@ export const securityAdvisoriesListRepositoryAdvisories = (config: OpenAPIClient
     /** Filter by state of the repository advisories. Only advisories of this state will be returned. */
     state?: "triage" | "draft" | "published" | "closed";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -156245,7 +156250,7 @@ export const securityAdvisoriesCreateRepositoryAdvisory = (config: OpenAPIClient
     repo: string;
   };
   body: RepositoryAdvisoryCreate;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -156298,7 +156303,7 @@ export const securityAdvisoriesCreatePrivateVulnerabilityReport = (config: OpenA
     repo: string;
   };
   body: PrivateVulnerabilityReportCreate;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -156358,7 +156363,7 @@ export const securityAdvisoriesGetRepositoryAdvisory = (config: OpenAPIClientCon
     /** The GHSA (GitHub Security Advisory) identifier of the advisory. */
     ghsa_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -156413,7 +156418,7 @@ export const securityAdvisoriesUpdateRepositoryAdvisory = (config: OpenAPIClient
     ghsa_id: string;
   };
   body: RepositoryAdvisoryUpdate;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -156474,7 +156479,7 @@ export const securityAdvisoriesCreateRepositoryAdvisoryCveRequest = (config: Ope
     /** The GHSA (GitHub Security Advisory) identifier of the advisory. */
     ghsa_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     202: {
       body: unknown;
@@ -156533,7 +156538,7 @@ export const securityAdvisoriesCreateFork = (config: OpenAPIClientConfig, reques
     /** The GHSA (GitHub Security Advisory) identifier of the advisory. */
     ghsa_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     202: {
@@ -156598,7 +156603,7 @@ export const activityListStargazersForRepo = (config: OpenAPIClientConfig, reque
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -156655,7 +156660,7 @@ export const reposGetCodeFrequencyStats = (config: OpenAPIClientConfig, request:
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Returns a weekly aggregate of the number of additions and deletions pushed to a repository. */
     200: {
@@ -156706,7 +156711,7 @@ export const reposGetCommitActivityStats = (config: OpenAPIClientConfig, request
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -156760,7 +156765,7 @@ export const reposGetContributorsStats = (config: OpenAPIClientConfig, request: 
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -156810,7 +156815,7 @@ export const reposGetParticipationStats = (config: OpenAPIClientConfig, request:
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** The array order is oldest week (index 0) to most recent week. */
     200: {
@@ -156858,7 +156863,7 @@ export const reposGetPunchCardStats = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** For example, `[2, 14, 25]` indicates that there were 25 total commits, during the 2:00pm hour on Tuesdays. All times are based on the time zone of individual commits. */
     200: {
@@ -156924,7 +156929,7 @@ export const reposCreateCommitStatus = (config: OpenAPIClientConfig, request: {
     /** A string label to differentiate this status from the status of other systems. This field is case-insensitive. */
     context?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -156983,7 +156988,7 @@ export const activityListWatchersForRepo = (config: OpenAPIClientConfig, request
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -157033,7 +157038,7 @@ export const activityGetRepoSubscription = (config: OpenAPIClientConfig, request
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** if you subscribe to the repository */
     200: {
@@ -157086,7 +157091,7 @@ export const activitySetRepoSubscription = (config: OpenAPIClientConfig, request
     /** Determines if all notifications should be blocked from this repository. */
     ignored?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -157128,7 +157133,7 @@ export const activityDeleteRepoSubscription = (config: OpenAPIClientConfig, requ
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -157170,7 +157175,7 @@ export const reposListTags = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -157225,7 +157230,7 @@ export const reposListTagProtection = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -157279,7 +157284,7 @@ export const reposCreateTagProtection = (config: OpenAPIClientConfig, request: {
     /** An optional glob pattern to match against when enforcing tag protection. */
     pattern: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -157334,7 +157339,7 @@ export const reposDeleteTagProtection = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the tag protection. */
     tag_protection_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -157387,7 +157392,7 @@ export const reposDownloadTarballArchive = (config: OpenAPIClientConfig, request
     repo: string;
     ref: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     302: {
@@ -157444,7 +157449,7 @@ export const reposListTeams = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -157502,7 +157507,7 @@ export const reposGetAllTopics = (config: OpenAPIClientConfig, request: {
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -157550,7 +157555,7 @@ export const reposReplaceAllTopics = (config: OpenAPIClientConfig, request: {
     /** An array of topics to add to the repository. Pass one or more topics to _replace_ the set of existing topics. Send an empty array (`[]`) to clear all topics from the repository. **Note:** Topic `names` will be saved as lowercase. */
     names: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -157603,7 +157608,7 @@ export const reposGetClones = (config: OpenAPIClientConfig, request: {
     /** The time frame to display results for. */
     per?: "day" | "week";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -157648,7 +157653,7 @@ export const reposGetTopPaths = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -157690,7 +157695,7 @@ export const reposGetTopReferrers = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -157736,7 +157741,7 @@ export const reposGetViews = (config: OpenAPIClientConfig, request: {
     /** The time frame to display results for. */
     per?: "day" | "week";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -157789,7 +157794,7 @@ export const reposTransfer = (config: OpenAPIClientConfig, request: {
     /** ID of the team or teams to add to the repository. Teams can only be added to organization-owned repositories. */
     team_ids?: number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     202: {
@@ -157832,7 +157837,7 @@ export const reposCheckVulnerabilityAlerts = (config: OpenAPIClientConfig, reque
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response if repository is enabled with vulnerability alerts */
     204: {
@@ -157875,7 +157880,7 @@ export const reposEnableVulnerabilityAlerts = (config: OpenAPIClientConfig, requ
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -157915,7 +157920,7 @@ export const reposDisableVulnerabilityAlerts = (config: OpenAPIClientConfig, req
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -157959,7 +157964,7 @@ export const reposDownloadZipballArchive = (config: OpenAPIClientConfig, request
     repo: string;
     ref: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     302: {
@@ -158020,7 +158025,7 @@ export const reposCreateUsingTemplate = (config: OpenAPIClientConfig, request: {
     /** Either `true` to create a new private repository or `false` to create a new public one. */
     private?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -158075,7 +158080,7 @@ export const reposListPublic = (config: OpenAPIClientConfig, request?: {
     /** A repository ID. Only return repositories with an ID greater than this ID. */
     since?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -158153,7 +158158,7 @@ export const searchCode = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -158233,7 +158238,7 @@ export const searchCommits = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -158322,7 +158327,7 @@ export const searchIssuesAndPullRequests = (config: OpenAPIClientConfig, request
      */
     advanced_search?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -158418,7 +158423,7 @@ export const searchLabels = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -158500,7 +158505,7 @@ export const searchRepos = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -158573,7 +158578,7 @@ export const searchTopics = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -158642,7 +158647,7 @@ export const searchUsers = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -158704,7 +158709,7 @@ export const teamsGetLegacy = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the team. */
     team_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -158748,7 +158753,7 @@ export const teamsDeleteLegacy = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the team. */
     team_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -158810,7 +158815,7 @@ export const teamsUpdateLegacy = (config: OpenAPIClientConfig, request: {
       | number
       | /** The ID of a team to set as the parent team. */ null;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when the updated information already exists */
     200: {
@@ -158883,7 +158888,7 @@ export const teamsListDiscussionsLegacy = (config: OpenAPIClientConfig, request:
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -158946,7 +158951,7 @@ export const teamsCreateDiscussionLegacy = (config: OpenAPIClientConfig, request
     /** Private posts are only visible to team members, organization owners, and team maintainers. Public posts are visible to all members of the organization. Set to `true` to create a private post. */
     private?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -158993,7 +158998,7 @@ export const teamsGetDiscussionLegacy = (config: OpenAPIClientConfig, request: {
     /** The number that identifies the discussion. */
     discussion_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -159036,7 +159041,7 @@ export const teamsDeleteDiscussionLegacy = (config: OpenAPIClientConfig, request
     /** The number that identifies the discussion. */
     discussion_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -159085,7 +159090,7 @@ export const teamsUpdateDiscussionLegacy = (config: OpenAPIClientConfig, request
     /** The discussion post's body text. */
     body?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -159140,7 +159145,7 @@ export const teamsListDiscussionCommentsLegacy = (config: OpenAPIClientConfig, r
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -159202,7 +159207,7 @@ export const teamsCreateDiscussionCommentLegacy = (config: OpenAPIClientConfig, 
     /** The discussion comment's body text. */
     body: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -159250,7 +159255,7 @@ export const teamsGetDiscussionCommentLegacy = (config: OpenAPIClientConfig, req
     /** The number that identifies the comment. */
     comment_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -159296,7 +159301,7 @@ export const teamsDeleteDiscussionCommentLegacy = (config: OpenAPIClientConfig, 
     /** The number that identifies the comment. */
     comment_number: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -159346,7 +159351,7 @@ export const teamsUpdateDiscussionCommentLegacy = (config: OpenAPIClientConfig, 
     /** The discussion comment's body text. */
     body: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -159403,7 +159408,7 @@ export const reactionsListForTeamDiscussionCommentLegacy = (config: OpenAPIClien
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -159467,7 +159472,7 @@ export const reactionsCreateForTeamDiscussionCommentLegacy = (config: OpenAPICli
   body: {
     content: "+1" | "-1" | "laugh" | "confused" | "heart" | "hooray" | "rocket" | "eyes";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -159522,7 +159527,7 @@ export const reactionsListForTeamDiscussionLegacy = (config: OpenAPIClientConfig
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -159583,7 +159588,7 @@ export const reactionsCreateForTeamDiscussionLegacy = (config: OpenAPIClientConf
   body: {
     content: "+1" | "-1" | "laugh" | "confused" | "heart" | "hooray" | "rocket" | "eyes";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -159631,7 +159636,7 @@ export const teamsListPendingInvitationsLegacy = (config: OpenAPIClientConfig, r
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -159689,7 +159694,7 @@ export const teamsListMembersLegacy = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -159747,7 +159752,7 @@ export const teamsGetMemberLegacy = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** if user is a member */
     204: {
@@ -159801,7 +159806,7 @@ export const teamsAddMemberLegacy = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -159862,7 +159867,7 @@ export const teamsRemoveMemberLegacy = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -159915,7 +159920,7 @@ export const teamsGetMembershipForUserLegacy = (config: OpenAPIClientConfig, req
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -159972,7 +159977,7 @@ export const teamsAddOrUpdateMembershipForUserLegacy = (config: OpenAPIClientCon
   body?: {
     role?: "member" | "maintainer";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -160035,7 +160040,7 @@ export const teamsRemoveMembershipForUserLegacy = (config: OpenAPIClientConfig, 
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -160084,7 +160089,7 @@ export const teamsListProjectsLegacy = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -160139,7 +160144,7 @@ export const teamsCheckPermissionsForProjectLegacy = (config: OpenAPIClientConfi
     /** The unique identifier of the project. */
     project_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -160187,7 +160192,7 @@ export const teamsAddOrUpdateProjectPermissionsLegacy = (config: OpenAPIClientCo
   body?: {
     permission?: "read" | "write" | "admin";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -160251,7 +160256,7 @@ export const teamsRemoveProjectLegacy = (config: OpenAPIClientConfig, request: {
     /** The unique identifier of the project. */
     project_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -160302,7 +160307,7 @@ export const teamsListReposLegacy = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -160363,7 +160368,7 @@ export const teamsCheckPermissionsForRepoLegacy = (config: OpenAPIClientConfig, 
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Alternative response with extra repository information */
     200: {
@@ -160422,7 +160427,7 @@ export const teamsAddOrUpdateRepoPermissionsLegacy = (config: OpenAPIClientConfi
   body?: {
     permission?: "pull" | "push" | "admin";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -160477,7 +160482,7 @@ export const teamsRemoveRepoLegacy = (config: OpenAPIClientConfig, request: {
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -160521,7 +160526,7 @@ export const teamsListChildLegacy = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** if child teams exist */
     200: {
@@ -160575,7 +160580,7 @@ export const teamsListChildLegacy = (config: OpenAPIClientConfig, request: {
  *
  * OAuth app tokens and personal access tokens (classic) need the `user` scope in order for the response to include private profile information.
  */
-export const usersGetAuthenticated = (config: OpenAPIClientConfig): Promise<
+export const usersGetAuthenticated = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -160632,7 +160637,7 @@ export const usersUpdateAuthenticated = (config: OpenAPIClientConfig, request?: 
     /** The new short biography of the user. */
     bio?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -160696,7 +160701,7 @@ export const usersListBlockedByAuthenticatedUser = (config: OpenAPIClientConfig,
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -160748,7 +160753,7 @@ export const usersCheckBlocked = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** If the user is blocked */
     204: {
@@ -160800,7 +160805,7 @@ export const usersBlock = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -160855,7 +160860,7 @@ export const usersUnblock = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -160912,7 +160917,7 @@ export const codespacesListForAuthenticatedUser = (config: OpenAPIClientConfig, 
     /** ID of the Repository to filter on */
     repository_id?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -161023,7 +161028,7 @@ export const codespacesCreateForAuthenticatedUser = (config: OpenAPIClientConfig
       /** Time in minutes before codespace stops from inactivity */
       idle_timeout_minutes?: number;
     });
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response when the codespace was successfully created */
     201: {
@@ -161111,7 +161116,7 @@ export const codespacesListSecretsForAuthenticatedUser = (config: OpenAPIClientC
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -161160,7 +161165,9 @@ export const codespacesListSecretsForAuthenticatedUser = (config: OpenAPIClientC
  *
  * OAuth app tokens and personal access tokens (classic) need the `codespace` or `codespace:secrets` scope to use this endpoint.
  */
-export const codespacesGetPublicKeyForAuthenticatedUser = (config: OpenAPIClientConfig): Promise<
+export const codespacesGetPublicKeyForAuthenticatedUser = (
+  config: OpenAPIClientConfig,
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -161193,7 +161200,7 @@ export const codespacesGetSecretForAuthenticatedUser = (config: OpenAPIClientCon
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -161241,7 +161248,7 @@ export const codespacesCreateOrUpdateSecretForAuthenticatedUser = (config: OpenA
     /** An array of repository ids that can access the user secret. You can manage the list of selected repositories using the [List selected repositories for a user secret](https://docs.github.com/rest/codespaces/secrets#list-selected-repositories-for-a-user-secret), [Set selected repositories for a user secret](https://docs.github.com/rest/codespaces/secrets#set-selected-repositories-for-a-user-secret), and [Remove a selected repository from a user secret](https://docs.github.com/rest/codespaces/secrets#remove-a-selected-repository-from-a-user-secret) endpoints. */
     selected_repository_ids?: (number | string)[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response after successfully creating a secret */
     201: {
@@ -161300,7 +161307,7 @@ export const codespacesDeleteSecretForAuthenticatedUser = (config: OpenAPIClient
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -161339,7 +161346,7 @@ export const codespacesListRepositoriesForSecretForAuthenticatedUser = (config: 
     /** The name of the secret. */
     secret_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -161406,7 +161413,7 @@ export const codespacesSetRepositoriesForSecretForAuthenticatedUser = (config: O
     /** An array of repository ids for which a codespace can access the secret. You can manage the list of selected repositories using the [List selected repositories for a user secret](https://docs.github.com/rest/codespaces/secrets#list-selected-repositories-for-a-user-secret), [Add a selected repository to a user secret](https://docs.github.com/rest/codespaces/secrets#add-a-selected-repository-to-a-user-secret), and [Remove a selected repository from a user secret](https://docs.github.com/rest/codespaces/secrets#remove-a-selected-repository-from-a-user-secret) endpoints. */
     selected_repository_ids: number[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** No Content when repositories were added to the selected list */
     204: {
@@ -161465,7 +161472,7 @@ export const codespacesAddRepositoryForSecretForAuthenticatedUser = (config: Ope
     secret_name: string;
     repository_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** No Content when repository was added to the selected list */
     204: {
@@ -161522,7 +161529,7 @@ export const codespacesRemoveRepositoryForSecretForAuthenticatedUser = (config: 
     secret_name: string;
     repository_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** No Content when repository was removed from the selected list */
     204: {
@@ -161576,7 +161583,7 @@ export const codespacesGetForAuthenticatedUser = (config: OpenAPIClientConfig, r
     /** The name of the codespace. */
     codespace_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -161633,7 +161640,7 @@ export const codespacesDeleteForAuthenticatedUser = (config: OpenAPIClientConfig
     /** The name of the codespace. */
     codespace_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     202: {
       body: unknown;
@@ -161699,7 +161706,7 @@ export const codespacesUpdateForAuthenticatedUser = (config: OpenAPIClientConfig
     /** Recently opened folders inside the codespace. It is currently used by the clients to determine the folder path to load the codespace in. */
     recent_folders?: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -161755,7 +161762,7 @@ export const codespacesExportForAuthenticatedUser = (config: OpenAPIClientConfig
     /** The name of the codespace. */
     codespace_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     202: {
@@ -161814,7 +161821,7 @@ export const codespacesGetExportDetailsForAuthenticatedUser = (config: OpenAPICl
     /** The ID of the export operation, or `latest`. Currently only `latest` is currently supported. */
     export_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -161856,7 +161863,7 @@ export const codespacesCodespaceMachinesForAuthenticatedUser = (config: OpenAPIC
     /** The name of the codespace. */
     codespace_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -161931,7 +161938,7 @@ export const codespacesPublishForAuthenticatedUser = (config: OpenAPIClientConfi
     /** Whether the new repository should be private. */
     private?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -161988,7 +161995,7 @@ export const codespacesStartForAuthenticatedUser = (config: OpenAPIClientConfig,
     /** The name of the codespace. */
     codespace_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -162058,7 +162065,7 @@ export const codespacesStopForAuthenticatedUser = (config: OpenAPIClientConfig, 
     /** The name of the codespace. */
     codespace_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -162108,7 +162115,7 @@ export const codespacesStopForAuthenticatedUser = (config: OpenAPIClientConfig, 
  */
 export const packagesListDockerMigrationConflictingPackagesForAuthenticatedUser = (
   config: OpenAPIClientConfig,
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -162136,7 +162143,7 @@ export const usersSetPrimaryEmailVisibilityForAuthenticatedUser = (config: OpenA
   body: {
     visibility: "public" | "private";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -162196,7 +162203,7 @@ export const usersListEmailsForAuthenticatedUser = (config: OpenAPIClientConfig,
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -162259,7 +162266,7 @@ export const usersAddEmailForAuthenticatedUser = (config: OpenAPIClientConfig, r
     }
     | string[]
     | string;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -162324,7 +162331,7 @@ export const usersDeleteEmailForAuthenticatedUser = (
       | string[]
       | string;
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -162385,7 +162392,7 @@ export const usersListFollowersForAuthenticatedUser = (config: OpenAPIClientConf
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -162443,7 +162450,7 @@ export const usersListFollowedByAuthenticatedUser = (config: OpenAPIClientConfig
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -162497,7 +162504,7 @@ export const usersCheckPersonIsFollowedByAuthenticated = (config: OpenAPIClientC
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** if the person is followed by the authenticated user */
     204: {
@@ -162551,7 +162558,7 @@ export const usersFollow = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -162606,7 +162613,7 @@ export const usersUnfollow = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -162661,7 +162668,7 @@ export const usersListGpgKeysForAuthenticatedUser = (config: OpenAPIClientConfig
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -162725,7 +162732,7 @@ export const usersCreateGpgKeyForAuthenticatedUser = (config: OpenAPIClientConfi
     /** A GPG key in ASCII-armored format. */
     armored_public_key: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -162783,7 +162790,7 @@ export const usersGetGpgKeyForAuthenticatedUser = (config: OpenAPIClientConfig, 
     /** The unique identifier of the GPG key. */
     gpg_key_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -162836,7 +162843,7 @@ export const usersDeleteGpgKeyForAuthenticatedUser = (config: OpenAPIClientConfi
     /** The unique identifier of the GPG key. */
     gpg_key_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -162897,7 +162904,7 @@ export const appsListInstallationsForAuthenticatedUser = (config: OpenAPIClientC
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** You can find the permissions for the installation under the `permissions` key. */
     200: {
@@ -162969,7 +162976,7 @@ export const appsListInstallationReposForAuthenticatedUser = (config: OpenAPICli
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** The access the user has to each repository is included in the hash under the `permissions` key. */
     200: {
@@ -163040,7 +163047,7 @@ export const appsAddRepoToInstallationForAuthenticatedUser = (config: OpenAPICli
     /** The unique identifier of the repository. */
     repository_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -163092,7 +163099,7 @@ export const appsRemoveRepoFromInstallationForAuthenticatedUser = (config: OpenA
     /** The unique identifier of the repository. */
     repository_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -163140,7 +163147,9 @@ export const appsRemoveRepoFromInstallationForAuthenticatedUser = (config: OpenA
  *
  * Shows which type of GitHub user can interact with your public repositories and when the restriction expires.
  */
-export const interactionsGetRestrictionsForAuthenticatedUser = (config: OpenAPIClientConfig): Promise<
+export const interactionsGetRestrictionsForAuthenticatedUser = (
+  config: OpenAPIClientConfig,
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Default response */
     200: {
@@ -163172,7 +163181,7 @@ export const interactionsGetRestrictionsForAuthenticatedUser = (config: OpenAPIC
 export const interactionsSetRestrictionsForAuthenticatedUser = (
   config: OpenAPIClientConfig,
   request: { body: InteractionLimit },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -163206,7 +163215,7 @@ export const interactionsSetRestrictionsForAuthenticatedUser = (
  */
 export const interactionsRemoveRestrictionsForAuthenticatedUser = (
   config: OpenAPIClientConfig,
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -163259,7 +163268,7 @@ export const issuesListForAuthenticatedUser = (config: OpenAPIClientConfig, requ
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -163321,7 +163330,7 @@ export const usersListPublicSshKeysForAuthenticatedUser = (config: OpenAPIClient
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -163385,7 +163394,7 @@ export const usersCreatePublicSshKeyForAuthenticatedUser = (config: OpenAPIClien
     /** The public SSH key to add to your GitHub account. */
     key: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -163443,7 +163452,7 @@ export const usersGetPublicSshKeyForAuthenticatedUser = (config: OpenAPIClientCo
     /** The unique identifier of the key. */
     key_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -163496,7 +163505,7 @@ export const usersDeletePublicSshKeyForAuthenticatedUser = (config: OpenAPIClien
     /** The unique identifier of the key. */
     key_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -163549,7 +163558,7 @@ export const appsListSubscriptionsForAuthenticatedUser = (config: OpenAPIClientC
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -163607,7 +163616,7 @@ export const appsListSubscriptionsForAuthenticatedUserStubbed = (config: OpenAPI
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -163663,7 +163672,7 @@ export const orgsListMembershipsForAuthenticatedUser = (config: OpenAPIClientCon
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -163724,7 +163733,7 @@ export const orgsGetMembershipForAuthenticatedUser = (config: OpenAPIClientConfi
     /** The organization name. The name is not case sensitive. */
     org: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -163770,7 +163779,7 @@ export const orgsUpdateMembershipForAuthenticatedUser = (config: OpenAPIClientCo
   body: {
     state: "active";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -163822,7 +163831,7 @@ export const migrationsListForAuthenticatedUser = (config: OpenAPIClientConfig, 
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -163894,7 +163903,7 @@ export const migrationsStartForAuthenticatedUser = (config: OpenAPIClientConfig,
     /** Repository path, owner and name */
     repositories: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -163963,7 +163972,7 @@ export const migrationsGetStatusForAuthenticatedUser = (config: OpenAPIClientCon
   query?: {
     exclude?: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -164037,7 +164046,7 @@ export const migrationsGetArchiveForAuthenticatedUser = (config: OpenAPIClientCo
     /** The unique identifier of the migration. */
     migration_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     302: {
@@ -164084,7 +164093,7 @@ export const migrationsDeleteArchiveForAuthenticatedUser = (config: OpenAPIClien
     /** The unique identifier of the migration. */
     migration_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -164137,7 +164146,7 @@ export const migrationsUnlockRepoForAuthenticatedUser = (config: OpenAPIClientCo
     /** repo_name parameter */
     repo_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -164195,7 +164204,7 @@ export const migrationsListReposForAuthenticatedUser = (config: OpenAPIClientCon
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -164253,7 +164262,7 @@ export const orgsListForAuthenticatedUser = (config: OpenAPIClientConfig, reques
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -164322,7 +164331,7 @@ export const packagesListPackagesForAuthenticatedUser = (config: OpenAPIClientCo
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -164368,7 +164377,7 @@ export const packagesGetPackageForAuthenticatedUser = (config: OpenAPIClientConf
     /** The name of the package. */
     package_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -164408,7 +164417,7 @@ export const packagesDeletePackageForAuthenticatedUser = (config: OpenAPIClientC
     /** The name of the package. */
     package_name: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -164468,7 +164477,7 @@ export const packagesRestorePackageForAuthenticatedUser = (config: OpenAPIClient
     /** package token */
     token?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -164534,7 +164543,7 @@ export const packagesGetAllPackageVersionsForPackageOwnedByAuthenticatedUser = (
       state?: "active" | "deleted";
     };
   },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -164593,7 +164602,7 @@ export const packagesGetPackageVersionForAuthenticatedUser = (config: OpenAPICli
     /** Unique identifier of the package version. */
     package_version_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -164638,7 +164647,7 @@ export const packagesDeletePackageVersionForAuthenticatedUser = (config: OpenAPI
     /** Unique identifier of the package version. */
     package_version_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -164697,7 +164706,7 @@ export const packagesRestorePackageVersionForAuthenticatedUser = (config: OpenAP
     /** Unique identifier of the package version. */
     package_version_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -164752,7 +164761,7 @@ export const usersListPublicEmailsForAuthenticatedUser = (config: OpenAPIClientC
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -164835,7 +164844,7 @@ export const reposListForAuthenticatedUser = (config: OpenAPIClientConfig, reque
     /** Only show repositories updated before the given time. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
     before?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -164944,7 +164953,7 @@ export const reposCreateForAuthenticatedUser = (config: OpenAPIClientConfig, req
     /** Whether this repository acts as a template that can be used to generate new repositories. */
     is_template?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -165035,7 +165044,7 @@ export const reposListInvitationsForAuthenticatedUser = (config: OpenAPIClientCo
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -165093,7 +165102,7 @@ export const reposDeclineInvitationForAuthenticatedUser = (config: OpenAPIClient
     /** The unique identifier of the invitation. */
     invitation_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -165142,7 +165151,7 @@ export const reposAcceptInvitationForAuthenticatedUser = (config: OpenAPIClientC
     /** The unique identifier of the invitation. */
     invitation_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -165195,7 +165204,7 @@ export const usersListSocialAccountsForAuthenticatedUser = (config: OpenAPIClien
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -165257,7 +165266,7 @@ export const usersAddSocialAccountForAuthenticatedUser = (config: OpenAPIClientC
     /** Full URLs for the social media profiles to add. */
     account_urls: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -165314,7 +165323,7 @@ export const usersDeleteSocialAccountForAuthenticatedUser = (config: OpenAPIClie
     /** Full URLs for the social media profiles to delete. */
     account_urls: string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -165373,7 +165382,7 @@ export const usersListSshSigningKeysForAuthenticatedUser = (config: OpenAPIClien
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -165437,7 +165446,7 @@ export const usersCreateSshSigningKeyForAuthenticatedUser = (config: OpenAPIClie
     /** The public SSH key to add to your GitHub account. For more information, see "[Checking for existing SSH keys](https://docs.github.com/authentication/connecting-to-github-with-ssh/checking-for-existing-ssh-keys)." */
     key: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -165499,7 +165508,7 @@ export const usersGetSshSigningKeyForAuthenticatedUser = (config: OpenAPIClientC
     /** The unique identifier of the SSH signing key. */
     ssh_signing_key_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -165552,7 +165561,7 @@ export const usersDeleteSshSigningKeyForAuthenticatedUser = (config: OpenAPIClie
     /** The unique identifier of the SSH signing key. */
     ssh_signing_key_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -165613,7 +165622,7 @@ export const activityListReposStarredByAuthenticatedUser = (config: OpenAPIClien
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -165673,7 +165682,7 @@ export const activityCheckRepoIsStarredByAuthenticatedUser = (config: OpenAPICli
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response if this repository is starred by you */
     204: {
@@ -165728,7 +165737,7 @@ export const activityStarRepoForAuthenticatedUser = (config: OpenAPIClientConfig
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -165782,7 +165791,7 @@ export const activityUnstarRepoForAuthenticatedUser = (config: OpenAPIClientConf
     /** The name of the repository without the `.git` extension. The name is not case sensitive. */
     repo: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -165836,7 +165845,7 @@ export const activityListWatchedReposForAuthenticatedUser = (config: OpenAPIClie
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -165899,7 +165908,7 @@ export const teamsListForAuthenticatedUser = (config: OpenAPIClientConfig, reque
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -165961,7 +165970,7 @@ export const usersGetById = (config: OpenAPIClientConfig, request: {
     /** account_id parameter */
     account_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -166004,7 +166013,7 @@ export const usersList = (config: OpenAPIClientConfig, request?: {
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -166058,7 +166067,7 @@ export const usersGetByUsername = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -166119,7 +166128,7 @@ export const usersListAttestationsBulk = (config: OpenAPIClientConfig, request: 
      */
     predicate_type?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -166214,7 +166223,7 @@ export const usersDeleteAttestationsBulk = (config: OpenAPIClientConfig, request
     username: string;
   };
   body: unknown | unknown;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -166256,7 +166265,7 @@ export const usersDeleteAttestationsBySubjectDigest = (config: OpenAPIClientConf
     /** Subject Digest */
     subject_digest: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -166303,7 +166312,7 @@ export const usersDeleteAttestationsById = (config: OpenAPIClientConfig, request
     /** Attestation ID */
     attestation_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -166372,7 +166381,7 @@ export const usersListAttestations = (config: OpenAPIClientConfig, request: {
      */
     predicate_type?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -166458,7 +166467,7 @@ export const packagesListDockerMigrationConflictingPackagesForUser = (config: Op
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -166510,7 +166519,7 @@ export const activityListEventsForAuthenticatedUser = (config: OpenAPIClientConf
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -166560,7 +166569,7 @@ export const activityListOrgEventsForAuthenticatedUser = (config: OpenAPIClientC
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -166607,7 +166616,7 @@ export const activityListPublicEventsForUser = (config: OpenAPIClientConfig, req
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -166652,7 +166661,7 @@ export const usersListFollowersForUser = (config: OpenAPIClientConfig, request: 
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -166705,7 +166714,7 @@ export const usersListFollowingForUser = (config: OpenAPIClientConfig, request: 
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -166751,7 +166760,7 @@ export const usersCheckFollowingForUser = (config: OpenAPIClientConfig, request:
     username: string;
     target_user: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** if the user follows the target user */
     204: {
@@ -166800,7 +166809,7 @@ export const gistsListForUser = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -166858,7 +166867,7 @@ export const usersListGpgKeysForUser = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -166915,7 +166924,7 @@ export const usersGetContextForUser = (config: OpenAPIClientConfig, request: {
     /** Uses the ID for the `subject_type` you specified. **Required** when using `subject_type`. */
     subject_id?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -166964,7 +166973,7 @@ export const appsGetUserInstallation = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -167005,7 +167014,7 @@ export const usersListPublicKeysForUser = (config: OpenAPIClientConfig, request:
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -167060,7 +167069,7 @@ export const orgsListForUser = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -167124,7 +167133,7 @@ export const packagesListPackagesForUser = (config: OpenAPIClientConfig, request
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -167183,7 +167192,7 @@ export const packagesGetPackageForUser = (config: OpenAPIClientConfig, request: 
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -167228,7 +167237,7 @@ export const packagesDeletePackageForUser = (config: OpenAPIClientConfig, reques
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -167293,7 +167302,7 @@ export const packagesRestorePackageForUser = (config: OpenAPIClientConfig, reque
     /** package token */
     token?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -167351,7 +167360,7 @@ export const packagesGetAllPackageVersionsForPackageOwnedByUser = (config: OpenA
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -167408,7 +167417,7 @@ export const packagesGetPackageVersionForUser = (config: OpenAPIClientConfig, re
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -167456,7 +167465,7 @@ export const packagesDeletePackageVersionForUser = (config: OpenAPIClientConfig,
     /** Unique identifier of the package version. */
     package_version_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -167520,7 +167529,7 @@ export const packagesRestorePackageVersionForUser = (config: OpenAPIClientConfig
     /** Unique identifier of the package version. */
     package_version_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -167580,7 +167589,7 @@ export const projectsListForUser = (config: OpenAPIClientConfig, request: {
     /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     per_page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -167643,7 +167652,7 @@ export const projectsGetForUser = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -167709,7 +167718,7 @@ export const projectsListFieldsForUser = (config: OpenAPIClientConfig, request: 
     /** A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results after this cursor. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     after?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -167774,7 +167783,7 @@ export const projectsGetFieldForUser = (config: OpenAPIClientConfig, request: {
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -167849,7 +167858,7 @@ export const projectsListItemsForUser = (config: OpenAPIClientConfig, request: {
      */
     fields?: string | string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -167919,7 +167928,7 @@ export const projectsAddItemForUser = (config: OpenAPIClientConfig, request: {
     /** The numeric ID of the issue or pull request to add to the project. */
     id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     201: {
@@ -167983,7 +167992,7 @@ export const projectsGetUserItem = (config: OpenAPIClientConfig, request: {
      */
     fields?: string | string[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -168047,7 +168056,7 @@ export const projectsDeleteItemForUser = (config: OpenAPIClientConfig, request: 
     /** The unique identifier of the project item. */
     item_id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     204: {
@@ -168104,7 +168113,7 @@ export const projectsUpdateItemForUser = (config: OpenAPIClientConfig, request: 
       value: string | number;
     })[];
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -168173,7 +168182,7 @@ export const activityListReceivedEventsForUser = (config: OpenAPIClientConfig, r
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -168219,7 +168228,7 @@ export const activityListReceivedPublicEventsForUser = (config: OpenAPIClientCon
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -168270,7 +168279,7 @@ export const reposListForUser = (config: OpenAPIClientConfig, request: {
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -168324,7 +168333,7 @@ export const billingGetGithubActionsBillingUser = (config: OpenAPIClientConfig, 
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -168363,7 +168372,7 @@ export const billingGetGithubPackagesBillingUser = (config: OpenAPIClientConfig,
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -168412,7 +168421,7 @@ export const billingGetGithubBillingPremiumRequestUsageReportUser = (config: Ope
     /** The product name to query usage for. The name is not case sensitive. */
     product?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -168477,7 +168486,7 @@ export const billingGetSharedStorageBillingUser = (config: OpenAPIClientConfig, 
     /** The handle for the GitHub user account. */
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -168522,7 +168531,7 @@ export const billingGetGithubBillingUsageReportUser = (config: OpenAPIClientConf
     /** If specified, only return results for a single day. The value of `day` is an integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and `month` are used. */
     day?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -168596,7 +168605,7 @@ export const billingGetGithubBillingUsageSummaryReportUser = (config: OpenAPICli
     /** The SKU to query for usage. */
     sku?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     200: {
       body: unknown;
@@ -168664,7 +168673,7 @@ export const usersListSocialAccountsForUser = (config: OpenAPIClientConfig, requ
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -168717,7 +168726,7 @@ export const usersListSshSigningKeysForUser = (config: OpenAPIClientConfig, requ
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -168778,7 +168787,7 @@ export const activityListReposStarredByUser = (config: OpenAPIClientConfig, requ
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -168833,7 +168842,7 @@ export const activityListReposWatchedByUser = (config: OpenAPIClientConfig, requ
     /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
     page?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -168875,7 +168884,7 @@ export const activityListReposWatchedByUser = (config: OpenAPIClientConfig, requ
  *
  * Get all supported GitHub API versions.
  */
-export const metaGetAllVersions = (config: OpenAPIClientConfig): Promise<
+export const metaGetAllVersions = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {
@@ -168904,7 +168913,7 @@ export const metaGetAllVersions = (config: OpenAPIClientConfig): Promise<
  *
  * Get a random sentence from the Zen of GitHub
  */
-export const metaGetZen = (config: OpenAPIClientConfig): Promise<
+export const metaGetZen = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response */
     200: {

@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -6898,7 +6899,7 @@ export const ordersCreate = (config: OpenAPIClientConfig, request: {
     "PayPal-Auth-Assertion"?: string;
   };
   body: OrderRequest;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful response to an idempotent request returns the HTTP `200 OK` status code with a JSON response body that shows order details. */
     200: {
@@ -6970,7 +6971,7 @@ export const ordersGet = (config: OpenAPIClientConfig, request: {
     /** An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>. */
     "PayPal-Auth-Assertion"?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows order details. */
     200: {
@@ -7029,7 +7030,7 @@ export const ordersPatch = (config: OpenAPIClientConfig, request: {
     /** An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>. */
     "PayPal-Auth-Assertion"?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `204 No Content` status code with an empty object in the JSON response body. */
     204: {
@@ -7099,7 +7100,7 @@ export const ordersConfirm = (config: OpenAPIClientConfig, request: {
     Prefer?: string;
   };
   body: ConfirmOrderRequest;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request indicates that the payment source was added to the Order. A successful request returns the HTTP `200 OK` status code with a JSON response body that shows order details. */
     200: {
@@ -7174,7 +7175,7 @@ export const ordersAuthorize = (config: OpenAPIClientConfig, request: {
     "PayPal-Auth-Assertion"?: string;
   };
   body?: OrderAuthorizeRequest;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful response to an idempotent request returns the HTTP `200 OK` status code with a JSON response body that shows authorized payment details. */
     200: {
@@ -7265,7 +7266,7 @@ export const ordersCapture = (config: OpenAPIClientConfig, request: {
     "PayPal-Auth-Assertion"?: string;
   };
   body?: OrderCaptureRequest;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful response to an idempotent request returns the HTTP `200 OK` status code with a JSON response body that shows captured payment details. */
     200: {
@@ -7351,7 +7352,7 @@ export const ordersTrackCreate = (config: OpenAPIClientConfig, request: {
     "PayPal-Auth-Assertion"?: string;
   };
   body: OrderTrackerRequest;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful response to an idempotent request returns the HTTP `200 OK` status code with a JSON response body that shows tracker details. */
     200: {
@@ -7431,7 +7432,7 @@ export const ordersTrackersPatch = (config: OpenAPIClientConfig, request: {
     "PayPal-Auth-Assertion"?: string;
   };
   body: PatchRequest;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `204 No Content` status code with an empty object in the JSON response body. */
     204: {
@@ -7498,7 +7499,7 @@ export const ordersTrackersPatch = (config: OpenAPIClientConfig, request: {
 export const serverCallback = (
   config: OpenAPIClientConfig,
   request: { body: OrderUpdateCallbackRequest },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** The callback to merchant was successful. */
     200: {

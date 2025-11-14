@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -6905,7 +6906,7 @@ export class ApiClient {
         "PayPal-Auth-Assertion"?: string;
       };
       body: OrderRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful response to an idempotent request returns the HTTP `200 OK` status code with a JSON response body that shows order details. */
         200: {
@@ -6980,7 +6981,7 @@ export class ApiClient {
         /** An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>. */
         "PayPal-Auth-Assertion"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows order details. */
         200: {
@@ -7038,7 +7039,7 @@ export class ApiClient {
         /** An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see <a href="https://developer.paypal.com/api/rest/requests/#paypal-auth-assertion">PayPal-Auth-Assertion</a>. */
         "PayPal-Auth-Assertion"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `204 No Content` status code with an empty object in the JSON response body. */
         204: {
@@ -7112,7 +7113,7 @@ export class ApiClient {
         "PayPal-Auth-Assertion"?: string;
       };
       body?: OrderAuthorizeRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful response to an idempotent request returns the HTTP `200 OK` status code with a JSON response body that shows authorized payment details. */
         200: {
@@ -7206,7 +7207,7 @@ export class ApiClient {
         "PayPal-Auth-Assertion"?: string;
       };
       body?: OrderCaptureRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful response to an idempotent request returns the HTTP `200 OK` status code with a JSON response body that shows captured payment details. */
         200: {
@@ -7298,7 +7299,7 @@ export class ApiClient {
         Prefer?: string;
       };
       body: ConfirmOrderRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request indicates that the payment source was added to the Order. A successful request returns the HTTP `200 OK` status code with a JSON response body that shows order details. */
         200: {
@@ -7371,7 +7372,7 @@ export class ApiClient {
         "PayPal-Auth-Assertion"?: string;
       };
       body: OrderTrackerRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful response to an idempotent request returns the HTTP `200 OK` status code with a JSON response body that shows tracker details. */
         200: {
@@ -7453,7 +7454,7 @@ export class ApiClient {
         "PayPal-Auth-Assertion"?: string;
       };
       body: PatchRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `204 No Content` status code with an empty object in the JSON response body. */
         204: {
@@ -7519,7 +7520,7 @@ export class ApiClient {
      *
      * The documentation for this 'endpoint' is different from the other endpoints under v2 Orders. For this endpoint the role of client and server is reversed. The client sending the request is PayPal, and the server sending the response is the merchant. In the request, PayPal will send the buyer's redacted shipping address and selected shipping option to the callback URL defined the create order request. The response from the merchant will update the Orders resource.
      */
-    post: (request: { body: OrderUpdateCallbackRequest }): Promise<
+    post: (request: { body: OrderUpdateCallbackRequest }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** The callback to merchant was successful. */
         200: {

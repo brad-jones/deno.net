@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -288,7 +289,7 @@ export class ApiClient {
         /** Unique identifier for Subscription object */
         subscriptionId: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of unique Subscription object */
         200: {
@@ -335,7 +336,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: CreateUsageRecord;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of the record submitted */
         200: {
@@ -389,7 +390,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: UpdateUsageRecord;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of the modified record */
         200: {
@@ -435,7 +436,7 @@ export class ApiClient {
         /** Unique identifier for Subscription object */
         subscriptionId: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return a list of all usage record submitted against this subscription for this subscription period */
         200: {

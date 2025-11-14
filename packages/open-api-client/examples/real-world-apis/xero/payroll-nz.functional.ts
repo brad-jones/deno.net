@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -2986,7 +2987,7 @@ export const getEmployees = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3031,7 +3032,7 @@ export const createEmployee = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: Employee;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3075,7 +3076,7 @@ export const getEmployee = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3118,7 +3119,7 @@ export const updateEmployee = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: Employee;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** successful response */
     200: {
@@ -3168,7 +3169,7 @@ export const createEmployment = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: Employment;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3215,7 +3216,7 @@ export const getEmployeeTax = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3258,7 +3259,7 @@ export const updateEmployeeTax = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: EmployeeTax;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3300,7 +3301,7 @@ export const getEmployeeOpeningBalances = (config: OpenAPIClientConfig, request:
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3343,7 +3344,7 @@ export const createEmployeeOpeningBalances = (config: OpenAPIClientConfig, reque
     "Idempotency-Key"?: string;
   };
   body: EmployeeOpeningBalances;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3390,7 +3391,7 @@ export const getEmployeeLeaves = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3433,7 +3434,7 @@ export const createEmployeeLeave = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: EmployeeLeave;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3485,7 +3486,7 @@ export const updateEmployeeLeave = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: EmployeeLeave;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** successful response */
     200: {
@@ -3535,7 +3536,7 @@ export const deleteEmployeeLeave = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** successful response */
     200: {
@@ -3576,7 +3577,7 @@ export const getEmployeeLeaveBalances = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3622,7 +3623,7 @@ export const getEmployeeLeavePeriods = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3674,7 +3675,7 @@ export const createEmployeeLeaveSetup = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: EmployeeLeaveSetup;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3721,7 +3722,7 @@ export const getEmployeeLeaveTypes = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3769,7 +3770,7 @@ export const createEmployeeLeaveType = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: EmployeeLeaveType;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3816,7 +3817,7 @@ export const getEmployeePaymentMethod = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3864,7 +3865,7 @@ export const createEmployeePaymentMethod = (config: OpenAPIClientConfig, request
     "Idempotency-Key"?: string;
   };
   body: PaymentMethod;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3911,7 +3912,7 @@ export const getEmployeePayTemplates = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3959,7 +3960,7 @@ export const createEmployeeEarningsTemplate = (config: OpenAPIClientConfig, requ
     "Idempotency-Key"?: string;
   };
   body: EarningsTemplate;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4011,7 +4012,7 @@ export const updateEmployeeEarningsTemplate = (config: OpenAPIClientConfig, requ
     "Idempotency-Key"?: string;
   };
   body: EarningsTemplate;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4061,7 +4062,7 @@ export const deleteEmployeeEarningsTemplate = (config: OpenAPIClientConfig, requ
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** deletion successful */
     200: {
@@ -4105,7 +4106,7 @@ export const createMultipleEmployeeEarningsTemplate = (config: OpenAPIClientConf
     "Idempotency-Key"?: string;
   };
   body: EarningsTemplates;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4152,7 +4153,7 @@ export const getDeductions = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4191,7 +4192,7 @@ export const createDeduction = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: Deduction;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4235,7 +4236,7 @@ export const getDeduction = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4275,7 +4276,7 @@ export const getStatutoryDeductions = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4315,7 +4316,7 @@ export const getStatutoryDeduction = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4355,7 +4356,7 @@ export const getSuperannuations = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4394,7 +4395,7 @@ export const createSuperannuation = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: Benefit;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4438,7 +4439,7 @@ export const getSuperannuation = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4478,7 +4479,7 @@ export const getEarningsRates = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4517,7 +4518,7 @@ export const createEarningsRate = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: EarningsRate;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4561,7 +4562,7 @@ export const getEarningsRate = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4603,7 +4604,7 @@ export const getLeaveTypes = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4643,7 +4644,7 @@ export const createLeaveType = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: LeaveType;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4687,7 +4688,7 @@ export const getLeaveType = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4727,7 +4728,7 @@ export const getReimbursements = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4766,7 +4767,7 @@ export const createReimbursement = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: Reimbursement;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4810,7 +4811,7 @@ export const getReimbursement = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4860,7 +4861,7 @@ export const getTimesheets = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4904,7 +4905,7 @@ export const createTimesheet = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: Timesheet;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4948,7 +4949,7 @@ export const getTimesheet = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -4988,7 +4989,7 @@ export const deleteTimesheet = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5036,7 +5037,7 @@ export const createTimesheetLine = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: TimesheetLine;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5085,7 +5086,7 @@ export const approveTimesheet = (config: OpenAPIClientConfig, request: {
     /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
     "Idempotency-Key"?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5133,7 +5134,7 @@ export const revertTimesheet = (config: OpenAPIClientConfig, request: {
     /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
     "Idempotency-Key"?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5184,7 +5185,7 @@ export const updateTimesheetLine = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: TimesheetLine;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5234,7 +5235,7 @@ export const deleteTimesheetLine = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5280,7 +5281,7 @@ export const getPayRunCalendars = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5319,7 +5320,7 @@ export const createPayRunCalendar = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: PayRunCalendar;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5363,7 +5364,7 @@ export const getPayRunCalendar = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5407,7 +5408,7 @@ export const getEmployeeSalaryAndWages = (config: OpenAPIClientConfig, request: 
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5458,7 +5459,7 @@ export const createEmployeeSalaryAndWage = (config: OpenAPIClientConfig, request
     "Idempotency-Key"?: string;
   };
   body: SalaryAndWage;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5507,7 +5508,7 @@ export const getEmployeeSalaryAndWage = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5553,7 +5554,7 @@ export const updateEmployeeSalaryAndWage = (config: OpenAPIClientConfig, request
     "Idempotency-Key"?: string;
   };
   body: SalaryAndWage;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5603,7 +5604,7 @@ export const deleteEmployeeSalaryAndWage = (config: OpenAPIClientConfig, request
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** deletion successful */
     200: {
@@ -5646,7 +5647,7 @@ export const getPayRuns = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5686,7 +5687,7 @@ export const createPayRun = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: PayRun;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** created payrun results */
     200: {
@@ -5730,7 +5731,7 @@ export const getPayRun = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5772,7 +5773,7 @@ export const getPaySlips = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5813,7 +5814,7 @@ export const getPaySlip = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5856,7 +5857,7 @@ export const updatePaySlipLineItems = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: PaySlip;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5899,7 +5900,7 @@ export const getSettings = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5932,7 +5933,7 @@ export const getTrackingCategories = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -5969,7 +5970,7 @@ export const getEmployeeWorkingPatterns = (config: OpenAPIClientConfig, request:
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -6012,7 +6013,7 @@ export const createEmployeeWorkingPattern = (config: OpenAPIClientConfig, reques
     "Idempotency-Key"?: string;
   };
   body: EmployeeWorkingPatternWithWorkingWeeksRequest;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** employee working pattern correctly added */
     200: {
@@ -6061,7 +6062,7 @@ export const getEmployeeWorkingPattern = (config: OpenAPIClientConfig, request: 
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -6104,7 +6105,7 @@ export const deleteEmployeeWorkingPattern = (config: OpenAPIClientConfig, reques
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** successful response */
     200: {

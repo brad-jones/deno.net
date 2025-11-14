@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -310,7 +311,7 @@ export const getFiles = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -352,7 +353,7 @@ export const uploadFile = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request */
     201: {
@@ -395,7 +396,7 @@ export const getFile = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -440,7 +441,7 @@ export const updateFile = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: FileObject;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request */
     200: {
@@ -489,7 +490,7 @@ export const deleteFile = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful deletion - return response 204 no content */
     204: {
@@ -532,7 +533,7 @@ export const uploadFileToFolder = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request */
     201: {
@@ -580,7 +581,7 @@ export const getFileContent = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** returns the byte array of the specific file based on id */
     200: {
@@ -622,7 +623,7 @@ export const getFileAssociations = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -667,7 +668,7 @@ export const createFileAssociation = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: Association;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request */
     201: {
@@ -718,7 +719,7 @@ export const deleteFileAssociation = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful deletion - return response 204 no content */
     204: {
@@ -771,7 +772,7 @@ export const getAssociationsByObject = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -819,7 +820,7 @@ export const getAssociationsCount = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A dictionary of the object Ids and associations count */
     200: {
@@ -861,7 +862,7 @@ export const getFolders = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -902,7 +903,7 @@ export const createFolder = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: Folder;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -948,7 +949,7 @@ export const getFolder = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -993,7 +994,7 @@ export const updateFolder = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: Folder;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** return the updated object */
     200: {
@@ -1042,7 +1043,7 @@ export const deleteFolder = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful deletion - return response 204 no content */
     204: {
@@ -1080,7 +1081,7 @@ export const getInbox = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {

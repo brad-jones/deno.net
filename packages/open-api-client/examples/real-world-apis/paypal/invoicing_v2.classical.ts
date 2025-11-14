@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -1489,7 +1490,7 @@ export class ApiClient {
         /** The invoice id of the account. */
         id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body. */
         200: {
@@ -1545,7 +1546,7 @@ export class ApiClient {
      *
      * Lists connections to accounting platforms per merchant.
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body. */
         200: {
@@ -1595,7 +1596,7 @@ export class ApiClient {
      *
      * Generates the next invoice number that is available to the merchant. The next invoice number uses the prefix and suffix from the last invoice number and increments the number by one. For example, the next invoice number after `INVOICE-1234` is `INVOICE-1235`.
      */
-    post: (request?: { body?: Fetchtype }): Promise<
+    post: (request?: { body?: Fetchtype }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows the next invoice number. */
         200: {
@@ -1655,7 +1656,7 @@ export class ApiClient {
         /** The fields to return in the response. Value is `all` or `none`. To return only the template name, ID, and default attributes, specify `none`. */
         fields?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that lists invoices with details. */
         200: {
@@ -1706,7 +1707,7 @@ export class ApiClient {
      *
      * Creates a draft invoice. To move the invoice from a draft to payable state, you must <a href="#invoices_send">send the invoice</a>.<br/><br/>In the JSON request body, include invoice details including merchant information. The <code>invoice</code> object must include an <code>items</code> array.<blockquote><strong>Note:</strong> The merchant that you specify in an invoice must have a PayPal account in good standing.</blockquote>.
      */
-    post: (request: { body: Invoice }): Promise<
+    post: (request: { body: Invoice }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `201 Created` status code. A JSON response body that shows invoice details is returned if you set <code>prefer=return=representation</code>. */
         201: {
@@ -1765,7 +1766,7 @@ export class ApiClient {
         /** The ID of the draft invoice to delete. */
         invoice_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows invoice details. */
         200: {
@@ -1830,7 +1831,7 @@ export class ApiClient {
         send_to_invoicer?: boolean;
       };
       body: Invoice;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code. A JSON response body that shows invoice details is returned if you set <code>prefer=return=representation</code>. */
         200: {
@@ -1898,7 +1899,7 @@ export class ApiClient {
         /** The ID of the draft invoice to delete. */
         invoice_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
         204: {
@@ -1960,7 +1961,7 @@ export class ApiClient {
         invoice_id: string;
       };
       body: Notification;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
         204: {
@@ -2028,7 +2029,7 @@ export class ApiClient {
         invoice_id: string;
       };
       body?: QrConfig;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows the QR code as a PNG image. */
         200: {
@@ -2091,7 +2092,7 @@ export class ApiClient {
         invoice_id: string;
       };
       body: PaymentDetail;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 Created` status code and a reference to the recorded payment. */
         200: {
@@ -2160,7 +2161,7 @@ export class ApiClient {
         /** The ID of the external refund transaction to delete. */
         transaction_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
         204: {
@@ -2228,7 +2229,7 @@ export class ApiClient {
         invoice_id: string;
       };
       body: RefundDetail;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 Created` status code and a reference to the recorded refund. */
         200: {
@@ -2297,7 +2298,7 @@ export class ApiClient {
         /** The ID of the external refund transaction to delete. */
         transaction_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
         204: {
@@ -2360,7 +2361,7 @@ export class ApiClient {
         invoice_id: string;
       };
       body?: Notification;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
         204: {
@@ -2428,7 +2429,7 @@ export class ApiClient {
         invoice_id: string;
       };
       body?: Notification;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` when the invoice issue date is current date. */
         200: {
@@ -2505,7 +2506,7 @@ export class ApiClient {
         total_required?: boolean;
       };
       body?: SearchData;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that lists the invoices that match the search criteria. */
         200: {
@@ -2568,7 +2569,7 @@ export class ApiClient {
         /** The maximum number of templates to return in the response. */
         page_size?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that lists invoices. */
         200: {
@@ -2618,7 +2619,7 @@ export class ApiClient {
      *
      * Creates an invoice template. You can use details from this template to create an invoice. You can create up to 50 templates.<blockquote><strong>Note:</strong> Every merchant starts with three PayPal system templates that are optimized for the unit type billed. The template includes `Quantity`, `Hours`, and `Amount`.</blockquote>
      */
-    post: (request: { body: Template }): Promise<
+    post: (request: { body: Template }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `201 Created` status code. A JSON response body that shows template details is returned if you set <code>prefer=return=representation</code>. */
         201: {
@@ -2677,7 +2678,7 @@ export class ApiClient {
         /** The ID of the template to delete. */
         template_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows template details. */
         200: {
@@ -2731,7 +2732,7 @@ export class ApiClient {
         template_id: string;
       };
       body: Template;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code. A JSON response body that shows template details is returned if you set <code>prefer=return=representation</code>. */
         200: {
@@ -2790,7 +2791,7 @@ export class ApiClient {
         /** The ID of the template to delete. */
         template_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
         204: {

@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -100784,7 +100785,7 @@ export class ApiClient {
      *
      * Get Hypermedia links to resources accessible in GitHub's REST API
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -100878,7 +100879,7 @@ export class ApiClient {
         /** The property to sort the results by. */
         sort?: "updated" | "published" | "epss_percentage" | "epss_percentile";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -100941,7 +100942,7 @@ export class ApiClient {
         /** The GHSA (GitHub Security Advisory) identifier of the advisory. */
         ghsa_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -100979,7 +100980,7 @@ export class ApiClient {
      *
      * You must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint.
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -101009,7 +101010,7 @@ export class ApiClient {
       path: {
         code: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -101068,7 +101069,7 @@ export class ApiClient {
      *
      * You must use a [JWT](https://docs.github.com/apps/building-github-apps/authenticating-with-github-apps/#authenticating-as-a-github-app) to access this endpoint.
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -101100,7 +101101,7 @@ export class ApiClient {
         secret?: WebhookConfigSecret;
         insecure_ssl?: WebhookConfigInsecureSsl;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -101144,7 +101145,7 @@ export class ApiClient {
         /** Used for pagination: the starting delivery from which the page of deliveries is fetched. Refer to the `link` header for the next and previous page cursors. */
         cursor?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -101191,7 +101192,7 @@ export class ApiClient {
       path: {
         delivery_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -101237,7 +101238,7 @@ export class ApiClient {
       path: {
         delivery_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         202: {
           body: unknown;
@@ -101283,7 +101284,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** List of integration installation requests */
         200: {
@@ -101336,7 +101337,7 @@ export class ApiClient {
         since?: string;
         outdated?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** The permissions the installation has are included under the `permissions` key. */
         200: {
@@ -101386,7 +101387,7 @@ export class ApiClient {
         /** The unique identifier of the installation. */
         installation_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -101426,7 +101427,7 @@ export class ApiClient {
         /** The unique identifier of the installation. */
         installation_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -101480,7 +101481,7 @@ export class ApiClient {
         repository_ids?: number[];
         permissions?: AppPermissions;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -101540,7 +101541,7 @@ export class ApiClient {
         /** The unique identifier of the installation. */
         installation_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -101580,7 +101581,7 @@ export class ApiClient {
         /** The unique identifier of the installation. */
         installation_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -101626,7 +101627,7 @@ export class ApiClient {
         /** The OAuth access token used to authenticate to the GitHub API. */
         access_token: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -101674,7 +101675,7 @@ export class ApiClient {
         /** The access_token of the OAuth or GitHub application. */
         access_token: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -101723,7 +101724,7 @@ export class ApiClient {
         /** The access_token of the OAuth or GitHub application. */
         access_token: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -101768,7 +101769,7 @@ export class ApiClient {
         /** The OAuth access token used to authenticate to the GitHub API. */
         access_token: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -101829,7 +101830,7 @@ export class ApiClient {
         repository_ids?: number[];
         permissions?: AppPermissions;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -101890,7 +101891,7 @@ export class ApiClient {
       path: {
         app_slug: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -101935,7 +101936,7 @@ export class ApiClient {
         /** The unique identifier of the classroom assignment. */
         assignment_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -101982,7 +101983,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -102023,7 +102024,7 @@ export class ApiClient {
         /** The unique identifier of the classroom assignment. */
         assignment_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -102066,7 +102067,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -102104,7 +102105,7 @@ export class ApiClient {
         /** The unique identifier of the classroom. */
         classroom_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -102151,7 +102152,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -102187,7 +102188,7 @@ export class ApiClient {
      *
      * Returns array of all GitHub's codes of conduct.
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -102221,7 +102222,7 @@ export class ApiClient {
       path: {
         key: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -102278,7 +102279,7 @@ export class ApiClient {
         /** A list of credentials to be revoked, up to 1000 per request. */
         credentials: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         202: {
           body: unknown;
@@ -102317,7 +102318,7 @@ export class ApiClient {
      *
      * Lists all the emojis available to use on GitHub.
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -102364,7 +102365,7 @@ export class ApiClient {
         /** A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results after this cursor. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         after?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -102445,7 +102446,7 @@ export class ApiClient {
         private_vulnerability_reporting?: "enabled" | "disabled" | "not_set";
         enforcement?: "enforced" | "unenforced";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Successfully created code security configuration */
         201: {
@@ -102526,7 +102527,7 @@ export class ApiClient {
         /** The unique identifier of the code security configuration. */
         configuration_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -102608,7 +102609,7 @@ export class ApiClient {
         private_vulnerability_reporting?: "enabled" | "disabled" | "not_set";
         enforcement?: "enforced" | "unenforced";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -102692,7 +102693,7 @@ export class ApiClient {
         /** The unique identifier of the code security configuration. */
         configuration_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         204: {
           body: unknown;
@@ -102756,7 +102757,7 @@ export class ApiClient {
       body: {
         scope: "all" | "all_without_configurations";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         202: {
           body: unknown;
@@ -102819,7 +102820,7 @@ export class ApiClient {
       body: {
         default_for_new_repos?: "all" | "none" | "private_and_internal" | "public";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Default successfully changed. */
         200: {
@@ -102896,7 +102897,7 @@ export class ApiClient {
          */
         status?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -102952,7 +102953,7 @@ export class ApiClient {
         /** The slug version of the enterprise name. */
         enterprise: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -103048,7 +103049,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -103121,7 +103122,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -103181,7 +103182,7 @@ export class ApiClient {
         /** The ID of the IdP group to assign team membership with. You can get this value from the [REST API endpoints for SCIM](https://docs.github.com/rest/scim#list-provisioned-scim-groups-for-an-enterprise). */
         group_id?: string | null;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -103233,7 +103234,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -103287,7 +103288,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** User is a member of the enterprise team. */
         200: {
@@ -103327,7 +103328,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Successfully added team member */
         201: {
@@ -103367,7 +103368,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -103417,7 +103418,7 @@ export class ApiClient {
         usernames: /** The handle for the GitHub user account. */
           string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Successfully added team members. */
         200: {
@@ -103465,7 +103466,7 @@ export class ApiClient {
         usernames: /** The handle for the GitHub user account. */
           string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Successfully removed team members. */
         200: {
@@ -103514,7 +103515,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** An array of organizations the team is assigned to */
         200: {
@@ -103560,7 +103561,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** The team is assigned to the organization */
         200: {
@@ -103605,7 +103606,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Successfully assigned the enterprise team to the organization. */
         201: {
@@ -103645,7 +103646,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Successfully unassigned the enterprise team from the organization. */
         204: {
@@ -103691,7 +103692,7 @@ export class ApiClient {
         organization_slugs: /** Organization slug to assign the team to */
           string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Successfully assigned the enterprise team to organizations. */
         200: {
@@ -103739,7 +103740,7 @@ export class ApiClient {
         organization_slugs: /** Organization slug to unassign the team from */
           string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Successfully unassigned the enterprise team from organizations. */
         204: {
@@ -103782,7 +103783,7 @@ export class ApiClient {
         /** The slug of the team name. */
         team_slug: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -103841,7 +103842,7 @@ export class ApiClient {
         /** The ID of the IdP group to assign team membership with. The new IdP group will replace the existing one, or replace existing direct members if the team isn't currently linked to an IdP group. */
         group_id?: string | null;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -103899,7 +103900,7 @@ export class ApiClient {
         /** The slug of the team name. */
         team_slug: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -103944,7 +103945,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -104002,7 +104003,7 @@ export class ApiClient {
      * > [!NOTE]
      * > Private feeds are only returned when [authenticating via Basic Auth](https://docs.github.com/rest/authentication/authenticating-to-the-rest-api#using-basic-authentication) since current feed URIs use the older, non revocable auth tokens.
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -104037,7 +104038,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -104099,7 +104100,7 @@ export class ApiClient {
         /** Flag indicating whether the gist is public */
         public?: boolean | ("true" | "false");
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -104172,7 +104173,7 @@ export class ApiClient {
         /** The unique identifier of the gist. */
         gist_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -104247,7 +104248,7 @@ export class ApiClient {
           } | null
         >;
       } | null;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -104297,7 +104298,7 @@ export class ApiClient {
         /** The unique identifier of the gist. */
         gist_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -104352,7 +104353,7 @@ export class ApiClient {
         gist_id: string;
         sha: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -104413,7 +104414,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -104480,7 +104481,7 @@ export class ApiClient {
         /** The comment text. */
         body: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -104547,7 +104548,7 @@ export class ApiClient {
         /** The unique identifier of the comment. */
         comment_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -104605,7 +104606,7 @@ export class ApiClient {
         /** The comment text. */
         body: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -104647,7 +104648,7 @@ export class ApiClient {
         /** The unique identifier of the comment. */
         comment_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -104701,7 +104702,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -104766,7 +104767,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -104822,7 +104823,7 @@ export class ApiClient {
         /** The unique identifier of the gist. */
         gist_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -104881,7 +104882,7 @@ export class ApiClient {
         /** The unique identifier of the gist. */
         gist_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response if gist is starred */
         204: {
@@ -104928,7 +104929,7 @@ export class ApiClient {
         /** The unique identifier of the gist. */
         gist_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -104972,7 +104973,7 @@ export class ApiClient {
         /** The unique identifier of the gist. */
         gist_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -105027,7 +105028,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -105090,7 +105091,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -105144,7 +105145,7 @@ export class ApiClient {
      *
      * List all templates available to pass as an option when [creating a repository](https://docs.github.com/rest/repos/repos#create-a-repository-for-the-authenticated-user).
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -105182,7 +105183,7 @@ export class ApiClient {
       path: {
         name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -105225,7 +105226,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -105288,7 +105289,7 @@ export class ApiClient {
      *
      * Once an installation token is revoked, the token is invalidated and cannot be used. Other endpoints that require the revoked installation token must have a new installation token to work. You can create a new token using the "[Create an installation access token for an app](https://docs.github.com/rest/apps/apps#create-an-installation-access-token-for-an-app)" endpoint.
      */
-    delete: (): Promise<
+    delete: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -105349,7 +105350,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -105420,7 +105421,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -105462,7 +105463,7 @@ export class ApiClient {
       path: {
         license: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -105514,7 +105515,7 @@ export class ApiClient {
         /** The repository context to use when creating references in `gfm` mode.  For example, setting `context` to `octo-org/octo-repo` will change the text `#42` into an HTML link to issue 42 in the `octo-org/octo-repo` repository. */
         context?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -105564,7 +105565,9 @@ export class ApiClient {
      *
      * You must send Markdown as plain text (using a `Content-Type` header of `text/plain` or `text/x-markdown`) to this endpoint, rather than using JSON format. In raw mode, [GitHub Flavored Markdown](https://github.github.com/gfm/) is not supported and Markdown will be rendered in plain format like a README.md file. Markdown content must be 400 KB or less.
      */
-    post: (request: { body: "WARN: application/json is the only supported content type" }): Promise<
+    post: (
+      request: { body: "WARN: application/json is the only supported content type" },
+    ): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -105611,7 +105614,7 @@ export class ApiClient {
         /** account_id parameter */
         account_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -105661,7 +105664,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -105727,7 +105730,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -105792,7 +105795,7 @@ export class ApiClient {
         /** account_id parameter */
         account_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -105842,7 +105845,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -105904,7 +105907,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -105961,7 +105964,7 @@ export class ApiClient {
      * > [!NOTE]
      * > This endpoint returns both IPv4 and IPv6 addresses. However, not all features support IPv6. You should refer to the specific documentation for each feature to determine if IPv6 is supported.
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -106005,7 +106008,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -106073,7 +106076,7 @@ export class ApiClient {
         /** The number of results per page (max 50). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -106142,7 +106145,7 @@ export class ApiClient {
         /** Whether the notification has been read. */
         read?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         202: {
@@ -106203,7 +106206,7 @@ export class ApiClient {
         /** The unique identifier of the notification thread. This corresponds to the value returned in the `id` field when you retrieve notifications (for example with the [`GET /notifications` operation](https://docs.github.com/rest/activity/notifications#list-notifications-for-the-authenticated-user)). */
         thread_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -106249,7 +106252,7 @@ export class ApiClient {
         /** The unique identifier of the notification thread. This corresponds to the value returned in the `id` field when you retrieve notifications (for example with the [`GET /notifications` operation](https://docs.github.com/rest/activity/notifications#list-notifications-for-the-authenticated-user)). */
         thread_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Reset Content */
         205: {
@@ -106291,7 +106294,7 @@ export class ApiClient {
         /** The unique identifier of the notification thread. This corresponds to the value returned in the `id` field when you retrieve notifications (for example with the [`GET /notifications` operation](https://docs.github.com/rest/activity/notifications#list-notifications-for-the-authenticated-user)). */
         thread_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** No content */
         204: {
@@ -106330,7 +106333,7 @@ export class ApiClient {
         /** The unique identifier of the notification thread. This corresponds to the value returned in the `id` field when you retrieve notifications (for example with the [`GET /notifications` operation](https://docs.github.com/rest/activity/notifications#list-notifications-for-the-authenticated-user)). */
         thread_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -106384,7 +106387,7 @@ export class ApiClient {
         /** Whether to block all notifications from a thread. */
         ignored?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -106433,7 +106436,7 @@ export class ApiClient {
         /** The unique identifier of the notification thread. This corresponds to the value returned in the `id` field when you retrieve notifications (for example with the [`GET /notifications` operation](https://docs.github.com/rest/activity/notifications#list-notifications-for-the-authenticated-user)). */
         thread_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -106482,7 +106485,7 @@ export class ApiClient {
         /** The words to show in Octocat's speech bubble */
         s?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -106524,7 +106527,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -106583,7 +106586,7 @@ export class ApiClient {
         /** Number of results per page. */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -106647,7 +106650,7 @@ export class ApiClient {
         /** List of repository IDs to remove. */
         repository_ids_to_remove?: number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -106705,7 +106708,7 @@ export class ApiClient {
       body: {
         default_level: "public" | "internal";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -106760,7 +106763,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -106814,7 +106817,7 @@ export class ApiClient {
         /** A list of custom property names and associated values to apply to the organization. */
         properties: CustomPropertyValue[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** No Content when custom property values are successfully created or updated */
         204: {
@@ -106869,7 +106872,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -106922,7 +106925,7 @@ export class ApiClient {
         /** The ID corresponding to the budget. */
         budget_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -106999,7 +107002,7 @@ export class ApiClient {
         /** A single product or SKU that will be covered in the budget */
         budget_product_sku?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Budget updated successfully */
         200: {
@@ -107120,7 +107123,7 @@ export class ApiClient {
         /** The ID corresponding to the budget. */
         budget_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -107193,7 +107196,7 @@ export class ApiClient {
         /** The product name to query usage for. The name is not case sensitive. */
         product?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -107267,7 +107270,7 @@ export class ApiClient {
         /** If specified, only return results for a single day. The value of `day` is an integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and `month` are used. */
         day?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -107343,7 +107346,7 @@ export class ApiClient {
         /** The SKU to query for usage. */
         sku?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -107411,7 +107414,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -107566,7 +107569,7 @@ export class ApiClient {
         /** Controls whether or not deploy keys may be added and used for repositories in the organization. */
         deploy_keys_enabled_for_repositories?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -107647,7 +107650,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         202: {
           body: unknown;
@@ -107715,7 +107718,7 @@ export class ApiClient {
         enablement: "enable_all" | "disable_all";
       };
       body?: unknown;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Action started */
         204: {
@@ -107771,7 +107774,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -107825,7 +107828,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -107888,7 +107891,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -107963,7 +107966,7 @@ export class ApiClient {
         /** Whether this runner should be used to generate custom images. */
         image_gen?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -108017,7 +108020,7 @@ export class ApiClient {
         /** Unique identifier of the GitHub-hosted runner. */
         hosted_runner_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -108075,7 +108078,7 @@ export class ApiClient {
         /** The version of the runner image to deploy. This is relevant only for runners using custom images. */
         image_version?: string | null;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -108119,7 +108122,7 @@ export class ApiClient {
         /** Unique identifier of the GitHub-hosted runner. */
         hosted_runner_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         202: {
@@ -108159,7 +108162,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -108208,7 +108211,7 @@ export class ApiClient {
         /** Image definition ID of custom image */
         image_definition_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -108247,7 +108250,7 @@ export class ApiClient {
         /** Image definition ID of custom image */
         image_definition_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -108289,7 +108292,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -108341,7 +108344,7 @@ export class ApiClient {
         /** Version of a custom image */
         version: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -108383,7 +108386,7 @@ export class ApiClient {
         /** Version of a custom image */
         version: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -108422,7 +108425,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -108467,7 +108470,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -108512,7 +108515,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -108549,7 +108552,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -108594,7 +108597,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -108641,7 +108644,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A JSON serialized template for OIDC subject claim customization */
         200: {
@@ -108678,7 +108681,7 @@ export class ApiClient {
         org: string;
       };
       body: OidcCustomSub;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Empty response */
         201: {
@@ -108726,7 +108729,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -108767,7 +108770,7 @@ export class ApiClient {
         allowed_actions?: AllowedActions;
         sha_pinning_required?: ShaPinningRequired;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -108811,7 +108814,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -108856,7 +108859,7 @@ export class ApiClient {
         org: string;
       };
       body: ActionsArtifactAndLogRetention;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** No content */
         204: {
@@ -108912,7 +108915,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -108953,7 +108956,7 @@ export class ApiClient {
         org: string;
       };
       body: ActionsForkPrContributorApproval;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -108999,7 +109002,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -109042,7 +109045,7 @@ export class ApiClient {
         org: string;
       };
       body: ActionsForkPrWorkflowsPrivateReposRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Empty response for successful settings update */
         204: {
@@ -109101,7 +109104,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -109154,7 +109157,7 @@ export class ApiClient {
         selected_repository_ids: /** Unique identifier of the repository. */
           number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -109198,7 +109201,7 @@ export class ApiClient {
         /** The unique identifier of the repository. */
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -109237,7 +109240,7 @@ export class ApiClient {
         /** The unique identifier of the repository. */
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -109277,7 +109280,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -109314,7 +109317,7 @@ export class ApiClient {
         org: string;
       };
       body?: SelectedActions;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -109354,7 +109357,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -109401,7 +109404,7 @@ export class ApiClient {
       body: {
         enabled_repositories: "all" | "selected" | "none";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** No content */
         204: {
@@ -109465,7 +109468,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -109525,7 +109528,7 @@ export class ApiClient {
         /** IDs of repositories that can use repository-level self-hosted runners */
         selected_repository_ids: number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** No content */
         204: {
@@ -109581,7 +109584,7 @@ export class ApiClient {
         /** The unique identifier of the repository. */
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** No content */
         204: {
@@ -109636,7 +109639,7 @@ export class ApiClient {
         /** The unique identifier of the repository. */
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** No content */
         204: {
@@ -109694,7 +109697,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -109733,7 +109736,7 @@ export class ApiClient {
         org: string;
       };
       body?: ActionsSetDefaultWorkflowPermissions;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success response */
         204: {
@@ -109781,7 +109784,7 @@ export class ApiClient {
         /** Only return runner groups that are allowed to be used by this repository. */
         visible_to_repository?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -109850,7 +109853,7 @@ export class ApiClient {
         /** The identifier of a hosted compute network configuration. */
         network_configuration_id?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -109901,7 +109904,7 @@ export class ApiClient {
         /** Unique identifier of the self-hosted runner group. */
         runner_group_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -109954,7 +109957,7 @@ export class ApiClient {
         /** The identifier of a hosted compute network configuration. */
         network_configuration_id?: string | null;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -110001,7 +110004,7 @@ export class ApiClient {
         /** Unique identifier of the self-hosted runner group. */
         runner_group_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -110049,7 +110052,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -110115,7 +110118,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -110171,7 +110174,7 @@ export class ApiClient {
         selected_repository_ids: /** Unique identifier of the repository. */
           number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -110218,7 +110221,7 @@ export class ApiClient {
         /** The unique identifier of the repository. */
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -110260,7 +110263,7 @@ export class ApiClient {
         /** The unique identifier of the repository. */
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -110309,7 +110312,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -110371,7 +110374,7 @@ export class ApiClient {
         runners: /** Unique identifier of the runner. */
           number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -110418,7 +110421,7 @@ export class ApiClient {
         /** Unique identifier of the self-hosted runner. */
         runner_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -110460,7 +110463,7 @@ export class ApiClient {
         /** Unique identifier of the self-hosted runner. */
         runner_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -110511,7 +110514,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -110573,7 +110576,7 @@ export class ApiClient {
         /** Unique identifier of the self-hosted runner. */
         runner_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -110614,7 +110617,7 @@ export class ApiClient {
         /** Unique identifier of the self-hosted runner. */
         runner_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -110662,7 +110665,7 @@ export class ApiClient {
         /** Unique identifier of the self-hosted runner. */
         runner_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -110710,7 +110713,7 @@ export class ApiClient {
         /** The names of the custom labels to add to the runner. */
         labels: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -110766,7 +110769,7 @@ export class ApiClient {
         /** The names of the custom labels to set for the runner. You can pass an empty array to remove all custom labels. */
         labels: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -110818,7 +110821,7 @@ export class ApiClient {
         /** Unique identifier of the self-hosted runner. */
         runner_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -110871,7 +110874,7 @@ export class ApiClient {
         /** The name of a self-hosted runner's custom label. */
         name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -110921,7 +110924,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -110972,7 +110975,7 @@ export class ApiClient {
         /** The working directory to be used for job execution, relative to the runner install directory. */
         work_folder?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         201: {
           body: unknown;
@@ -111036,7 +111039,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -111083,7 +111086,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -111131,7 +111134,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -111192,7 +111195,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -111243,7 +111246,7 @@ export class ApiClient {
         /** An array of repository ids that can access the organization secret. You can only provide a list of repository ids when the `visibility` is set to `selected`. You can manage the list of selected repositories using the [List selected repositories for an organization secret](https://docs.github.com/rest/actions/secrets#list-selected-repositories-for-an-organization-secret), [Set selected repositories for an organization secret](https://docs.github.com/rest/actions/secrets#set-selected-repositories-for-an-organization-secret), and [Remove selected repository from an organization secret](https://docs.github.com/rest/actions/secrets#remove-selected-repository-from-an-organization-secret) endpoints. */
         selected_repository_ids?: number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when creating a secret */
         201: {
@@ -111297,7 +111300,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -111348,7 +111351,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -111407,7 +111410,7 @@ export class ApiClient {
         /** An array of repository ids that can access the organization secret. You can only provide a list of repository ids when the `visibility` is set to `selected`. You can add and remove individual repositories using the [Add selected repository to an organization secret](https://docs.github.com/rest/actions/secrets#add-selected-repository-to-an-organization-secret) and [Remove selected repository from an organization secret](https://docs.github.com/rest/actions/secrets#remove-selected-repository-from-an-organization-secret) endpoints. */
         selected_repository_ids: number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -111457,7 +111460,7 @@ export class ApiClient {
         secret_name: string;
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** No Content when repository was added to the selected list */
         204: {
@@ -111507,7 +111510,7 @@ export class ApiClient {
         secret_name: string;
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when repository was removed from the selected list */
         204: {
@@ -111556,7 +111559,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -111603,7 +111606,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -111668,7 +111671,7 @@ export class ApiClient {
         /** An array of repository ids that can access the organization variable. You can only provide a list of repository ids when the `visibility` is set to `selected`. */
         selected_repository_ids?: number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when creating a variable */
         201: {
@@ -111717,7 +111720,7 @@ export class ApiClient {
         /** The name of the variable. */
         name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -111767,7 +111770,7 @@ export class ApiClient {
         /** An array of repository ids that can access the organization variable. You can only provide a list of repository ids when the `visibility` is set to `selected`. */
         selected_repository_ids?: number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -111814,7 +111817,7 @@ export class ApiClient {
         /** The name of the variable. */
         name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -111865,7 +111868,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -111929,7 +111932,7 @@ export class ApiClient {
         /** The IDs of the repositories that can access the organization variable. */
         selected_repository_ids: number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -111983,7 +111986,7 @@ export class ApiClient {
         name: string;
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -112033,7 +112036,7 @@ export class ApiClient {
         name: string;
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -112081,7 +112084,7 @@ export class ApiClient {
         /** The parameter should be set to the attestation's subject's SHA256 digest, in the form `sha256:HEX_DIGEST`. */
         subject_digest: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -112186,7 +112189,7 @@ export class ApiClient {
          */
         github_repository?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Artifact metadata storage record stored successfully. */
         200: {
@@ -112263,7 +112266,7 @@ export class ApiClient {
         /** Attestation ID */
         attestation_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -112334,7 +112337,7 @@ export class ApiClient {
          */
         predicate_type?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -112428,7 +112431,7 @@ export class ApiClient {
          */
         predicate_type?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -112522,7 +112525,7 @@ export class ApiClient {
         org: string;
       };
       body: unknown | unknown;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -112566,7 +112569,7 @@ export class ApiClient {
         /** Subject Digest */
         subject_digest: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -112628,7 +112631,7 @@ export class ApiClient {
          */
         predicate_type?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -112685,7 +112688,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -112728,7 +112731,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** If the user is blocked */
         204: {
@@ -112770,7 +112773,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -112811,7 +112814,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -112865,7 +112868,7 @@ export class ApiClient {
         /** The property by which to sort the results. */
         sort?: "created" | "updated" | "ends_at" | "published";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -112930,7 +112933,7 @@ export class ApiClient {
         org: string;
       };
       body: unknown | unknown;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -112997,7 +113000,7 @@ export class ApiClient {
         /** The campaign number. */
         campaign_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -113075,7 +113078,7 @@ export class ApiClient {
         contact_link?: string | null;
         state?: CampaignState;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -113143,7 +113146,7 @@ export class ApiClient {
         /** The campaign number. */
         campaign_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Deletion successful */
         204: {
@@ -113215,7 +113218,7 @@ export class ApiClient {
         /** If specified, only code scanning alerts with this severity will be returned. */
         severity?: CodeScanningAlertSeverity;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -113294,7 +113297,7 @@ export class ApiClient {
         /** A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results after this cursor. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         after?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -113386,7 +113389,7 @@ export class ApiClient {
         private_vulnerability_reporting?: "enabled" | "disabled" | "not_set";
         enforcement?: "enforced" | "unenforced";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Successfully created code security configuration */
         201: {
@@ -113462,7 +113465,7 @@ export class ApiClient {
         /** The unique identifier of the code security configuration. */
         configuration_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -113554,7 +113557,7 @@ export class ApiClient {
         private_vulnerability_reporting?: "enabled" | "disabled" | "not_set";
         enforcement?: "enforced" | "unenforced";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when a configuration is updated */
         200: {
@@ -113634,7 +113637,7 @@ export class ApiClient {
         /** The unique identifier of the code security configuration. */
         configuration_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         204: {
           body: unknown;
@@ -113701,7 +113704,7 @@ export class ApiClient {
         selected_repository_ids?: /** Unique identifier of the repository. */
           number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         202: {
           body: unknown;
@@ -113753,7 +113756,7 @@ export class ApiClient {
       body: {
         default_for_new_repos?: "all" | "none" | "private_and_internal" | "public";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Default successfully changed. */
         200: {
@@ -113830,7 +113833,7 @@ export class ApiClient {
          */
         status?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -113886,7 +113889,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -113945,7 +113948,7 @@ export class ApiClient {
         selected_repository_ids?: /** Unique identifier of the repository. */
           number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         204: {
           body: unknown;
@@ -114008,7 +114011,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -114083,7 +114086,7 @@ export class ApiClient {
         /** The usernames of the organization members who should have access to codespaces in the organization. Required when `visibility` is `selected_members`. The provided list of usernames will replace any existing value. */
         selected_usernames?: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when successfully modifying permissions. */
         204: {
@@ -114159,7 +114162,7 @@ export class ApiClient {
         /** The usernames of the organization members whose codespaces be billed to the organization. */
         selected_usernames: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when successfully modifying permissions. */
         204: {
@@ -114226,7 +114229,7 @@ export class ApiClient {
         /** The usernames of the organization members whose codespaces should not be billed to the organization. */
         selected_usernames: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when successfully modifying permissions. */
         204: {
@@ -114296,7 +114299,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -114355,7 +114358,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -114412,7 +114415,7 @@ export class ApiClient {
         /** An array of repository IDs that can access the organization secret. You can only provide a list of repository IDs when the `visibility` is set to `selected`. You can manage the list of selected repositories using the [List selected repositories for an organization secret](https://docs.github.com/rest/codespaces/organization-secrets#list-selected-repositories-for-an-organization-secret), [Set selected repositories for an organization secret](https://docs.github.com/rest/codespaces/organization-secrets#set-selected-repositories-for-an-organization-secret), and [Remove selected repository from an organization secret](https://docs.github.com/rest/codespaces/organization-secrets#remove-selected-repository-from-an-organization-secret) endpoints. */
         selected_repository_ids?: number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when creating a secret */
         201: {
@@ -114472,7 +114475,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -114525,7 +114528,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -114586,7 +114589,7 @@ export class ApiClient {
         /** An array of repository ids that can access the organization secret. You can only provide a list of repository ids when the `visibility` is set to `selected`. You can add and remove individual repositories using the [Set selected repositories for an organization secret](https://docs.github.com/rest/codespaces/organization-secrets#set-selected-repositories-for-an-organization-secret) and [Remove selected repository from an organization secret](https://docs.github.com/rest/codespaces/organization-secrets#remove-selected-repository-from-an-organization-secret) endpoints. */
         selected_repository_ids: number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -114640,7 +114643,7 @@ export class ApiClient {
         secret_name: string;
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** No Content when repository was added to the selected list */
         204: {
@@ -114696,7 +114699,7 @@ export class ApiClient {
         secret_name: string;
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when repository was removed from the selected list */
         204: {
@@ -114749,7 +114752,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -114795,7 +114798,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** OK */
         200: {
@@ -114868,7 +114871,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -114956,7 +114959,7 @@ export class ApiClient {
         /** List of team names within the organization to which to grant access to GitHub Copilot. */
         selected_teams: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** OK */
         201: {
@@ -115036,7 +115039,7 @@ export class ApiClient {
         /** The names of teams from which to revoke access to GitHub Copilot. */
         selected_teams: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** OK */
         200: {
@@ -115120,7 +115123,7 @@ export class ApiClient {
         /** The usernames of the organization members to be granted access to GitHub Copilot. */
         selected_usernames: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** OK */
         201: {
@@ -115200,7 +115203,7 @@ export class ApiClient {
         /** The usernames of the organization members for which to revoke access to GitHub Copilot. */
         selected_usernames: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** OK */
         200: {
@@ -115290,7 +115293,7 @@ export class ApiClient {
         /** The number of days of metrics to display per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -115420,7 +115423,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -115503,7 +115506,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -115562,7 +115565,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -115611,7 +115614,7 @@ export class ApiClient {
         /** An array of repository ids that can access the organization secret. You can only provide a list of repository ids when the `visibility` is set to `selected`. You can manage the list of selected repositories using the [List selected repositories for an organization secret](https://docs.github.com/rest/dependabot/secrets#list-selected-repositories-for-an-organization-secret), [Set selected repositories for an organization secret](https://docs.github.com/rest/dependabot/secrets#set-selected-repositories-for-an-organization-secret), and [Remove selected repository from an organization secret](https://docs.github.com/rest/dependabot/secrets#remove-selected-repository-from-an-organization-secret) endpoints. Use integers when possible, as strings are supported only to maintain backwards compatibility and may be removed in the future. */
         selected_repository_ids?: (number | string)[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when creating a secret */
         201: {
@@ -115663,7 +115666,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -115712,7 +115715,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -115769,7 +115772,7 @@ export class ApiClient {
         /** An array of repository ids that can access the organization secret. You can only provide a list of repository ids when the `visibility` is set to `selected`. You can add and remove individual repositories using the [Set selected repositories for an organization secret](https://docs.github.com/rest/dependabot/secrets#set-selected-repositories-for-an-organization-secret) and [Remove selected repository from an organization secret](https://docs.github.com/rest/dependabot/secrets#remove-selected-repository-from-an-organization-secret) endpoints. */
         selected_repository_ids: number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -115817,7 +115820,7 @@ export class ApiClient {
         secret_name: string;
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** No Content when repository was added to the selected list */
         204: {
@@ -115865,7 +115868,7 @@ export class ApiClient {
         secret_name: string;
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when repository was removed from the selected list */
         204: {
@@ -115912,7 +115915,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -115951,7 +115954,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -116003,7 +116006,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -116050,7 +116053,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -116114,7 +116117,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -116186,7 +116189,7 @@ export class ApiClient {
         /** Determines if notifications are sent when the webhook is triggered. Set to `true` to send notifications. */
         active?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -116260,7 +116263,7 @@ export class ApiClient {
         /** The unique identifier of the hook. You can find this value in the `X-GitHub-Hook-ID` header of a webhook delivery. */
         hook_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -116324,7 +116327,7 @@ export class ApiClient {
         active?: boolean;
         name?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -116385,7 +116388,7 @@ export class ApiClient {
         /** The unique identifier of the hook. You can find this value in the `X-GitHub-Hook-ID` header of a webhook delivery. */
         hook_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -116434,7 +116437,7 @@ export class ApiClient {
         /** The unique identifier of the hook. You can find this value in the `X-GitHub-Hook-ID` header of a webhook delivery. */
         hook_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -116482,7 +116485,7 @@ export class ApiClient {
         secret?: WebhookConfigSecret;
         insecure_ssl?: WebhookConfigInsecureSsl;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -116539,7 +116542,7 @@ export class ApiClient {
         /** Used for pagination: the starting delivery from which the page of deliveries is fetched. Refer to the `link` header for the next and previous page cursors. */
         cursor?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -116597,7 +116600,7 @@ export class ApiClient {
         hook_id: number;
         delivery_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -116652,7 +116655,7 @@ export class ApiClient {
         hook_id: number;
         delivery_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         202: {
           body: unknown;
@@ -116706,7 +116709,7 @@ export class ApiClient {
         /** The unique identifier of the hook. You can find this value in the `X-GitHub-Hook-ID` header of a webhook delivery. */
         hook_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -116775,7 +116778,7 @@ export class ApiClient {
         /** Providing a substring will filter results where the API route contains the substring. This is a case-insensitive search. */
         api_route_substring?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -116860,7 +116863,7 @@ export class ApiClient {
         /** Providing a substring will filter results where the subject name contains the substring. This is a case-insensitive search. */
         subject_name_substring?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -116920,7 +116923,7 @@ export class ApiClient {
         /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
         max_timestamp?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -116971,7 +116974,7 @@ export class ApiClient {
         /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
         max_timestamp?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -117028,7 +117031,7 @@ export class ApiClient {
         /** The maximum timestamp to query for stats. Defaults to the time 30 days ago. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
         max_timestamp?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -117078,7 +117081,7 @@ export class ApiClient {
         /** The increment of time used to breakdown the query results (5m, 10m, 1h, etc.) */
         timestamp_increment: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -117132,7 +117135,7 @@ export class ApiClient {
         /** The increment of time used to breakdown the query results (5m, 10m, 1h, etc.) */
         timestamp_increment: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -117192,7 +117195,7 @@ export class ApiClient {
         /** The increment of time used to breakdown the query results (5m, 10m, 1h, etc.) */
         timestamp_increment: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -117259,7 +117262,7 @@ export class ApiClient {
         /** Providing a substring will filter results where the actor name contains the substring. This is a case-insensitive search. */
         actor_name_substring?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -117316,7 +117319,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -117364,7 +117367,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -117419,7 +117422,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -117454,7 +117457,7 @@ export class ApiClient {
         org: string;
       };
       body: InteractionLimit;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -117493,7 +117496,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -117543,7 +117546,7 @@ export class ApiClient {
         /** Filter invitations by their invitation source. */
         invitation_source?: "all" | "member" | "scim";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -117607,7 +117610,7 @@ export class ApiClient {
         /** Specify IDs for the teams you want to invite new members to. */
         team_ids?: number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -117662,7 +117665,7 @@ export class ApiClient {
         /** The unique identifier of the invitation. */
         invitation_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -117716,7 +117719,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -117770,7 +117773,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -117814,7 +117817,7 @@ export class ApiClient {
         org: string;
       };
       body: OrganizationCreateIssueType;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -117868,7 +117871,7 @@ export class ApiClient {
         issue_type_id: number;
       };
       body: OrganizationUpdateIssueType;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -117919,7 +117922,7 @@ export class ApiClient {
         /** The unique identifier of the issue type. */
         issue_type_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -117995,7 +117998,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -118065,7 +118068,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -118122,7 +118125,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response if requester is an organization member and user is a member */
         204: {
@@ -118180,7 +118183,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -118232,7 +118235,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -118308,7 +118311,7 @@ export class ApiClient {
         /** The name of the codespace. */
         codespace_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         202: {
           body: unknown;
@@ -118372,7 +118375,7 @@ export class ApiClient {
         /** The name of the codespace. */
         codespace_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -118443,7 +118446,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** The user's GitHub Copilot seat details, including usage. */
         200: {
@@ -118504,7 +118507,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -118560,7 +118563,7 @@ export class ApiClient {
       body?: {
         role?: "admin" | "member";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -118613,7 +118616,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -118669,7 +118672,7 @@ export class ApiClient {
         /** Exclude attributes from the API response to improve performance */
         exclude?: "repositories"[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -118736,7 +118739,7 @@ export class ApiClient {
         /** Exclude related items from being returned in the response in order to improve performance of the request. */
         exclude?: "repositories"[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -118805,7 +118808,7 @@ export class ApiClient {
         /** Exclude attributes from the API response to improve performance */
         exclude?: "repositories"[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /**
          * *   `pending`, which means the migration hasn't started yet.
@@ -118857,7 +118860,7 @@ export class ApiClient {
         /** The unique identifier of the migration. */
         migration_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         302: {
@@ -118898,7 +118901,7 @@ export class ApiClient {
         /** The unique identifier of the migration. */
         migration_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -118944,7 +118947,7 @@ export class ApiClient {
         /** repo_name parameter */
         repo_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -118995,7 +118998,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -119056,7 +119059,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response - list of organization roles */
         200: {
@@ -119120,7 +119123,7 @@ export class ApiClient {
         /** The unique identifier of the role. */
         role_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -119178,7 +119181,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response - List of assigned teams */
         200: {
@@ -119251,7 +119254,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response - List of assigned users */
         200: {
@@ -119318,7 +119321,7 @@ export class ApiClient {
         /** The slug of the team name. */
         team_slug: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -119364,7 +119367,7 @@ export class ApiClient {
         /** The unique identifier of the role. */
         role_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -119418,7 +119421,7 @@ export class ApiClient {
         /** The unique identifier of the role. */
         role_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -119463,7 +119466,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -119509,7 +119512,7 @@ export class ApiClient {
         /** The unique identifier of the role. */
         role_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -119563,7 +119566,7 @@ export class ApiClient {
         /** The unique identifier of the role. */
         role_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -119610,7 +119613,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -119666,7 +119669,7 @@ export class ApiClient {
         /** When set to `true`, the request will be performed asynchronously. Returns a 202 status code when the job is successfully queued. */
         async?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** User is getting converted asynchronously */
         202: {
@@ -119720,7 +119723,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -119788,7 +119791,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -119849,7 +119852,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -119893,7 +119896,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -119960,7 +119963,7 @@ export class ApiClient {
         /** package token */
         token?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -120028,7 +120031,7 @@ export class ApiClient {
         /** The state of the package, either active or deleted. */
         state?: "active" | "deleted";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -120092,7 +120095,7 @@ export class ApiClient {
         /** Unique identifier of the package version. */
         package_version_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -120139,7 +120142,7 @@ export class ApiClient {
         /** Unique identifier of the package version. */
         package_version_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -120205,7 +120208,7 @@ export class ApiClient {
         /** Unique identifier of the package version. */
         package_version_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -120281,7 +120284,7 @@ export class ApiClient {
         /** The ID of the token */
         token_id?: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -120360,7 +120363,7 @@ export class ApiClient {
         /** Reason for approving or denying the requests. Max 1024 characters. */
         reason?: string | null;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         202: {
           body: unknown;
@@ -120426,7 +120429,7 @@ export class ApiClient {
         /** Reason for approving or denying the request. Max 1024 characters. */
         reason?: string | null;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         204: {
           body: unknown;
@@ -120493,7 +120496,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -120579,7 +120582,7 @@ export class ApiClient {
         /** The ID of the token */
         token_id?: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -120657,7 +120660,7 @@ export class ApiClient {
         pat_ids: /** Unique identifier of the fine-grained personal access token. */
           number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         202: {
           body: unknown;
@@ -120720,7 +120723,7 @@ export class ApiClient {
       body: {
         action: "revoke";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         204: {
           body: unknown;
@@ -120786,7 +120789,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -120857,7 +120860,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -120954,7 +120957,7 @@ export class ApiClient {
         /** An array of repository IDs that can access the organization private registry. You can only provide a list of repository IDs when `visibility` is set to `selected`. You can manage the list of selected repositories using the [Update a private registry for an organization](https://docs.github.com/rest/private-registries/organization-configurations#update-a-private-registry-for-an-organization) endpoint. This field should be omitted if `visibility` is set to `all` or `private`. */
         selected_repository_ids?: number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** The organization private registry configuration */
         201: {
@@ -121031,7 +121034,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** The specified private registry configuration for the organization */
         200: {
@@ -121109,7 +121112,7 @@ export class ApiClient {
         /** An array of repository IDs that can access the organization private registry. You can only provide a list of repository IDs when `visibility` is set to `selected`. This field should be omitted if `visibility` is set to `all` or `private`. */
         selected_repository_ids?: number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -121184,7 +121187,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -121232,7 +121235,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -121299,7 +121302,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -121364,7 +121367,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -121432,7 +121435,7 @@ export class ApiClient {
         /** A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results after this cursor. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         after?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -121499,7 +121502,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -121576,7 +121579,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -121645,7 +121648,7 @@ export class ApiClient {
         /** The numeric ID of the issue or pull request to add to the project. */
         id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -121711,7 +121714,7 @@ export class ApiClient {
          */
         fields?: string | string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -121782,7 +121785,7 @@ export class ApiClient {
           value: string | number;
         })[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -121844,7 +121847,7 @@ export class ApiClient {
         /** The unique identifier of the project item. */
         item_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -121892,7 +121895,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -121946,7 +121949,7 @@ export class ApiClient {
         /** The array of custom properties to create or update. */
         properties: CustomProperty[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -121997,7 +122000,7 @@ export class ApiClient {
         /** The custom property name */
         custom_property_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -122047,7 +122050,7 @@ export class ApiClient {
         custom_property_name: string;
       };
       body: CustomPropertySetPayload;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -122097,7 +122100,7 @@ export class ApiClient {
         /** The custom property name */
         custom_property_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         204: {
           body: unknown;
@@ -122151,7 +122154,7 @@ export class ApiClient {
         /** Finds repositories in the organization with a query containing one or more search keywords and qualifiers. Qualifiers allow you to limit your search to specific areas of GitHub. The REST API supports the same qualifiers as the web interface for GitHub. To learn more about the format of the query, see [Constructing a search query](https://docs.github.com/rest/search/search#constructing-a-search-query). See "[Searching for repositories](https://docs.github.com/articles/searching-for-repositories/)" for a detailed list of qualifiers. */
         repository_query?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -122221,7 +122224,7 @@ export class ApiClient {
         /** List of custom property names and associated values to apply to the repositories. */
         properties: CustomPropertyValue[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** No Content when custom property values are successfully created or updated */
         204: {
@@ -122280,7 +122283,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -122331,7 +122334,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response if user is a public member */
         204: {
@@ -122375,7 +122378,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -122416,7 +122419,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -122469,7 +122472,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -122567,7 +122570,7 @@ export class ApiClient {
         /** The custom properties for the new repository. The keys are the custom property names, and the values are the corresponding custom property values. */
         custom_properties?: Record<string, unknown>;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -122659,7 +122662,7 @@ export class ApiClient {
          */
         targets?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -122717,7 +122720,7 @@ export class ApiClient {
         /** An array of rules within the ruleset. */
         rules?: OrgRules[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -122775,7 +122778,7 @@ export class ApiClient {
         /** The ID of the ruleset. */
         ruleset_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -122831,7 +122834,7 @@ export class ApiClient {
         /** An array of rules within the ruleset. */
         rules?: OrgRules[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -122884,7 +122887,7 @@ export class ApiClient {
         /** The ID of the ruleset. */
         ruleset_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -122938,7 +122941,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -122992,7 +122995,7 @@ export class ApiClient {
         /** The ID of the version */
         version_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -123060,7 +123063,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -123122,7 +123125,7 @@ export class ApiClient {
          */
         rule_suite_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -123200,7 +123203,7 @@ export class ApiClient {
         /** A boolean value representing whether or not to hide literal secrets in the results. */
         hide_secret?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -123270,7 +123273,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -123330,7 +123333,7 @@ export class ApiClient {
           push_protection_setting?: "disabled" | "enabled";
         })[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -123424,7 +123427,7 @@ export class ApiClient {
         /** Filter by the state of the repository advisories. Only advisories of this state will be returned. */
         state?: "triage" | "draft" | "published" | "closed";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -123478,7 +123481,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -123518,7 +123521,7 @@ export class ApiClient {
         /** The slug of the team name. */
         team_slug: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -123556,7 +123559,7 @@ export class ApiClient {
         /** The slug of the team name. */
         team_slug: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -123598,7 +123601,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -123639,7 +123642,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -123680,7 +123683,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -123719,7 +123722,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Immutable releases settings response */
         200: {
@@ -123760,7 +123763,7 @@ export class ApiClient {
         /** An array of repository ids for which immutable releases enforcement should be applied. You can only provide a list of repository ids when the `enforced_repositories` is set to `selected`. You can add and remove individual repositories using the [Enable a selected repository for immutable releases in an organization](https://docs.github.com/rest/orgs/orgs#enable-a-selected-repository-for-immutable-releases-in-an-organization) and [Disable a selected repository for immutable releases in an organization](https://docs.github.com/rest/orgs/orgs#disable-a-selected-repository-for-immutable-releases-in-an-organization) endpoints. */
         selected_repository_ids?: number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -123809,7 +123812,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -123861,7 +123864,7 @@ export class ApiClient {
         /** An array of repository ids for which immutable releases enforcement should be applied. You can only provide a list of repository ids when the `enforced_repositories` is set to `selected`. You can add and remove individual repositories using the [Enable a selected repository for immutable releases in an organization](https://docs.github.com/rest/orgs/orgs#enable-a-selected-repository-for-immutable-releases-in-an-organization) and [Disable a selected repository for immutable releases in an organization](https://docs.github.com/rest/orgs/orgs#disable-a-selected-repository-for-immutable-releases-in-an-organization) endpoints. */
         selected_repository_ids: number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -123905,7 +123908,7 @@ export class ApiClient {
         /** The unique identifier of the repository. */
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -123944,7 +123947,7 @@ export class ApiClient {
         /** The unique identifier of the repository. */
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -123990,7 +123993,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -124051,7 +124054,7 @@ export class ApiClient {
         /** The identifier of the network settings to use for the network configuration. Exactly one network settings must be specified. */
         network_settings_ids: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -124097,7 +124100,7 @@ export class ApiClient {
         /** Unique identifier of the hosted compute network configuration. */
         network_configuration_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -124151,7 +124154,7 @@ export class ApiClient {
         /** The identifier of the network settings to use for the network configuration. Exactly one network settings must be specified. */
         network_settings_ids?: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -124195,7 +124198,7 @@ export class ApiClient {
         /** Unique identifier of the hosted compute network configuration. */
         network_configuration_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -124237,7 +124240,7 @@ export class ApiClient {
         /** Unique identifier of the hosted compute network settings. */
         network_settings_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -124307,7 +124310,7 @@ export class ApiClient {
         /** The number of days of metrics to display per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -124373,7 +124376,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -124440,7 +124443,7 @@ export class ApiClient {
         /** The ID of a team to set as the parent team. */
         parent_team_id?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -124500,7 +124503,7 @@ export class ApiClient {
         /** The slug of the team name. */
         team_slug: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -124555,7 +124558,7 @@ export class ApiClient {
         /** The ID of a team to set as the parent team. */
         parent_team_id?: number | null;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when the updated information already exists */
         200: {
@@ -124622,7 +124625,7 @@ export class ApiClient {
         /** The slug of the team name. */
         team_slug: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -124677,7 +124680,7 @@ export class ApiClient {
         /** Pinned discussions only filter */
         pinned?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -124743,7 +124746,7 @@ export class ApiClient {
         /** Private posts are only visible to team members, organization owners, and team maintainers. Public posts are visible to all members of the organization. Set to `true` to create a private post. */
         private?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -124795,7 +124798,7 @@ export class ApiClient {
         /** The number that identifies the discussion. */
         discussion_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -124846,7 +124849,7 @@ export class ApiClient {
         /** The discussion post's body text. */
         body?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -124895,7 +124898,7 @@ export class ApiClient {
         /** The number that identifies the discussion. */
         discussion_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -124951,7 +124954,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -125015,7 +125018,7 @@ export class ApiClient {
         /** The discussion comment's body text. */
         body: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -125068,7 +125071,7 @@ export class ApiClient {
         /** The number that identifies the comment. */
         comment_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -125120,7 +125123,7 @@ export class ApiClient {
         /** The discussion comment's body text. */
         body: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -125171,7 +125174,7 @@ export class ApiClient {
         /** The number that identifies the comment. */
         comment_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -125230,7 +125233,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -125296,7 +125299,7 @@ export class ApiClient {
       body: {
         content: "+1" | "-1" | "laugh" | "confused" | "heart" | "hooray" | "rocket" | "eyes";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when the reaction type has already been added to this team discussion comment */
         200: {
@@ -125358,7 +125361,7 @@ export class ApiClient {
           /** The unique identifier of the reaction. */
           reaction_id: number;
         };
-      }): Promise<
+      }): OpenAPIResponsePromise<
         OpenAPIResponses<{
           /** Response */
           204: {
@@ -125417,7 +125420,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -125480,7 +125483,7 @@ export class ApiClient {
       body: {
         content: "+1" | "-1" | "laugh" | "confused" | "heart" | "hooray" | "rocket" | "eyes";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -125538,7 +125541,7 @@ export class ApiClient {
         /** The unique identifier of the reaction. */
         reaction_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -125589,7 +125592,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -125651,7 +125654,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -125716,7 +125719,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -125776,7 +125779,7 @@ export class ApiClient {
       body?: {
         role?: "member" | "maintainer";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -125837,7 +125840,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -125891,7 +125894,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -125947,7 +125950,7 @@ export class ApiClient {
         /** The unique identifier of the project. */
         project_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -125997,7 +126000,7 @@ export class ApiClient {
       body?: {
         permission?: "read" | "write" | "admin";
       } | null;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -126055,7 +126058,7 @@ export class ApiClient {
         /** The unique identifier of the project. */
         project_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -126105,7 +126108,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -126170,7 +126173,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Alternative response with repository permissions */
         200: {
@@ -126232,7 +126235,7 @@ export class ApiClient {
         /** The permission to grant the team on this repository. We accept the following permissions to be set: `pull`, `triage`, `push`, `maintain`, `admin` and you can also specify a custom repository role name, if the owning organization has defined any. If no permission is specified, the team's `permission` attribute will be used to determine what permission to grant the team on this repository. */
         permission?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -126281,7 +126284,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -126332,7 +126335,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** if child teams exist */
         200: {
@@ -126392,7 +126395,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -126469,7 +126472,7 @@ export class ApiClient {
       body?: {
         permission?: "read" | "write" | "admin";
       } | null;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -126531,7 +126534,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -126593,7 +126596,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -126653,7 +126656,7 @@ export class ApiClient {
         /** The unique identifier of the column. */
         column_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -126709,7 +126712,7 @@ export class ApiClient {
         /** Name of the project column */
         name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -126760,7 +126763,7 @@ export class ApiClient {
         /** The unique identifier of the column. */
         column_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -126815,7 +126818,7 @@ export class ApiClient {
         /** The position of the column in a project. Can be one of: `first`, `last`, or `after:<column_id>` to place after the specified column. */
         position: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -126882,7 +126885,7 @@ export class ApiClient {
      * > [!NOTE]
      * > The `rate` object is closing down. If you're writing new API client code or updating existing code, you should use the `core` object instead of the `rate` object. The `core` object contains the same information that is present in the `rate` object.
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -126939,7 +126942,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -127084,7 +127087,7 @@ export class ApiClient {
         /** Either `true` to require contributors to sign off on web-based commits, or `false` to not require contributors to sign off on web-based commits. */
         web_commit_signoff_required?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -127188,7 +127191,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -127265,7 +127268,7 @@ export class ApiClient {
         /** The name field of an artifact. When specified, only artifacts with this name will be returned. */
         name?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -127330,7 +127333,7 @@ export class ApiClient {
         /** The unique identifier of the artifact. */
         artifact_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -127371,7 +127374,7 @@ export class ApiClient {
         /** The unique identifier of the artifact. */
         artifact_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -127418,7 +127421,7 @@ export class ApiClient {
         artifact_id: number;
         archive_format: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         302: {
@@ -127477,7 +127480,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -127533,7 +127536,7 @@ export class ApiClient {
         /** The direction to sort the results by. */
         direction?: "asc" | "desc";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -127594,7 +127597,7 @@ export class ApiClient {
         /** The full Git reference for narrowing down the cache. The `ref` for a branch should be formatted as `refs/heads/<branch name>`. To reference a pull request use `refs/pull/<number>/merge`. */
         ref?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -127642,7 +127645,7 @@ export class ApiClient {
         /** The unique identifier of the GitHub Actions cache. */
         cache_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -127689,7 +127692,7 @@ export class ApiClient {
         /** The unique identifier of the job. */
         job_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -127737,7 +127740,7 @@ export class ApiClient {
         /** The unique identifier of the job. */
         job_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         302: {
@@ -127794,7 +127797,7 @@ export class ApiClient {
         /** Whether to enable debug logging for the re-run. */
         enable_debug_logging?: boolean;
       } | null;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -127844,7 +127847,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Status response */
         200: {
@@ -127898,7 +127901,7 @@ export class ApiClient {
           /** Array of unique strings. Each claim key can only contain alphanumeric characters and underscores. */
           include_claim_keys?: string[];
         };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Empty response */
         201: {
@@ -127965,7 +127968,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -128033,7 +128036,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -128093,7 +128096,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -128137,7 +128140,7 @@ export class ApiClient {
         allowed_actions?: AllowedActions;
         sha_pinning_required?: ShaPinningRequired;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -128186,7 +128189,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -128228,7 +128231,7 @@ export class ApiClient {
         repo: string;
       };
       body: ActionsWorkflowAccessToRepository;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -128271,7 +128274,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -128315,7 +128318,7 @@ export class ApiClient {
         repo: string;
       };
       body: ActionsArtifactAndLogRetention;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Empty response for successful settings update */
         204: {
@@ -128366,7 +128369,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -128410,7 +128413,7 @@ export class ApiClient {
         repo: string;
       };
       body: ActionsForkPrContributorApproval;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -128461,7 +128464,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -128509,7 +128512,7 @@ export class ApiClient {
         repo: string;
       };
       body: ActionsForkPrWorkflowsPrivateReposRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Empty response for successful settings update */
         204: {
@@ -128560,7 +128563,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -128600,7 +128603,7 @@ export class ApiClient {
         repo: string;
       };
       body?: SelectedActions;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -128645,7 +128648,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -128687,7 +128690,7 @@ export class ApiClient {
         repo: string;
       };
       body: ActionsSetDefaultWorkflowPermissions;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success response */
         204: {
@@ -128745,7 +128748,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -128810,7 +128813,7 @@ export class ApiClient {
         /** Unique identifier of the self-hosted runner. */
         runner_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -128854,7 +128857,7 @@ export class ApiClient {
         /** Unique identifier of the self-hosted runner. */
         runner_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -128905,7 +128908,7 @@ export class ApiClient {
         /** Unique identifier of the self-hosted runner. */
         runner_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -128956,7 +128959,7 @@ export class ApiClient {
         /** The names of the custom labels to add to the runner. */
         labels: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -129015,7 +129018,7 @@ export class ApiClient {
         /** The names of the custom labels to set for the runner. You can pass an empty array to remove all custom labels. */
         labels: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -129070,7 +129073,7 @@ export class ApiClient {
         /** Unique identifier of the self-hosted runner. */
         runner_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -129126,7 +129129,7 @@ export class ApiClient {
         /** The name of a self-hosted runner's custom label. */
         name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -129179,7 +129182,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -129233,7 +129236,7 @@ export class ApiClient {
         /** The working directory to be used for job execution, relative to the runner install directory. */
         work_folder?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         201: {
           body: unknown;
@@ -129300,7 +129303,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -129350,7 +129353,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -129432,7 +129435,7 @@ export class ApiClient {
         /** Only returns workflow runs that are associated with the specified `head_sha`. */
         head_sha?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -129523,7 +129526,7 @@ export class ApiClient {
         /** If `true` pull requests are omitted from the response (empty array). */
         exclude_pull_requests?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -129570,7 +129573,7 @@ export class ApiClient {
         /** The unique identifier of the workflow run. */
         run_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -129615,7 +129618,7 @@ export class ApiClient {
         /** The unique identifier of the workflow run. */
         run_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -129660,7 +129663,7 @@ export class ApiClient {
         /** The unique identifier of the workflow run. */
         run_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -129723,7 +129726,7 @@ export class ApiClient {
         /** The name field of an artifact. When specified, only artifacts with this name will be returned. */
         name?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -129795,7 +129798,7 @@ export class ApiClient {
         /** If `true` pull requests are omitted from the response (empty array). */
         exclude_pull_requests?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -129855,7 +129858,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -129928,7 +129931,7 @@ export class ApiClient {
         /** The attempt number of the workflow run. */
         attempt_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         302: {
@@ -129982,7 +129985,7 @@ export class ApiClient {
         /** The unique identifier of the workflow run. */
         run_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         202: {
@@ -130035,7 +130038,7 @@ export class ApiClient {
         run_id: number;
       };
       body: ReviewCustomGatesCommentRequired | ReviewCustomGatesStateRequired;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -130082,7 +130085,7 @@ export class ApiClient {
         /** The unique identifier of the workflow run. */
         run_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         202: {
@@ -130142,7 +130145,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -130209,7 +130212,7 @@ export class ApiClient {
         /** The unique identifier of the workflow run. */
         run_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         302: {
@@ -130259,7 +130262,7 @@ export class ApiClient {
         /** The unique identifier of the workflow run. */
         run_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -130314,7 +130317,7 @@ export class ApiClient {
         /** The unique identifier of the workflow run. */
         run_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -130365,7 +130368,7 @@ export class ApiClient {
         /** A comment to accompany the deployment review */
         comment: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -130419,7 +130422,7 @@ export class ApiClient {
         /** Whether to enable debug logging for the re-run. */
         enable_debug_logging?: boolean;
       } | null;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -130471,7 +130474,7 @@ export class ApiClient {
         /** Whether to enable debug logging for the re-run. */
         enable_debug_logging?: boolean;
       } | null;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -130524,7 +130527,7 @@ export class ApiClient {
         /** The unique identifier of the workflow run. */
         run_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -130576,7 +130579,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -130640,7 +130643,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -130691,7 +130694,7 @@ export class ApiClient {
         /** ID of the key you used to encrypt the secret. */
         key_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when creating a secret */
         201: {
@@ -130746,7 +130749,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -130792,7 +130795,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -130842,7 +130845,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -130907,7 +130910,7 @@ export class ApiClient {
         /** The value of the variable. */
         value: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -130957,7 +130960,7 @@ export class ApiClient {
         /** The name of the variable. */
         name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -131007,7 +131010,7 @@ export class ApiClient {
         /** The value of the variable. */
         value?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -131055,7 +131058,7 @@ export class ApiClient {
         /** The name of the variable. */
         name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -131106,7 +131109,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -131171,7 +131174,7 @@ export class ApiClient {
         /** The ID of the workflow. You can also pass the workflow file name as a string. */
         workflow_id: number | string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -131216,7 +131219,7 @@ export class ApiClient {
         /** The ID of the workflow. You can also pass the workflow file name as a string. */
         workflow_id: number | string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -131269,7 +131272,7 @@ export class ApiClient {
         /** Input keys and values configured in the workflow file. The maximum number of properties is 10. Any default properties configured in the workflow file will be used when `inputs` are omitted. */
         inputs?: Record<string, unknown>;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -131318,7 +131321,7 @@ export class ApiClient {
         /** The ID of the workflow. You can also pass the workflow file name as a string. */
         workflow_id: number | string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -131403,7 +131406,7 @@ export class ApiClient {
         /** Only returns workflow runs that are associated with the specified `head_sha`. */
         head_sha?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -131496,7 +131499,7 @@ export class ApiClient {
         /** The ID of the workflow. You can also pass the workflow file name as a string. */
         workflow_id: number | string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -131576,7 +131579,7 @@ export class ApiClient {
           | "pr_merge"
           | "merge_queue_merge";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -131651,7 +131654,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -131712,7 +131715,7 @@ export class ApiClient {
         repo: string;
         assignee: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** If the `assignee` can be assigned to issues in the repository, a `204` header with no content is returned. */
         204: {
@@ -131773,7 +131776,7 @@ export class ApiClient {
           dsseEnvelope?: Record<string, unknown>;
         };
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** response */
         201: {
@@ -131855,7 +131858,7 @@ export class ApiClient {
          */
         predicate_type?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -131932,7 +131935,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -131977,7 +131980,7 @@ export class ApiClient {
         /** Whether this autolink reference matches alphanumeric characters. If true, the `<num>` parameter of the `url_template` matches alphanumeric characters `A-Z` (case insensitive), `0-9`, and `-`. If false, this autolink reference only matches numeric characters. */
         is_alphanumeric?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** response */
         201: {
@@ -132038,7 +132041,7 @@ export class ApiClient {
         /** The unique identifier of the autolink. */
         autolink_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -132084,7 +132087,7 @@ export class ApiClient {
         /** The unique identifier of the autolink. */
         autolink_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -132129,7 +132132,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response if Dependabot is enabled */
         200: {
@@ -132171,7 +132174,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -132208,7 +132211,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -132254,7 +132257,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -132311,7 +132314,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -132362,7 +132365,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -132484,7 +132487,7 @@ export class ApiClient {
         /** Whether users can pull changes from upstream when the branch is locked. Set to `true` to allow fork syncing. Set to `false` to prevent fork syncing. Default: `false`. */
         allow_fork_syncing?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -132575,7 +132578,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -132622,7 +132625,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -132664,7 +132667,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -132706,7 +132709,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -132753,7 +132756,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -132826,7 +132829,7 @@ export class ApiClient {
           apps?: string[];
         };
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -132886,7 +132889,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -132938,7 +132941,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -132984,7 +132987,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -133030,7 +133033,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -133077,7 +133080,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -133136,7 +133139,7 @@ export class ApiClient {
           app_id?: number;
         }[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -133192,7 +133195,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -133235,7 +133238,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -133285,7 +133288,7 @@ export class ApiClient {
           contexts: string[];
         }
         | /** The name of the status checks */ string[];
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -133349,7 +133352,7 @@ export class ApiClient {
           contexts: string[];
         }
         | /** The name of the status checks */ string[];
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -133409,7 +133412,7 @@ export class ApiClient {
           contexts: string[];
         }
         | /** The name of the status checks */ string[];
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -133471,7 +133474,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -133517,7 +133520,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -133562,7 +133565,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -133612,7 +133615,7 @@ export class ApiClient {
         /** The GitHub Apps that have push access to this branch. Use the slugified version of the app name. **Note**: The list of users, apps, and teams in total is limited to 100 items. */
         apps: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -133665,7 +133668,7 @@ export class ApiClient {
         /** The GitHub Apps that have push access to this branch. Use the slugified version of the app name. **Note**: The list of users, apps, and teams in total is limited to 100 items. */
         apps: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -133718,7 +133721,7 @@ export class ApiClient {
         /** The GitHub Apps that have push access to this branch. Use the slugified version of the app name. **Note**: The list of users, apps, and teams in total is limited to 100 items. */
         apps: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -133770,7 +133773,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -133822,7 +133825,7 @@ export class ApiClient {
           teams: string[];
         }
         | /** The slug values for teams */ string[];
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -133880,7 +133883,7 @@ export class ApiClient {
           teams: string[];
         }
         | /** The slug values for teams */ string[];
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -133938,7 +133941,7 @@ export class ApiClient {
           teams: string[];
         }
         | /** The slug values for teams */ string[];
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -133993,7 +133996,7 @@ export class ApiClient {
         /** The name of the branch. Cannot contain wildcard characters. To use wildcard characters in branch names, use [the GraphQL API](https://docs.github.com/graphql). */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -134047,7 +134050,7 @@ export class ApiClient {
         /** The username for users */
         users: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -134104,7 +134107,7 @@ export class ApiClient {
         /** The username for users */
         users: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -134161,7 +134164,7 @@ export class ApiClient {
         /** The username for users */
         users: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -134222,7 +134225,7 @@ export class ApiClient {
         /** The new name of the branch. */
         new_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -134286,7 +134289,7 @@ export class ApiClient {
         repo: string;
       };
       body: unknown | unknown;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -134334,7 +134337,7 @@ export class ApiClient {
         /** The unique identifier of the check run. */
         check_run_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -134380,7 +134383,7 @@ export class ApiClient {
         check_run_id: number;
       };
       body: unknown | unknown;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -134432,7 +134435,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -134489,7 +134492,7 @@ export class ApiClient {
         /** The unique identifier of the check run. */
         check_run_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -134553,7 +134556,7 @@ export class ApiClient {
         /** The sha of the head commit. */
         head_sha: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when the suite already exists */
         200: {
@@ -134608,7 +134611,7 @@ export class ApiClient {
         /** The unique identifier of the check suite. */
         check_suite_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -134668,7 +134671,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -134732,7 +134735,7 @@ export class ApiClient {
         /** The unique identifier of the check suite. */
         check_suite_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -134783,7 +134786,7 @@ export class ApiClient {
           setting: boolean;
         }[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -134861,7 +134864,7 @@ export class ApiClient {
         /** If specified, only code scanning alerts with this severity will be returned. */
         severity?: CodeScanningAlertSeverity;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -134935,7 +134938,7 @@ export class ApiClient {
         /** The number that identifies an alert. You can find this at the end of the URL for a code scanning alert within GitHub, and in the `number` field in the response from the `GET /repos/{owner}/{repo}/code-scanning/alerts` operation. */
         alert_number: AlertNumber;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -134998,7 +135001,7 @@ export class ApiClient {
         dismissed_comment?: CodeScanningAlertDismissedComment;
         create_request?: CodeScanningAlertCreateRequest;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -135065,7 +135068,7 @@ export class ApiClient {
         /** The number that identifies an alert. You can find this at the end of the URL for a code scanning alert within GitHub, and in the `number` field in the response from the `GET /repos/{owner}/{repo}/code-scanning/alerts` operation. */
         alert_number: AlertNumber;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -135127,7 +135130,7 @@ export class ApiClient {
         /** The number that identifies an alert. You can find this at the end of the URL for a code scanning alert within GitHub, and in the `number` field in the response from the `GET /repos/{owner}/{repo}/code-scanning/alerts` operation. */
         alert_number: AlertNumber;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** OK */
         200: {
@@ -135201,7 +135204,7 @@ export class ApiClient {
         alert_number: AlertNumber;
       };
       body?: CodeScanningAutofixCommits;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Created */
         201: {
@@ -135278,7 +135281,7 @@ export class ApiClient {
         /** The number of the pull request for the results you want to list. */
         pr?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -135371,7 +135374,7 @@ export class ApiClient {
         /** The property by which to sort the results. */
         sort?: "created";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -135452,7 +135455,7 @@ export class ApiClient {
         /** The ID of the analysis, as returned from the `GET /repos/{owner}/{repo}/code-scanning/analyses` operation. */
         analysis_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -135575,7 +135578,7 @@ export class ApiClient {
         /** Allow deletion if the specified analysis is the last in a set. If you attempt to delete the final analysis in a set without setting this parameter to `true`, you'll get a 400 response with the message: `Analysis is last of its type and deletion may result in the loss of historical alert data. Please specify confirm_delete.` */
         confirm_delete?: string | null;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -135637,7 +135640,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -135699,7 +135702,7 @@ export class ApiClient {
         /** The language of the CodeQL database. */
         language: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -135757,7 +135760,7 @@ export class ApiClient {
         /** The language of the CodeQL database. */
         language: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -135818,7 +135821,7 @@ export class ApiClient {
         repo: string;
       };
       body: unknown | unknown | unknown;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Variant analysis submitted for processing */
         201: {
@@ -135876,7 +135879,7 @@ export class ApiClient {
         /** The unique identifier of the variant analysis. */
         codeql_variant_analysis_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -135934,7 +135937,7 @@ export class ApiClient {
           /** The name of the variant analysis repository. */
           repo_name: string;
         };
-      }): Promise<
+      }): OpenAPIResponsePromise<
         OpenAPIResponses<{
           /** Response */
           200: {
@@ -135988,7 +135991,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -136040,7 +136043,7 @@ export class ApiClient {
         repo: string;
       };
       body: CodeScanningDefaultSetupUpdate;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -136162,7 +136165,7 @@ export class ApiClient {
          */
         validate?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         202: {
@@ -136236,7 +136239,7 @@ export class ApiClient {
         /** The SARIF ID obtained after uploading. */
         sarif_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -136294,7 +136297,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -136358,7 +136361,7 @@ export class ApiClient {
         /** A branch, tag or commit name used to determine which version of the CODEOWNERS file to use. Default: the repository's default branch (e.g. `main`) */
         ref?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -136414,7 +136417,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -136504,7 +136507,7 @@ export class ApiClient {
         /** Duration in minutes after codespace has gone idle in which it will be deleted. Must be integer minutes between 0 and 43200 (30 days). */
         retention_period_minutes?: number;
       } | null;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when the codespace was successfully created */
         201: {
@@ -136591,7 +136594,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -136681,7 +136684,7 @@ export class ApiClient {
         /** The branch or commit to check for prebuild availability and devcontainer restrictions. */
         ref?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -136762,7 +136765,7 @@ export class ApiClient {
         /** An alternative IP for default location auto-detection, such as when proxying a request. */
         client_ip?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when a user is able to create codespaces from the repository. */
         200: {
@@ -136840,7 +136843,7 @@ export class ApiClient {
         /** Path to the devcontainer.json configuration to use for the permission check. */
         devcontainer_path: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when the permission check is successful */
         200: {
@@ -136913,7 +136916,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -136975,7 +136978,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -137024,7 +137027,7 @@ export class ApiClient {
         /** ID of the key you used to encrypt the secret. */
         key_id?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when creating a secret */
         201: {
@@ -137077,7 +137080,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -137121,7 +137124,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -137178,7 +137181,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -137244,7 +137247,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response if user is a collaborator */
         204: {
@@ -137317,7 +137320,7 @@ export class ApiClient {
         /** The permission to grant the collaborator. **Only valid on organization-owned repositories.** We accept the following permissions to be set: `pull`, `triage`, `push`, `maintain`, `admin` and you can also specify a custom repository role name, if the owning organization has defined any. */
         permission?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when a new invitation is created */
         201: {
@@ -137404,7 +137407,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** No Content when collaborator was removed from the repository. */
         204: {
@@ -137463,7 +137466,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** if user has admin permissions */
         200: {
@@ -137521,7 +137524,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -137582,7 +137585,7 @@ export class ApiClient {
         /** The unique identifier of the comment. */
         comment_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -137637,7 +137640,7 @@ export class ApiClient {
         /** The contents of the comment */
         body: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -137682,7 +137685,7 @@ export class ApiClient {
         /** The unique identifier of the comment. */
         comment_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -137737,7 +137740,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -137797,7 +137800,7 @@ export class ApiClient {
       body: {
         content: "+1" | "-1" | "laugh" | "confused" | "heart" | "hooray" | "rocket" | "eyes";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Reaction exists */
         200: {
@@ -137857,7 +137860,7 @@ export class ApiClient {
         /** The unique identifier of the reaction. */
         reaction_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -137945,7 +137948,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -138023,7 +138026,7 @@ export class ApiClient {
         /** The SHA of the commit. */
         commit_sha: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -138087,7 +138090,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -138158,7 +138161,7 @@ export class ApiClient {
         /** **Closing down notice**. Use **position** parameter instead. Line number in the file to comment on. */
         line?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -138231,7 +138234,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -138335,7 +138338,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -138422,7 +138425,7 @@ export class ApiClient {
         page?: number;
         app_id?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -138502,7 +138505,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -138577,7 +138580,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -138636,7 +138639,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -138703,7 +138706,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -138801,7 +138804,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -138888,7 +138891,7 @@ export class ApiClient {
         /** The name of the commit/branch/tag. Default: the repository’s default branch. */
         ref?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -138980,7 +138983,7 @@ export class ApiClient {
           date?: string;
         };
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -139085,7 +139088,7 @@ export class ApiClient {
           email?: string;
         };
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -139165,7 +139168,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** If repository contains content */
         200: {
@@ -139286,7 +139289,7 @@ export class ApiClient {
         /** A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results after this cursor. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         after?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -139368,7 +139371,7 @@ export class ApiClient {
          */
         alert_number: AlertNumber;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -139433,7 +139436,7 @@ export class ApiClient {
         /** An optional comment associated with dismissing the alert. */
         dismissed_comment?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -139509,7 +139512,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -139571,7 +139574,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -139620,7 +139623,7 @@ export class ApiClient {
         /** ID of the key you used to encrypt the secret. */
         key_id?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when creating a secret */
         201: {
@@ -139673,7 +139676,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -139718,7 +139721,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -139764,7 +139767,7 @@ export class ApiClient {
         /** The full path, relative to the repository root, of the dependency manifest file. */
         name?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -139824,7 +139827,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -139885,7 +139888,7 @@ export class ApiClient {
         repo: string;
       };
       body: Snapshot;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -139956,7 +139959,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -140077,7 +140080,7 @@ export class ApiClient {
         /** Specifies if the given environment is one that end-users directly interact with. Default: `true` when `environment` is `production` and `false` otherwise. */
         production_environment?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -140148,7 +140151,7 @@ export class ApiClient {
         /** deployment_id parameter */
         deployment_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -140201,7 +140204,7 @@ export class ApiClient {
         /** deployment_id parameter */
         deployment_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -140258,7 +140261,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -140336,7 +140339,7 @@ export class ApiClient {
         /** Adds a new `inactive` status to all prior non-transient, non-production environment deployments with the same repository and `environment` name as the created status's deployment. An `inactive` status is only added to deployments that had a `success` state. Default: `true` */
         auto_inactive?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -140401,7 +140404,7 @@ export class ApiClient {
         deployment_id: number;
         status_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -140459,7 +140462,7 @@ export class ApiClient {
         /** JSON payload with extra information about the webhook event that your action or workflow may use. The maximum number of top-level properties is 10. The total size of the JSON payload must be less than 64KB. */
         client_payload?: Record<string, unknown>;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -140521,7 +140524,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -140581,7 +140584,7 @@ export class ApiClient {
         /** The name of the environment. The name must be URL encoded. For example, any slashes in the name must be replaced with `%2F`. */
         environment_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -140640,7 +140643,7 @@ export class ApiClient {
         }[] | null;
         deployment_branch_policy?: DeploymentBranchPolicySettings;
       } | null;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -140694,7 +140697,7 @@ export class ApiClient {
         /** The name of the environment. The name must be URL encoded. For example, any slashes in the name must be replaced with `%2F`. */
         environment_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Default response */
         204: {
@@ -140741,7 +140744,7 @@ export class ApiClient {
         /** The account owner of the repository. The name is not case sensitive. */
         owner: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** List of deployment protection rules */
         200: {
@@ -140800,7 +140803,7 @@ export class ApiClient {
         /** The ID of the custom app that will be enabled on the environment. */
         integration_id?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** The enabled custom deployment protection rule */
         201: {
@@ -140852,7 +140855,7 @@ export class ApiClient {
         /** The unique identifier of the protection rule. */
         protection_rule_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -140900,7 +140903,7 @@ export class ApiClient {
         /** The unique identifier of the protection rule. */
         protection_rule_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -140959,7 +140962,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A list of custom deployment rule integrations available for this environment. */
         200: {
@@ -141026,7 +141029,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -141082,7 +141085,7 @@ export class ApiClient {
         environment_name: string;
       };
       body: DeploymentBranchPolicyNamePatternWithType;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -141142,7 +141145,7 @@ export class ApiClient {
         /** The unique identifier of the branch policy. */
         branch_policy_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -141188,7 +141191,7 @@ export class ApiClient {
         branch_policy_id: number;
       };
       body: DeploymentBranchPolicyNamePattern;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -141234,7 +141237,7 @@ export class ApiClient {
         /** The unique identifier of the branch policy. */
         branch_policy_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -141289,7 +141292,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -141356,7 +141359,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -141410,7 +141413,7 @@ export class ApiClient {
         /** ID of the key you used to encrypt the secret. */
         key_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when creating a secret */
         201: {
@@ -141468,7 +141471,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Default response */
         204: {
@@ -141517,7 +141520,7 @@ export class ApiClient {
         /** The name of the environment. The name must be URL encoded. For example, any slashes in the name must be replaced with `%2F`. */
         environment_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -141570,7 +141573,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -141638,7 +141641,7 @@ export class ApiClient {
         /** The value of the variable. */
         value: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -141691,7 +141694,7 @@ export class ApiClient {
         /** The name of the variable. */
         name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -141744,7 +141747,7 @@ export class ApiClient {
         /** The value of the variable. */
         value?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -141795,7 +141798,7 @@ export class ApiClient {
         /** The name of the environment. The name must be URL encoded. For example, any slashes in the name must be replaced with `%2F`. */
         environment_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -141844,7 +141847,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -141894,7 +141897,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -141962,7 +141965,7 @@ export class ApiClient {
         /** When forking from an existing repository, fork with only the default branch. */
         default_branch_only?: boolean;
       } | null;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         202: {
@@ -142027,7 +142030,7 @@ export class ApiClient {
         /** The encoding used for `content`. Currently, `"utf-8"` and `"base64"` are supported. */
         encoding?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -142104,7 +142107,7 @@ export class ApiClient {
         repo: string;
         file_sha: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -142227,7 +142230,7 @@ export class ApiClient {
         /** The [PGP signature](https://en.wikipedia.org/wiki/Pretty_Good_Privacy) of the commit. GitHub adds the signature to the `gpgsig` header of the created commit. For a commit signature to be verifiable by Git or GitHub, it must be an ASCII-armored detached PGP signature over the string commit as it would be written to the object database. To pass a `signature` parameter, you need to first manually create a valid PGP signature, which can be complicated. You may find it easier to [use the command line](https://git-scm.com/book/id/v2/Git-Tools-Signing-Your-Work) to create signed commits. */
         signature?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -142337,7 +142340,7 @@ export class ApiClient {
         /** The SHA of the commit. */
         commit_sha: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -142395,7 +142398,7 @@ export class ApiClient {
         /** The Git reference. For more information, see "[Git References](https://git-scm.com/book/en/v2/Git-Internals-Git-References)" in the Git documentation. */
         ref: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -142453,7 +142456,7 @@ export class ApiClient {
         /** The Git reference. For more information, see "[Git References](https://git-scm.com/book/en/v2/Git-Internals-Git-References)" in the Git documentation. */
         ref: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -142508,7 +142511,7 @@ export class ApiClient {
         /** The SHA1 value for this reference. */
         sha: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -142576,7 +142579,7 @@ export class ApiClient {
         /** Indicates whether to force the update or to make sure the update is a fast-forward update. Leaving this out or setting it to `false` will make sure you're not overwriting work. */
         force?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -142628,7 +142631,7 @@ export class ApiClient {
         /** The Git reference. For more information, see "[Git References](https://git-scm.com/book/en/v2/Git-Internals-Git-References)" in the Git documentation. */
         ref: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -142730,7 +142733,7 @@ export class ApiClient {
           date?: string;
         };
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -142826,7 +142829,7 @@ export class ApiClient {
         repo: string;
         tag_sha: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -142905,7 +142908,7 @@ export class ApiClient {
          */
         base_tree?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -142990,7 +142993,7 @@ export class ApiClient {
         /** Setting this parameter to any value returns the objects or subtrees referenced by the tree specified in `:tree_sha`. For example, setting `recursive` to any of the following will enable returning objects or subtrees: `0`, `1`, `"true"`, and `"false"`. Omit this parameter to prevent recursively returning objects or subtrees. */
         recursive?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -143052,7 +143055,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -143121,7 +143124,7 @@ export class ApiClient {
         /** Determines if notifications are sent when the webhook is triggered. Set to `true` to send notifications. */
         active?: boolean;
       } | null;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -143194,7 +143197,7 @@ export class ApiClient {
         /** The unique identifier of the hook. You can find this value in the `X-GitHub-Hook-ID` header of a webhook delivery. */
         hook_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -143249,7 +143252,7 @@ export class ApiClient {
         /** Determines if notifications are sent when the webhook is triggered. Set to `true` to send notifications. */
         active?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -143306,7 +143309,7 @@ export class ApiClient {
         /** The unique identifier of the hook. You can find this value in the `X-GitHub-Hook-ID` header of a webhook delivery. */
         hook_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -143355,7 +143358,7 @@ export class ApiClient {
         /** The unique identifier of the hook. You can find this value in the `X-GitHub-Hook-ID` header of a webhook delivery. */
         hook_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -143403,7 +143406,7 @@ export class ApiClient {
         secret?: WebhookConfigSecret;
         insecure_ssl?: WebhookConfigInsecureSsl;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -143458,7 +143461,7 @@ export class ApiClient {
         /** Used for pagination: the starting delivery from which the page of deliveries is fetched. Refer to the `link` header for the next and previous page cursors. */
         cursor?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -143514,7 +143517,7 @@ export class ApiClient {
         hook_id: number;
         delivery_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -143567,7 +143570,7 @@ export class ApiClient {
         hook_id: number;
         delivery_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         202: {
           body: unknown;
@@ -143618,7 +143621,7 @@ export class ApiClient {
         /** The unique identifier of the hook. You can find this value in the `X-GitHub-Hook-ID` header of a webhook delivery. */
         hook_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -143668,7 +143671,7 @@ export class ApiClient {
         /** The unique identifier of the hook. You can find this value in the `X-GitHub-Hook-ID` header of a webhook delivery. */
         hook_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -143714,7 +143717,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response if immutable releases are enabled */
         200: {
@@ -143756,7 +143759,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         204: {
           body: unknown;
@@ -143796,7 +143799,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         204: {
           body: unknown;
@@ -143875,7 +143878,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -143936,7 +143939,7 @@ export class ApiClient {
         /** For a tfvc import, the name of the project that is being imported. */
         tfvc_project?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -144017,7 +144020,7 @@ export class ApiClient {
         /** For a tfvc import, the name of the project that is being imported. */
         tfvc_project?: string;
       } | null;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -144067,7 +144070,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -144120,7 +144123,7 @@ export class ApiClient {
         /** A user ID. Only return users with an ID greater than this ID. */
         since?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -144182,7 +144185,7 @@ export class ApiClient {
         /** The new Git author name. */
         name?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -144242,7 +144245,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -144296,7 +144299,7 @@ export class ApiClient {
       body: {
         use_lfs: "opt_in" | "opt_out";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -144349,7 +144352,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -144397,7 +144400,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -144435,7 +144438,7 @@ export class ApiClient {
         repo: string;
       };
       body: InteractionLimit;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -144478,7 +144481,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -144529,7 +144532,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -144584,7 +144587,7 @@ export class ApiClient {
       body?: {
         permissions?: "read" | "write" | "maintain" | "triage" | "admin";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -144625,7 +144628,7 @@ export class ApiClient {
         /** The unique identifier of the invitation. */
         invitation_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -144702,7 +144705,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -144807,7 +144810,7 @@ export class ApiClient {
         /** The name of the issue type to associate with this issue. _NOTE: Only users with push access can set the type for new issues. The type is silently dropped otherwise._ */
         type?: string | null;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -144913,7 +144916,7 @@ export class ApiClient {
         /** The number that identifies the issue. */
         issue_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -145002,7 +145005,7 @@ export class ApiClient {
         /** The name of the issue type to associate with this issue or use `null` to remove the current issue type. Only users with push access can set the type for issues. Without push access to the repository, type changes are silently dropped. */
         type?: string | null;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -145092,7 +145095,7 @@ export class ApiClient {
         /** Usernames of people to assign this issue to. _NOTE: Only users with push access can add assignees to an issue. Assignees are silently ignored otherwise._ */
         assignees?: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -145139,7 +145142,7 @@ export class ApiClient {
         /** Usernames of assignees to remove from an issue. _NOTE: Only users with push access can remove assignees from an issue. Assignees are silently ignored otherwise._ */
         assignees?: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -145190,7 +145193,7 @@ export class ApiClient {
         issue_number: number;
         assignee: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response if `assignee` can be assigned to `issue_number` */
         204: {
@@ -145256,7 +145259,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -145333,7 +145336,7 @@ export class ApiClient {
         /** The contents of the comment. */
         body: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -145416,7 +145419,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -145495,7 +145498,7 @@ export class ApiClient {
         /** The id of the issue that blocks the current issue */
         issue_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -145581,7 +145584,7 @@ export class ApiClient {
         /** The id of the blocking issue to remove as a dependency */
         issue_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -145662,7 +145665,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -145735,7 +145738,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -145800,7 +145803,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -145879,7 +145882,7 @@ export class ApiClient {
           name: string;
         }[]
         | string;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -145965,7 +145968,7 @@ export class ApiClient {
           name: string;
         }[]
         | string;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -146036,7 +146039,7 @@ export class ApiClient {
         /** The number that identifies the issue. */
         issue_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -146092,7 +146095,7 @@ export class ApiClient {
         issue_number: number;
         name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -146153,7 +146156,7 @@ export class ApiClient {
       body?: {
         lock_reason?: "off-topic" | "too heated" | "resolved" | "spam";
       } | null;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -146212,7 +146215,7 @@ export class ApiClient {
         /** The number that identifies the issue. */
         issue_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -146270,7 +146273,7 @@ export class ApiClient {
         /** The number that identifies the issue. */
         issue_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -146333,7 +146336,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -146397,7 +146400,7 @@ export class ApiClient {
       body: {
         content: "+1" | "-1" | "laugh" | "confused" | "heart" | "hooray" | "rocket" | "eyes";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -146457,7 +146460,7 @@ export class ApiClient {
         /** The unique identifier of the reaction. */
         reaction_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -146513,7 +146516,7 @@ export class ApiClient {
         /** The id of the sub-issue to remove */
         sub_issue_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -146588,7 +146591,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -146665,7 +146668,7 @@ export class ApiClient {
         /** Option that, when true, instructs the operation to replace the sub-issues current parent issue */
         replace_parent?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -146744,7 +146747,7 @@ export class ApiClient {
         /** The id of the sub-issue to be prioritized before (either positional argument after OR before should be specified). */
         before_id?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -146814,7 +146817,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -146896,7 +146899,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -146968,7 +146971,7 @@ export class ApiClient {
         /** The unique identifier of the comment. */
         comment_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -147023,7 +147026,7 @@ export class ApiClient {
         /** The contents of the comment. */
         body: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -147070,7 +147073,7 @@ export class ApiClient {
         /** The unique identifier of the comment. */
         comment_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -147121,7 +147124,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -147181,7 +147184,7 @@ export class ApiClient {
       body: {
         content: "+1" | "-1" | "laugh" | "confused" | "heart" | "hooray" | "rocket" | "eyes";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Reaction exists */
         200: {
@@ -147241,7 +147244,7 @@ export class ApiClient {
         /** The unique identifier of the reaction. */
         reaction_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -147289,7 +147292,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -147346,7 +147349,7 @@ export class ApiClient {
         repo: string;
         event_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -147403,7 +147406,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -147464,7 +147467,7 @@ export class ApiClient {
          */
         read_only?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -147521,7 +147524,7 @@ export class ApiClient {
         /** The unique identifier of the key. */
         key_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -147565,7 +147568,7 @@ export class ApiClient {
         /** The unique identifier of the key. */
         key_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -147612,7 +147615,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -147673,7 +147676,7 @@ export class ApiClient {
         /** A short description of the label. Must be 100 characters or fewer. */
         description?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -147735,7 +147738,7 @@ export class ApiClient {
         repo: string;
         name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -147786,7 +147789,7 @@ export class ApiClient {
         /** A short description of the label. Must be 100 characters or fewer. */
         description?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -147830,7 +147833,7 @@ export class ApiClient {
         repo: string;
         name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -147871,7 +147874,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -147920,7 +147923,7 @@ export class ApiClient {
         /** The Git reference for the results you want to list. The `ref` for a branch can be formatted either as `refs/heads/<branch name>` or simply `<branch name>`. To reference a pull request use `refs/pull/<number>/merge`. */
         ref?: CodeScanningRef;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -147971,7 +147974,7 @@ export class ApiClient {
         /** The name of the branch which should be updated to match upstream. */
         branch: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** The branch has been successfully synced with the upstream repository */
         200: {
@@ -148030,7 +148033,7 @@ export class ApiClient {
         /** Commit message to use for the merge commit. If omitted, a default message will be used. */
         commit_message?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Successful Response (The resulting merge commit) */
         201: {
@@ -148110,7 +148113,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -148179,7 +148182,7 @@ export class ApiClient {
          */
         due_on?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -148243,7 +148246,7 @@ export class ApiClient {
         /** The number that identifies the milestone. */
         milestone_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -148298,7 +148301,7 @@ export class ApiClient {
          */
         due_on?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -148344,7 +148347,7 @@ export class ApiClient {
         /** The number that identifies the milestone. */
         milestone_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -148397,7 +148400,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -148464,7 +148467,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -148525,7 +148528,7 @@ export class ApiClient {
          */
         last_read_at?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         202: {
@@ -148583,7 +148586,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -148629,7 +148632,7 @@ export class ApiClient {
         repo: string;
       };
       body: unknown | unknown;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -148680,7 +148683,7 @@ export class ApiClient {
         repo: string;
       };
       body: unknown | unknown | unknown | unknown | unknown;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -148734,7 +148737,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -148794,7 +148797,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -148845,7 +148848,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -148888,7 +148891,7 @@ export class ApiClient {
         repo: string;
         build_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -148931,7 +148934,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -148986,7 +148989,7 @@ export class ApiClient {
           /** The OIDC token issued by GitHub Actions certifying the origin of the deployment. */
           oidc_token: string;
         };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -149049,7 +149052,7 @@ export class ApiClient {
         /** The ID of the Pages deployment. You can also give the commit SHA of the deployment. */
         pages_deployment_id: number | string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -149098,7 +149101,7 @@ export class ApiClient {
         /** The ID of the Pages deployment. You can also give the commit SHA of the deployment. */
         pages_deployment_id: number | string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         204: {
           body: unknown;
@@ -149148,7 +149151,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -149207,7 +149210,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Private vulnerability reporting status */
         200: {
@@ -149255,7 +149258,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         204: {
           body: unknown;
@@ -149295,7 +149298,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         204: {
           body: unknown;
@@ -149339,7 +149342,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -149391,7 +149394,7 @@ export class ApiClient {
         /** A list of custom property names and associated values to apply to the repositories. */
         properties: CustomPropertyValue[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** No Content when custom property values are successfully created or updated */
         204: {
@@ -149475,7 +149478,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -149574,7 +149577,7 @@ export class ApiClient {
          */
         issue?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -149664,7 +149667,7 @@ export class ApiClient {
         /** The number that identifies the pull request. */
         pull_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Pass the appropriate [media type](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types) to fetch diff and patch formats. */
         200: {
@@ -149744,7 +149747,7 @@ export class ApiClient {
         /** Indicates whether [maintainers can modify](https://docs.github.com/articles/allowing-changes-to-a-pull-request-branch-created-from-a-fork/) the pull request. */
         maintainer_can_modify?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -149825,7 +149828,7 @@ export class ApiClient {
         /** Duration in minutes after codespace has gone idle in which it will be deleted. Must be integer minutes between 0 and 43200 (30 days). */
         retention_period_minutes?: number;
       } | null;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when the codespace was successfully created */
         201: {
@@ -149921,7 +149924,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -150009,7 +150012,7 @@ export class ApiClient {
         in_reply_to?: number;
         subject_type?: "line" | "file";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -150096,7 +150099,7 @@ export class ApiClient {
         /** The text of the review comment. */
         body: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -150170,7 +150173,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -150241,7 +150244,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -150308,7 +150311,7 @@ export class ApiClient {
         /** The number that identifies the pull request. */
         pull_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response if pull request has been merged */
         204: {
@@ -150363,7 +150366,7 @@ export class ApiClient {
         sha?: string;
         merge_method?: "merge" | "squash" | "rebase";
       } | null;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** if merge was successful */
         200: {
@@ -150450,7 +150453,7 @@ export class ApiClient {
         /** The number that identifies the pull request. */
         pull_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -150500,7 +150503,7 @@ export class ApiClient {
         pull_number: number;
       };
       body?: unknown | unknown;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -150556,7 +150559,7 @@ export class ApiClient {
         /** An array of team `slug`s that will be removed. */
         team_reviewers?: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -150620,7 +150623,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** The list of reviews returns in chronological order. */
         200: {
@@ -150708,7 +150711,7 @@ export class ApiClient {
           start_side?: string;
         }[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -150782,7 +150785,7 @@ export class ApiClient {
         /** The unique identifier of the review. */
         review_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -150840,7 +150843,7 @@ export class ApiClient {
         /** The body text of the pull request review. */
         body: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -150897,7 +150900,7 @@ export class ApiClient {
         /** The unique identifier of the review. */
         review_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -150964,7 +150967,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -151041,7 +151044,7 @@ export class ApiClient {
         message: string;
         event?: "DISMISS";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -151111,7 +151114,7 @@ export class ApiClient {
         body?: string;
         event: "APPROVE" | "REQUEST_CHANGES" | "COMMENT";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -151176,7 +151179,7 @@ export class ApiClient {
         /** The expected SHA of the pull request's HEAD ref. This is the most recent commit on the pull request's branch. If the expected SHA does not match the pull request's HEAD, you will receive a `422 Unprocessable Entity` status. You can use the "[List commits](https://docs.github.com/rest/commits/commits#list-commits)" endpoint to find the most recent commit SHA. Default: SHA of the pull request's current HEAD ref. */
         expected_head_sha?: string;
       } | null;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         202: {
@@ -151255,7 +151258,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -151319,7 +151322,7 @@ export class ApiClient {
         /** The unique identifier of the comment. */
         comment_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -151374,7 +151377,7 @@ export class ApiClient {
         /** The text of the reply to the review comment. */
         body: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -151417,7 +151420,7 @@ export class ApiClient {
         /** The unique identifier of the comment. */
         comment_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -151472,7 +151475,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -151532,7 +151535,7 @@ export class ApiClient {
       body: {
         content: "+1" | "-1" | "laugh" | "confused" | "heart" | "hooray" | "rocket" | "eyes";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Reaction exists */
         200: {
@@ -151592,7 +151595,7 @@ export class ApiClient {
         /** The unique identifier of the reaction. */
         reaction_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -151643,7 +151646,7 @@ export class ApiClient {
         /** The name of the commit/branch/tag. Default: the repository’s default branch. */
         ref?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -151709,7 +151712,7 @@ export class ApiClient {
         /** The name of the commit/branch/tag. Default: the repository’s default branch. */
         ref?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -151769,7 +151772,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -151843,7 +151846,7 @@ export class ApiClient {
         generate_release_notes?: boolean;
         make_latest?: "true" | "false" | "legacy";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -151916,7 +151919,7 @@ export class ApiClient {
         /** The unique identifier of the release. */
         release_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** **Note:** This returns an `upload_url` key corresponding to the endpoint for uploading release assets. This key is a hypermedia resource. For more information, see "[Getting started with the REST API](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#hypermedia)." */
         200: {
@@ -151978,7 +151981,7 @@ export class ApiClient {
         /** If specified, a discussion of the specified category is created and linked to the release. The value must be a category that already exists in the repository. If there is already a discussion linked to the release, this parameter is ignored. For more information, see "[Managing categories for discussions in your repository](https://docs.github.com/discussions/managing-discussions-for-your-community/managing-categories-for-discussions-in-your-repository)." */
         discussion_category_name?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -152033,7 +152036,7 @@ export class ApiClient {
         /** The unique identifier of the release. */
         release_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -152080,7 +152083,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -152155,7 +152158,7 @@ export class ApiClient {
         label?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response for successful upload */
         201: {
@@ -152215,7 +152218,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -152275,7 +152278,7 @@ export class ApiClient {
       body: {
         content: "+1" | "laugh" | "heart" | "hooray" | "rocket" | "eyes";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Reaction exists */
         200: {
@@ -152335,7 +152338,7 @@ export class ApiClient {
         /** The unique identifier of the reaction. */
         reaction_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -152385,7 +152388,7 @@ export class ApiClient {
         /** The unique identifier of the asset. */
         asset_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -152440,7 +152443,7 @@ export class ApiClient {
         label?: string;
         state?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -152483,7 +152486,7 @@ export class ApiClient {
         /** The unique identifier of the asset. */
         asset_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -152534,7 +152537,7 @@ export class ApiClient {
         /** Specifies a path to a file in the repository containing configuration settings used for generating the release notes. If unspecified, the configuration file located in the repository at '.github/release.yml' or '.github/release.yaml' will be used. If that is not present, the default configuration will be used. */
         configuration_file_path?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Name and body of generated release notes */
         200: {
@@ -152586,7 +152589,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -152628,7 +152631,7 @@ export class ApiClient {
         /** tag parameter */
         tag: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -152684,7 +152687,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -152743,7 +152746,7 @@ export class ApiClient {
          */
         targets?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -152805,7 +152808,7 @@ export class ApiClient {
         /** An array of rules within the ruleset. */
         rules?: RepositoryRule[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -152870,7 +152873,7 @@ export class ApiClient {
         /** Include rulesets configured at higher levels that apply to this repository */
         includes_parents?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -152932,7 +152935,7 @@ export class ApiClient {
         /** An array of rules within the ruleset. */
         rules?: RepositoryRule[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -152988,7 +152991,7 @@ export class ApiClient {
         /** The ID of the ruleset. */
         ruleset_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -153045,7 +153048,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -153102,7 +153105,7 @@ export class ApiClient {
         /** The ID of the version */
         version_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -153171,7 +153174,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -153235,7 +153238,7 @@ export class ApiClient {
          */
         rule_suite_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -153316,7 +153319,7 @@ export class ApiClient {
         /** A boolean value representing whether or not to hide literal secrets in the results. */
         hide_secret?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -153390,7 +153393,7 @@ export class ApiClient {
         /** A boolean value representing whether or not to hide literal secrets in the results. */
         hide_secret?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -153451,7 +153454,7 @@ export class ApiClient {
         alert_number: AlertNumber;
       };
       body: unknown;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -153524,7 +153527,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -153595,7 +153598,7 @@ export class ApiClient {
         reason: SecretScanningPushProtectionBypassReason;
         placeholder_id: SecretScanningPushProtectionBypassPlaceholderId;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -153663,7 +153666,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -153730,7 +153733,7 @@ export class ApiClient {
         /** Filter by state of the repository advisories. Only advisories of this state will be returned. */
         state?: "triage" | "draft" | "published" | "closed";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -153788,7 +153791,7 @@ export class ApiClient {
         repo: string;
       };
       body: RepositoryAdvisoryCreate;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -153850,7 +153853,7 @@ export class ApiClient {
         /** The GHSA (GitHub Security Advisory) identifier of the advisory. */
         ghsa_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -153904,7 +153907,7 @@ export class ApiClient {
         ghsa_id: string;
       };
       body: RepositoryAdvisoryUpdate;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -153967,7 +153970,7 @@ export class ApiClient {
         /** The GHSA (GitHub Security Advisory) identifier of the advisory. */
         ghsa_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         202: {
           body: unknown;
@@ -154028,7 +154031,7 @@ export class ApiClient {
         /** The GHSA (GitHub Security Advisory) identifier of the advisory. */
         ghsa_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         202: {
@@ -154087,7 +154090,7 @@ export class ApiClient {
         repo: string;
       };
       body: PrivateVulnerabilityReportCreate;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -154150,7 +154153,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -154209,7 +154212,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Returns a weekly aggregate of the number of additions and deletions pushed to a repository. */
         200: {
@@ -154262,7 +154265,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -154318,7 +154321,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -154370,7 +154373,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** The array order is oldest week (index 0) to most recent week. */
         200: {
@@ -154420,7 +154423,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** For example, `[2, 14, 25]` indicates that there were 25 total commits, during the 2:00pm hour on Tuesdays. All times are based on the time zone of individual commits. */
         200: {
@@ -154480,7 +154483,7 @@ export class ApiClient {
         /** A string label to differentiate this status from the status of other systems. This field is case-insensitive. */
         context?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -154541,7 +154544,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -154593,7 +154596,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** if you subscribe to the repository */
         200: {
@@ -154645,7 +154648,7 @@ export class ApiClient {
         /** Determines if all notifications should be blocked from this repository. */
         ignored?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -154686,7 +154689,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -154730,7 +154733,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -154787,7 +154790,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -154840,7 +154843,7 @@ export class ApiClient {
         /** An optional glob pattern to match against when enforcing tag protection. */
         pattern: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -154897,7 +154900,7 @@ export class ApiClient {
         /** The unique identifier of the tag protection. */
         tag_protection_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -154952,7 +154955,7 @@ export class ApiClient {
         repo: string;
         ref: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         302: {
@@ -155011,7 +155014,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -155071,7 +155074,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -155118,7 +155121,7 @@ export class ApiClient {
         /** An array of topics to add to the repository. Pass one or more topics to _replace_ the set of existing topics. Send an empty array (`[]`) to clear all topics from the repository. **Note:** Topic `names` will be saved as lowercase. */
         names: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -155173,7 +155176,7 @@ export class ApiClient {
         /** The time frame to display results for. */
         per?: "day" | "week";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -155220,7 +155223,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -155264,7 +155267,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -155312,7 +155315,7 @@ export class ApiClient {
         /** The time frame to display results for. */
         per?: "day" | "week";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -155367,7 +155370,7 @@ export class ApiClient {
         /** ID of the team or teams to add to the repository. Teams can only be added to organization-owned repositories. */
         team_ids?: number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         202: {
@@ -155412,7 +155415,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response if repository is enabled with vulnerability alerts */
         204: {
@@ -155454,7 +155457,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -155493,7 +155496,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -155539,7 +155542,7 @@ export class ApiClient {
         repo: string;
         ref: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         302: {
@@ -155602,7 +155605,7 @@ export class ApiClient {
         /** Either `true` to create a new private repository or `false` to create a new public one. */
         private?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -155659,7 +155662,7 @@ export class ApiClient {
         /** A repository ID. Only return repositories with an ID greater than this ID. */
         since?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -155739,7 +155742,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -155821,7 +155824,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -155912,7 +155915,7 @@ export class ApiClient {
          */
         advanced_search?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -156010,7 +156013,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -156094,7 +156097,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -156169,7 +156172,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -156240,7 +156243,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -156304,7 +156307,7 @@ export class ApiClient {
         /** The unique identifier of the team. */
         team_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -156359,7 +156362,7 @@ export class ApiClient {
         /** The ID of a team to set as the parent team. */
         parent_team_id?: number | null;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when the updated information already exists */
         200: {
@@ -156423,7 +156426,7 @@ export class ApiClient {
         /** The unique identifier of the team. */
         team_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -156481,7 +156484,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -156543,7 +156546,7 @@ export class ApiClient {
         /** Private posts are only visible to team members, organization owners, and team maintainers. Public posts are visible to all members of the organization. Set to `true` to create a private post. */
         private?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -156592,7 +156595,7 @@ export class ApiClient {
         /** The number that identifies the discussion. */
         discussion_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -156640,7 +156643,7 @@ export class ApiClient {
         /** The discussion post's body text. */
         body?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -156686,7 +156689,7 @@ export class ApiClient {
         /** The number that identifies the discussion. */
         discussion_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -156739,7 +156742,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -156800,7 +156803,7 @@ export class ApiClient {
         /** The discussion comment's body text. */
         body: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -156850,7 +156853,7 @@ export class ApiClient {
         /** The number that identifies the comment. */
         comment_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -156899,7 +156902,7 @@ export class ApiClient {
         /** The discussion comment's body text. */
         body: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -156947,7 +156950,7 @@ export class ApiClient {
         /** The number that identifies the comment. */
         comment_number: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -157003,7 +157006,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -157066,7 +157069,7 @@ export class ApiClient {
       body: {
         content: "+1" | "-1" | "laugh" | "confused" | "heart" | "hooray" | "rocket" | "eyes";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -157123,7 +157126,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -157183,7 +157186,7 @@ export class ApiClient {
       body: {
         content: "+1" | "-1" | "laugh" | "confused" | "heart" | "hooray" | "rocket" | "eyes";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -157233,7 +157236,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -157293,7 +157296,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -157353,7 +157356,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** if user is a member */
         204: {
@@ -157406,7 +157409,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -157466,7 +157469,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -157521,7 +157524,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -157577,7 +157580,7 @@ export class ApiClient {
       body?: {
         role?: "member" | "maintainer";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -157639,7 +157642,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -157690,7 +157693,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -157747,7 +157750,7 @@ export class ApiClient {
         /** The unique identifier of the project. */
         project_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -157794,7 +157797,7 @@ export class ApiClient {
       body?: {
         permission?: "read" | "write" | "admin";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -157857,7 +157860,7 @@ export class ApiClient {
         /** The unique identifier of the project. */
         project_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -157910,7 +157913,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -157973,7 +157976,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Alternative response with extra repository information */
         200: {
@@ -158031,7 +158034,7 @@ export class ApiClient {
       body?: {
         permission?: "pull" | "push" | "admin";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -158085,7 +158088,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -158131,7 +158134,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** if child teams exist */
         200: {
@@ -158187,7 +158190,7 @@ export class ApiClient {
      *
      * OAuth app tokens and personal access tokens (classic) need the `user` scope in order for the response to include private profile information.
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -158241,7 +158244,7 @@ export class ApiClient {
         /** The new short biography of the user. */
         bio?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -158311,7 +158314,7 @@ export class ApiClient {
         /** account_id parameter */
         account_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -158354,7 +158357,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -158408,7 +158411,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** If the user is blocked */
         204: {
@@ -158459,7 +158462,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -158513,7 +158516,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -158572,7 +158575,7 @@ export class ApiClient {
         /** ID of the Repository to filter on */
         repository_id?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -158682,7 +158685,7 @@ export class ApiClient {
           /** Time in minutes before codespace stops from inactivity */
           idle_timeout_minutes?: number;
         });
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response when the codespace was successfully created */
         201: {
@@ -158767,7 +158770,7 @@ export class ApiClient {
         /** The name of the codespace. */
         codespace_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -158833,7 +158836,7 @@ export class ApiClient {
         /** Recently opened folders inside the codespace. It is currently used by the clients to determine the folder path to load the codespace in. */
         recent_folders?: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -158886,7 +158889,7 @@ export class ApiClient {
         /** The name of the codespace. */
         codespace_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         202: {
           body: unknown;
@@ -158946,7 +158949,7 @@ export class ApiClient {
         /** The name of the codespace. */
         codespace_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         202: {
@@ -159007,7 +159010,7 @@ export class ApiClient {
         /** The ID of the export operation, or `latest`. Currently only `latest` is currently supported. */
         export_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -159051,7 +159054,7 @@ export class ApiClient {
         /** The name of the codespace. */
         codespace_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -159128,7 +159131,7 @@ export class ApiClient {
         /** Whether the new repository should be private. */
         private?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -159187,7 +159190,7 @@ export class ApiClient {
         /** The name of the codespace. */
         codespace_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -159259,7 +159262,7 @@ export class ApiClient {
         /** The name of the codespace. */
         codespace_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -159319,7 +159322,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -159375,7 +159378,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -159422,7 +159425,7 @@ export class ApiClient {
         /** An array of repository ids that can access the user secret. You can manage the list of selected repositories using the [List selected repositories for a user secret](https://docs.github.com/rest/codespaces/secrets#list-selected-repositories-for-a-user-secret), [Set selected repositories for a user secret](https://docs.github.com/rest/codespaces/secrets#set-selected-repositories-for-a-user-secret), and [Remove a selected repository from a user secret](https://docs.github.com/rest/codespaces/secrets#remove-a-selected-repository-from-a-user-secret) endpoints. */
         selected_repository_ids?: (number | string)[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response after successfully creating a secret */
         201: {
@@ -159480,7 +159483,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -159521,7 +159524,7 @@ export class ApiClient {
         /** The name of the secret. */
         secret_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -159587,7 +159590,7 @@ export class ApiClient {
         /** An array of repository ids for which a codespace can access the secret. You can manage the list of selected repositories using the [List selected repositories for a user secret](https://docs.github.com/rest/codespaces/secrets#list-selected-repositories-for-a-user-secret), [Add a selected repository to a user secret](https://docs.github.com/rest/codespaces/secrets#add-a-selected-repository-to-a-user-secret), and [Remove a selected repository from a user secret](https://docs.github.com/rest/codespaces/secrets#remove-a-selected-repository-from-a-user-secret) endpoints. */
         selected_repository_ids: number[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** No Content when repositories were added to the selected list */
         204: {
@@ -159648,7 +159651,7 @@ export class ApiClient {
         secret_name: string;
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** No Content when repository was added to the selected list */
         204: {
@@ -159704,7 +159707,7 @@ export class ApiClient {
         secret_name: string;
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** No Content when repository was removed from the selected list */
         204: {
@@ -159757,7 +159760,7 @@ export class ApiClient {
      *
      * OAuth app tokens and personal access tokens (classic) need the `codespace` or `codespace:secrets` scope to use this endpoint.
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -159785,7 +159788,7 @@ export class ApiClient {
      *
      * OAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint.
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -159815,7 +159818,7 @@ export class ApiClient {
       body: {
         visibility: "public" | "private";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -159877,7 +159880,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -159939,7 +159942,7 @@ export class ApiClient {
         }
         | string[]
         | string;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -160002,7 +160005,7 @@ export class ApiClient {
           | string[]
           | string;
       },
-    ): Promise<
+    ): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -160065,7 +160068,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -160125,7 +160128,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -160181,7 +160184,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** if the person is followed by the authenticated user */
         204: {
@@ -160234,7 +160237,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -160288,7 +160291,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -160345,7 +160348,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -160408,7 +160411,7 @@ export class ApiClient {
         /** A GPG key in ASCII-armored format. */
         armored_public_key: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -160468,7 +160471,7 @@ export class ApiClient {
         /** The unique identifier of the GPG key. */
         gpg_key_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -160520,7 +160523,7 @@ export class ApiClient {
         /** The unique identifier of the GPG key. */
         gpg_key_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -160583,7 +160586,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** You can find the permissions for the installation under the `permissions` key. */
         200: {
@@ -160657,7 +160660,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** The access the user has to each repository is included in the hash under the `permissions` key. */
         200: {
@@ -160730,7 +160733,7 @@ export class ApiClient {
         /** The unique identifier of the repository. */
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -160781,7 +160784,7 @@ export class ApiClient {
         /** The unique identifier of the repository. */
         repository_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -160831,7 +160834,7 @@ export class ApiClient {
      *
      * Shows which type of GitHub user can interact with your public repositories and when the restriction expires.
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Default response */
         200: {
@@ -160859,7 +160862,7 @@ export class ApiClient {
      *
      * Temporarily restricts which type of GitHub user can interact with your public repositories. Setting the interaction limit at the user level will overwrite any interaction limits that are set for individual repositories owned by the user.
      */
-    put: (request: { body: InteractionLimit }): Promise<
+    put: (request: { body: InteractionLimit }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -160890,7 +160893,7 @@ export class ApiClient {
      *
      * Removes any interaction restrictions from your public repositories.
      */
-    delete: (): Promise<
+    delete: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -160945,7 +160948,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -161009,7 +161012,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -161072,7 +161075,7 @@ export class ApiClient {
         /** The public SSH key to add to your GitHub account. */
         key: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -161132,7 +161135,7 @@ export class ApiClient {
         /** The unique identifier of the key. */
         key_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -161184,7 +161187,7 @@ export class ApiClient {
         /** The unique identifier of the key. */
         key_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -161239,7 +161242,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -161299,7 +161302,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -161357,7 +161360,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -161420,7 +161423,7 @@ export class ApiClient {
         /** The organization name. The name is not case sensitive. */
         org: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -161465,7 +161468,7 @@ export class ApiClient {
       body: {
         state: "active";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -161519,7 +161522,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -161590,7 +161593,7 @@ export class ApiClient {
         /** Repository path, owner and name */
         repositories: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -161661,7 +161664,7 @@ export class ApiClient {
       query?: {
         exclude?: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -161737,7 +161740,7 @@ export class ApiClient {
         /** The unique identifier of the migration. */
         migration_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         302: {
@@ -161783,7 +161786,7 @@ export class ApiClient {
         /** The unique identifier of the migration. */
         migration_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -161838,7 +161841,7 @@ export class ApiClient {
         /** repo_name parameter */
         repo_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -161898,7 +161901,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -161958,7 +161961,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -162029,7 +162032,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -162077,7 +162080,7 @@ export class ApiClient {
         /** The name of the package. */
         package_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -162116,7 +162119,7 @@ export class ApiClient {
         /** The name of the package. */
         package_name: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -162178,7 +162181,7 @@ export class ApiClient {
         /** package token */
         token?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -162243,7 +162246,7 @@ export class ApiClient {
         /** The state of the package, either active or deleted. */
         state?: "active" | "deleted";
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -162304,7 +162307,7 @@ export class ApiClient {
         /** Unique identifier of the package version. */
         package_version_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -162348,7 +162351,7 @@ export class ApiClient {
         /** Unique identifier of the package version. */
         package_version_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -162409,7 +162412,7 @@ export class ApiClient {
         /** Unique identifier of the package version. */
         package_version_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -162466,7 +162469,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -162551,7 +162554,7 @@ export class ApiClient {
         /** Only show repositories updated before the given time. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`. */
         before?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -162659,7 +162662,7 @@ export class ApiClient {
         /** Whether this repository acts as a template that can be used to generate new repositories. */
         is_template?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -162752,7 +162755,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -162812,7 +162815,7 @@ export class ApiClient {
         /** The unique identifier of the invitation. */
         invitation_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -162860,7 +162863,7 @@ export class ApiClient {
         /** The unique identifier of the invitation. */
         invitation_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -162915,7 +162918,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -162976,7 +162979,7 @@ export class ApiClient {
         /** Full URLs for the social media profiles to add. */
         account_urls: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -163032,7 +163035,7 @@ export class ApiClient {
         /** Full URLs for the social media profiles to delete. */
         account_urls: string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -163093,7 +163096,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -163156,7 +163159,7 @@ export class ApiClient {
         /** The public SSH key to add to your GitHub account. For more information, see "[Checking for existing SSH keys](https://docs.github.com/authentication/connecting-to-github-with-ssh/checking-for-existing-ssh-keys)." */
         key: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -163220,7 +163223,7 @@ export class ApiClient {
         /** The unique identifier of the SSH signing key. */
         ssh_signing_key_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -163272,7 +163275,7 @@ export class ApiClient {
         /** The unique identifier of the SSH signing key. */
         ssh_signing_key_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -163335,7 +163338,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -163397,7 +163400,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response if this repository is starred by you */
         204: {
@@ -163451,7 +163454,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -163504,7 +163507,7 @@ export class ApiClient {
         /** The name of the repository without the `.git` extension. The name is not case sensitive. */
         repo: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -163560,7 +163563,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -163625,7 +163628,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -163687,7 +163690,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -163743,7 +163746,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -163786,7 +163789,7 @@ export class ApiClient {
         /** Attestation ID */
         attestation_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -163857,7 +163860,7 @@ export class ApiClient {
          */
         predicate_type?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -163965,7 +163968,7 @@ export class ApiClient {
          */
         predicate_type?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -164059,7 +164062,7 @@ export class ApiClient {
         username: string;
       };
       body: unknown | unknown;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -164103,7 +164106,7 @@ export class ApiClient {
         /** Subject Digest */
         subject_digest: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -164152,7 +164155,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -164206,7 +164209,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -164258,7 +164261,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -164307,7 +164310,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -164354,7 +164357,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -164409,7 +164412,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -164457,7 +164460,7 @@ export class ApiClient {
         username: string;
         target_user: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** if the user follows the target user */
         204: {
@@ -164508,7 +164511,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -164568,7 +164571,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -164627,7 +164630,7 @@ export class ApiClient {
         /** Uses the ID for the `subject_type` you specified. **Required** when using `subject_type`. */
         subject_id?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -164678,7 +164681,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -164721,7 +164724,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -164778,7 +164781,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -164844,7 +164847,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -164905,7 +164908,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -164949,7 +164952,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -165016,7 +165019,7 @@ export class ApiClient {
         /** package token */
         token?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -165076,7 +165079,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -165135,7 +165138,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -165182,7 +165185,7 @@ export class ApiClient {
         /** Unique identifier of the package version. */
         package_version_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -165248,7 +165251,7 @@ export class ApiClient {
         /** Unique identifier of the package version. */
         package_version_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -165310,7 +165313,7 @@ export class ApiClient {
         /** The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         per_page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -165375,7 +165378,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -165443,7 +165446,7 @@ export class ApiClient {
         /** A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results after this cursor. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         after?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -165510,7 +165513,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -165587,7 +165590,7 @@ export class ApiClient {
          */
         fields?: string | string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -165656,7 +165659,7 @@ export class ApiClient {
         /** The numeric ID of the issue or pull request to add to the project. */
         id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         201: {
@@ -165722,7 +165725,7 @@ export class ApiClient {
          */
         fields?: string | string[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -165793,7 +165796,7 @@ export class ApiClient {
           value: string | number;
         })[];
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -165855,7 +165858,7 @@ export class ApiClient {
         /** The unique identifier of the project item. */
         item_id: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         204: {
@@ -165912,7 +165915,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -165960,7 +165963,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -166013,7 +166016,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -166069,7 +166072,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -166110,7 +166113,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -166161,7 +166164,7 @@ export class ApiClient {
         /** The product name to query usage for. The name is not case sensitive. */
         product?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -166228,7 +166231,7 @@ export class ApiClient {
         /** The handle for the GitHub user account. */
         username: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -166275,7 +166278,7 @@ export class ApiClient {
         /** If specified, only return results for a single day. The value of `day` is an integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and `month` are used. */
         day?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -166351,7 +166354,7 @@ export class ApiClient {
         /** The SKU to query for usage. */
         sku?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -166421,7 +166424,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -166476,7 +166479,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -166539,7 +166542,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -166596,7 +166599,7 @@ export class ApiClient {
         /** The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)." */
         page?: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -166640,7 +166643,7 @@ export class ApiClient {
      *
      * Get all supported GitHub API versions.
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {
@@ -166671,7 +166674,7 @@ export class ApiClient {
      *
      * Get a random sentence from the Zen of GitHub
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Response */
         200: {

@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -66,7 +67,7 @@ export const getConnections = (config: OpenAPIClientConfig, request?: {
     /** Filter by authEventId */
     authEventId?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success - return response of type Connections array with 0 to n Connection */
     200: {
@@ -101,7 +102,7 @@ export const deleteConnection = (config: OpenAPIClientConfig, request: {
     /** Unique identifier for retrieving single object */
     id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success - connection has been deleted no content returned */
     204: {

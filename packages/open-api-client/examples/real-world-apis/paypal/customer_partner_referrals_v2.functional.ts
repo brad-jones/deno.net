@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -1526,7 +1527,7 @@ export const ReferralDataResponseSchema: z.ZodType<ReferralDataResponse> = z.obj
 export const partnerReferralsCreate = (
   config: OpenAPIClientConfig,
   request: { body: ReferralData },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `201 Created` status code and a JSON response body that contains a [HATEOAS link](/docs/api/overview/#hateoas-links) to show the referral data and an `action_url` to which you redirect the customer in a browser to complete the signup process. The `partner_referral_id` token is appended to the URL. */
     201: {
@@ -1588,7 +1589,7 @@ export const partnerReferralsRead = (config: OpenAPIClientConfig, request: {
     /** The ID of the partner-referrals data for which to show details. */
     partner_referral_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows referral data. */
     200: {

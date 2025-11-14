@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -393,7 +394,7 @@ export const WebProfileListSchema: z.ZodType<WebProfileList> = z.array(WebProfil
  *
  * Lists the latest 20 web experience profiles for a merchant or subject. To show details for these or additional profiles, you can show web experience profile details by ID.
  */
-export const webProfileGetList = (config: OpenAPIClientConfig): Promise<
+export const webProfileGetList = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that lists the latest 20 profiles that the merchant owns, with details. To show details for these or additional profiles, you can show web experience profile details by ID. */
     200: {
@@ -432,7 +433,7 @@ export const webProfileCreate = (config: OpenAPIClientConfig, request: {
     /** The server stores keys for three hours. */
     "PayPal-Request-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request, with or without the optional <code>PayPal-Request-Id</code> request header, returns the HTTP <code>201 Created</code> status code and a JSON response body that shows the profile details and the ID of the profile. Any subsequent calls with the same <code>PayPal-Request-Id</code> request header value within a three-hour window returns the HTTP <code>200 OK</code> status code and a JSON response body that shows the profile details and the ID of the profile. */
     200: {
@@ -482,7 +483,7 @@ export const webProfileGet = (config: OpenAPIClientConfig, request: {
     /** The ID of the profile to delete. */
     id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows the profile details. */
     200: {
@@ -527,7 +528,7 @@ export const webProfileUpdate = (config: OpenAPIClientConfig, request: {
     /** The ID of the profile to delete. */
     id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
     204: {
@@ -572,7 +573,7 @@ export const webProfileDelete = (config: OpenAPIClientConfig, request: {
     /** The ID of the profile to delete. */
     id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
     204: {
@@ -618,7 +619,7 @@ export const webProfilePartialUpdate = (config: OpenAPIClientConfig, request: {
     id: string;
   };
   body: PatchRequest;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
     204: {

@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -52,7 +53,7 @@ export class ApiClient {
      *
      * Retrieves the current state of the board and the winner.
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** OK */
         200: {
@@ -85,7 +86,7 @@ export class ApiClient {
         /** Board column (horizontal coordinate) */
         column: Coordinate;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** OK */
         200: {
@@ -128,7 +129,7 @@ export class ApiClient {
         column: Coordinate;
       };
       body: Mark;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** OK */
         200: {

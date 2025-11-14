@@ -127,6 +127,7 @@ export class FunctionalClientGenerator extends BaseClientGenerator {
         openAPIFetch,
         createCustomClient,
         type OpenAPIClientConfig,
+        type OpenAPIResponsePromise,
         type OpenAPIResponses
       } from "${this.clientImport}";
     `);
@@ -280,7 +281,7 @@ export class FunctionalClientGenerator extends BaseClientGenerator {
 
     const signature = `export const ${operationName} = (${
       params.join(", ")
-    }): Promise<OpenAPIResponses<${responseType}>> =>`;
+    }): OpenAPIResponsePromise<OpenAPIResponses<${responseType}>> =>`;
 
     return { signature, hasRequest };
   }

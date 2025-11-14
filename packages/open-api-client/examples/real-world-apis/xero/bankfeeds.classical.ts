@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -1109,7 +1110,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "Xero-Tenant-Id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria returned with pagination and items array */
         202: {
@@ -1155,7 +1156,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: FeedConnections;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** success new feed connection(s)response */
         202: {
@@ -1203,7 +1204,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "Xero-Tenant-Id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** success returns a FeedConnection object matching the id in response */
         200: {
@@ -1251,7 +1252,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: FeedConnections;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success response for deleted feed connection */
         202: {
@@ -1303,7 +1304,7 @@ export class ApiClient {
         "Xero-Application-Id"?: string;
         "Xero-User-Id"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** success returns Statements array of objects response */
         200: {
@@ -1349,7 +1350,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Statements;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success returns Statements array of objects in response */
         202: {
@@ -1422,7 +1423,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "Xero-Tenant-Id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching id for single statement */
         200: {

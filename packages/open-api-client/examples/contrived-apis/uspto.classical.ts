@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -51,7 +52,7 @@ export class ApiClient {
     /**
      * List available data sets
      */
-    get: (): Promise<
+    get: (): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Returns a list of data sets */
         200: {
@@ -84,7 +85,7 @@ export class ApiClient {
         /** Version of the dataset. */
         version: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** The dataset API for the given version is found and it is accessible to consume. */
         200: {
@@ -130,7 +131,7 @@ export class ApiClient {
         dataset: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** successful operation */
         200: {

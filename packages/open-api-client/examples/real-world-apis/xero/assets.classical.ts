@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -318,7 +319,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -376,7 +377,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Asset;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** return single object - create new asset */
         200: {
@@ -453,7 +454,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -498,7 +499,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -540,7 +541,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: AssetType;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** results single object -  created fixed type */
         200: {
@@ -617,7 +618,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {

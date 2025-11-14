@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -323,7 +324,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -373,7 +374,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A dictionary of the object Ids and associations count */
         200: {
@@ -421,7 +422,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -462,7 +463,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request */
         201: {
@@ -507,7 +508,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -551,7 +552,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: FileObject;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request */
         200: {
@@ -599,7 +600,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Successful deletion - return response 204 no content */
         204: {
@@ -643,7 +644,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -687,7 +688,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Association;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request */
         201: {
@@ -740,7 +741,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Successful deletion - return response 204 no content */
         204: {
@@ -785,7 +786,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** returns the byte array of the specific file based on id */
         200: {
@@ -830,7 +831,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request */
         201: {
@@ -880,7 +881,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -920,7 +921,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Folder;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -968,7 +969,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -1012,7 +1013,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Folder;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** return the updated object */
         200: {
@@ -1060,7 +1061,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Successful deletion - return response 204 no content */
         204: {
@@ -1100,7 +1101,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {

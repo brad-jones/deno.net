@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -47,7 +48,7 @@ export const getUserByName = (config: OpenAPIClientConfig, request: {
   path: {
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** The User */
     200: {
@@ -76,7 +77,7 @@ export const getRepositoriesByOwner = (config: OpenAPIClientConfig, request: {
   path: {
     username: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** repositories owned by the supplied user */
     200: {
@@ -106,7 +107,7 @@ export const getRepository = (config: OpenAPIClientConfig, request: {
     username: string;
     slug: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** The repository */
     200: {
@@ -140,7 +141,7 @@ export const getPullRequestsByRepository = (config: OpenAPIClientConfig, request
   query?: {
     state?: "open" | "merged" | "declined";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** an array of pull request objects */
     200: {
@@ -175,7 +176,7 @@ export const getPullRequestsById = (config: OpenAPIClientConfig, request: {
     slug: string;
     pid: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** a pull request object */
     200: {
@@ -208,7 +209,7 @@ export const mergePullRequest = (config: OpenAPIClientConfig, request: {
     slug: string;
     pid: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** the PR was successfully merged */
     204: {

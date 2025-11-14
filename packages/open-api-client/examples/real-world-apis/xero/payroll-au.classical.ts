@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -2563,7 +2564,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -2609,7 +2610,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Employee[];
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request */
         200: {
@@ -2655,7 +2656,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "Xero-Tenant-Id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -2699,7 +2700,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Employee[];
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request */
         200: {
@@ -2749,7 +2750,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -2795,7 +2796,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: LeaveApplication[];
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request */
         200: {
@@ -2841,7 +2842,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "Xero-Tenant-Id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -2883,7 +2884,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: LeaveApplication[];
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request */
         200: {
@@ -2934,7 +2935,7 @@ export class ApiClient {
         /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
         "Idempotency-Key"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Application successfully approved */
         200: {
@@ -2984,7 +2985,7 @@ export class ApiClient {
         /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
         "Idempotency-Key"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Application successfully rejected */
         200: {
@@ -3038,7 +3039,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -3094,7 +3095,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -3140,7 +3141,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: PayItem;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request - currently returns empty array for JSON */
         200: {
@@ -3192,7 +3193,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -3238,7 +3239,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: PayrollCalendar[];
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request */
         200: {
@@ -3284,7 +3285,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "Xero-Tenant-Id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -3337,7 +3338,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -3383,7 +3384,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: PayRun[];
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request */
         200: {
@@ -3429,7 +3430,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "Xero-Tenant-Id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -3473,7 +3474,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: PayRun[];
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request */
         200: {
@@ -3517,7 +3518,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "Xero-Tenant-Id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -3561,7 +3562,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: PayslipLines[];
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request - currently returns empty array for JSON */
         200: {
@@ -3601,7 +3602,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "Xero-Tenant-Id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** payroll settings */
         200: {
@@ -3642,7 +3643,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "Xero-Tenant-Id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -3696,7 +3697,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -3742,7 +3743,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: SuperFund[];
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request */
         200: {
@@ -3788,7 +3789,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "Xero-Tenant-Id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -3832,7 +3833,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: SuperFund[];
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request */
         200: {
@@ -3882,7 +3883,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -3928,7 +3929,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Timesheet[];
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request */
         200: {
@@ -3974,7 +3975,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "Xero-Tenant-Id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** search results matching criteria */
         200: {
@@ -4018,7 +4019,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Timesheet[];
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request */
         200: {

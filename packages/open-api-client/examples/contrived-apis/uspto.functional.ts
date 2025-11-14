@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -44,7 +45,7 @@ export const DataSetListSchema: z.ZodType<DataSetList> = z.object({
 /**
  * List available data sets
  */
-export const listDataSets = (config: OpenAPIClientConfig): Promise<
+export const listDataSets = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Returns a list of data sets */
     200: {
@@ -75,7 +76,7 @@ export const listSearchableFields = (config: OpenAPIClientConfig, request: {
     /** Version of the dataset. */
     version: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** The dataset API for the given version is found and it is accessible to consume. */
     200: {
@@ -119,7 +120,7 @@ export const performSearch = (config: OpenAPIClientConfig, request: {
     dataset: string;
   };
   body: "WARN: application/json is the only supported content type";
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** successful operation */
     200: {

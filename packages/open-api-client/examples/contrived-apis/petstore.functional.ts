@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -45,7 +46,7 @@ export const listPets = (config: OpenAPIClientConfig, request?: {
     /** How many items to return at one time (max 100) */
     limit?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A paged array of pets */
     200: {
@@ -87,7 +88,10 @@ export const listPets = (config: OpenAPIClientConfig, request?: {
 /**
  * Create a pet
  */
-export const createPets = (config: OpenAPIClientConfig, request: { body: Pet }): Promise<
+export const createPets = (
+  config: OpenAPIClientConfig,
+  request: { body: Pet },
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Null response */
     201: {
@@ -123,7 +127,7 @@ export const showPetById = (config: OpenAPIClientConfig, request: {
     /** The id of the pet to retrieve */
     petId: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Expected response to a valid request */
     200: {

@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -2189,7 +2190,7 @@ export class ApiClient {
         /** Encrypted PayPal Account ID of the buyer or seller. */
         account_id?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP 200 OK status code and a JSON response body that lists tracking information that meets search criteria. */
         200: {
@@ -2225,7 +2226,7 @@ export class ApiClient {
      *
      * Adds tracking information for a PayPal transaction.
      */
-    post: (request?: {}): Promise<
+    post: (request?: {}): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP 200 OK status code and a JSON response body that shows tracking information. */
         200: {
@@ -2258,7 +2259,7 @@ export class ApiClient {
      *
      * <blockquote><strong>Deprecation notice:</strong> Adding tracking details for an order through <code>/v1/shipping/trackers-batch</code> is deprecated as its a legacy way of integration. Use the new <a href="/docs/tracking/orders-api/integrate/">Orders v2 API</a> to share tracking details with PayPal.</blockquote>Adds tracking information, with or without tracking numbers, for multiple PayPal transactions. Accepts up to 20 tracking IDs. For more information, see <a href="/docs/tracking/tracking-api/integrate/#link-addtrackinginformationwithtrackingnumbers">Add tracking information with tracking numbers</a> and <a href="/docs/tracking/tracking-api/integrate/#link-addtrackinginformationwithouttrackingnumbers">Add tracking information without tracking numbers</a>.
      */
-    post: (request?: {}): Promise<
+    post: (request?: {}): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP 200 OK status code and a JSON response body that shows tracking information. */
         200: {
@@ -2320,7 +2321,7 @@ export class ApiClient {
         /** Encrypted PayPal Account ID of the buyer or seller. */
         account_id?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows tracking information. */
         200: {
@@ -2363,7 +2364,7 @@ export class ApiClient {
         id: string;
       };
       body: Tracker;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP 204 OK status code with no JSON response body. */
         204: {

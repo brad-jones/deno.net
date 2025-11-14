@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -1300,7 +1301,7 @@ export class ApiClient {
         /** A boolean indicating total number of items (total_items) and pages (total_pages) are expected to be returned in the response. */
         total_required?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Successful execution. */
         200: {
@@ -1353,7 +1354,7 @@ export class ApiClient {
         "PayPal-Request-Id"?: string;
       };
       body: PaymentTokenRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Idempotent response for a successful creation of payment token. */
         200: {
@@ -1421,7 +1422,7 @@ export class ApiClient {
         /** ID of the setup token. */
         id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Successful execution. */
         200: {
@@ -1475,7 +1476,7 @@ export class ApiClient {
         /** ID of the setup token. */
         id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** The server has successfully executed the method, but there is no entity body to return. */
         204: {
@@ -1528,7 +1529,7 @@ export class ApiClient {
         "PayPal-Request-Id"?: string;
       };
       body: SetupTokenRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Idempotent response for a successful creation of setup token. */
         200: {
@@ -1591,7 +1592,7 @@ export class ApiClient {
         /** ID of the setup token. */
         id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Found requested setup-token, returned a payment method associated with the token. */
         200: {

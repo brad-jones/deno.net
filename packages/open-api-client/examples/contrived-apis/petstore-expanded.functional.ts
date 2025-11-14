@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -52,7 +53,7 @@ export const findPets = (config: OpenAPIClientConfig, request?: {
     /** maximum number of results to return */
     limit?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** pet response */
     200: {
@@ -86,7 +87,10 @@ export const findPets = (config: OpenAPIClientConfig, request?: {
 /**
  * Creates a new pet in the store. Duplicates are allowed
  */
-export const addPet = (config: OpenAPIClientConfig, request: { body: NewPet }): Promise<
+export const addPet = (
+  config: OpenAPIClientConfig,
+  request: { body: NewPet },
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** pet response */
     200: {
@@ -122,7 +126,7 @@ export const findPetById = (config: OpenAPIClientConfig, request: {
     /** ID of pet to fetch */
     id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** pet response */
     200: {
@@ -160,7 +164,7 @@ export const deletePet = (config: OpenAPIClientConfig, request: {
     /** ID of pet to delete */
     id: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** pet deleted */
     204: {

@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -96,7 +97,7 @@ export const postAuthRegister = (config: OpenAPIClientConfig, request: {
     password: string;
     name?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** User created */
     201: {
@@ -136,7 +137,7 @@ export const postAuthLogin = (config: OpenAPIClientConfig, request: {
     email: string;
     password: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Authenticated successfully */
     200: {
@@ -177,7 +178,7 @@ export const getProducts = (config: OpenAPIClientConfig, request?: {
     min_price?: number;
     max_price?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** List of products */
     200: {
@@ -212,7 +213,7 @@ export const getProductsId = (config: OpenAPIClientConfig, request: {
   path: {
     id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Product details */
     200: {
@@ -240,7 +241,7 @@ export const getProductsId = (config: OpenAPIClientConfig, request: {
 /**
  * Get current user's cart
  */
-export const getCart = (config: OpenAPIClientConfig): Promise<
+export const getCart = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Your cart items */
     200: {
@@ -262,7 +263,10 @@ export const getCart = (config: OpenAPIClientConfig): Promise<
 /**
  * Add item to cart
  */
-export const postCartItems = (config: OpenAPIClientConfig, request: { body: CartItem }): Promise<
+export const postCartItems = (
+  config: OpenAPIClientConfig,
+  request: { body: CartItem },
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Item added to cart */
     200: {
@@ -293,7 +297,7 @@ export const postCheckout = (config: OpenAPIClientConfig, request: {
     address_id: string;
     payment_method_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Order created */
     201: {
@@ -322,7 +326,7 @@ export const postCheckout = (config: OpenAPIClientConfig, request: {
 /**
  * List your past orders
  */
-export const getOrders = (config: OpenAPIClientConfig): Promise<
+export const getOrders = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Order history */
     200: {
@@ -348,7 +352,7 @@ export const getOrdersOrderid = (config: OpenAPIClientConfig, request: {
   path: {
     orderId: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Order detail */
     200: {
@@ -376,7 +380,7 @@ export const getOrdersOrderid = (config: OpenAPIClientConfig, request: {
 /**
  * Get your saved addresses
  */
-export const getAddresses = (config: OpenAPIClientConfig): Promise<
+export const getAddresses = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** List of saved addresses */
     200: {
@@ -398,7 +402,10 @@ export const getAddresses = (config: OpenAPIClientConfig): Promise<
 /**
  * Add a new address
  */
-export const postAddresses = (config: OpenAPIClientConfig, request: { body: Address }): Promise<
+export const postAddresses = (
+  config: OpenAPIClientConfig,
+  request: { body: Address },
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Address added */
     201: {

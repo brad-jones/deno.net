@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -5412,7 +5413,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Accounts array with 0 to n Account */
         200: {
@@ -5452,7 +5453,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Account;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - created new Account and return response of type Accounts array with new Account */
         200: {
@@ -5498,7 +5499,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Accounts array with one Account */
         200: {
@@ -5540,7 +5541,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Accounts;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - update existing Account and return response of type Accounts array with updated Account */
         200: {
@@ -5586,7 +5587,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - delete existing Account and return response of type Accounts array with deleted Account */
         200: {
@@ -5633,7 +5634,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array of Attachment */
         200: {
@@ -5679,7 +5680,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for Account as binary data */
         200: {
@@ -5727,7 +5728,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for Account as binary data */
         200: {
@@ -5773,7 +5774,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array of Attachment */
         200: {
@@ -5824,7 +5825,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array of Attachment */
         200: {
@@ -5882,7 +5883,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type BankTransactions array with 0 to n BankTransaction */
         200: {
@@ -5931,7 +5932,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: BankTransactions;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type BankTransactions array with new BankTransaction */
         200: {
@@ -5982,7 +5983,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: BankTransactions;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type BankTransactions array with new BankTransaction */
         200: {
@@ -6035,7 +6036,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type BankTransactions array with a specific BankTransaction */
         200: {
@@ -6084,7 +6085,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: BankTransactions;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type BankTransactions array with updated BankTransaction */
         200: {
@@ -6135,7 +6136,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array with 0 to n Attachment */
         200: {
@@ -6181,7 +6182,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for BankTransaction as binary data */
         200: {
@@ -6229,7 +6230,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for BankTransaction as binary data */
         200: {
@@ -6275,7 +6276,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of Attachments array of Attachment */
         200: {
@@ -6325,7 +6326,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of Attachments array of Attachment */
         200: {
@@ -6373,7 +6374,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -6413,7 +6414,7 @@ export class ApiClient {
         /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
         "Idempotency-Key"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -6463,7 +6464,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of BankTransfers array of 0 to N BankTransfer */
         200: {
@@ -6503,7 +6504,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: BankTransfers;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of BankTransfers array of one BankTransfer */
         200: {
@@ -6548,7 +6549,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of BankTransfers array with one BankTransfer */
         200: {
@@ -6590,7 +6591,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of Attachments array of 0 to N Attachment for a Bank Transfer */
         200: {
@@ -6636,7 +6637,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of binary data from the Attachment to a Bank Transfer */
         200: {
@@ -6684,7 +6685,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of binary data from the Attachment to a Bank Transfer */
         200: {
@@ -6727,7 +6728,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of Attachments array of 0 to N Attachment for a Bank Transfer */
         200: {
@@ -6774,7 +6775,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of Attachments array of 0 to N Attachment for a Bank Transfer */
         200: {
@@ -6822,7 +6823,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -6862,7 +6863,7 @@ export class ApiClient {
         /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
         "Idempotency-Key"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -6912,7 +6913,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type BatchPayments array of BatchPayment objects */
         200: {
@@ -6952,7 +6953,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: BatchPaymentDelete;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type BatchPayments array for updated BatchPayment */
         200: {
@@ -6997,7 +6998,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: BatchPayments;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type BatchPayments array of BatchPayment objects */
         200: {
@@ -7045,7 +7046,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type BatchPayments array with matching batch payment Id */
         200: {
@@ -7087,7 +7088,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: BatchPaymentDeleteByUrlParam;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type BatchPayments array for updated BatchPayment */
         200: {
@@ -7135,7 +7136,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of HistoryRecords array of 0 to N HistoryRecord */
         200: {
@@ -7176,7 +7177,7 @@ export class ApiClient {
         /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
         "Idempotency-Key"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type HistoryRecords array of HistoryRecord objects */
         200: {
@@ -7219,7 +7220,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type BrandingThemes */
         200: {
@@ -7258,7 +7259,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type BrandingThemes with one BrandingTheme */
         200: {
@@ -7300,7 +7301,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type PaymentServices array with 0 to N PaymentService */
         200: {
@@ -7342,7 +7343,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: PaymentServices;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type PaymentServices array with newly created PaymentService */
         200: {
@@ -7394,7 +7395,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Budgets array with 0 to N Budgets */
         200: {
@@ -7445,7 +7446,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Invoices array with specified Invoices */
         200: {
@@ -7493,7 +7494,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Contact Groups array of Contact Group */
         200: {
@@ -7532,7 +7533,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: ContactGroups;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Contact Groups array of newly created Contact Group */
         200: {
@@ -7578,7 +7579,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Contact Groups array with a specific Contact Group */
         200: {
@@ -7620,7 +7621,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: ContactGroups;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Contact Groups array of updated Contact Group */
         200: {
@@ -7671,7 +7672,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Contacts;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Contacts array of added Contacts */
         200: {
@@ -7716,7 +7717,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response 204 no content */
         204: {
@@ -7760,7 +7761,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response 204 no content */
         204: {
@@ -7823,7 +7824,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Contacts array with 0 to N Contact */
         200: {
@@ -7874,7 +7875,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Contacts;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Contacts array with newly created Contact */
         200: {
@@ -7923,7 +7924,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Contacts;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Contacts array with newly created Contact */
         200: {
@@ -7972,7 +7973,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Contacts array with a unique Contact */
         200: {
@@ -8014,7 +8015,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Contacts;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Contacts array with an updated Contact */
         200: {
@@ -8062,7 +8063,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array with 0 to N Attachment */
         200: {
@@ -8108,7 +8109,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for Contact as binary data */
         200: {
@@ -8156,7 +8157,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for Contact as binary data */
         200: {
@@ -8199,7 +8200,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array with an updated Attachment */
         200: {
@@ -8246,7 +8247,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array with an newly created Attachment */
         200: {
@@ -8294,7 +8295,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type CISSettings for a specific Contact */
         200: {
@@ -8336,7 +8337,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -8376,7 +8377,7 @@ export class ApiClient {
         /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
         "Idempotency-Key"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -8422,7 +8423,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Contacts array with a unique Contact */
         200: {
@@ -8474,7 +8475,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Credit Notes array of CreditNote */
         200: {
@@ -8523,7 +8524,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: CreditNotes;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Credit Notes array of newly created CreditNote */
         200: {
@@ -8574,7 +8575,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: CreditNotes;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Credit Notes array of newly created CreditNote */
         200: {
@@ -8627,7 +8628,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Credit Notes array with a unique CreditNote */
         200: {
@@ -8676,7 +8677,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: CreditNotes;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Credit Notes array with updated CreditNote */
         200: {
@@ -8734,7 +8735,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Allocations;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Allocations array with newly created Allocation for specific Credit Note */
         200: {
@@ -8787,7 +8788,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Allocation with the isDeleted flag as true */
         200: {
@@ -8830,7 +8831,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array with all Attachment for specific Credit Note */
         200: {
@@ -8876,7 +8877,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for Credit Note as binary data */
         200: {
@@ -8924,7 +8925,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for Credit Note as binary data */
         200: {
@@ -8970,7 +8971,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array with updated Attachment for specific Credit Note */
         200: {
@@ -9024,7 +9025,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array with newly created Attachment for specific Credit Note */
         200: {
@@ -9075,7 +9076,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -9115,7 +9116,7 @@ export class ApiClient {
         /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
         "Idempotency-Key"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -9161,7 +9162,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of binary data from the Attachment to a Credit Note */
         200: {
@@ -9205,7 +9206,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Currencies array with all Currencies */
         200: {
@@ -9244,7 +9245,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Currency;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Unsupported - return response incorrect exception, API is not able to create new Currency */
         200: {
@@ -9291,7 +9292,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Employees array with all Employee */
         200: {
@@ -9337,7 +9338,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Employees;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Employees array with new Employee */
         200: {
@@ -9387,7 +9388,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Employees;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Employees array with new Employee */
         200: {
@@ -9437,7 +9438,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Employees array with specified Employee */
         200: {
@@ -9483,7 +9484,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type ExpenseClaims array with all ExpenseClaims */
         200: {
@@ -9523,7 +9524,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: ExpenseClaims;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type ExpenseClaims array with newly created ExpenseClaim */
         200: {
@@ -9568,7 +9569,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type ExpenseClaims array with specified ExpenseClaim */
         200: {
@@ -9610,7 +9611,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: ExpenseClaims;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type ExpenseClaims array with updated ExpenseClaim */
         200: {
@@ -9658,7 +9659,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -9698,7 +9699,7 @@ export class ApiClient {
         /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
         "Idempotency-Key"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -9736,7 +9737,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of Invoice Reminders */
         200: {
@@ -9801,7 +9802,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Invoices array with all Invoices */
         200: {
@@ -9864,7 +9865,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Invoices;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Invoices array with newly created Invoice */
         200: {
@@ -9915,7 +9916,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Invoices;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Invoices array with newly created Invoice */
         200: {
@@ -9968,7 +9969,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Invoices array with specified Invoices */
         200: {
@@ -10017,7 +10018,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Invoices;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Invoices array with updated Invoice */
         200: {
@@ -10068,7 +10069,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array of Attachments for specified Invoices */
         200: {
@@ -10114,7 +10115,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for Invoice as binary data */
         200: {
@@ -10162,7 +10163,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for Invoice as binary data */
         200: {
@@ -10208,7 +10209,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array with updated Attachment */
         200: {
@@ -10262,7 +10263,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array with newly created Attachment */
         200: {
@@ -10316,7 +10317,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: RequestEmpty;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response 204 no content */
         204: {
@@ -10364,7 +10365,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -10404,7 +10405,7 @@ export class ApiClient {
         /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
         "Idempotency-Key"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -10450,7 +10451,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type OnlineInvoice array with one OnlineInvoice */
         200: {
@@ -10492,7 +10493,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of byte array pdf version of specified Invoices */
         200: {
@@ -10540,7 +10541,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Items array with all Item */
         200: {
@@ -10587,7 +10588,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Items;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Items array with newly created Item */
         200: {
@@ -10638,7 +10639,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Items;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Items array with newly created Item */
         200: {
@@ -10691,7 +10692,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Items array with specified Item */
         200: {
@@ -10740,7 +10741,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Items;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Items array with updated Item */
         200: {
@@ -10788,7 +10789,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response 204 no content */
         204: {
@@ -10834,7 +10835,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -10874,7 +10875,7 @@ export class ApiClient {
         /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
         "Idempotency-Key"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -10920,7 +10921,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Journals array with all Journals */
         200: {
@@ -10964,7 +10965,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Journals array with specified Journal */
         200: {
@@ -11006,7 +11007,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Journals array with specified Journal */
         200: {
@@ -11058,7 +11059,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type LinkedTransactions array with all LinkedTransaction */
         200: {
@@ -11101,7 +11102,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: LinkedTransaction;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type LinkedTransactions array with newly created LinkedTransaction */
         200: {
@@ -11146,7 +11147,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type LinkedTransactions array with a specified LinkedTransaction */
         200: {
@@ -11188,7 +11189,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: LinkedTransactions;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type LinkedTransactions array with updated LinkedTransaction */
         200: {
@@ -11234,7 +11235,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response 204 no content */
         204: {
@@ -11288,7 +11289,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type ManualJournals array with a all ManualJournals */
         200: {
@@ -11334,7 +11335,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: ManualJournals;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type ManualJournals array with newly created ManualJournal */
         200: {
@@ -11382,7 +11383,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: ManualJournals;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type ManualJournals array with newly created ManualJournal */
         200: {
@@ -11430,7 +11431,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type ManualJournals array with a specified ManualJournals */
         200: {
@@ -11472,7 +11473,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: ManualJournals;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type ManualJournals array with an updated ManualJournal */
         200: {
@@ -11520,7 +11521,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array with all Attachments for a ManualJournals */
         200: {
@@ -11566,7 +11567,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for Manual Journal as binary data */
         200: {
@@ -11614,7 +11615,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for Manual Journal as binary data */
         200: {
@@ -11660,7 +11661,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array with an update Attachment for a ManualJournals */
         200: {
@@ -11710,7 +11711,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array with a newly created Attachment for a ManualJournals */
         200: {
@@ -11758,7 +11759,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -11798,7 +11799,7 @@ export class ApiClient {
         /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
         "Idempotency-Key"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -11840,7 +11841,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Organisation array with all Organisation */
         200: {
@@ -11879,7 +11880,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Organisation array with specified Organisation */
         200: {
@@ -11917,7 +11918,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Actions array with all key actions */
         200: {
@@ -11966,7 +11967,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Overpayments array with all Overpayments */
         200: {
@@ -12013,7 +12014,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Overpayments array with specified Overpayments */
         200: {
@@ -12062,7 +12063,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Allocations;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Allocations array with all Allocation for Overpayments */
         200: {
@@ -12115,7 +12116,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Allocation with the isDeleted flag as true */
         200: {
@@ -12158,7 +12159,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -12198,7 +12199,7 @@ export class ApiClient {
         /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
         "Idempotency-Key"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -12253,7 +12254,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Payments array for all Payments */
         200: {
@@ -12295,7 +12296,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Payment;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Payments array for newly created Payment */
         200: {
@@ -12340,7 +12341,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Payments;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Payments array for newly created Payment */
         200: {
@@ -12388,7 +12389,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Payments array for specified Payment */
         200: {
@@ -12430,7 +12431,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: PaymentDelete;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Payments array for updated Payment */
         200: {
@@ -12478,7 +12479,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -12518,7 +12519,7 @@ export class ApiClient {
         /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
         "Idempotency-Key"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -12561,7 +12562,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type PaymentServices array for all PaymentService */
         200: {
@@ -12596,7 +12597,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: PaymentServices;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type PaymentServices array for newly created PaymentService */
         200: {
@@ -12651,7 +12652,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Prepayments array for all Prepayment */
         200: {
@@ -12698,7 +12699,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Prepayments array for a specified Prepayment */
         200: {
@@ -12747,7 +12748,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Allocations;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Allocations array of Allocation for all Prepayment */
         200: {
@@ -12800,7 +12801,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Allocation with the isDeleted flag as true */
         200: {
@@ -12843,7 +12844,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -12883,7 +12884,7 @@ export class ApiClient {
         /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
         "Idempotency-Key"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -12942,7 +12943,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type PurchaseOrder array of all PurchaseOrder */
         200: {
@@ -12990,7 +12991,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: PurchaseOrders;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type PurchaseOrder array for specified PurchaseOrder */
         200: {
@@ -13038,7 +13039,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: PurchaseOrders;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type PurchaseOrder array for specified PurchaseOrder */
         200: {
@@ -13086,7 +13087,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type PurchaseOrder array for specified PurchaseOrder */
         200: {
@@ -13128,7 +13129,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: PurchaseOrders;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type PurchaseOrder array for updated PurchaseOrder */
         200: {
@@ -13176,7 +13177,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array of Purchase Orders */
         200: {
@@ -13222,7 +13223,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for Account as binary data */
         200: {
@@ -13270,7 +13271,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for Purchase Order as binary data */
         200: {
@@ -13316,7 +13317,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array of Attachment */
         200: {
@@ -13367,7 +13368,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array of Attachment */
         200: {
@@ -13415,7 +13416,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -13455,7 +13456,7 @@ export class ApiClient {
         /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
         "Idempotency-Key"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -13501,7 +13502,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of byte array pdf version of specified Purchase Orders */
         200: {
@@ -13543,7 +13544,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type PurchaseOrder array for specified PurchaseOrder */
         200: {
@@ -13603,7 +13604,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type quotes array with all quotes */
         200: {
@@ -13654,7 +13655,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Quotes;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Quotes array with updated or created Quote */
         200: {
@@ -13702,7 +13703,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Quotes;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Quotes with array with newly created Quote */
         200: {
@@ -13750,7 +13751,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Quotes array with specified Quote */
         200: {
@@ -13792,7 +13793,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Quotes;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Quotes array with updated Quote */
         200: {
@@ -13840,7 +13841,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array of Attachment */
         200: {
@@ -13886,7 +13887,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for Quote as binary data */
         200: {
@@ -13934,7 +13935,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for Quote as binary data */
         200: {
@@ -13980,7 +13981,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array of Attachment */
         200: {
@@ -14031,7 +14032,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array of Attachment */
         200: {
@@ -14079,7 +14080,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -14119,7 +14120,7 @@ export class ApiClient {
         /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
         "Idempotency-Key"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -14165,7 +14166,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of byte array pdf version of specified Quotes */
         200: {
@@ -14213,7 +14214,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Receipts array for all Receipt */
         200: {
@@ -14258,7 +14259,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Receipts;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Receipts array for newly created Receipt */
         200: {
@@ -14310,7 +14311,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Receipts array for a specified Receipt */
         200: {
@@ -14359,7 +14360,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Receipts;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Receipts array for updated Receipt */
         200: {
@@ -14410,7 +14411,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array of Attachments for a specified Receipt */
         200: {
@@ -14456,7 +14457,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for Receipt as binary data */
         200: {
@@ -14504,7 +14505,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for Receipt as binary data */
         200: {
@@ -14550,7 +14551,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array with updated Attachment for a specified Receipt */
         200: {
@@ -14600,7 +14601,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array with newly created Attachment for a specified Receipt */
         200: {
@@ -14648,7 +14649,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -14688,7 +14689,7 @@ export class ApiClient {
         /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
         "Idempotency-Key"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -14737,7 +14738,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Repeating Invoices array for all Repeating Invoice */
         200: {
@@ -14780,7 +14781,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: RepeatingInvoices;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type RepeatingInvoices array with newly created RepeatingInvoice */
         200: {
@@ -14828,7 +14829,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: RepeatingInvoices;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type RepeatingInvoices array with newly created RepeatingInvoice */
         200: {
@@ -14876,7 +14877,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Repeating Invoices array with a specified Repeating Invoice */
         200: {
@@ -14918,7 +14919,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: RepeatingInvoices;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type RepeatingInvoices array with deleted Invoice */
         200: {
@@ -14966,7 +14967,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array with all Attachments for a specified Repeating Invoice */
         200: {
@@ -15012,7 +15013,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for Repeating Invoice as binary data */
         200: {
@@ -15060,7 +15061,7 @@ export class ApiClient {
         /** The mime type of the attachment file you are retrieving i.e image/jpg, application/pdf */
         contentType: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of attachment for Repeating Invoice as binary data */
         200: {
@@ -15106,7 +15107,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array with specified Attachment for a specified Repeating Invoice */
         200: {
@@ -15156,7 +15157,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: "WARN: application/json is the only supported content type";
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Attachments array with updated Attachment for a specified Repeating Invoice */
         200: {
@@ -15204,7 +15205,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -15244,7 +15245,7 @@ export class ApiClient {
         /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
         "Idempotency-Key"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: unknown;
@@ -15286,7 +15287,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type ReportWithRows */
         200: {
@@ -15325,7 +15326,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type ReportWithRows */
         200: {
@@ -15373,7 +15374,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type ReportWithRows */
         200: {
@@ -15424,7 +15425,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type ReportWithRows */
         200: {
@@ -15481,7 +15482,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type ReportWithRows */
         200: {
@@ -15531,7 +15532,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type ReportWithRows */
         200: {
@@ -15578,7 +15579,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** success- return a Report with Rows object */
         200: {
@@ -15622,7 +15623,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type ReportWithRows */
         200: {
@@ -15682,7 +15683,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type ReportWithRows */
         200: {
@@ -15733,7 +15734,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Reports */
         200: {
@@ -15777,7 +15778,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type ReportWithRows */
         200: {
@@ -15819,7 +15820,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: Setup;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - returns a summary of the chart of accounts updates */
         200: {
@@ -15862,7 +15863,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type TaxRates array with TaxRates */
         200: {
@@ -15901,7 +15902,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: TaxRates;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type TaxRates array updated TaxRate */
         200: {
@@ -15942,7 +15943,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: TaxRates;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type TaxRates array newly created TaxRate */
         200: {
@@ -15987,7 +15988,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type TaxRates array with one TaxRate */
         200: {
@@ -16033,7 +16034,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type TrackingCategories array of TrackingCategory */
         200: {
@@ -16073,7 +16074,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: TrackingCategory;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type TrackingCategories array of newly created TrackingCategory */
         200: {
@@ -16118,7 +16119,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type TrackingCategories array of specified TrackingCategory */
         200: {
@@ -16160,7 +16161,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: TrackingCategory;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type TrackingCategories array of updated TrackingCategory */
         200: {
@@ -16205,7 +16206,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type TrackingCategories array of deleted TrackingCategory */
         200: {
@@ -16254,7 +16255,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: TrackingOption;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type TrackingOptions array of options for a specified category */
         200: {
@@ -16307,7 +16308,7 @@ export class ApiClient {
         "Idempotency-Key"?: string;
       };
       body: TrackingOption;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type TrackingOptions array of options for a specified category */
         200: {
@@ -16355,7 +16356,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type TrackingOptions array of remaining options for a specified category */
         200: {
@@ -16406,7 +16407,7 @@ export class ApiClient {
         /** Only records created or modified since this timestamp will be returned */
         "If-Modified-Since"?: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Users array of all User */
         200: {
@@ -16450,7 +16451,7 @@ export class ApiClient {
         /** Xero identifier for Tenant */
         "xero-tenant-id": string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** Success - return response of type Users array of specified User */
         200: {

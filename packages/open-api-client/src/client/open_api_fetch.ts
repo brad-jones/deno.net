@@ -1,5 +1,6 @@
-import type { OpenAPIRequest, OpenAPIRequestMetadata, OpenAPIResponse } from "../types/mod.ts";
+import type { OpenAPIRequest, OpenAPIRequestMetadata, OpenAPIResponse, OpenAPIResponsePromise } from "../types/mod.ts";
 import { OpenAPIClientConfig } from "./config.ts";
+import { ResponseError } from "./response_error.ts";
 import { serializeCookies, serializeHeaders, serializePath, serializeQuery } from "./serializers/mod.ts";
 
 /**
@@ -81,120 +82,205 @@ import { serializeCookies, serializeHeaders, serializePath, serializeQuery } fro
  * // Sends: GET https://api.example.com/search?q=test&tags=js&tags=deno
  * ```
  */
-export async function openAPIFetch(
+export function openAPIFetch<
+  TResponse extends OpenAPIResponse<number, unknown, Record<string, string>, boolean>,
+>(
   config: OpenAPIClientConfig,
   metadata: OpenAPIRequestMetadata,
   request?: OpenAPIRequest,
-): Promise<OpenAPIResponse<number, unknown, Record<string, string>, boolean>> {
-  // 1. Validate the global client config using Zod
-  const validatedConfig = OpenAPIClientConfig.parse(config);
+): OpenAPIResponsePromise<TResponse> {
+  // The actual fetch implementation
+  const responsePromise = (async (): Promise<TResponse> => {
+    // 1. Validate the global client config using Zod
+    const validatedConfig = OpenAPIClientConfig.parse(config);
 
-  // 2. Request validation, using whatever schema we are given (optional)
-  if (metadata.requestSchema && request) {
-    const result = await metadata.requestSchema["~standard"].validate(request);
-    if (result.issues) {
-      throw new Error(
-        `Request validation failed: ${JSON.stringify(result.issues)}`,
-      );
-    }
-  }
-
-  // 3. Build the complete final URL
-  let baseUrl = validatedConfig.baseUrl instanceof URL ? validatedConfig.baseUrl.toString() : validatedConfig.baseUrl;
-
-  // Remove trailing slash from baseUrl to avoid double slashes
-  if (baseUrl.endsWith("/")) {
-    baseUrl = baseUrl.slice(0, -1);
-  }
-
-  const completePath = serializePath(request?.path, metadata);
-  const queryString = serializeQuery(request?.query, metadata);
-  const finalUrl = `${baseUrl}${completePath}${queryString}`;
-
-  // 4. Build the headers object
-  const headers = serializeHeaders(request?.headers, metadata);
-
-  // Default headers have lower priority
-  if (validatedConfig.headers) {
-    for (const [key, value] of Object.entries(validatedConfig.headers)) {
-      if (!headers.has(key)) {
-        headers.set(key, value);
-      }
-    }
-  }
-
-  // Set content type if not set
-  // TODO: Support content types other than JSON
-  if (request?.body !== undefined && !headers.has("Content-Type")) {
-    headers.set("Content-Type", "application/json");
-  }
-
-  // Add the cookie header
-  const cookieHeader = serializeCookies(request?.cookies, metadata);
-  if (cookieHeader) {
-    headers.set("Cookie", cookieHeader);
-  }
-
-  // 5. Serialize the main body
-  // TODO: Support content types other than JSON
-  let body: string | undefined;
-  if (request?.body !== undefined) {
-    body = JSON.stringify(request.body);
-  }
-
-  // 6. Send the request
-  const response = await (validatedConfig.fetch ?? globalThis.fetch)(finalUrl, {
-    method: metadata.method.toUpperCase(),
-    headers,
-    body,
-  });
-
-  // 7. Parse response
-  // TODO: Support content types other than JSON
-  const clonedResponse = response.clone();
-
-  let responseBody: unknown;
-  if (response.headers.get("Content-Type")?.includes("application/json")) {
-    responseBody = await response.json();
-  }
-
-  const responseHeaders: Record<string, string> = {};
-  response.headers.forEach((value: string, key: string) => {
-    responseHeaders[key] = value;
-  });
-
-  const responseObject = {
-    status: response.status,
-    headers: responseHeaders,
-    body: responseBody,
-    raw: clonedResponse,
-  };
-
-  // 8. Response validation and determine if this is a default response
-  let isDefault = false;
-  if (metadata.responseSchema) {
-    let schema = metadata.responseSchema[response.status];
-    if (!schema && metadata.responseSchema["default"]) {
-      schema = metadata.responseSchema["default"];
-      isDefault = true;
-    }
-    if (schema) {
-      const result = await schema["~standard"].validate(responseObject);
+    // 2. Request validation, using whatever schema we are given (optional)
+    if (metadata.requestSchema && request) {
+      const result = await metadata.requestSchema["~standard"].validate(request);
       if (result.issues) {
         throw new Error(
-          `Response validation failed: ${JSON.stringify(result.issues)}`,
+          `Request validation failed: ${JSON.stringify(result.issues)}`,
         );
       }
     }
+
+    // 3. Build the complete final URL
+    let baseUrl = validatedConfig.baseUrl instanceof URL ? validatedConfig.baseUrl.toString() : validatedConfig.baseUrl;
+
+    // Remove trailing slash from baseUrl to avoid double slashes
+    if (baseUrl.endsWith("/")) {
+      baseUrl = baseUrl.slice(0, -1);
+    }
+
+    const completePath = serializePath(request?.path, metadata);
+    const queryString = serializeQuery(request?.query, metadata);
+    const finalUrl = `${baseUrl}${completePath}${queryString}`;
+
+    // 4. Build the headers object
+    const headers = serializeHeaders(request?.headers, metadata);
+
+    // Default headers have lower priority
+    if (validatedConfig.headers) {
+      for (const [key, value] of Object.entries(validatedConfig.headers)) {
+        if (!headers.has(key)) {
+          headers.set(key, value);
+        }
+      }
+    }
+
+    // Set content type if not set
+    // TODO: Support content types other than JSON
+    if (request?.body !== undefined && !headers.has("Content-Type")) {
+      headers.set("Content-Type", "application/json");
+    }
+
+    // Add the cookie header
+    const cookieHeader = serializeCookies(request?.cookies, metadata);
+    if (cookieHeader) {
+      headers.set("Cookie", cookieHeader);
+    }
+
+    // 5. Serialize the main body
+    // TODO: Support content types other than JSON
+    let body: string | undefined;
+    if (request?.body !== undefined) {
+      body = JSON.stringify(request.body);
+    }
+
+    // 6. Send the request
+    const response = await (validatedConfig.fetch ?? globalThis.fetch)(finalUrl, {
+      method: metadata.method.toUpperCase(),
+      headers,
+      body,
+    });
+
+    // 7. Parse response
+    // TODO: Support content types other than JSON
+    const clonedResponse = response.clone();
+
+    let responseBody: unknown;
+    if (response.headers.get("Content-Type")?.includes("application/json")) {
+      responseBody = await response.json();
+    }
+
+    const responseHeaders: Record<string, string> = {};
+    response.headers.forEach((value: string, key: string) => {
+      responseHeaders[key] = value;
+    });
+
+    const responseObject = {
+      status: response.status,
+      headers: responseHeaders,
+      body: responseBody,
+      raw: clonedResponse,
+    };
+
+    // 8. Response validation and determine if this is a default response
+    let isDefault = false;
+    if (metadata.responseSchema) {
+      let schema = metadata.responseSchema[response.status];
+      if (!schema && metadata.responseSchema["default"]) {
+        schema = metadata.responseSchema["default"];
+        isDefault = true;
+      }
+      if (schema) {
+        const result = await schema["~standard"].validate(responseObject);
+        if (result.issues) {
+          throw new Error(
+            `Response validation failed: ${JSON.stringify(result.issues)}`,
+          );
+        }
+      }
+    }
+
+    return {
+      ...responseObject,
+      isDefault,
+      is<S extends number, R extends OpenAPIResponse<number, unknown, unknown, boolean>>(
+        statusCode: S,
+      ): this is Extract<R, OpenAPIResponse<S, unknown, unknown, false>> {
+        return responseObject.status === statusCode && !isDefault;
+      },
+    } as TResponse;
+  })();
+
+  /**
+   * Determines the default status code to use when body() is called without arguments.
+   * Priority: 200 > "default" > first defined response
+   */
+  function getDefaultStatusCode(): number | "default" | undefined {
+    if (!metadata.responseSchema) {
+      return 200; // Assume 200 if no schema
+    }
+
+    const statuses = Object.keys(metadata.responseSchema);
+
+    // First priority: 200 if defined
+    if (statuses.includes("200")) {
+      return 200;
+    }
+
+    // Second priority: "default" if defined
+    if (statuses.includes("default")) {
+      return "default";
+    }
+
+    // Third priority: first defined status (excluding "default")
+    const numericStatuses = statuses
+      .filter((s) => s !== "default")
+      .map((s) => parseInt(s, 10))
+      .filter((n) => !isNaN(n));
+
+    if (numericStatuses.length > 0) {
+      return numericStatuses[0];
+    }
+
+    return undefined;
   }
 
+  // Create the body() shortcut function
+  async function body<S extends number | "default">(
+    statusCode?: S,
+  ): Promise<unknown> {
+    const response = await responsePromise;
+
+    // Determine the expected status code
+    const expectedStatus = statusCode ?? getDefaultStatusCode();
+
+    if (expectedStatus === undefined) {
+      throw new ResponseError(
+        "Cannot determine default status code: no response schema defined",
+        response.raw,
+      );
+    }
+
+    // Check if the response matches the expected status
+    if (expectedStatus === "default") {
+      if (!response.isDefault) {
+        throw new ResponseError(
+          `Expected default response but received status ${response.status}`,
+          response.raw,
+        );
+      }
+      return response.body;
+    }
+
+    // For numeric status codes
+    if (response.status !== expectedStatus || response.isDefault) {
+      throw new ResponseError(
+        `Expected response status ${expectedStatus} but received ${response.status}${
+          response.isDefault ? " (default response)" : ""
+        }`,
+        response.raw,
+      );
+    }
+
+    return response.body;
+  }
+
+  // Return a PromiseLike object with the body() method
   return {
-    ...responseObject,
-    isDefault,
-    is<S extends number, R extends OpenAPIResponse<number, unknown, unknown, boolean>>(
-      statusCode: S,
-    ): this is Extract<R, OpenAPIResponse<S, unknown, unknown, false>> {
-      return responseObject.status === statusCode && !isDefault;
-    },
-  };
+    then: responsePromise.then.bind(responsePromise),
+    body,
+  } as OpenAPIResponsePromise<TResponse>;
 }

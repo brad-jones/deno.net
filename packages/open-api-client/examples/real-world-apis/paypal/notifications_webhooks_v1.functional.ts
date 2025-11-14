@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -626,7 +627,7 @@ export const webhooksList = (config: OpenAPIClientConfig, request?: {
     /** Filters the webhooks in the response by an `anchor_id` entity type. */
     anchor_type?: "APPLICATION" | "ACCOUNT";
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that lists webhooks with webhook details. */
     200: {
@@ -661,7 +662,10 @@ export const webhooksList = (config: OpenAPIClientConfig, request?: {
  *
  * Subscribes your webhook listener to events.
  */
-export const webhooksPost = (config: OpenAPIClientConfig, request: { body: Webhook }): Promise<
+export const webhooksPost = (
+  config: OpenAPIClientConfig,
+  request: { body: Webhook },
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `201 Created` status code and a JSON response body with a [`webhook`](/docs/api/webhooks/v1/#definition-webhook) object that includes the webhook ID for later use. */
     201: {
@@ -699,7 +703,7 @@ export const webhooksGet = (config: OpenAPIClientConfig, request: {
     /** The ID of the webhook for which to list subscriptions. */
     webhook_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows webhook details. */
     200: {
@@ -739,7 +743,7 @@ export const webhooksDelete = (config: OpenAPIClientConfig, request: {
     /** The ID of the webhook for which to list subscriptions. */
     webhook_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
     204: {
@@ -780,7 +784,7 @@ export const webhooksUpdate = (config: OpenAPIClientConfig, request: {
     webhook_id: string;
   };
   body: PatchRequest;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows webhook details. */
     200: {
@@ -821,7 +825,7 @@ export const eventTypesList = (config: OpenAPIClientConfig, request: {
     /** The ID of the webhook for which to list subscriptions. */
     webhook_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that lists event subscriptions for a webhook. */
     200: {
@@ -856,7 +860,7 @@ export const eventTypesList = (config: OpenAPIClientConfig, request: {
  *
  * Lists webhook lookups.
  */
-export const webhooksLookupList = (config: OpenAPIClientConfig): Promise<
+export const webhooksLookupList = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that lists webhook lookups with webhook lookup details. */
     200: {
@@ -885,7 +889,7 @@ export const webhooksLookupList = (config: OpenAPIClientConfig): Promise<
  *
  * Creates a webhook lookup. A webhook lookup ties the API caller's REST API app to the subject account (or, if no subject is specified, to the API caller's account). If a webhook event is generated for an event that is tied to the account but not to a particular REST API app (for example, payments initiated with the NVP/SOAP APIs or through the user interface on PayPal.com), those webhook events will treated as if they were intended for the REST API app registered in the webhook lookup instead. Webhook events will then be delivered to any webhooks registered to that REST API app.
  */
-export const webhooksLookupPost = (config: OpenAPIClientConfig): Promise<
+export const webhooksLookupPost = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `201 Created` status code and a JSON response body that shows webhook lookup details. */
     201: {
@@ -919,7 +923,7 @@ export const webhooksLookupGet = (config: OpenAPIClientConfig, request: {
     /** The ID of the webhook lookup to delete. */
     webhook_lookup_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows webhook lookup details. */
     200: {
@@ -959,7 +963,7 @@ export const webhooksLookupDelete = (config: OpenAPIClientConfig, request: {
     /** The ID of the webhook lookup to delete. */
     webhook_lookup_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
     204: {
@@ -997,7 +1001,7 @@ export const webhooksLookupDelete = (config: OpenAPIClientConfig, request: {
 export const verifyWebhookSignaturePost = (
   config: OpenAPIClientConfig,
   request: { body: VerifyWebhookSignature },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows the verification status. */
     200: {
@@ -1030,7 +1034,7 @@ export const verifyWebhookSignaturePost = (
  *
  * Lists available events to which any webhook can subscribe. For a list of supported events, see [Webhook event names](/docs/api/notifications/webhooks/event-names/).
  */
-export const webhooksEventTypesList = (config: OpenAPIClientConfig): Promise<
+export const webhooksEventTypesList = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that lists available events to which any webhook can subscribe. */
     200: {
@@ -1072,7 +1076,7 @@ export const webhooksEventsList = (config: OpenAPIClientConfig, request?: {
     /** Filters the response to a single event. */
     event_type?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that lists webhooks event notifications. */
     200: {
@@ -1116,7 +1120,7 @@ export const webhooksEventsGet = (config: OpenAPIClientConfig, request: {
     /** The ID of the webhook event notification to resend. */
     event_id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows webhooks event notification details. */
     200: {
@@ -1157,7 +1161,7 @@ export const webhooksEventsResend = (config: OpenAPIClientConfig, request: {
     event_id: string;
   };
   body?: EventResend;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `202 Accepted` status code and a JSON response body that shows webhook event notification details. */
     202: {
@@ -1196,7 +1200,7 @@ export const webhooksEventsResend = (config: OpenAPIClientConfig, request: {
 export const simulateEventPost = (
   config: OpenAPIClientConfig,
   request: { body: SimulateEvent },
-): Promise<
+): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request returns the HTTP `202 Accepted` status code and a JSON response body that shows details for the mock event. */
     202: {

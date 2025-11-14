@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -1775,7 +1776,7 @@ export const getCashValidation = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success */
     200: {
@@ -1838,7 +1839,7 @@ export const getAccountingActivityAccountUsage = (config: OpenAPIClientConfig, r
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success */
     200: {
@@ -1894,7 +1895,7 @@ export const getAccountingActivityLockHistory = (config: OpenAPIClientConfig, re
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success */
     200: {
@@ -1949,7 +1950,7 @@ export const getAccountingActivityReportHistory = (config: OpenAPIClientConfig, 
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success */
     200: {
@@ -2006,7 +2007,7 @@ export const getAccountingActivityUserActivities = (config: OpenAPIClientConfig,
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success */
     200: {
@@ -2057,7 +2058,7 @@ export const getFinancialStatementBalanceSheet = (config: OpenAPIClientConfig, r
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success */
     200: {
@@ -2123,7 +2124,7 @@ export const getFinancialStatementCashflow = (config: OpenAPIClientConfig, reque
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success */
     200: {
@@ -2190,7 +2191,7 @@ export const getFinancialStatementProfitAndLoss = (config: OpenAPIClientConfig, 
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success */
     200: {
@@ -2244,7 +2245,7 @@ export const getFinancialStatementTrialBalance = (config: OpenAPIClientConfig, r
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success */
     200: {
@@ -2321,7 +2322,7 @@ export const getFinancialStatementContactsRevenue = (config: OpenAPIClientConfig
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success */
     200: {
@@ -2401,7 +2402,7 @@ export const getFinancialStatementContactsExpense = (config: OpenAPIClientConfig
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success */
     200: {
@@ -2477,7 +2478,7 @@ export const getBankStatementAccounting = (config: OpenAPIClientConfig, request:
     /** Xero identifier for Tenant */
     "xero-tenant-id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success */
     200: {

@@ -95,6 +95,7 @@ export class ClassicalClientGenerator extends BaseClientGenerator {
       import {
         openAPIFetch,
         type OpenAPIClientConfig,
+        type OpenAPIResponsePromise,
         type OpenAPIResponses
       } from "${this.clientImport}";
     `);
@@ -272,8 +273,8 @@ export class ClassicalClientGenerator extends BaseClientGenerator {
     }
 
     const signature = params.length > 0
-      ? `${method}: (${params.join(", ")}): Promise<OpenAPIResponses<${responseType}>> =>`
-      : `${method}: (): Promise<OpenAPIResponses<${responseType}>> =>`;
+      ? `${method}: (${params.join(", ")}): OpenAPIResponsePromise<OpenAPIResponses<${responseType}>> =>`
+      : `${method}: (): OpenAPIResponsePromise<OpenAPIResponses<${responseType}>> =>`;
 
     return { signature, hasRequest };
   }

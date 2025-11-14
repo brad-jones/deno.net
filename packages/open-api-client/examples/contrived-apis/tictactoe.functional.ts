@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -45,7 +46,7 @@ export const StatusSchema: z.ZodType<Status> = z.object({
  *
  * Retrieves the current state of the board and the winner.
  */
-export const getBoard = (config: OpenAPIClientConfig): Promise<
+export const getBoard = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK */
     200: {
@@ -76,7 +77,7 @@ export const getSquare = (config: OpenAPIClientConfig, request: {
     /** Board column (horizontal coordinate) */
     column: Coordinate;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK */
     200: {
@@ -120,7 +121,7 @@ export const putSquare = (config: OpenAPIClientConfig, request: {
     column: Coordinate;
   };
   body: Mark;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK */
     200: {

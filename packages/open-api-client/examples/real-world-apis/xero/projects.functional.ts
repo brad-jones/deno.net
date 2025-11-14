@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -716,7 +717,7 @@ export const getProjects = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK/success, returns a list of project objects */
     200: {
@@ -763,7 +764,7 @@ export const createProject = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: ProjectCreateOrUpdate;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK/success, returns the new project object */
     201: {
@@ -808,7 +809,7 @@ export const getProject = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK/success, returns the specified project object */
     200: {
@@ -857,7 +858,7 @@ export const updateProject = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: ProjectCreateOrUpdate;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success - return response 204 no content */
     204: {
@@ -908,7 +909,7 @@ export const patchProject = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: ProjectPatch;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success - return response 204 no content */
     204: {
@@ -958,7 +959,7 @@ export const getProjectUsers = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK/success, returns a list of project users */
     200: {
@@ -1014,7 +1015,7 @@ export const getTasks = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK/success, returns a list of task objects */
     200: {
@@ -1069,7 +1070,7 @@ export const createTask = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: TaskCreateOrUpdate;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK/success, returns the new task object */
     201: {
@@ -1119,7 +1120,7 @@ export const getTask = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK/success, returns the specified task object */
     200: {
@@ -1171,7 +1172,7 @@ export const updateTask = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: TaskCreateOrUpdate;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK/Success - return response 204 no content */
     204: {
@@ -1222,7 +1223,7 @@ export const deleteTask = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success - return response 204 no content */
     204: {
@@ -1291,7 +1292,7 @@ export const getTimeEntries = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK/success, returns a list of time entry objects */
     200: {
@@ -1352,7 +1353,7 @@ export const createTimeEntry = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: TimeEntryCreateOrUpdate;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK/success, returns the newly created time entry */
     200: {
@@ -1402,7 +1403,7 @@ export const getTimeEntry = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** OK/success, returns the specified time entry */
     200: {
@@ -1454,7 +1455,7 @@ export const updateTimeEntry = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: TimeEntryCreateOrUpdate;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success - return response 204 no content */
     204: {
@@ -1505,7 +1506,7 @@ export const deleteTimeEntry = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success - return response 204 no content */
     204: {

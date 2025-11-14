@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -1530,7 +1531,7 @@ export class ApiClient {
      *
      * Creates a partner referral that is shared by the partner or API caller. The partner referral is used to onboard the seller, and contains the seller's personal, business, financial and operations.
      */
-    post: (request: { body: ReferralData }): Promise<
+    post: (request: { body: ReferralData }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `201 Created` status code and a JSON response body that contains a [HATEOAS link](/docs/api/overview/#hateoas-links) to show the referral data and an `action_url` to which you redirect the customer in a browser to complete the signup process. The `partner_referral_id` token is appended to the URL. */
         201: {
@@ -1594,7 +1595,7 @@ export class ApiClient {
         /** The ID of the partner-referrals data for which to show details. */
         partner_referral_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows referral data. */
         200: {

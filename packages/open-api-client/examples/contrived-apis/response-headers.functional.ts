@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -17,7 +18,7 @@ export const getPaginatedData = (config: OpenAPIClientConfig, request?: {
     page?: number;
     limit?: number;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful response with pagination metadata in headers */
     200: {
@@ -74,7 +75,7 @@ export const getPaginatedData = (config: OpenAPIClientConfig, request?: {
 /**
  * Get data with rate limit information in headers
  */
-export const getRateLimitedData = (config: OpenAPIClientConfig): Promise<
+export const getRateLimitedData = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Success with rate limit headers */
     200: {
@@ -144,7 +145,7 @@ export const getWithEtag = (config: OpenAPIClientConfig, request?: {
     /** ETag from previous response */
     "If-None-Match"?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Resource content */
     200: {
@@ -207,7 +208,7 @@ export const getWithEtag = (config: OpenAPIClientConfig, request?: {
 /**
  * Example with headers inferred from examples
  */
-export const getInferredHeaders = (config: OpenAPIClientConfig): Promise<
+export const getInferredHeaders = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Response with headers inferred from examples */
     200: {

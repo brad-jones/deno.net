@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -2556,7 +2557,7 @@ export const getEmployees = (config: OpenAPIClientConfig, request: {
     /** Only records created or modified since this timestamp will be returned */
     "If-Modified-Since"?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -2603,7 +2604,7 @@ export const createEmployee = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: Employee[];
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request */
     200: {
@@ -2647,7 +2648,7 @@ export const getEmployee = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -2692,7 +2693,7 @@ export const updateEmployee = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: Employee[];
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request */
     200: {
@@ -2740,7 +2741,7 @@ export const getLeaveApplications = (config: OpenAPIClientConfig, request: {
     /** Only records created or modified since this timestamp will be returned */
     "If-Modified-Since"?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -2787,7 +2788,7 @@ export const createLeaveApplication = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: LeaveApplication[];
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request */
     200: {
@@ -2837,7 +2838,7 @@ export const getLeaveApplicationsV2 = (config: OpenAPIClientConfig, request: {
     /** Only records created or modified since this timestamp will be returned */
     "If-Modified-Since"?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -2885,7 +2886,7 @@ export const getLeaveApplication = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -2928,7 +2929,7 @@ export const updateLeaveApplication = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: LeaveApplication[];
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request */
     200: {
@@ -2977,7 +2978,7 @@ export const approveLeaveApplication = (config: OpenAPIClientConfig, request: {
     /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
     "Idempotency-Key"?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Application successfully approved */
     200: {
@@ -3025,7 +3026,7 @@ export const rejectLeaveApplication = (config: OpenAPIClientConfig, request: {
     /** This allows you to safely retry requests without the risk of duplicate processing. 128 character max. */
     "Idempotency-Key"?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Application successfully rejected */
     200: {
@@ -3077,7 +3078,7 @@ export const getPayItems = (config: OpenAPIClientConfig, request: {
     /** Only records created or modified since this timestamp will be returned */
     "If-Modified-Since"?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3124,7 +3125,7 @@ export const createPayItem = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: PayItem;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request - currently returns empty array for JSON */
     200: {
@@ -3174,7 +3175,7 @@ export const getPayrollCalendars = (config: OpenAPIClientConfig, request: {
     /** Only records created or modified since this timestamp will be returned */
     "If-Modified-Since"?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3221,7 +3222,7 @@ export const createPayrollCalendar = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: PayrollCalendar[];
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request */
     200: {
@@ -3265,7 +3266,7 @@ export const getPayrollCalendar = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3316,7 +3317,7 @@ export const getPayRuns = (config: OpenAPIClientConfig, request: {
     /** Only records created or modified since this timestamp will be returned */
     "If-Modified-Since"?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3363,7 +3364,7 @@ export const createPayRun = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: PayRun[];
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request */
     200: {
@@ -3407,7 +3408,7 @@ export const getPayRun = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3452,7 +3453,7 @@ export const updatePayRun = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: PayRun[];
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request */
     200: {
@@ -3494,7 +3495,7 @@ export const getPayslip = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3539,7 +3540,7 @@ export const updatePayslip = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: PayslipLines[];
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request - currently returns empty array for JSON */
     200: {
@@ -3577,7 +3578,7 @@ export const getSettings = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** payroll settings */
     200: {
@@ -3620,7 +3621,7 @@ export const getSuperfunds = (config: OpenAPIClientConfig, request: {
     /** Only records created or modified since this timestamp will be returned */
     "If-Modified-Since"?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3667,7 +3668,7 @@ export const createSuperfund = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: SuperFund[];
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request */
     200: {
@@ -3711,7 +3712,7 @@ export const getSuperfund = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3756,7 +3757,7 @@ export const updateSuperfund = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: SuperFund[];
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request */
     200: {
@@ -3800,7 +3801,7 @@ export const getSuperfundProducts = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3852,7 +3853,7 @@ export const getTimesheets = (config: OpenAPIClientConfig, request: {
     /** Only records created or modified since this timestamp will be returned */
     "If-Modified-Since"?: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3899,7 +3900,7 @@ export const createTimesheet = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: Timesheet[];
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request */
     200: {
@@ -3943,7 +3944,7 @@ export const getTimesheet = (config: OpenAPIClientConfig, request: {
     /** Xero identifier for Tenant */
     "Xero-Tenant-Id": string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** search results matching criteria */
     200: {
@@ -3988,7 +3989,7 @@ export const updateTimesheet = (config: OpenAPIClientConfig, request: {
     "Idempotency-Key"?: string;
   };
   body: Timesheet[];
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** A successful request */
     200: {

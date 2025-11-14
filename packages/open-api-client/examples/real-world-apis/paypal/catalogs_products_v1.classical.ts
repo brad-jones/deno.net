@@ -4,6 +4,7 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -1374,7 +1375,7 @@ export class ApiClient {
         /** Indicates whether to show the total items and total pages in the response. */
         total_required?: boolean;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that lists products with details. */
         200: {
@@ -1437,7 +1438,7 @@ export class ApiClient {
         "PayPal-Request-Id"?: string;
       };
       body: ProductRequestPost;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows product details. */
         200: {
@@ -1510,7 +1511,7 @@ export class ApiClient {
         /** The product ID. */
         product_id: string;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `200 OK` status code and a JSON response body that shows product details. */
         200: {
@@ -1569,7 +1570,7 @@ export class ApiClient {
         product_id: string;
       };
       body: PatchRequest;
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         /** A successful request returns the HTTP `204 No Content` status code with no JSON response body. */
         204: {

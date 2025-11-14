@@ -5,6 +5,7 @@ import {
   createCustomClient,
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
 } from "jsr:@brad-jones/deno-net-open-api-client@0.2.4";
 import { z } from "npm:zod@^4.1.12";
@@ -1293,7 +1294,7 @@ export const customerPaymentTokensGet = (config: OpenAPIClientConfig, request: {
     /** A boolean indicating total number of items (total_items) and pages (total_pages) are expected to be returned in the response. */
     total_required?: boolean;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful execution. */
     200: {
@@ -1347,7 +1348,7 @@ export const paymentTokensCreate = (config: OpenAPIClientConfig, request: {
     "PayPal-Request-Id"?: string;
   };
   body: PaymentTokenRequest;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Idempotent response for a successful creation of payment token. */
     200: {
@@ -1413,7 +1414,7 @@ export const paymentTokensGet = (config: OpenAPIClientConfig, request: {
     /** ID of the setup token. */
     id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Successful execution. */
     200: {
@@ -1468,7 +1469,7 @@ export const paymentTokensDelete = (config: OpenAPIClientConfig, request: {
     /** ID of the setup token. */
     id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** The server has successfully executed the method, but there is no entity body to return. */
     204: {
@@ -1519,7 +1520,7 @@ export const setupTokensCreate = (config: OpenAPIClientConfig, request: {
     "PayPal-Request-Id"?: string;
   };
   body: SetupTokenRequest;
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Idempotent response for a successful creation of setup token. */
     200: {
@@ -1580,7 +1581,7 @@ export const setupTokensGet = (config: OpenAPIClientConfig, request: {
     /** ID of the setup token. */
     id: string;
   };
-}): Promise<
+}): OpenAPIResponsePromise<
   OpenAPIResponses<{
     /** Found requested setup-token, returned a payment method associated with the token. */
     200: {
