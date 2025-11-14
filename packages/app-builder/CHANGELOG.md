@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.9.1 - 2025-11-14
+#### Bug Fixes
+- (**open-api-client**) handle +json content types and throw better errors - (d67cd56) - *brad-jones*
+#### Miscellaneous Chores
+- (**version**) open-api-client-v0.3.1 - (75e8f7f) - github-actions[bot]
+
+- - -
+
 ## app-builder-v0.9.0 - 2025-11-14
 #### Features
 - (**open-api-client**) added shortcut body pattern - (c4e237b) - *brad-jones*
