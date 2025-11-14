@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## open-api-client-v0.3.0 - 2025-11-14
+#### Features
+- (**open-api-client**) added shortcut body pattern - (c4e237b) - *brad-jones*
+#### Miscellaneous Chores
+- (**open-api-client**) re-gen examples - (a3fb224) - *brad-jones*
+
+- - -
+
 ## open-api-client-v0.2.5 - 2025-11-14
 #### Bug Fixes
 - (**open-api-client**) added is response pattern matching method - (e6c3a9a) - *brad-jones*
