@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## open-api-client-v0.3.1 - 2025-11-14
+#### Bug Fixes
+- (**open-api-client**) handle +json content types and throw better errors - (d67cd56) - *brad-jones*
+
+- - -
+
 ## open-api-client-v0.3.0 - 2025-11-14
 #### Features
 - (**open-api-client**) added shortcut body pattern - (c4e237b) - *brad-jones*
