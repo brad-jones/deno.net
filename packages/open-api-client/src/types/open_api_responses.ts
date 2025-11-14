@@ -78,18 +78,32 @@ import type { OpenAPIResponse } from "./open_api_response.ts";
  * }>;
  *
  * function handleApiResponse(response: ApiResponses) {
- *   switch (response.status) {
- *     case 200:
+ *   // Pattern 1: Using is() method with switch
+ *   switch (true) {
+ *     case response.is(200):
  *       console.log("Success!");
  *       break;
- *     case 400:
+ *     case response.is(400):
  *       console.error(`Bad request: ${response.body.error}`);
  *       break;
- *     default:
+ *     case response.isDefault:
  *       // Handles any other status code (401, 403, 500, etc.)
- *       // TypeScript properly narrows to the default response body type
  *       console.log(`Unexpected response: ${response.body.message}`);
  *       break;
+ *   }
+ *
+ *   // Pattern 2: Using isDefault check first
+ *   if (!response.isDefault) {
+ *     switch (response.status) {
+ *       case 200:
+ *         console.log("Success!");
+ *         break;
+ *       case 400:
+ *         console.error(`Bad request: ${response.body.error}`);
+ *         break;
+ *     }
+ *   } else {
+ *     console.log(`Unexpected response: ${response.body.message}`);
  *   }
  * }
  * ```

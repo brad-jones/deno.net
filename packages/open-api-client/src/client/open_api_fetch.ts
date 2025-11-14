@@ -38,6 +38,11 @@ import { serializeCookies, serializeHeaders, serializePath, serializeQuery } fro
  * };
  * const response = await openAPIFetch(config, metadata, { path: { id: 123 } });
  * // Sends: GET https://api.example.com/users/123
+ *
+ * // Handle response with type narrowing
+ * if (response.is(200)) {
+ *   console.log(response.body.user); // Typed as 200 response body
+ * }
  * ```
  *
  * @example
@@ -183,5 +188,13 @@ export async function openAPIFetch(
     }
   }
 
-  return { ...responseObject, isDefault };
+  return {
+    ...responseObject,
+    isDefault,
+    is<S extends number, R extends OpenAPIResponse<number, unknown, unknown, boolean>>(
+      statusCode: S,
+    ): this is Extract<R, OpenAPIResponse<S, unknown, unknown, false>> {
+      return responseObject.status === statusCode && !isDefault;
+    },
+  };
 }

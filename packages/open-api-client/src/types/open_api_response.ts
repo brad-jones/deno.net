@@ -1,13 +1,9 @@
 /**
  * Represents an HTTP response from an OpenAPI request with typed status, body, and headers.
  *
- * This generic interface provides a structured representation of HTTP responses with support
- * for type-safe status codes, response bodies, and headers. It includes both the parsed
- * response data and access to the raw Response object for advanced use cases.
- *
- * @template TStatus - The HTTP status code type, defaults to `number` but can be narrowed to specific codes (e.g., `200 | 404`)
- * @template TBody - The type of the parsed response body, defaults to `unknown`
- * @template THeaders - The type of the response headers object, defaults to `Record<string, string>`
+ * @template TStatus - The HTTP status code type
+ * @template TBody - The type of the parsed response body
+ * @template THeaders - The type of the response headers object
  * @template TIsDefault - Whether this response matches the OpenAPI "default" response definition
  *
  * @property status - The HTTP status code of the response
@@ -15,63 +11,41 @@
  * @property headers - The response headers as a key-value record
  * @property body - The parsed response body (e.g., parsed JSON)
  * @property raw - The original Response object from the fetch API for advanced access
+ * @property is - Type predicate method for narrowing based on status code
  *
  * @example
  * ```ts
- * // Basic response with default types
- * const response: OpenAPIResponse = {
- *   status: 200,
- *   isDefault: false,
- *   headers: { "content-type": "application/json" },
- *   body: { id: 123, name: "John" },
- *   raw: originalResponse
- * };
- *
- * // Typed response with specific status and body
- * interface User {
- *   id: number;
- *   name: string;
- *   email: string;
+ * // Using is() for type narrowing
+ * if (response.is(200)) {
+ *   console.log(response.body.name); // Type-safe access to 200 body
  * }
  *
- * const userResponse: OpenAPIResponse<200, User> = {
- *   status: 200,
- *   isDefault: false,
- *   headers: { "content-type": "application/json" },
- *   body: {
- *     id: 123,
- *     name: "John Doe",
- *     email: "john@example.com"
- *   },
- *   raw: originalResponse
- * };
+ * // Using is() in switch with true
+ * switch (true) {
+ *   case response.is(200):
+ *     console.log(response.body.name);
+ *     break;
+ *   case response.is(404):
+ *     console.error(response.body.error);
+ *     break;
+ *   case response.isDefault:
+ *     console.log(response.body.defaultMessage);
+ *     break;
+ * }
  *
- * // Union type for multiple possible responses including default
- * type UserOrError =
- *   | OpenAPIResponse<200, User, Record<string, string>, false>
- *   | OpenAPIResponse<404, { error: string }, Record<string, string>, false>
- *   | OpenAPIResponse<number, { message: string }, Record<string, string>, true>;
- *
- * function handleResponse(response: UserOrError) {
- *   if (response.isDefault) {
- *     // TypeScript knows this is the default response
- *     console.log(response.body.message);
- *     return;
- *   }
- *
+ * // Alternative: Check isDefault first, then use switch on status
+ * if (!response.isDefault) {
  *   switch (response.status) {
  *     case 200:
- *       console.log(response.body.name); // Type-safe access
+ *       console.log(response.body.name);
  *       break;
  *     case 404:
  *       console.error(response.body.error);
  *       break;
  *   }
+ * } else {
+ *   console.log(response.body.defaultMessage);
  * }
- *
- * // Access raw response for streaming or advanced features
- * const streamResponse: OpenAPIResponse = await fetch(...);
- * const reader = streamResponse.raw.body?.getReader();
  * ```
  */
 export interface OpenAPIResponse<
@@ -80,9 +54,125 @@ export interface OpenAPIResponse<
   THeaders = Record<string, string>,
   TIsDefault extends boolean = false,
 > {
+  /**
+   * The HTTP status code of the response.
+   *
+   * @example
+   * ```ts
+   * if (response.status === 200) {
+   *   console.log("Success!");
+   * }
+   * ```
+   */
   status: TStatus;
+
+  /**
+   * Indicates whether this response matched the OpenAPI "default" response definition.
+   *
+   * When `true`, the response matched a "default" catch-all response specification
+   * rather than an explicitly defined status code. The `status` property will still
+   * contain the actual HTTP status code received.
+   *
+   * @example
+   * ```ts
+   * if (response.isDefault) {
+   *   console.log(`Unexpected status ${response.status}`);
+   * } else {
+   *   console.log("Expected response");
+   * }
+   * ```
+   */
   isDefault: TIsDefault;
+
+  /**
+   * The response headers as a key-value record.
+   *
+   * Contains only the headers explicitly defined in the OpenAPI specification
+   * for this response. This often does not include all headers sent by the server.
+   * To access all headers, use the `raw` Response object.
+   *
+   * The exact type depends on what headers are defined in the OpenAPI
+   * specification for this response.
+   *
+   * @example
+   * ```ts
+   * // Access validated headers from the spec
+   * console.log(response.headers["Content-Type"]);
+   * console.log(response.headers["X-Request-ID"]);
+   *
+   * // Access all headers via raw response
+   * response.raw.headers.forEach((value, key) => {
+   *   console.log(`${key}: ${value}`);
+   * });
+   * ```
+   */
   headers: THeaders;
+
+  /**
+   * The parsed response body.
+   *
+   * The exact type depends on the response status code and the OpenAPI
+   * specification. TypeScript will narrow this type based on status code
+   * checks or the `is()` method.
+   *
+   * @example
+   * ```ts
+   * if (response.is(200)) {
+   *   console.log(response.body.user); // Typed for 200 response
+   * } else if (response.is(404)) {
+   *   console.error(response.body.error); // Typed for 404 response
+   * }
+   * ```
+   */
   body: TBody;
+
+  /**
+   * The original Response object from the Fetch API.
+   *
+   * Provides access to the raw response for advanced use cases like
+   * streaming, accessing response metadata, or cloning the response.
+   *
+   * @example
+   * ```ts
+   * console.log(response.raw.ok);
+   * console.log(response.raw.statusText);
+   * const clone = response.raw.clone();
+   * ```
+   */
   raw: Response;
+
+  /**
+   * Type predicate to check if the response has a specific status code.
+   *
+   * This method narrows the response type to the specific status code variant,
+   * enabling type-safe access to the corresponding body and headers.
+   * Automatically excludes default responses (isDefault === false).
+   *
+   * @template S - The specific status code to check for
+   * @template R - The union type of all possible responses
+   * @param statusCode - The HTTP status code to match
+   * @returns True if the response matches the status code and is not a default response
+   *
+   * @example
+   * ```ts
+   * // Simple if statement
+   * if (response.is(200)) {
+   *   console.log(response.body.user); // Typed as 200 response body
+   * }
+   *
+   * // Switch statement with true
+   * switch (true) {
+   *   case response.is(200):
+   *     console.log(response.body.success);
+   *     break;
+   *   case response.is(404):
+   *     console.error(response.body.error);
+   *     break;
+   * }
+   * ```
+   */
+  is<S extends number, R extends OpenAPIResponse<number, unknown, unknown, boolean>>(
+    this: R,
+    statusCode: S,
+  ): this is Extract<R, OpenAPIResponse<S, unknown, unknown, false>>;
 }

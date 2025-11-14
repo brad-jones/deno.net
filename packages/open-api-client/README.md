@@ -279,29 +279,76 @@ const response = await client["/users/{id}"].get({ path: { id: 123 } });
 All API calls return an `OpenAPIResponse` with the following structure:
 
 ```typescript
-type OpenAPIResponse<T> = {
-  status: number;
-  headers: Headers;
-  body: T[keyof T]["body"];
+interface OpenAPIResponse<TStatus, TBody, THeaders, TIsDefault> {
+  status: TStatus;
+  isDefault: TIsDefault;
+  headers: THeaders;
+  body: TBody;
   raw: Response;
-};
+  is<S>(statusCode: S): this is Extract<this, OpenAPIResponse<S, unknown, unknown, false>>;
+}
 ```
 
-**Example with type narrowing:**
+### Type Narrowing with `is()` Method
+
+The `is()` method provides elegant type narrowing for response handling:
 
 ```typescript
 const response = await client["/users/{id}"].get({ path: { id: 123 } });
 
-if (response.status === 200) {
+// Pattern 1: Simple if statement
+if (response.is(200)) {
   // TypeScript knows body is the 200 response type
   console.log(response.body.name);
-} else if (response.status === 404) {
+} else if (response.is(404)) {
   // TypeScript knows body is the 404 response type
   console.log(response.body.error);
 }
 
+// Pattern 2: Switch with true
+switch (true) {
+  case response.is(200):
+    console.log(response.body.name);
+    break;
+  case response.is(404):
+    console.error(response.body.error);
+    break;
+  case response.isDefault:
+    // Handle default/unexpected status codes
+    console.log(`Unexpected status: ${response.status}`);
+    break;
+}
+
+// Pattern 3: Check isDefault first (alternative approach)
+if (!response.isDefault) {
+  switch (response.status) {
+    case 200:
+      console.log(response.body.name);
+      break;
+    case 404:
+      console.error(response.body.error);
+      break;
+  }
+} else {
+  console.log(`Default response: ${response.status}`);
+}
+
 // Access raw fetch Response for advanced use cases
 console.log(response.raw.ok);
+```
+
+### Default Responses
+
+OpenAPI specifications can define a "default" response that matches any status code not explicitly defined. The `isDefault` property indicates when a response matched the default schema:
+
+```typescript
+const response = await client["/api/resource"].get();
+
+if (response.isDefault) {
+  // This response matched the "default" specification
+  // response.status could be any number (500, 503, etc.)
+  console.log(`Unexpected status ${response.status}: ${response.body.message}`);
+}
 ```
 
 ## Parameter Serialization
