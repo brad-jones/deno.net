@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.9.2 - 2025-11-19
+#### Bug Fixes
+- (**app-builder**) support the default oppenapi response - (a672144) - *brad-jones*
+
+- - -
+
 ## app-builder-v0.9.1 - 2025-11-14
 #### Bug Fixes
 - (**open-api-client**) handle +json content types and throw better errors - (d67cd56) - *brad-jones*
