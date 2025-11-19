@@ -1,9 +1,9 @@
-import type { ZodType } from "@zod/zod";
-import { OpenApiRequestContext } from "./types.ts";
-import type { HttpContext } from "@brad-jones/deno-net-http-context";
 import { type IContainer, Type } from "@brad-jones/deno-net-container";
-import type { ZodOpenApiOperationObject, ZodOpenApiResponseObject } from "zod-openapi";
+import type { HttpContext } from "@brad-jones/deno-net-http-context";
 import { ServerErrorProblem, ValidationProblem } from "@brad-jones/deno-net-problem-details";
+import type { ZodType } from "@zod/zod";
+import type { ZodOpenApiOperationObject, ZodOpenApiResponseObject } from "zod-openapi";
+import { OpenApiRequestContext } from "./types.ts";
 
 /**
  * Token for dependency injection of IOpenApiHandler implementations.
@@ -265,7 +265,7 @@ export class OpenApiHandler implements IOpenApiHandler {
    */
   protected async validateOpenApiResponse(response: Response, op: ZodOpenApiOperationObject): Promise<Response> {
     // deno-lint-ignore no-explicit-any
-    const responseSpec = (op.responses as any)[response.status] as ZodOpenApiResponseObject;
+    const responseSpec = (op.responses as any)[response.status] ?? op.responses["default"] as ZodOpenApiResponseObject;
     if (!responseSpec) {
       throw new ServerErrorProblem({
         detail: "The response status code is not found in the OpenAPI specification.",

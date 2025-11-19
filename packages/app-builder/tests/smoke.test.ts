@@ -69,3 +69,50 @@ Deno.test("OpenAPI Client Smoke Test", async () => {
   expect(response.status).toBe(200);
   expect(response.body.message).toBe("counter: 123");
 });
+
+Deno.test("OpenAPI with Default Response", async () => {
+  const builder = new ApiAppBuilder();
+
+  builder.routes.openapi.mapGet(
+    "/foo",
+    {
+      responses: {
+        default: {
+          description: "Unknown",
+          content: {
+            "application/json": {
+              schema: z.object({ message: z.string() }),
+            },
+          },
+        },
+      },
+    },
+    (ctx) => ctx.response(404, {}, { message: `not found` }),
+  );
+
+  await using app = await builder.run();
+  const response = await app.client.get("foo", { throwHttpErrors: false });
+  expect(response.status).toBe(404);
+  expect(await response.json()).toMatchObject({ message: "not found" });
+});
+
+Deno.test("OpenAPI with Default Response, without schema", async () => {
+  const builder = new ApiAppBuilder();
+
+  builder.routes.openapi.mapGet(
+    "/foo",
+    {
+      responses: {
+        default: {
+          description: "Unknown",
+        },
+      },
+    },
+    (ctx) => ctx.response(404, {}, { message: `not found` }),
+  );
+
+  await using app = await builder.run();
+  const response = await app.client.get("foo", { throwHttpErrors: false });
+  expect(response.status).toBe(404);
+  expect(await response.json()).toMatchObject({ message: "not found" });
+});
