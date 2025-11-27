@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.9.4 - 2025-11-27
+#### Bug Fixes
+- (**app-builder**) cater for wrapped zod types - (6f9a635) - *brad-jones*
+
+- - -
+
 ## app-builder-v0.9.3 - 2025-11-27
 #### Bug Fixes
 - (**app-builder**) support openapi parameter serialization - (ae93dfc) - *brad-jones*
