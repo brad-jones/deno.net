@@ -422,7 +422,10 @@ export class OpenApiHandler implements IOpenApiHandler {
 
     for (const [name, fieldSchema] of Object.entries(shape)) {
       // deno-lint-ignore no-explicit-any
-      const field = fieldSchema as any;
+      let field = fieldSchema as any;
+
+      // Unwrap optional, nullable, and other wrapper types to get to the underlying schema
+      field = this.unwrapSchema(field);
 
       const paramMeta: {
         name: string;
@@ -459,6 +462,35 @@ export class OpenApiHandler implements IOpenApiHandler {
   }
 
   /**
+   * Unwraps Zod wrapper schemas (optional, nullable, default, etc.) to get the underlying schema.
+   *
+   * @param schema - The potentially wrapped Zod schema
+   * @returns The unwrapped schema
+   */
+  protected unwrapSchema(
+    // deno-lint-ignore no-explicit-any
+    schema: any,
+    // deno-lint-ignore no-explicit-any
+  ): any {
+    if (!schema?.def) {
+      return schema;
+    }
+
+    const defType = schema.def.type;
+    const innerType = schema.def.innerType;
+
+    // Unwrap Zod v4 wrapper types: optional, nullable, default, catch
+    if (
+      innerType && (defType === "optional" || defType === "nullable" || defType === "default" || defType === "catch")
+    ) {
+      // Recursively unwrap in case of multiple layers
+      return this.unwrapSchema(innerType);
+    }
+
+    return schema;
+  }
+
+  /**
    * Extracts path parameter metadata from a Zod schema.
    */
   protected extractPathParamMetadata(
@@ -483,7 +515,10 @@ export class OpenApiHandler implements IOpenApiHandler {
 
     for (const [name, fieldSchema] of Object.entries(shape)) {
       // deno-lint-ignore no-explicit-any
-      const field = fieldSchema as any;
+      let field = fieldSchema as any;
+
+      // Unwrap optional, nullable, and other wrapper types
+      field = this.unwrapSchema(field);
 
       const paramMeta: {
         name: string;
@@ -537,7 +572,10 @@ export class OpenApiHandler implements IOpenApiHandler {
 
     for (const [name, fieldSchema] of Object.entries(shape)) {
       // deno-lint-ignore no-explicit-any
-      const field = fieldSchema as any;
+      let field = fieldSchema as any;
+
+      // Unwrap optional, nullable, and other wrapper types
+      field = this.unwrapSchema(field);
 
       const paramMeta: {
         name: string;
@@ -597,7 +635,10 @@ export class OpenApiHandler implements IOpenApiHandler {
 
     for (const [name, fieldSchema] of Object.entries(shape)) {
       // deno-lint-ignore no-explicit-any
-      const field = fieldSchema as any;
+      let field = fieldSchema as any;
+
+      // Unwrap optional, nullable, and other wrapper types
+      field = this.unwrapSchema(field);
 
       const paramMeta: {
         name: string;
