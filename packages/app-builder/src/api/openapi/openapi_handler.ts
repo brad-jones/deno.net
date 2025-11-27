@@ -3,6 +3,10 @@ import type { HttpContext } from "@brad-jones/deno-net-http-context";
 import { ServerErrorProblem, ValidationProblem } from "@brad-jones/deno-net-problem-details";
 import type { ZodType } from "@zod/zod";
 import type { ZodOpenApiOperationObject, ZodOpenApiResponseObject } from "zod-openapi";
+import { deserializeCookies } from "./deserializers/deserialize_cookies.ts";
+import { deserializeHeaders } from "./deserializers/deserialize_headers.ts";
+import { deserializePath } from "./deserializers/deserialize_path.ts";
+import { deserializeQuery } from "./deserializers/deserialize_query.ts";
 import { OpenApiRequestContext } from "./types.ts";
 
 /**
@@ -148,7 +152,17 @@ export class OpenApiHandler implements IOpenApiHandler {
     // deno-lint-ignore no-explicit-any
     const pathSchema = op.requestParams?.path as any as ZodType;
     if (pathSchema && "safeParse" in pathSchema) {
-      const pathResult = pathSchema.safeParse(ctx.req.param());
+      // Get raw path parameters
+      const rawPath = ctx.req.param();
+
+      // Extract parameter metadata from the schema
+      // deno-lint-ignore no-explicit-any
+      const pathMetadata = this.extractPathParamMetadata(pathSchema as any);
+
+      // Deserialize according to OpenAPI specification
+      const deserializedPath = deserializePath(rawPath, pathMetadata);
+
+      const pathResult = pathSchema.safeParse(deserializedPath);
       if (!pathResult.success) {
         throw new ValidationProblem({
           instance: `#/request/path`,
@@ -162,7 +176,34 @@ export class OpenApiHandler implements IOpenApiHandler {
     // deno-lint-ignore no-explicit-any
     const querySchema = op.requestParams?.query as any as ZodType;
     if (querySchema && "safeParse" in querySchema) {
-      const queryResult = querySchema.safeParse(ctx.req.query());
+      // Get raw query parameters from Hono
+      // Hono's query() returns Record<string, string> by default
+      // but we need to handle arrays for parameters with same name
+      const url = new URL(ctx.req.url);
+      const rawQuery: Record<string, string | string[]> = {};
+
+      // Parse query parameters, handling multiple values with same key
+      for (const [key, value] of url.searchParams) {
+        if (rawQuery[key]) {
+          // Already exists, convert to array or append to existing array
+          if (Array.isArray(rawQuery[key])) {
+            (rawQuery[key] as string[]).push(value);
+          } else {
+            rawQuery[key] = [rawQuery[key] as string, value];
+          }
+        } else {
+          rawQuery[key] = value;
+        }
+      }
+
+      // Extract parameter metadata from the schema if available
+      // deno-lint-ignore no-explicit-any
+      const paramMetadata = this.extractQueryParamMetadata(querySchema as any);
+
+      // Deserialize according to OpenAPI specification
+      const deserializedQuery = deserializeQuery(rawQuery, paramMetadata);
+
+      const queryResult = querySchema.safeParse(deserializedQuery);
       if (!queryResult.success) {
         throw new ValidationProblem({
           instance: `#/request/query`,
@@ -176,7 +217,17 @@ export class OpenApiHandler implements IOpenApiHandler {
     // deno-lint-ignore no-explicit-any
     const headerSchema = op.requestParams?.header as any as ZodType;
     if (headerSchema && "safeParse" in headerSchema) {
-      const headerResult = headerSchema.safeParse(ctx.req.header());
+      // Get raw headers
+      const rawHeaders = ctx.req.header();
+
+      // Extract parameter metadata from the schema
+      // deno-lint-ignore no-explicit-any
+      const headerMetadata = this.extractHeaderParamMetadata(headerSchema as any);
+
+      // Deserialize according to OpenAPI specification
+      const deserializedHeaders = deserializeHeaders(rawHeaders, headerMetadata);
+
+      const headerResult = headerSchema.safeParse(deserializedHeaders);
       if (!headerResult.success) {
         throw new ValidationProblem({
           instance: `#/request/headers`,
@@ -190,17 +241,26 @@ export class OpenApiHandler implements IOpenApiHandler {
     // deno-lint-ignore no-explicit-any
     const cookieSchema = op.requestParams?.cookie as any as ZodType;
     if (cookieSchema && "safeParse" in cookieSchema) {
-      const cookieData: Record<string, unknown> = {};
+      // Parse raw cookies from Cookie header
+      const rawCookies: Record<string, string> = {};
       const cookieHeader = ctx.req.header("Cookie");
       if (cookieHeader) {
         const cookies = cookieHeader.split(";").map((c) => c.trim().split("="));
         for (const [key, value] of cookies) {
           if (key && value) {
-            cookieData[key] = decodeURIComponent(value);
+            rawCookies[key] = value;
           }
         }
       }
-      const cookieResult = cookieSchema.safeParse(cookieData);
+
+      // Extract parameter metadata from the schema
+      // deno-lint-ignore no-explicit-any
+      const cookieMetadata = this.extractCookieParamMetadata(cookieSchema as any);
+
+      // Deserialize according to OpenAPI specification
+      const deserializedCookies = deserializeCookies(rawCookies, cookieMetadata);
+
+      const cookieResult = cookieSchema.safeParse(deserializedCookies);
       if (!cookieResult.success) {
         throw new ValidationProblem({
           instance: `#/request/cookies`,
@@ -327,6 +387,249 @@ export class OpenApiHandler implements IOpenApiHandler {
     }
 
     return response;
+  }
+
+  /**
+   * Extracts query parameter metadata from a Zod schema.
+   *
+   * This helper method inspects the Zod schema to determine the type and structure
+   * of each query parameter, which is needed for proper deserialization according
+   * to OpenAPI specification.
+   *
+   * @param schema - The Zod schema for query parameters (typically a ZodObject)
+   * @returns Array of parameter metadata for deserialization
+   */
+  protected extractQueryParamMetadata(
+    // deno-lint-ignore no-explicit-any
+    schema: any,
+  ): Array<{
+    name: string;
+    style?: "form" | "spaceDelimited" | "pipeDelimited" | "deepObject";
+    explode?: boolean;
+    schema?: { type?: string; items?: unknown };
+  }> {
+    if (!schema || !schema._def) {
+      return [];
+    }
+
+    // Check if it's a ZodObject (has a shape function or property)
+    const shape = typeof schema._def.shape === "function" ? schema._def.shape() : schema._def.shape;
+    if (!shape) {
+      return [];
+    }
+
+    const metadata = [];
+
+    for (const [name, fieldSchema] of Object.entries(shape)) {
+      // deno-lint-ignore no-explicit-any
+      const field = fieldSchema as any;
+
+      const paramMeta: {
+        name: string;
+        style?: "form" | "spaceDelimited" | "pipeDelimited" | "deepObject";
+        explode?: boolean;
+        schema?: { type?: string; items?: unknown };
+      } = { name };
+
+      // Determine if this is an array type
+      // The schema can use either _def.typeName (older Zod) or def.type/type (newer Zod/zod-openapi)
+      const isArrayType = field._def?.typeName === "ZodArray" ||
+        field.def?.type === "array" ||
+        field.type === "array";
+
+      if (isArrayType) {
+        paramMeta.schema = { type: "array", items: field._def?.type ?? field.def?.element ?? field.element };
+      }
+
+      // Check for OpenAPI metadata (zod-openapi extends Zod schemas with metadata)
+      // Default style for query params is "form" with explode: true
+      const openApiStyle = field._def?.openapi?.param?.style;
+      paramMeta.style = (openApiStyle === "form" ||
+          openApiStyle === "spaceDelimited" ||
+          openApiStyle === "pipeDelimited" ||
+          openApiStyle === "deepObject")
+        ? openApiStyle
+        : "form";
+      paramMeta.explode = field._def?.openapi?.param?.explode ?? true;
+
+      metadata.push(paramMeta);
+    }
+
+    return metadata;
+  }
+
+  /**
+   * Extracts path parameter metadata from a Zod schema.
+   */
+  protected extractPathParamMetadata(
+    // deno-lint-ignore no-explicit-any
+    schema: any,
+  ): Array<{
+    name: string;
+    style?: "simple" | "label" | "matrix";
+    explode?: boolean;
+    schema?: { type?: string; items?: unknown };
+  }> {
+    if (!schema || !schema._def) {
+      return [];
+    }
+
+    const shape = typeof schema._def.shape === "function" ? schema._def.shape() : schema._def.shape;
+    if (!shape) {
+      return [];
+    }
+
+    const metadata = [];
+
+    for (const [name, fieldSchema] of Object.entries(shape)) {
+      // deno-lint-ignore no-explicit-any
+      const field = fieldSchema as any;
+
+      const paramMeta: {
+        name: string;
+        style?: "simple" | "label" | "matrix";
+        explode?: boolean;
+        schema?: { type?: string; items?: unknown };
+      } = { name };
+
+      const isArrayType = field._def?.typeName === "ZodArray" ||
+        field.def?.type === "array" ||
+        field.type === "array";
+
+      if (isArrayType) {
+        paramMeta.schema = { type: "array", items: field._def?.type ?? field.def?.element ?? field.element };
+      }
+
+      const openApiStyle = field._def?.openapi?.param?.style;
+      paramMeta.style = (openApiStyle === "simple" || openApiStyle === "label" || openApiStyle === "matrix")
+        ? openApiStyle
+        : "simple";
+      paramMeta.explode = field._def?.openapi?.param?.explode ?? false;
+
+      metadata.push(paramMeta);
+    }
+
+    return metadata;
+  }
+
+  /**
+   * Extracts header parameter metadata from a Zod schema.
+   */
+  protected extractHeaderParamMetadata(
+    // deno-lint-ignore no-explicit-any
+    schema: any,
+  ): Array<{
+    name: string;
+    style?: "simple";
+    explode?: boolean;
+    schema?: { type?: string; items?: unknown; properties?: unknown };
+  }> {
+    if (!schema || !schema._def) {
+      return [];
+    }
+
+    const shape = typeof schema._def.shape === "function" ? schema._def.shape() : schema._def.shape;
+    if (!shape) {
+      return [];
+    }
+
+    const metadata = [];
+
+    for (const [name, fieldSchema] of Object.entries(shape)) {
+      // deno-lint-ignore no-explicit-any
+      const field = fieldSchema as any;
+
+      const paramMeta: {
+        name: string;
+        style?: "simple";
+        explode?: boolean;
+        schema?: { type?: string; items?: unknown; properties?: unknown };
+      } = { name };
+
+      const isArrayType = field._def?.typeName === "ZodArray" ||
+        field.def?.type === "array" ||
+        field.type === "array";
+
+      const isObjectType = field._def?.typeName === "ZodObject" ||
+        field.def?.type === "object" ||
+        field.type === "object";
+
+      if (isArrayType) {
+        paramMeta.schema = { type: "array", items: field._def?.type ?? field.def?.element ?? field.element };
+      } else if (isObjectType) {
+        paramMeta.schema = {
+          type: "object",
+          properties: field._def?.shape ?? field.def?.properties ?? field.properties,
+        };
+      }
+
+      paramMeta.style = "simple";
+      paramMeta.explode = field._def?.openapi?.param?.explode ?? false;
+
+      metadata.push(paramMeta);
+    }
+
+    return metadata;
+  }
+
+  /**
+   * Extracts cookie parameter metadata from a Zod schema.
+   */
+  protected extractCookieParamMetadata(
+    // deno-lint-ignore no-explicit-any
+    schema: any,
+  ): Array<{
+    name: string;
+    style?: "form";
+    explode?: boolean;
+    schema?: { type?: string; items?: unknown; properties?: unknown };
+  }> {
+    if (!schema || !schema._def) {
+      return [];
+    }
+
+    const shape = typeof schema._def.shape === "function" ? schema._def.shape() : schema._def.shape;
+    if (!shape) {
+      return [];
+    }
+
+    const metadata = [];
+
+    for (const [name, fieldSchema] of Object.entries(shape)) {
+      // deno-lint-ignore no-explicit-any
+      const field = fieldSchema as any;
+
+      const paramMeta: {
+        name: string;
+        style?: "form";
+        explode?: boolean;
+        schema?: { type?: string; items?: unknown; properties?: unknown };
+      } = { name };
+
+      const isArrayType = field._def?.typeName === "ZodArray" ||
+        field.def?.type === "array" ||
+        field.type === "array";
+
+      const isObjectType = field._def?.typeName === "ZodObject" ||
+        field.def?.type === "object" ||
+        field.type === "object";
+
+      if (isArrayType) {
+        paramMeta.schema = { type: "array", items: field._def?.type ?? field.def?.element ?? field.element };
+      } else if (isObjectType) {
+        paramMeta.schema = {
+          type: "object",
+          properties: field._def?.shape ?? field.def?.properties ?? field.properties,
+        };
+      }
+
+      paramMeta.style = "form";
+      paramMeta.explode = field._def?.openapi?.param?.explode ?? false;
+
+      metadata.push(paramMeta);
+    }
+
+    return metadata;
   }
 }
 
