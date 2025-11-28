@@ -1,3 +1,5 @@
+import { coerceValue } from "./utils.ts";
+
 /**
  * Deserializes cookie parameters from Cookie header according to OpenAPI specification.
  *
@@ -45,11 +47,11 @@ export function deserializeCookies(
 
     if (style !== "form") {
       // Cookies only support form style
-      result[name] = decodedValue;
+      result[name] = coerceValue(decodedValue, schema);
       continue;
     }
 
-    result[name] = deserializeForm(decodedValue, explode, isArray ?? false, isObject ?? false);
+    result[name] = coerceValue(deserializeForm(decodedValue, explode, isArray ?? false, isObject ?? false), schema);
   }
 
   return result;

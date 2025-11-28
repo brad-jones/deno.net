@@ -144,7 +144,6 @@ Deno.test("OpenAPI array parameters (single)", async () => {
   await using app = await builder.run();
   const response = await app.client.get("foo?name=Bob", { throwHttpErrors: false });
   const body = await response.json();
-  console.log(body);
   expect(response.status).toBe(200);
   expect(body).toMatchObject({ message: 'given names: ["Bob"]' });
 });
@@ -175,7 +174,6 @@ Deno.test("OpenAPI array parameters (multiple)", async () => {
   await using app = await builder.run();
   const response = await app.client.get("foo?name=Bob,Fred", { throwHttpErrors: false });
   const body = await response.json();
-  console.log(body);
   expect(response.status).toBe(200);
   expect(body).toMatchObject({ message: 'given names: ["Bob,Fred"]' });
 });
@@ -206,7 +204,6 @@ Deno.test("OpenAPI array parameters (optional)", async () => {
   await using app = await builder.run();
   const response = await app.client.get("foo?name=Bob", { throwHttpErrors: false });
   const body = await response.json();
-  console.log(body);
   expect(response.status).toBe(200);
   expect(body).toMatchObject({ message: 'given names: ["Bob"]' });
 });
@@ -401,4 +398,286 @@ Deno.test("OpenAPI cookie array parameters (optional)", async () => {
   const body = await response.json();
   expect(response.status).toBe(200);
   expect(body).toMatchObject({ message: 'prefs: ["dark","compact","minimal"]' });
+});
+
+Deno.test("OpenAPI number parameters", async () => {
+  const builder = new ApiAppBuilder();
+
+  builder.routes.openapi.mapGet(
+    "/foo",
+    {
+      requestParams: {
+        query: z.object({ bar: z.number() }),
+      },
+      responses: {
+        200: {
+          description: "OK",
+          content: {
+            "application/json": {
+              schema: z.object({ message: z.string() }),
+            },
+          },
+        },
+      },
+    },
+    (ctx) => ctx.response(200, { message: JSON.stringify(ctx.query) }),
+  );
+
+  await using app = await builder.run();
+  const response = await app.client.get("foo?bar=1", { throwHttpErrors: false });
+  const body = await response.json();
+  expect(response.status).toBe(200);
+  expect(body).toMatchObject({ message: JSON.stringify({ bar: 1 }) });
+});
+
+Deno.test("OpenAPI boolean parameters (query)", async () => {
+  const builder = new ApiAppBuilder();
+
+  builder.routes.openapi.mapGet(
+    "/foo",
+    {
+      requestParams: {
+        query: z.object({ bar: z.boolean() }),
+      },
+      responses: {
+        200: {
+          description: "OK",
+          content: {
+            "application/json": {
+              schema: z.object({ message: z.string() }),
+            },
+          },
+        },
+      },
+    },
+    (ctx) => ctx.response(200, { message: JSON.stringify(ctx.query) }),
+  );
+
+  await using app = await builder.run();
+  const response = await app.client.get("foo?bar=true", { throwHttpErrors: false });
+  const body = await response.json();
+  expect(response.status).toBe(200);
+  expect(body).toMatchObject({ message: JSON.stringify({ bar: true }) });
+});
+
+Deno.test("OpenAPI integer parameters (query)", async () => {
+  const builder = new ApiAppBuilder();
+
+  builder.routes.openapi.mapGet(
+    "/foo",
+    {
+      requestParams: {
+        query: z.object({ bar: z.number().int() }),
+      },
+      responses: {
+        200: {
+          description: "OK",
+          content: {
+            "application/json": {
+              schema: z.object({ message: z.string() }),
+            },
+          },
+        },
+      },
+    },
+    (ctx) => ctx.response(200, { message: JSON.stringify(ctx.query) }),
+  );
+
+  await using app = await builder.run();
+  const response = await app.client.get("foo?bar=123", { throwHttpErrors: false });
+  const body = await response.json();
+  expect(response.status).toBe(200);
+  expect(body).toMatchObject({ message: JSON.stringify({ bar: 123 }) });
+});
+
+Deno.test("OpenAPI number parameters (path)", async () => {
+  const builder = new ApiAppBuilder();
+
+  builder.routes.openapi.mapGet(
+    "/foo/:bar",
+    {
+      requestParams: {
+        path: z.object({ bar: z.number() }),
+      },
+      responses: {
+        200: {
+          description: "OK",
+          content: {
+            "application/json": {
+              schema: z.object({ message: z.string() }),
+            },
+          },
+        },
+      },
+    },
+    (ctx) => ctx.response(200, { message: JSON.stringify(ctx.path) }),
+  );
+
+  await using app = await builder.run();
+  const response = await app.client.get("foo/123.45", { throwHttpErrors: false });
+  const body = await response.json();
+  expect(response.status).toBe(200);
+  expect(body).toMatchObject({ message: JSON.stringify({ bar: 123.45 }) });
+});
+
+Deno.test("OpenAPI boolean parameters (path)", async () => {
+  const builder = new ApiAppBuilder();
+
+  builder.routes.openapi.mapGet(
+    "/foo/:bar",
+    {
+      requestParams: {
+        path: z.object({ bar: z.boolean() }),
+      },
+      responses: {
+        200: {
+          description: "OK",
+          content: {
+            "application/json": {
+              schema: z.object({ message: z.string() }),
+            },
+          },
+        },
+      },
+    },
+    (ctx) => ctx.response(200, { message: JSON.stringify(ctx.path) }),
+  );
+
+  await using app = await builder.run();
+  const response = await app.client.get("foo/true", { throwHttpErrors: false });
+  const body = await response.json();
+  expect(response.status).toBe(200);
+  expect(body).toMatchObject({ message: JSON.stringify({ bar: true }) });
+});
+
+Deno.test("OpenAPI number parameters (header)", async () => {
+  const builder = new ApiAppBuilder();
+
+  builder.routes.openapi.mapGet(
+    "/foo",
+    {
+      requestParams: {
+        header: z.object({ "x-bar": z.number() }),
+      },
+      responses: {
+        200: {
+          description: "OK",
+          content: {
+            "application/json": {
+              schema: z.object({ message: z.string() }),
+            },
+          },
+        },
+      },
+    },
+    (ctx) => ctx.response(200, { message: JSON.stringify(ctx.headers) }),
+  );
+
+  await using app = await builder.run();
+  const response = await app.client.get("foo", {
+    throwHttpErrors: false,
+    headers: { "x-bar": "123.45" },
+  });
+  const body = await response.json();
+  expect(response.status).toBe(200);
+  expect(body).toMatchObject({ message: expect.stringContaining('"x-bar":123.45') });
+});
+
+Deno.test("OpenAPI boolean parameters (header)", async () => {
+  const builder = new ApiAppBuilder();
+
+  builder.routes.openapi.mapGet(
+    "/foo",
+    {
+      requestParams: {
+        header: z.object({ "x-bar": z.boolean() }),
+      },
+      responses: {
+        200: {
+          description: "OK",
+          content: {
+            "application/json": {
+              schema: z.object({ message: z.string() }),
+            },
+          },
+        },
+      },
+    },
+    (ctx) => ctx.response(200, { message: JSON.stringify(ctx.headers) }),
+  );
+
+  await using app = await builder.run();
+  const response = await app.client.get("foo", {
+    throwHttpErrors: false,
+    headers: { "x-bar": "true" },
+  });
+  const body = await response.json();
+  expect(response.status).toBe(200);
+  expect(body).toMatchObject({ message: expect.stringContaining('"x-bar":true') });
+});
+
+Deno.test("OpenAPI number parameters (cookie)", async () => {
+  const builder = new ApiAppBuilder();
+
+  builder.routes.openapi.mapGet(
+    "/foo",
+    {
+      requestParams: {
+        cookie: z.object({ bar: z.number() }),
+      },
+      responses: {
+        200: {
+          description: "OK",
+          content: {
+            "application/json": {
+              schema: z.object({ message: z.string() }),
+            },
+          },
+        },
+      },
+    },
+    (ctx) => ctx.response(200, { message: JSON.stringify(ctx.cookies) }),
+  );
+
+  await using app = await builder.run();
+  const response = await app.client.get("foo", {
+    throwHttpErrors: false,
+    headers: { cookie: "bar=123.45" },
+  });
+  const body = await response.json();
+  expect(response.status).toBe(200);
+  expect(body).toMatchObject({ message: JSON.stringify({ bar: 123.45 }) });
+});
+
+Deno.test("OpenAPI boolean parameters (cookie)", async () => {
+  const builder = new ApiAppBuilder();
+
+  builder.routes.openapi.mapGet(
+    "/foo",
+    {
+      requestParams: {
+        cookie: z.object({ bar: z.boolean() }),
+      },
+      responses: {
+        200: {
+          description: "OK",
+          content: {
+            "application/json": {
+              schema: z.object({ message: z.string() }),
+            },
+          },
+        },
+      },
+    },
+    (ctx) => ctx.response(200, { message: JSON.stringify(ctx.cookies) }),
+  );
+
+  await using app = await builder.run();
+  const response = await app.client.get("foo", {
+    throwHttpErrors: false,
+    headers: { cookie: "bar=true" },
+  });
+  const body = await response.json();
+  expect(response.status).toBe(200);
+  expect(body).toMatchObject({ message: JSON.stringify({ bar: true }) });
 });

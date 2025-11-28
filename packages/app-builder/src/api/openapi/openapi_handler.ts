@@ -390,6 +390,91 @@ export class OpenApiHandler implements IOpenApiHandler {
   }
 
   /**
+   * Generic helper to extract parameter metadata from a Zod schema.
+   */
+  protected extractMetadata(
+    // deno-lint-ignore no-explicit-any
+    schema: any,
+    defaultStyle: string,
+    defaultExplode: boolean,
+    allowedStyles: string[],
+  ): Array<{
+    name: string;
+    style?: string;
+    explode?: boolean;
+    schema?: { type?: string; items?: unknown; properties?: unknown };
+  }> {
+    if (!schema || !schema._def) {
+      return [];
+    }
+
+    const shape = typeof schema._def.shape === "function" ? schema._def.shape() : schema._def.shape;
+    if (!shape) {
+      return [];
+    }
+
+    const metadata = [];
+
+    for (const [name, fieldSchema] of Object.entries(shape)) {
+      // deno-lint-ignore no-explicit-any
+      let field = fieldSchema as any;
+
+      // Unwrap optional, nullable, and other wrapper types
+      field = this.unwrapSchema(field);
+
+      const paramMeta: {
+        name: string;
+        style?: string;
+        explode?: boolean;
+        schema?: { type?: string; items?: unknown; properties?: unknown };
+      } = { name };
+
+      const isArrayType = field._def?.typeName === "ZodArray" ||
+        field.def?.type === "array" ||
+        field.type === "array";
+
+      const isObjectType = field._def?.typeName === "ZodObject" ||
+        field.def?.type === "object" ||
+        field.type === "object";
+
+      const isNumberType = field._def?.typeName === "ZodNumber" ||
+        field.def?.type === "number" ||
+        field.type === "number";
+
+      const isBooleanType = field._def?.typeName === "ZodBoolean" ||
+        field.def?.type === "boolean" ||
+        field.type === "boolean";
+
+      const isIntegerType = field._def?.typeName === "ZodBigInt" ||
+        field.def?.type === "integer" ||
+        field.type === "integer";
+
+      if (isArrayType) {
+        paramMeta.schema = { type: "array", items: field._def?.type ?? field.def?.element ?? field.element };
+      } else if (isObjectType) {
+        paramMeta.schema = {
+          type: "object",
+          properties: field._def?.shape ?? field.def?.properties ?? field.properties,
+        };
+      } else if (isNumberType) {
+        paramMeta.schema = { type: "number" };
+      } else if (isBooleanType) {
+        paramMeta.schema = { type: "boolean" };
+      } else if (isIntegerType) {
+        paramMeta.schema = { type: "integer" };
+      }
+
+      const openApiStyle = field._def?.openapi?.param?.style;
+      paramMeta.style = allowedStyles.includes(openApiStyle) ? openApiStyle : defaultStyle;
+      paramMeta.explode = field._def?.openapi?.param?.explode ?? defaultExplode;
+
+      metadata.push(paramMeta);
+    }
+
+    return metadata;
+  }
+
+  /**
    * Extracts query parameter metadata from a Zod schema.
    *
    * This helper method inspects the Zod schema to determine the type and structure
@@ -408,57 +493,13 @@ export class OpenApiHandler implements IOpenApiHandler {
     explode?: boolean;
     schema?: { type?: string; items?: unknown };
   }> {
-    if (!schema || !schema._def) {
-      return [];
-    }
-
-    // Check if it's a ZodObject (has a shape function or property)
-    const shape = typeof schema._def.shape === "function" ? schema._def.shape() : schema._def.shape;
-    if (!shape) {
-      return [];
-    }
-
-    const metadata = [];
-
-    for (const [name, fieldSchema] of Object.entries(shape)) {
+    return this.extractMetadata(schema, "form", true, [
+      "form",
+      "spaceDelimited",
+      "pipeDelimited",
+      "deepObject",
       // deno-lint-ignore no-explicit-any
-      let field = fieldSchema as any;
-
-      // Unwrap optional, nullable, and other wrapper types to get to the underlying schema
-      field = this.unwrapSchema(field);
-
-      const paramMeta: {
-        name: string;
-        style?: "form" | "spaceDelimited" | "pipeDelimited" | "deepObject";
-        explode?: boolean;
-        schema?: { type?: string; items?: unknown };
-      } = { name };
-
-      // Determine if this is an array type
-      // The schema can use either _def.typeName (older Zod) or def.type/type (newer Zod/zod-openapi)
-      const isArrayType = field._def?.typeName === "ZodArray" ||
-        field.def?.type === "array" ||
-        field.type === "array";
-
-      if (isArrayType) {
-        paramMeta.schema = { type: "array", items: field._def?.type ?? field.def?.element ?? field.element };
-      }
-
-      // Check for OpenAPI metadata (zod-openapi extends Zod schemas with metadata)
-      // Default style for query params is "form" with explode: true
-      const openApiStyle = field._def?.openapi?.param?.style;
-      paramMeta.style = (openApiStyle === "form" ||
-          openApiStyle === "spaceDelimited" ||
-          openApiStyle === "pipeDelimited" ||
-          openApiStyle === "deepObject")
-        ? openApiStyle
-        : "form";
-      paramMeta.explode = field._def?.openapi?.param?.explode ?? true;
-
-      metadata.push(paramMeta);
-    }
-
-    return metadata;
+    ]) as any;
   }
 
   /**
@@ -502,49 +543,12 @@ export class OpenApiHandler implements IOpenApiHandler {
     explode?: boolean;
     schema?: { type?: string; items?: unknown };
   }> {
-    if (!schema || !schema._def) {
-      return [];
-    }
-
-    const shape = typeof schema._def.shape === "function" ? schema._def.shape() : schema._def.shape;
-    if (!shape) {
-      return [];
-    }
-
-    const metadata = [];
-
-    for (const [name, fieldSchema] of Object.entries(shape)) {
+    return this.extractMetadata(schema, "simple", false, [
+      "simple",
+      "label",
+      "matrix",
       // deno-lint-ignore no-explicit-any
-      let field = fieldSchema as any;
-
-      // Unwrap optional, nullable, and other wrapper types
-      field = this.unwrapSchema(field);
-
-      const paramMeta: {
-        name: string;
-        style?: "simple" | "label" | "matrix";
-        explode?: boolean;
-        schema?: { type?: string; items?: unknown };
-      } = { name };
-
-      const isArrayType = field._def?.typeName === "ZodArray" ||
-        field.def?.type === "array" ||
-        field.type === "array";
-
-      if (isArrayType) {
-        paramMeta.schema = { type: "array", items: field._def?.type ?? field.def?.element ?? field.element };
-      }
-
-      const openApiStyle = field._def?.openapi?.param?.style;
-      paramMeta.style = (openApiStyle === "simple" || openApiStyle === "label" || openApiStyle === "matrix")
-        ? openApiStyle
-        : "simple";
-      paramMeta.explode = field._def?.openapi?.param?.explode ?? false;
-
-      metadata.push(paramMeta);
-    }
-
-    return metadata;
+    ]) as any;
   }
 
   /**
@@ -559,55 +563,8 @@ export class OpenApiHandler implements IOpenApiHandler {
     explode?: boolean;
     schema?: { type?: string; items?: unknown; properties?: unknown };
   }> {
-    if (!schema || !schema._def) {
-      return [];
-    }
-
-    const shape = typeof schema._def.shape === "function" ? schema._def.shape() : schema._def.shape;
-    if (!shape) {
-      return [];
-    }
-
-    const metadata = [];
-
-    for (const [name, fieldSchema] of Object.entries(shape)) {
-      // deno-lint-ignore no-explicit-any
-      let field = fieldSchema as any;
-
-      // Unwrap optional, nullable, and other wrapper types
-      field = this.unwrapSchema(field);
-
-      const paramMeta: {
-        name: string;
-        style?: "simple";
-        explode?: boolean;
-        schema?: { type?: string; items?: unknown; properties?: unknown };
-      } = { name };
-
-      const isArrayType = field._def?.typeName === "ZodArray" ||
-        field.def?.type === "array" ||
-        field.type === "array";
-
-      const isObjectType = field._def?.typeName === "ZodObject" ||
-        field.def?.type === "object" ||
-        field.type === "object";
-
-      if (isArrayType) {
-        paramMeta.schema = { type: "array", items: field._def?.type ?? field.def?.element ?? field.element };
-      } else if (isObjectType) {
-        paramMeta.schema = {
-          type: "object",
-          properties: field._def?.shape ?? field.def?.properties ?? field.properties,
-        };
-      }
-
-      paramMeta.style = "simple";
-      paramMeta.explode = field._def?.openapi?.param?.explode ?? false;
-
-      metadata.push(paramMeta);
-    }
-
-    return metadata;
+    // deno-lint-ignore no-explicit-any
+    return this.extractMetadata(schema, "simple", false, ["simple"]) as any;
   }
 
   /**
@@ -622,55 +579,8 @@ export class OpenApiHandler implements IOpenApiHandler {
     explode?: boolean;
     schema?: { type?: string; items?: unknown; properties?: unknown };
   }> {
-    if (!schema || !schema._def) {
-      return [];
-    }
-
-    const shape = typeof schema._def.shape === "function" ? schema._def.shape() : schema._def.shape;
-    if (!shape) {
-      return [];
-    }
-
-    const metadata = [];
-
-    for (const [name, fieldSchema] of Object.entries(shape)) {
-      // deno-lint-ignore no-explicit-any
-      let field = fieldSchema as any;
-
-      // Unwrap optional, nullable, and other wrapper types
-      field = this.unwrapSchema(field);
-
-      const paramMeta: {
-        name: string;
-        style?: "form";
-        explode?: boolean;
-        schema?: { type?: string; items?: unknown; properties?: unknown };
-      } = { name };
-
-      const isArrayType = field._def?.typeName === "ZodArray" ||
-        field.def?.type === "array" ||
-        field.type === "array";
-
-      const isObjectType = field._def?.typeName === "ZodObject" ||
-        field.def?.type === "object" ||
-        field.type === "object";
-
-      if (isArrayType) {
-        paramMeta.schema = { type: "array", items: field._def?.type ?? field.def?.element ?? field.element };
-      } else if (isObjectType) {
-        paramMeta.schema = {
-          type: "object",
-          properties: field._def?.shape ?? field.def?.properties ?? field.properties,
-        };
-      }
-
-      paramMeta.style = "form";
-      paramMeta.explode = field._def?.openapi?.param?.explode ?? false;
-
-      metadata.push(paramMeta);
-    }
-
-    return metadata;
+    // deno-lint-ignore no-explicit-any
+    return this.extractMetadata(schema, "form", false, ["form"]) as any;
   }
 }
 

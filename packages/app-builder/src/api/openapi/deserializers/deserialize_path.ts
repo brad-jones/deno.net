@@ -1,3 +1,5 @@
+import { coerceValue } from "./utils.ts";
+
 /**
  * Deserializes path parameters from URL path according to OpenAPI specification.
  *
@@ -32,12 +34,14 @@ export function deserializePath(
     // Determine if the schema expects an array
     const isArray = schema?.type === "array" || (schema && "items" in schema);
 
-    result[name] = deserializeParameter(
+    const deserialized = deserializeParameter(
       rawValue,
       style,
       explode,
       isArray ?? false,
     );
+
+    result[name] = coerceValue(deserialized, schema);
   }
 
   return result;

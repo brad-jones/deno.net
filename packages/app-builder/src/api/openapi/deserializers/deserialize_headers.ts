@@ -1,3 +1,5 @@
+import { coerceValue } from "./utils.ts";
+
 /**
  * Deserializes header parameters from HTTP headers according to OpenAPI specification.
  *
@@ -39,11 +41,11 @@ export function deserializeHeaders(
 
     if (style !== "simple") {
       // Headers only support simple style
-      result[name] = rawValue;
+      result[name] = coerceValue(rawValue, schema);
       continue;
     }
 
-    result[name] = deserializeSimple(rawValue, explode, isArray ?? false, isObject ?? false);
+    result[name] = coerceValue(deserializeSimple(rawValue, explode, isArray ?? false, isObject ?? false), schema);
   }
 
   return result;
