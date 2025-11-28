@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## app-builder-v0.9.5 - 2025-11-28
+#### Bug Fixes
+- (**app-builder**) added coercion support for primitive parameter types - (34a8019) - *brad-jones*
+
+- - -
+
 ## app-builder-v0.9.4 - 2025-11-27
 #### Bug Fixes
 - (**app-builder**) cater for wrapped zod types - (6f9a635) - *brad-jones*
