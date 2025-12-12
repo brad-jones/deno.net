@@ -1,6 +1,9 @@
 {
   "name": "@brad-jones/deno-net-open-api-client",
-  "exports": "./src/mod.ts",
+  "exports": {
+    ".": "./src/mod.ts",
+    "./client": "./src/client/mod.ts"
+  },
   "version": "0.3.1",
   "license": "MIT",
   "publish": {
