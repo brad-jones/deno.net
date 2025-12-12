@@ -11,8 +11,8 @@
     ]
   },
   "imports": {
-    "@brad-jones/jsr-dynamic-imports": "jsr:@brad-jones/jsr-dynamic-imports@^0.1.1",
+    "@brad-jones/jsr-dynamic-imports": "jsr:@brad-jones/jsr-dynamic-imports@^0.1.2",
     "@std/expect": "jsr:@std/expect@^1.0.17",
-    "@std/fs": "jsr:@std/fs@^1.0.19"
+    "@std/fs": "jsr:@std/fs@^1.0.20"
   }
 }
