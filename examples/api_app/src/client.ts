@@ -4,15 +4,16 @@
 import {
   type OpenAPIClientConfig,
   openAPIFetch,
+  type OpenAPIResponsePromise,
   type OpenAPIResponses,
-} from "jsr:@brad-jones/deno-net-open-api-client@0.2.1";
+} from "jsr:@brad-jones/deno-net-open-api-client@0.3.1/client";
 
 /**
  * API Client class with path-based access to all operations.
  * All methods are inline within the class.
  */
 export class ApiClient {
-  constructor(private readonly config: OpenAPIClientConfig) {}
+  constructor(private readonly config?: OpenAPIClientConfig) {}
 
   readonly "/strongly-typed/hello/{name}" = {
     post: (request: {
@@ -22,7 +23,7 @@ export class ApiClient {
       body: {
         age: number;
       };
-    }): Promise<
+    }): OpenAPIResponsePromise<
       OpenAPIResponses<{
         200: {
           body: {

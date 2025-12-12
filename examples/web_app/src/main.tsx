@@ -1,5 +1,5 @@
-import { httpLogging } from "@brad-jones/deno-net-middleware";
 import { WebAppBuilder } from "@brad-jones/deno-net-app-builder";
+import { httpLogging } from "@brad-jones/deno-net-middleware";
 import { IPingPong, PingPong } from "./services/ping_pong.ts";
 
 export const builder = new WebAppBuilder();
@@ -18,9 +18,7 @@ builder.middleware.useModule(
 );
 
 builder.routes.mapModules(`${import.meta.dirname}/routes/**/*.ts`)
-  .openapi.writeClient(`${import.meta.dirname}/client.ts`, {
-    importSpecifiers: { zod: "@zod/zod", baseClient: "@brad-jones/deno-net-open-api-client" },
-  })
+  .openapi.writeClient(`${import.meta.dirname}/client.ts`)
   .mapDoc("/docs/openapi")
   .mapScalarUi("/docs");
 

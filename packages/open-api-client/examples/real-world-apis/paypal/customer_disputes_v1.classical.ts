@@ -6,7 +6,7 @@ import {
   openAPIFetch,
   type OpenAPIResponsePromise,
   type OpenAPIResponses,
-} from "jsr:@brad-jones/deno-net-open-api-client@0.2.5";
+} from "jsr:@brad-jones/deno-net-open-api-client@0.3.1";
 import { z } from "npm:zod@^4.1.12";
 
 export type AcceptClaimType = "REFUND" | "REFUND_WITH_RETURN" | "PARTIAL_REFUND" | "REFUND_WITH_RETURN_SHIPMENT_LABEL";
@@ -4645,7 +4645,7 @@ export const DisputeSchema: z.ZodType<Dispute> = z.object({
  * All methods are inline within the class.
  */
 export class ApiClient {
-  constructor(private readonly config: OpenAPIClientConfig) {}
+  constructor(private readonly config?: OpenAPIClientConfig) {}
 
   readonly "/v1/customer/disputes" = {
     /**

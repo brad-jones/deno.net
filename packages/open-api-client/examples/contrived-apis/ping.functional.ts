@@ -7,7 +7,7 @@ import {
   openAPIFetch,
   type OpenAPIResponsePromise,
   type OpenAPIResponses,
-} from "jsr:@brad-jones/deno-net-open-api-client@0.2.5";
+} from "jsr:@brad-jones/deno-net-open-api-client@0.3.1";
 import { z } from "npm:zod@^4.1.12";
 
 export const getPing = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
@@ -35,7 +35,7 @@ export const getPing = (config: OpenAPIClientConfig): OpenAPIResponsePromise<
     },
   ) as any;
 
-export { createCustomClient } from "jsr:@brad-jones/deno-net-open-api-client@0.2.5";
+export { createCustomClient } from "jsr:@brad-jones/deno-net-open-api-client@0.3.1";
 
 /**
  * Create a client with all available operations.

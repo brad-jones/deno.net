@@ -6,7 +6,7 @@ import {
   openAPIFetch,
   type OpenAPIResponsePromise,
   type OpenAPIResponses,
-} from "jsr:@brad-jones/deno-net-open-api-client@0.2.5";
+} from "jsr:@brad-jones/deno-net-open-api-client@0.3.1";
 import { z } from "npm:zod@^4.1.12";
 
 export type Folder = unknown;
@@ -297,7 +297,7 @@ export const FilesSchema: z.ZodType<Files> = z.object({
  * All methods are inline within the class.
  */
 export class ApiClient {
-  constructor(private readonly config: OpenAPIClientConfig) {}
+  constructor(private readonly config?: OpenAPIClientConfig) {}
 
   readonly "/Associations/{ObjectId}" = {
     /**
