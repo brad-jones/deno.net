@@ -35,3 +35,7 @@ tasks:
   test:
     cmds:
       - "deno test -A ./packages/**/*.test.ts"
+
+  update:
+    cmds:
+      - deno update --latest -r
