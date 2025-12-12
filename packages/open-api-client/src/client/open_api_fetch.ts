@@ -85,14 +85,14 @@ import { serializeCookies, serializeHeaders, serializePath, serializeQuery } fro
 export function openAPIFetch<
   TResponse extends OpenAPIResponse<number, unknown, Record<string, string>, boolean>,
 >(
-  config: OpenAPIClientConfig,
+  config: OpenAPIClientConfig | undefined,
   metadata: OpenAPIRequestMetadata,
   request?: OpenAPIRequest,
 ): OpenAPIResponsePromise<TResponse> {
   // The actual fetch implementation
   const responsePromise = (async (): Promise<TResponse> => {
     // 1. Validate the global client config using Zod
-    const validatedConfig = OpenAPIClientConfig.parse(config);
+    const validatedConfig = config ? OpenAPIClientConfig.parse(config) : {};
 
     // 2. Request validation, using whatever schema we are given (optional)
     if (metadata.requestSchema && request) {
@@ -104,6 +104,15 @@ export function openAPIFetch<
 
     // 3. Build the complete final URL
     let baseUrl = validatedConfig.baseUrl instanceof URL ? validatedConfig.baseUrl.toString() : validatedConfig.baseUrl;
+
+    // Attempt to grab base url from the browser location
+    if (!baseUrl) {
+      if (globalThis?.location?.origin) {
+        baseUrl = globalThis.location.origin;
+      } else {
+        throw new Error("Unset Base URL");
+      }
+    }
 
     // Remove trailing slash from baseUrl to avoid double slashes
     if (baseUrl.endsWith("/")) {

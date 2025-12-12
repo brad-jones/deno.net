@@ -117,7 +117,7 @@ export class ClassicalClientGenerator extends BaseClientGenerator {
     parts.push(" */");
     parts.push("export class ApiClient {");
     parts.push(
-      "  constructor(private readonly config: OpenAPIClientConfig) {}",
+      "  constructor(private readonly config?: OpenAPIClientConfig) {}",
     );
     parts.push("");
 

@@ -10,7 +10,7 @@ import { z } from "@zod/zod";
 export type OpenAPIClientConfig = z.input<typeof OpenAPIClientConfig>;
 
 export const OpenAPIClientConfig = z.object({
-  baseUrl: z.union([z.url(), z.instanceof(URL)]),
+  baseUrl: z.union([z.url(), z.instanceof(URL)]).optional(),
   headers: z.record(z.string(), z.string()).optional(),
   fetch: z.custom<typeof fetch>((v) => typeof v === "function").optional(),
 });
