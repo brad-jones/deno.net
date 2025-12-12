@@ -12,7 +12,7 @@ tsSrc = tsSrc.replace(
 
 tsSrc = tsSrc.replace(
   /const _DEFAULT_CLIENT_IMPORT_SPECIFIER = ".*?";/,
-  `const _DEFAULT_CLIENT_IMPORT_SPECIFIER = "jsr:${config!.name}@${config!.version}";`,
+  `const _DEFAULT_CLIENT_IMPORT_SPECIFIER = "jsr:${config!.name}@${config!.version}/client";`,
 );
 
 await Deno.writeTextFile(`${import.meta.dirname}/../src/base_generator.ts`, tsSrc);

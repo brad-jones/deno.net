@@ -9,7 +9,7 @@ import { SchemaSanitizer, TypeScriptTypeGenerator, ZodSchemaGenerator } from "./
 import { type OpenAPISchemaObjectSchema, OpenAPISpec } from "./types/mod.ts";
 
 // These are replaced at build time by the `replace-import-specifiers.ts` script.
-const _DEFAULT_CLIENT_IMPORT_SPECIFIER = "jsr:@brad-jones/deno-net-open-api-client@0.3.1";
+const _DEFAULT_CLIENT_IMPORT_SPECIFIER = "jsr:@brad-jones/deno-net-open-api-client@0.3.1/client";
 const _DEFAULT_ZOD_IMPORT_SPECIFIER = "npm:zod@^4.1.12";
 
 /**
