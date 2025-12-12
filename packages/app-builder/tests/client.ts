@@ -14,7 +14,7 @@ import { z } from "@zod/zod";
  * All methods are inline within the class.
  */
 export class ApiClient {
-  constructor(private readonly config: OpenAPIClientConfig) {}
+  constructor(private readonly config?: OpenAPIClientConfig) {}
 
   readonly "/foo/{bar}" = {
     get: (request: {
