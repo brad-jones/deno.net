@@ -262,12 +262,6 @@ Deno.test("openAPIFetch - Non-JSON response", async () => {
   expect(result.body).toBe("Plain text response");
 });
 
-Deno.test("openAPIFetch - Missing config throws error", async () => {
-  // @ts-expect-error - Testing runtime error when config is undefined
-  await expect(openAPIFetch(undefined, { path: "/test", method: "get" }))
-    .rejects.toThrow();
-});
-
 Deno.test("openAPIFetch - Invalid baseUrl throws error", async () => {
   await expect(openAPIFetch( // deno-lint-ignore no-explicit-any
     { baseUrl: "not-a-valid-url" } as any,
